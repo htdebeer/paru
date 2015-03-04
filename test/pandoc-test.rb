@@ -1,25 +1,20 @@
 require_relative '../lib/paru/pandoc.rb'
 
-p = Paru::Pandoc.new do |d|
-  d.to :markdown
-  d.from :html
-  d.output 'test.html'
-end
+p = Paru::Pandoc.new do
+  from :markdown
+  to :html5
+  standalone
+  toc false
+  css 'sfsdf'
+  css 'dfdgf'
+  variable "D"
+  variable "E:90"
+  output File.join(__dir__, 'test.html')
+end 
+#<< IO.read(File.join(__dir__, 'test.markdown'))
 
 puts p.to_command
 
-
-p = Paru::Pandoc.new do 
-  to :latex
-  from :html 
-  css 'this_file.css'
-  css 'that_file.css'
-end
-p.configure do 
-  strict
-  tab_stop 5
-  indented_code_classes "algol"
-  columns
-end
+p = Paru::Pandoc.new.configure { toc }.configure {css "dfdf"}.css "SDfsdf"
 
 puts p.to_command

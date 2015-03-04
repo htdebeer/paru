@@ -1,93 +1,78 @@
+# See http://pandoc.org/README.html for an overview of all options
+# 
 # General options
-from: ""
-to: ""
-output: ""
-data_dir: ""
-
-strict: true
+from:                     ""
+to:                       ""
+output:                   ""
+data_dir:                 ""
 # Reader options
-parse_raw: true
-smart: true
-old_dashes: true
-base_header_level: 1
-indented_code_classes: ""
-default_image_extension: ""
-# filter
-metadata: 
-  multiple: "hash"
-  default: true
-normalize: true
-preserve_tabls: true
-tab_stop: 4
-track_changes: "accept"
-extract_media: true
-
+parse_raw:                true
+smart:                    true
+old_dashes:               true
+base_header_level:        1
+indented_code_classes:    ""
+default_image_extension:  ""
+filter:                   [""]
+metadata:                 [""]
+normalize:                true
+preserve_tabls:           true
+tab_stop:                 4
+track_changes:            "accept"
+extract_media:            true
 # General writer options
-standalone: true
-template: ''
-variable:
-  multiple: "hash"
-  default: true
-no_wrap: true
-columns: 78
-toc: true
-toc_depth: 3
-no_highlight: true
-highlight_style: "pygments"
-include_in_header:
-  multiple: "array"
-  default: ''
-include_before_body:
-  multiple: "array"
-  default: ''
-include_after_body:
-  multiple: "array"
-  default: ''
-
+standalone:               true
+template:                 ""
+variable:                 [""]
+no_wrap:                  true
+columns:                  78
+toc:                      true
+table_of_contents:        true
+toc_depth:                3
+no_highlight:             true
+highlight_style:          "pygments"
+include_in_header:        [""]
+include_before_body:      [""]
+include_after_body:       [""]
 # Options affecting specific writers
-self_contained: true
-offline: true
-html5: true
-html_q_tags: true
-ascii: true
-reference_links: true
-atx_headers: true
-chapters: true
-number_sections: true
-number_offset: "0"
-no_tex_ligatures: true
-listings: true
-incremental: true
-slide_level: 1
-section_divs: true
-email_obfuscation: "none"
-id_prefix: ""
-title_prefix: ""
-css:
-  multiple: "array"
-  default: ''
-reference_odt: ""
-reference_docx: ""
-epub_stylesheet: "epub.css"
-epub_metadata: ""
-epub_embed_font: ""
-epub_chapter_level: 1
-latex_engine: "pdflatex"
-
+self_contained:           true
+offline:                  true
+html5:                    true
+html_q_tags:              true
+ascii:                    true
+reference_links:          true
+atx_headers:              true
+chapters:                 true
+number_sections:          true
+number_offset:            "0"
+no_tex_ligatures:         true
+listings:                 true
+incremental:              true
+slide_level:              1
+section_divs:             true
+email_obfuscation:        "none"
+id_prefix:                ""
+title_prefix:             ""
+css:                      [""]
+reference_odt:            ""
+reference_docx:           ""
+epub_stylesheet:          "epub.css"
+epub_metadata:            ""
+epub_embed_font:          ""
+epub_chapter_level:       1
+latex_engine:             "pdflatex"
 # Citation rendering
-bibliography: ""
-csl: ""
-citation_abbreviations: ""
-natbib: true
-biblatex: true
-
+bibliography:             ""
+csl:                      ""
+citation_abbreviations:   ""
+natbib:                   true
+biblatex:                 true
 # Math rendering in HTML
-latexmathml: ""
-mathml: ""
-jsmath: ""
-mathjax: ""
-gladtex: true
-mimetex: ""
-webtex: ""
-katex: ""
-katex_stylesheet: ""
+latexmathml:              ""
+mathml:                   ""
+jsmath:                   ""
+mathjax:                  ""
+gladtex:                  true
+mimetex:                  ""
+webtex:                   ""
+katex:                    ""
+katex_stylesheet:         ""
