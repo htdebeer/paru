@@ -23,6 +23,8 @@ extract_media:            true
 standalone:               true
 template:                 ""
 variable:                 [""]
+dpi:                      96
+wrap:                     "auto"
 no_wrap:                  true
 columns:                  78
 toc:                      true
@@ -35,8 +37,6 @@ include_before_body:      [""]
 include_after_body:       [""]
 # Options affecting specific writers
 self_contained:           true
-offline:                  true
-html5:                    true
 html_q_tags:              true
 ascii:                    true
 reference_links:          true
@@ -56,10 +56,12 @@ css:                      [""]
 reference_odt:            ""
 reference_docx:           ""
 epub_stylesheet:          "epub.css"
+epub_cover_image:         ""
 epub_metadata:            ""
 epub_embed_font:          ""
 epub_chapter_level:       1
 latex_engine:             "pdflatex"
+latex_engine_opt:         [""]
 # Citation rendering
 bibliography:             ""
 csl:                      ""
