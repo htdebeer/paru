@@ -3,6 +3,9 @@ module Paru
         require_relative "./node"
 
         class Inline < Node
+           def initialize contents
+              super contents, true
+           end 
         end
     end
 end

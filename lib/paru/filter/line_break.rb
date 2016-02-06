@@ -2,10 +2,11 @@ module Paru
     module PandocFilter
         require_relative "./inline"
 
-        class Str < Inline
-            def initialize value
-                @value = value
+        class LineBreak < Inline
+            def initialize contents
+                super []
             end
         end
     end
 end
+

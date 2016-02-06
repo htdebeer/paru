@@ -9,7 +9,7 @@ module Paru
                 require_relative file
             end
 
-            def initialize contents
+            def initialize contents, inline_children = false
                 @children = []
 
                 if contents.is_a? Array
@@ -17,7 +17,11 @@ module Paru
                         if PandocFilter.const_defined? elt["t"]
                             @children.push PandocFilter.const_get(elt["t"]).new elt["c"]
                         else
-                            @children.push PandocFilter::Block.new elt["c"]
+                            if inline_children
+                                @children.push PandocFilter::Inline.new elt["c"]
+                            else
+                                @children.push PandocFilter::Block.new elt["c"]
+                            end
                         end
                     end
                 end
@@ -27,6 +31,10 @@ module Paru
                 @children.each do |child|
                     yield child
                 end
+            end
+
+            def has_children?
+                defined? @children and @children.size > 0
             end
 
             def to_s

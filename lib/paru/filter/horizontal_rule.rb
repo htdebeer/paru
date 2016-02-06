@@ -2,9 +2,9 @@ module Paru
     module PandocFilter
         require_relative "./block"
 
-        class Plain < Block
+        class HorizontalRule < Block
             def initialize contents
-                super contents, true
+                super []
             end
         end
     end

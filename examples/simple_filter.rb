@@ -2,11 +2,20 @@
 
 require 'paru/filter'
 
+def printBlock block, indent = 0
+    puts "#{'    ' * indent}#{block}"
+    if block.has_children?
+        block.each do |child|
+            printBlock child, indent + 1
+        end
+    end
+end
+
 filter = Paru::Filter.new
 document = filter.process
 
 puts document.meta
 puts "----"
 document.each do |block|
-    puts "#{block}"
+    printBlock block
 end

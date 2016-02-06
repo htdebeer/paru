@@ -1,11 +1,14 @@
 module Paru
     module PandocFilter
         require_relative "./block"
+        require_relative "./attr"
 
-        class Plain < Block
+        class Div < Block
             def initialize contents
-                super contents, true
+                @attr = Attr.new contents[0]
+                super contents[1]
             end
         end
     end
 end
+
