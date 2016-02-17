@@ -17,5 +17,5 @@ document = filter.process
 puts document.meta
 puts "----"
 document.each do |block|
-    printBlock block
+    puts block.to_ast
 end

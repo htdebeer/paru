@@ -40,6 +40,25 @@ module Paru
             def to_s
                 self.class.name
             end
+
+            def type
+                self.class.name.split("::").last
+            end
+
+            def contents
+                if defined? @children
+                    @children.map {|child| child.to_ast}
+                else
+                    []
+                end
+            end
+
+            def to_ast
+                {
+                    "t": type,
+                    "c": contents
+                }
+            end
         end
     end
 end
