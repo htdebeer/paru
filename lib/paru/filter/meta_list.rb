@@ -1,11 +1,9 @@
 module Paru
     module PandocFilter
+
         require_relative "./node"
 
-        class Block < Node
-            def is_block?
-                true
-            end
+        class MetaList < Node
         end
     end
 end

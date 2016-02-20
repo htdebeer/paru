@@ -13,6 +13,17 @@ module Paru
                 @note_num = spec[4]
                 @hash = spec[5]
             end
+
+            def to_ast
+                [
+                    @id,
+                    @prefix.to_ast,
+                    @suffix.to_ast,
+                    @mode,
+                    @note_num,
+                    @hash
+                ]
+            end
         end
     end
 end

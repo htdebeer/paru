@@ -10,6 +10,13 @@ module Paru
                 @attr = Attr.new contents[0]
                 @string = contents[1]
             end
+
+            def ast_contents
+                [
+                    @attr.to_ast,
+                    @string
+                ]
+            end
         end
     end
 end

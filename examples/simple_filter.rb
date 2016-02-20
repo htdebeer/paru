@@ -12,10 +12,7 @@ def printBlock block, indent = 0
 end
 
 filter = Paru::Filter.new
-document = filter.process
 
-puts document.meta
-puts "----"
-document.each do |block|
-    puts block.to_ast
+filter.run do |doc|
+    doc
 end

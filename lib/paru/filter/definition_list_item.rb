@@ -11,6 +11,13 @@ module Paru
                 super item[1]
                 @definition = @children
             end
+
+            def to_ast
+                [
+                    @term.to_ast,
+                    super
+                ]
+            end
         end
     end
 end

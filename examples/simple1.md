@@ -1,5 +1,7 @@
 ---
 title: titel
+author: ik
+random_field: true
 ...
 alinea 1
 

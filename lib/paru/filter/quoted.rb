@@ -11,6 +11,13 @@ module Paru
                 @quote_type = contents[0]
                 super contents[1]
             end
+
+            def ast_contents
+                [
+                    @quote_type,
+                    super
+                ]
+            end
         end
     end
 end

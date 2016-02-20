@@ -11,6 +11,14 @@ module Paru
                 @number_style = attributes[1]
                 @number_delim = attributes[2]
             end
+
+            def to_ast
+                [
+                    @start,
+                    @number_style,
+                    @number_delim
+                ]
+            end
         end
     end
 end

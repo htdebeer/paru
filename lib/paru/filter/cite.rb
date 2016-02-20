@@ -9,6 +9,13 @@ module Paru
                 @citation = Citation.new contents[0]
                 super contents[1]
             end
+
+            def ast_contents
+                [
+                    @citation.to_ast,
+                    super
+                ]
+            end
         end
     end
 end

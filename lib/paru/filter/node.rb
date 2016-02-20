@@ -37,16 +37,24 @@ module Paru
                 defined? @children and @children.size > 0
             end
 
+            def is_block?
+                false
+            end
+
+            def is_inline?
+                false
+            end
+
             def to_s
                 self.class.name
             end
 
-            def type
+            def ast_type
                 self.class.name.split("::").last
             end
 
-            def contents
-                if defined? @children
+            def ast_contents
+                if has_children?
                     @children.map {|child| child.to_ast}
                 else
                     []
@@ -55,8 +63,8 @@ module Paru
 
             def to_ast
                 {
-                    "t": type,
-                    "c": contents
+                    "t": ast_type,
+                    "c": ast_contents
                 }
             end
         end

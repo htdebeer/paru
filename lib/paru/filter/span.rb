@@ -1,20 +1,19 @@
 module Paru
     module PandocFilter
-        require_relative "./block"
+
+        require_relative "./inline"
         require_relative "./attr"
 
-        class Header < Block
-            attr_accessor :level, :attr
+        class Span < Inline
+            attr_accessor :attr
 
             def initialize contents
-                @level = contents[0]
-                @attr = Attr.new contents[1]
-                super contents[2], true
+                @attr = Attr.new contents[0]
+                super contents[1]
             end
 
             def ast_contents
                 [
-                    @level,
                     @attr.to_ast,
                     super
                 ]

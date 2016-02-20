@@ -9,6 +9,13 @@ module Paru
                 @list_attributes = ListAttributes.new contents[0]
                 super contents[1]
             end
+
+            def ast_contents
+                [
+                    @list_attributes.to_ast,
+                    super
+                ] 
+            end
         
         end
     end

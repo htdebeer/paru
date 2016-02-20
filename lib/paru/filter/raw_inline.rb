@@ -1,21 +1,19 @@
 module Paru
     module PandocFilter
+
         require_relative "./inline"
-    
-        MATH_TYPE = ["DisplayMath", "InlineMath"]
 
-
-        class Math < Inline
-            attr_accessor :type, :string
+        class RawInline < Inline
+            attr_accessor :format, :string
 
             def initialize contents
-                @type = contents[0]
+                @format = contents[0]
                 @string = contents[1]
             end
 
             def ast_contents
                 [
-                    @type,
+                    @format,
                     @string
                 ]
             end
