@@ -2,7 +2,7 @@ require "minitest/autorun"
 
 require_relative "../lib/paru"
 
-class FilterTest < MiniTest::Unit::TestCase
+class FilterTest < MiniTest::Test
 
     def setup
     end
@@ -11,7 +11,7 @@ class FilterTest < MiniTest::Unit::TestCase
         pandoc2json_with_identity = Paru::Pandoc.new do
             from "markdown" 
             to "json"
-            filter "../examples/filters/identity.rb"
+            filter "examples/filters/identity.rb"
         end
 
         json2pandoc = Paru::Pandoc.new do
@@ -20,14 +20,31 @@ class FilterTest < MiniTest::Unit::TestCase
             standalone
         end
 
-        json2pandoc << pandoc2json_with_identity << input
+        filtered_input = pandoc2json_with_identity << input
+        json2pandoc << filtered_input
+    end
+
+    def reformat input
+        pandoc2pandoc = Paru::Pandoc.new do
+            from "markdown"
+            to "markdown"
+            standalone
+        end
+
+        pandoc2pandoc << input
     end
 
     def assert_filtered_input_equals_input dir
-        Dir.glob("pandoc_input/#{dir}/*.md") do |path|
-            input = File.read path
-            output = filter input
-            assert_equal input, output    
+        Dir.glob("test/pandoc_input/#{dir}/*.md") do |path|
+
+            input = reformat (File.read path)
+            output = ""
+           
+            assert_output nil, "" do
+                output = filter input
+            end
+                
+            assert_equal input, output, "Failure filtering #{path}" 
         end
     end
 

@@ -4,17 +4,17 @@ module Paru
         require_relative "./attr"
 
         class Code < Inline
-            attr_accessor :attr
+            attr_accessor :attr, :string
 
             def initialize contents
                 @attr = Attr.new contents[0]
-                super contents[1]
+                @string = contents[1]
             end
 
             def ast_contents
                 [
                     @attr.to_ast,
-                    super
+                    @string
                 ]
             end
         end

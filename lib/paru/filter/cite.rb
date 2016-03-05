@@ -3,16 +3,19 @@ module Paru
         require_relative "./inline"
 
         class Cite < Inline
-            attr_accessor :citation
+            attr_accessor :citations
 
             def initialize contents
-                @citation = Citation.new contents[0]
+                @citations = []
+                contents[0].each do |citation|
+                    @citations.push Citation.new(citation)
+                end
                 super contents[1]
             end
 
             def ast_contents
                 [
-                    @citation.to_ast,
+                    @citations.map {|citation| citation.to_ast},
                     super
                 ]
             end

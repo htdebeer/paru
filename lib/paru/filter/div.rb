@@ -12,7 +12,7 @@ module Paru
             def ast_contents
                 [
                     @attr.to_ast,
-                    ast_contents
+                    super
                 ]
             end
         end

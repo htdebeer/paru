@@ -6,23 +6,23 @@ module Paru
             attr_accessor :id, :prefix, :suffix, :mode, :note_num, :hash
 
             def initialize spec
-                @id = spec[0]
-                @prefix = Inline.new spec[1]
-                @suffix = Inline.new spec[2]
-                @mode = spec[3]
-                @note_num = spec[4]
-                @hash = spec[5]
+                @id = spec["citationId"] if spec.has_key? "citationId"
+                @prefix = Inline.new spec["citationPrefix"] if spec.has_key? "citationPrefix"
+                @suffix = Inline.new spec["citationSuffix"] if spec.has_key? "citationSuffix"
+                @mode = spec["citationMode"] if spec.has_key? "citationMode"
+                @note_num = spec["citationNoteNum"] if spec.has_key? "citationNoteNum"
+                @hash = spec["citationHash"] if spec.has_key? "citationHash"
             end
 
             def to_ast
-                [
-                    @id,
-                    @prefix.to_ast,
-                    @suffix.to_ast,
-                    @mode,
-                    @note_num,
-                    @hash
-                ]
+                citation = Hash.new
+                citation["citationId"] = @id if not @id.nil?
+                citation["citationPrefix"] = @prefix.ast_contents if not @prefix.nil?
+                citation["citationSuffix"] = @suffix.ast_contents if not @suffix.nil?
+                citation["citationMode"] = @mode if not @mode.nil?
+                citation["citationNoteNum"] = @note_num if not @note_num.nil?
+                citation["citationHash"] = @hash if not @hash.nil?
+                citation
             end
         end
     end

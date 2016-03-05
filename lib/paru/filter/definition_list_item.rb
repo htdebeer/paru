@@ -1,21 +1,20 @@
 module Paru
     module PandocFilter
         require_relative "./block"
+        require_relative "./list"
         require_relative "./inline"
-        require_relative "./list_item"
 
-        class DefinitionListItem < ListItem
+        class DefinitionListItem < Block
             attr_accessor :term, :definition
             def initialize item
-                @term = Inline.new item[0]
-                super item[1]
-                @definition = @children
+                @term = Block.new item[0]
+                @definition = List.new item[1]
             end
 
             def to_ast
                 [
-                    @term.to_ast,
-                    super
+                    @term.ast_contents,
+                    @definition.ast_contents
                 ]
             end
         end

@@ -9,6 +9,10 @@ module Paru
                     @children.push Block.new cell
                 end
             end
+
+            def ast_contents
+                @children.map {|child| child.ast_contents}
+            end
         end
     end
 end

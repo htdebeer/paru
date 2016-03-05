@@ -22,11 +22,11 @@ module Paru
 
             def ast_contents
                 [
-                    @caption.to_ast,
+                    @caption.ast_contents,
                     @alignment,
                     @column_widths,
-                    @headers.to_ast,
-                    @rows.map {|row| row.to_ast}
+                    @headers.ast_contents,
+                    @rows.map {|row| row.ast_contents}
                 ]
             end
         end

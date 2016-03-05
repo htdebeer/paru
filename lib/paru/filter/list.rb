@@ -1,14 +1,17 @@
 module Paru
     module PandocFilter
         require_relative "./block"
-        require_relative "./list_item"
 
         class List < Block
             def initialize contents
                 super []
-                contents[1].each do |item|
-                    @children.push ListItem.new item
+                contents.each do |item|
+                    @children.push Block.new item
                 end
+            end
+
+            def ast_contents
+                @children.map {|child| child.ast_contents}
             end
         end
     end
