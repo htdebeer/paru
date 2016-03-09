@@ -1,0 +1,3 @@
+---
+variable: A string with content
+...

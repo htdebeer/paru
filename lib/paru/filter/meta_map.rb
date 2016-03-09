@@ -11,7 +11,7 @@ module Paru
                 if contents.is_a? Hash
                     contents.each_pair do |key, value|
                         if PandocFilter.const_defined? value["t"]
-                            @children[key] = PandocFilter.const_get(value["t"]).new key, value["c"]
+                            @children[key] = PandocFilter.const_get(value["t"]).new value["c"]
                         end
                     end
                 end

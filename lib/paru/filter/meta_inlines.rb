@@ -4,10 +4,8 @@ module Paru
         require_relative "./node"
 
         class MetaInlines < Node
-            attr_accessor :key
             
-            def initialize key, value
-                @key = key
+            def initialize value
                 super value
             end
         end

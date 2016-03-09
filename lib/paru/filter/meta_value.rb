@@ -5,10 +5,9 @@ module Paru
 
         class MetaValue < Node
 
-            attr_accessor :key, :value
+            attr_accessor :value
 
-            def initialize key, value
-                @key = key
+            def initialize value
                 @value = value
             end
 
