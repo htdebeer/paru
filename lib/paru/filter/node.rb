@@ -33,6 +33,24 @@ module Paru
                 end
             end
 
+            def query type, &block
+                # xpath/css like selector
+                @children.each do |child|
+                    yield(child) if block_given? and child.type == type
+                    child.query(type, &block) if child.has_children?
+                end
+            end
+
+            def append elt
+                @children.push elt
+            end
+            alias << append
+
+            def prepend elt
+                @children = [elt].concat @children
+            end
+
+
             def has_children?
                 defined? @children and @children.size > 0
             end
@@ -47,6 +65,10 @@ module Paru
 
             def to_s
                 self.class.name
+            end
+
+            def type
+                ast_type
             end
 
             def ast_type
