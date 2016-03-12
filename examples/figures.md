@@ -1,5 +1,1 @@
-Test
-
-![This is a figure](path/to/img.png)
-
-End
+![the image](path/to/img.png)

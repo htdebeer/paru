@@ -7,8 +7,7 @@ current = 0;
 Paru::Filter.new.run do |doc|
     doc.query("Image") do |image|
         current += 1
-        prefix = Paru::PandocFilter::Str.new "Figure #{current}. "
-        image.prepend prefix
+        image.innerMarkdown = "Figure #{current}. #{image.innerMarkdown}"
     end
     doc
 end

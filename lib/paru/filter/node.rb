@@ -1,8 +1,21 @@
 module Paru
     module PandocFilter
+        
+        require 'json'
+        require_relative "./ast_query"
+        require_relative "./ast_manipulation"
+        require_relative "./markdown"
+        require_relative "../pandoc"
+        require_relative "./document"
+
         class Node
 
+            attr_accessor :children
+
             include Enumerable
+            include ASTQuery
+            include ASTManipulation
+            include Markdown
 
             # require all pandoc types
             Dir[File.dirname(__FILE__) + '/*.rb'].each do |file|
@@ -20,36 +33,19 @@ module Paru
                             if inline_children
                                 @children.push PandocFilter::Inline.new elt["c"]
                             else
-                                @children.push PandocFilter::Block.new elt["c"]
+                                @children.push PandocFilter::Plain.new elt["c"]
                             end
                         end
                     end
                 end
             end
 
+
             def each
                 @children.each do |child|
                     yield child
                 end
             end
-
-            def query type, &block
-                # xpath/css like selector
-                @children.each do |child|
-                    yield(child) if block_given? and child.type == type
-                    child.query(type, &block) if child.has_children?
-                end
-            end
-
-            def append elt
-                @children.push elt
-            end
-            alias << append
-
-            def prepend elt
-                @children = [elt].concat @children
-            end
-
 
             def has_children?
                 defined? @children and @children.size > 0
@@ -83,12 +79,21 @@ module Paru
                 end
             end
 
+            def ast_markdown_contents
+                if has_children?
+                    @children.map {|child| child.to_ast}
+                else
+                    []
+                end
+            end
+
             def to_ast
                 {
-                    "t": ast_type,
-                    "c": ast_contents
+                    "t" => ast_type,
+                    "c" => ast_contents
                 }
             end
+
         end
     end
 end

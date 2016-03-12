@@ -2,8 +2,6 @@ module Paru
 
     require_relative "filter/document"
     
-    require 'json'
-
     class Filter
 
         def initialize
