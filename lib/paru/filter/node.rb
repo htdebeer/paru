@@ -9,9 +9,6 @@ module Paru
         require_relative "./document"
 
         class Node
-
-            attr_accessor :children
-
             include Enumerable
             include ASTQuery
             include ASTManipulation
@@ -24,18 +21,22 @@ module Paru
 
             def initialize contents, inline_children = false
                 @children = []
+                @parent = nil
 
                 if contents.is_a? Array
                     contents.each do |elt|
                         if PandocFilter.const_defined? elt["t"]
-                            @children.push PandocFilter.const_get(elt["t"]).new elt["c"]
+                            child = PandocFilter.const_get(elt["t"]).new elt["c"]
                         else
                             if inline_children
-                                @children.push PandocFilter::Inline.new elt["c"]
+                                child = PandocFilter::Inline.new elt["c"]
                             else
-                                @children.push PandocFilter::Plain.new elt["c"]
+                                child = PandocFilter::Plain.new elt["c"]
                             end
                         end
+
+                        child.parent = self
+                        @children.push child
                     end
                 end
             end
