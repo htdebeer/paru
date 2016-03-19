@@ -64,6 +64,11 @@ module Paru
             def replace_at index, new_child
                 @children[index] = new_child
             end
+
+            def each_depth_first &block
+                yield self
+                each {|child| child.each_depth_first(&block)} if has_children?
+            end
             
         end
     end

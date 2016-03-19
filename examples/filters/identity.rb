@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'paru/filter'
-Paru::Filter.new.run do |doc|
-    doc
+Paru::Filter.run do
+    # nothing
 end
