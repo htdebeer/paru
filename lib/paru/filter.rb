@@ -56,6 +56,7 @@ module Paru
             # <selector>    ::= (<node> <selop><distance>)* <node>
             # <selectorlist>::= <selector>(, <selector>)*
             #
+            # Image << Emph
 
         end
 
