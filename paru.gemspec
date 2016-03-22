@@ -11,6 +11,6 @@ Gem::Specification.new do |s|
              'lib/paru/pandoc.rb',
              'lib/paru/filter.rb']
   s.files += Dir['lib/paru/filter/*.rb']
-  s.homepage = 'https://github.com/htdebeer/paru'
+  s.homepage = 'https://heerdebeer.org/Software/markdown/paru/'
   s.license = 'GPL3'
 end

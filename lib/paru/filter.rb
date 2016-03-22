@@ -54,6 +54,7 @@ module Paru
             # <node>        ::= <type>([<attr>(<relop><val>)?])*
             # <distance>    ::= [1-9][0-9]*
             # <selector>    ::= (<node> <selop><distance>)* <node>
+            # <selectorlist>::= <selector>(, <selector>)*
             #
 
         end
