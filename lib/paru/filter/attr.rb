@@ -15,9 +15,13 @@ module Paru
             end
 
             def [](key) 
-                if @data.key_exists?
+                if @data.key_exists? key
                     @data[key]
                 end 
+            end
+
+            def has_key? name
+                @data.key_exists? name
             end
 
             def to_ast

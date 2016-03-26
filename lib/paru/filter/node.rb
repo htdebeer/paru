@@ -58,6 +58,14 @@ module Paru
                 false
             end
 
+            def has_class? name
+                if not @attr.nil? and @attr.respond_to?(:has_key)
+                    @attr.has_key? name
+                else
+                    false
+                end
+            end
+
             def to_s
                 self.class.name
             end
