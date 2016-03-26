@@ -6,6 +6,10 @@ module Paru
             def initialize contents
                 super []
             end
+
+            def has_inline?
+                false
+            end
         end
     end
 end

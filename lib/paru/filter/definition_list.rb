@@ -13,6 +13,7 @@ module Paru
             def ast_contents
                 @children.map {|child| child.to_ast}
             end
+
         end
     end
 end

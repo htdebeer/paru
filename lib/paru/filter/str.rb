@@ -4,11 +4,19 @@ module Paru
 
         class Str < Inline
             def initialize value
-                @value = value
+                @string = value
             end
 
             def ast_contents
-                @value
+                @string
+            end
+
+            def has_string?
+                true
+            end
+
+            def has_inline?
+                false
             end
         end
     end

@@ -13,10 +13,17 @@ module Paru
             def self.fragment node_list
                 meta = Hash.new
                 meta["unMeta"] = Hash.new
-                node = PandocFilter::Plain.new []
-                node.children = node_list
+                
+                if node_list.any? {|n| n.is_block?}
+                    new_doc = Document.new meta, []
+                    new_doc.children = node_list
+                else
+                    node = PandocFilter::Plain.new [] 
+                    node.children = node_list
+                    new_doc = Document.new meta, [node.to_ast]
+                end
 
-                Document.new meta, [node.to_ast]
+                new_doc
             end
 
             def initialize(meta, contents)

@@ -12,6 +12,8 @@ module Paru
             include ASTManipulation
             include Markdown
 
+            attr_accessor :parent
+
             # require all pandoc types
             Dir[File.dirname(__FILE__) + '/*.rb'].each do |file|
                 require_relative file
@@ -50,6 +52,47 @@ module Paru
                 defined? @children and @children.size > 0
             end
 
+            def children
+                if has_children?
+                    @children
+                else
+                    []
+                end
+            end
+
+            def children= list
+                @children = list
+            end
+
+            def has_parent?
+                not @parent.nil?
+            end
+
+            def is_root?
+                not has_parent?
+            end
+
+            def is_node?
+                not is_leaf
+            end
+
+            def is_leaf?
+                not has_children?
+            end
+
+
+            def has_string?
+                false
+            end
+
+            def has_inline?
+                false
+            end
+
+            def has_block?
+                false
+            end
+
             def is_block?
                 false
             end
@@ -59,8 +102,8 @@ module Paru
             end
 
             def has_class? name
-                if not @attr.nil? and @attr.respond_to?(:has_key)
-                    @attr.has_key? name
+                if not @attr.nil?
+                    @attr.has_class? name
                 else
                     false
                 end

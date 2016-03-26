@@ -15,6 +15,10 @@ module Paru
                     super
                 ]
             end
+
+            def has_block?
+                true
+            end
         end
     end
 end

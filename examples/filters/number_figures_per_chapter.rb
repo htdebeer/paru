@@ -11,12 +11,12 @@ Paru::Filter.run do
             current_chapter += 1
             current_figure = 0
 
-            header.innerMarkdown = "Chapter #{current_chapter}. #{header.innerMarkdown}"
+            header.inner_markdown = "Chapter #{current_chapter}. #{header.inner_markdown}"
         end
     end
 
     with "Header + Image" do |image|
         current_figure += 1
-        image.innerMarkdown = "Figure #{current_chapter}.#{current_figure} #{image.innerMarkdown}"
+        image.inner_markdown = "Figure #{current_chapter}.#{current_figure} #{image.inner_markdown}"
     end
 end

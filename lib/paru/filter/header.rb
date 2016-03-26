@@ -19,6 +19,10 @@ module Paru
                     super
                 ]
             end
+
+            def has_inline?
+                true
+            end
         end
     end
 end

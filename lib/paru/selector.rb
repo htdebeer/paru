@@ -24,9 +24,10 @@ module Paru
 
         S = /\s*/
         TYPE = /(?<type>(?<name>[A-Z][a-zA-Z]*)(?<classes>(\.[a-zA-Z-]+)*))/
+        OTHER_TYPE = /(?<other_type>(?<other_name>[A-Z][a-zA-Z]*)(?<other_classes>(\.[a-zA-Z-]+)*))/
         OPERATOR = /(?<operator>\+|-|>)/
         DISTANCE = /(?<distance>[1-9][0-9]*)/
-        RELATION = /(?<relation>#{S}#{TYPE}#{S}#{OPERATOR}#{S}#{DISTANCE}?#{S})/
+        RELATION = /(?<relation>#{S}#{OTHER_TYPE}#{S}#{OPERATOR}#{S}#{DISTANCE}?#{S})/
         RELATIONS = /(?<relations>#{RELATION}+)/
         SELECTOR = /\A#{S}(?<selector>#{RELATIONS}?#{S}#{TYPE})#{S}\Z/
        
@@ -37,7 +38,7 @@ module Paru
             while continue_parsing? partial_match
                 operator = expect partial_match, :operator
                 distance = expect_integer partial_match, :distance 
-                type, classes = expect_pandoc_type partial_match
+                type, classes = expect_pandoc_other_type partial_match
 
                 @relations.push Relation.new(operator, distance, type, classes)
 
@@ -62,7 +63,14 @@ module Paru
 
         def expect_pandoc_type parts
             type = expect parts, :name
-            classes = parts[:classes].split(".") if not parts[:classes].nil?
+            classes = parts[:classes].split(".").select {|c| not c.empty?} if not parts[:classes].nil?
+            raise SelectorParseError.new "Expected a Pandoc type, got '#{type}' instead" if not is_pandoc_type type
+            [type, classes]
+        end
+
+        def expect_pandoc_other_type parts
+            type = expect parts, :other_name
+            classes = parts[:other_classes].split(".").select {|c| not c.empty?} if not parts[:other_classes].nil?
             raise SelectorParseError.new "Expected a Pandoc type, got '#{type}' instead" if not is_pandoc_type type
             [type, classes]
         end
@@ -105,7 +113,7 @@ module Paru
             when ">"
                 is_descendant? node
             else
-                true
+                false
             end 
         end
 
@@ -124,10 +132,10 @@ module Paru
         def is_descendant? node
             distance = 0
             begin
-                distance += 1
+                distance += 1 if @distance > 0
                 parent = node.parent
                 ancestry = parent.type == @type and @classes.all? {|c| parent.has_class? c}
-            end while not ancestry and not parent.is_root? and distance < @distance
+            end while not ancestry and not parent.is_root? and distance <= @distance
             ancestry
         end
 

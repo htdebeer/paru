@@ -2,38 +2,6 @@ module Paru
     module PandocFilter
         module ASTManipulation
 
-            def children
-                if has_children?
-                    @children
-                else
-                    []
-                end
-            end
-
-            def children= list
-                @children = list
-            end
-
-            def parent
-                @parent
-            end
-
-            def parent= new_parent
-                @parent = new_parent
-            end
-
-            def is_root
-                parent.nil?
-            end
-
-            def is_node
-                not is_leaf
-            end
-
-            def is_leaf
-                not has_children?
-            end
-
             def insert index, child
                 @children.insert index, child
             end

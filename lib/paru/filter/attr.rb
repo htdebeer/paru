@@ -24,6 +24,10 @@ module Paru
                 @data.key_exists? name
             end
 
+            def has_class? name
+                @classes.include? name
+            end
+
             def to_ast
                 [
                     @id,

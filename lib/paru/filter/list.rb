@@ -13,6 +13,10 @@ module Paru
             def ast_contents
                 @children.map {|child| child.ast_contents}
             end
+
+            def has_block?
+                true
+            end
         end
     end
 end

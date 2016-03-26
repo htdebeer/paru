@@ -15,25 +15,37 @@ module Paru
                 to "json"
             end
 
-            def outerMarkdown 
-                tempDoc = PandocFilter::Document.fragment [self]
-                AST2MARKDOWN << tempDoc.to_json
+            def outer_markdown 
+                temp_doc = PandocFilter::Document.fragment [self]
+                AST2MARKDOWN << temp_doc.to_json
             end
 
-            def outerMarkdown=
-                # not implemented yet
+            def inner_markdown
+                temp_doc = PandocFilter::Document.fragment @children
+                AST2MARKDOWN << temp_doc.to_json
             end
 
-            def innerMarkdown
-                tempDoc = PandocFilter::Document.fragment @children
-                AST2MARKDOWN << tempDoc.to_json
-            end
+            def inner_markdown= markdown
+                if has_string?
+                    @string = markdown
+                else
+                    if markdown.empty?
+                        @children = []
+                    else 
+                        json = MARKDOWN2JSON << markdown
+                        meta, contents = JSON.parse json
+                        temp_doc = PandocFilter::Document.new meta, contents
+                        temp_doc.children.each {|c| c.parent = @parent}
 
-            def innerMarkdown= markdown
-                json = MARKDOWN2JSON << markdown
-                meta, contents = JSON.parse json
-                tempDoc = PandocFilter::Document.new meta, contents
-                @children = tempDoc.children[0].children
+                        if has_inline?
+                            @children = temp_doc.children[0].children
+                        elsif has_block?
+                            @children = temp_doc.children
+                        else
+                            # Unknown; what to do here?
+                        end
+                    end
+                end
             end
         end
     end

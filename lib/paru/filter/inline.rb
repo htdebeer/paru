@@ -10,6 +10,10 @@ module Paru
            def is_inline?
                true
            end
+
+           def has_inline?
+               true
+           end
         end
     end
 end

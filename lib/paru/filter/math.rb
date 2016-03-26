@@ -38,6 +38,14 @@ module Paru
                     @string
                 ]
             end
+            
+            def has_string?
+                true
+            end
+
+            def has_inline?
+                false
+            end
         end
     end
 end

@@ -17,6 +17,10 @@ module Paru
                     @string
                 ]
             end
+
+            def has_string?
+                true
+            end
         end
     end
 end
