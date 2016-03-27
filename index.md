@@ -15,7 +15,7 @@ Get the code at <https://github.com/htdebeer/paru>.
 # Installation
 
 ~~~ {.bash}
-gem install paru
+    gem install paru
 ~~~
 
 # Requirements
@@ -33,15 +33,15 @@ html and send it to stdout, you could use the following code:
 ~~~ {.ruby}
     require 'paru/pandoc'
 
-markdown = File.read 'path/to/markdown_file.md' 
-html = Paru::Pandoc.new do
-    from 'markdown'
-    to 'html'
-    standalone
-    toc
-    # add any pandoc option you like
-end << markdown
-puts html
+    markdown = File.read 'path/to/markdown_file.md' 
+    html = Paru::Pandoc.new do
+        from 'markdown'
+        to 'html'
+        standalone
+        toc
+        # add any pandoc option you like
+    end << markdown
+    puts html
 ~~~
 
 The `<<` operator is an alias for the `convert` method, which converts a
@@ -60,18 +60,18 @@ for metadata in so-called yaml blocks. Using Paru and Ruby it is easy to strip
 
 ~~~ {.ruby}
     require 'json'
-require 'paru/pandoc'
+    require 'paru/pandoc'
 
-pandoc2json = Paru::Pandoc.new {from 'markdown'; to 'json'}
-json2pandoc = Paru::Pandoc.new {from 'json'; to 'markdown'; standalone}
+    pandoc2json = Paru::Pandoc.new {from 'markdown'; to 'json'}
+    json2pandoc = Paru::Pandoc.new {from 'json'; to 'markdown'; standalone}
 
-pandoc = ARGV.first
-metadata = JSON.parse(pandoc2json << File.read(pandoc)).first
-yaml = ""
-if metadata.has_key? "unMeta" and not metadata["unMeta"].empty? then
-    yaml = json2pandoc << JSON.generate([metadata, []])
-end
-puts yaml
+    pandoc = ARGV.first
+    metadata = JSON.parse(pandoc2json << File.read(pandoc)).first
+    yaml = ""
+    if metadata.has_key? "unMeta" and not metadata["unMeta"].empty? then
+        yaml = json2pandoc << JSON.generate([metadata, []])
+    end
+    puts yaml
 ~~~
 
 Observe that the `json2pandoc` converter has the `standalone` option. Without
@@ -85,62 +85,62 @@ in a yaml metadata block:
 
 ~~~ {.ruby}
     #!/usr/bin/env ruby
-require 'json'
-require 'yaml'
-require 'paru/pandoc'
+    require 'json'
+    require 'yaml'
+    require 'paru/pandoc'
 
 
-if ARGV.size != 1 then
-    warn "Expecting exactly one argument: the pandoc file to convert"
-    exit
-end
-
-input = ARGV.first
-
-pandoc2json = Paru::Pandoc.new {from 'markdown'; to 'json'}
-json2pandoc = Paru::Pandoc.new {from 'json'; to 'markdown'; standalone}
-json_metadata = JSON.parse(pandoc2json << File.read(input)).first
-yaml_metadata = YAML.load(json2pandoc << JSON.generate([json_metadata, []]))
-
-if yaml_metadata.has_key? 'pandoc' then
-    begin
-        pandoc = Paru::Pandoc.new
-        to_stdout = true
-        yaml_metadata['pandoc'].each do |option, value|
-            pandoc.send option, value
-            to_stdout = false if option == 'output'
-        end
-        output = pandoc << File.read(input)
-        puts output if to_stdout
-    rescue Exception => e
-        warn "Something went wrong while using pandoc:\n\n#{e.message}"
+    if ARGV.size != 1 then
+        warn "Expecting exactly one argument: the pandoc file to convert"
+        exit
     end
-else
-    warn "Unsure what to do: no pandoc options in #{input}"
-end
+
+    input = ARGV.first
+
+    pandoc2json = Paru::Pandoc.new {from 'markdown'; to 'json'}
+    json2pandoc = Paru::Pandoc.new {from 'json'; to 'markdown'; standalone}
+    json_metadata = JSON.parse(pandoc2json << File.read(input)).first
+    yaml_metadata = YAML.load(json2pandoc << JSON.generate([json_metadata, []]))
+
+    if yaml_metadata.has_key? 'pandoc' then
+        begin
+            pandoc = Paru::Pandoc.new
+            to_stdout = true
+            yaml_metadata['pandoc'].each do |option, value|
+                pandoc.send option, value
+                to_stdout = false if option == 'output'
+            end
+            output = pandoc << File.read(input)
+            puts output if to_stdout
+        rescue Exception => e
+            warn "Something went wrong while using pandoc:\n\n#{e.message}"
+        end
+    else
+        warn "Unsure what to do: no pandoc options in #{input}"
+    end
 ~~~
 
 You now can convert a markdown file, say `my_document.md` by running 
 
 ~~~ {.bash}
-do-pandoc.rb my_document.md
+    do-pandoc.rb my_document.md
 ~~~
 
 assuming that `my_document.md` contains a yaml metadata block like:
 
 ~~~ {.markdown}
----
+    ---
     pandoc:
-  from: markdown
-  to: html5
-  toc: true
-  standalone: true
-  bibliography: 'path/to/bibliography.bib'
-...
+    from: markdown
+    to: html5
+    toc: true
+    standalone: true
+    bibliography: 'path/to/bibliography.bib'
+    ...
 
-# My Document
+    # My Document
 
-In my document, I show all the things ...
+    In my document, I show all the things ...
 ~~~
 
 # Filters
@@ -156,16 +156,16 @@ a filter, you can tell pandoc to number the figures anyway. For example:
 
 ~~~ {.ruby}
     #!/usr/bin/env ruby
-require 'paru/filter'
+    require 'paru/filter'
 
-current = 0;
+    current = 0;
 
-Paru::Filter.run do 
-    with "Image" do |image|
-        current += 1
-        image.inner_markdown = "Figure #{current}. #{image.inner_markdown}"
+    Paru::Filter.run do 
+        with "Image" do |image|
+            current += 1
+            image.inner_markdown = "Figure #{current}. #{image.inner_markdown}"
+        end
     end
-end
 ~~~
 
 The filter starts by setting the internal figure counter to 0 and then, each
@@ -222,26 +222,26 @@ follows:
 
 ~~~ {.ruby}
     #!/usr/bin/env ruby
-require 'paru/filter'
+    require 'paru/filter'
 
-current_chapter = 0
-current_figure = 0;
+    current_chapter = 0
+    current_figure = 0;
 
-Paru::Filter.run do
-    with "Header" do |header|
-        if header.level == 1 
-            current_chapter += 1
-            current_figure = 0
+    Paru::Filter.run do
+        with "Header" do |header|
+            if header.level == 1 
+                current_chapter += 1
+                current_figure = 0
 
-            header.inner_markdown = "Chapter #{current_chapter}. #{header.inner_markdown}"
+                header.inner_markdown = "Chapter #{current_chapter}. #{header.inner_markdown}"
+            end
+        end
+
+        with "Header + Image" do |image|
+            current_figure += 1
+            image.inner_markdown = "Figure #{current_chapter}.#{current_figure} #{image.inner_markdown}"
         end
     end
-
-    with "Header + Image" do |image|
-        current_figure += 1
-        image.inner_markdown = "Figure #{current_chapter}.#{current_figure} #{image.inner_markdown}"
-    end
-end
 ~~~
 
 Now two counters are used, one for the chapters and one for the figures. Each
@@ -265,17 +265,17 @@ the first couple of characters of each paragraph following a header:
 
 ~~~ {.ruby}
     #!/usr/bin/env ruby
-require 'paru/filter'
+    require 'paru/filter'
 
-END_CAPITAL = 10
-Paru::Filter.run do 
-    with "Header +4 Para" do |p|
-        text = p.inner_markdown
-        first_line = text.slice(0, END_CAPITAL).upcase
-        rest = text.slice(END_CAPITAL, text.size)
-        p.inner_markdown = first_line + rest
+    END_CAPITAL = 10
+    Paru::Filter.run do 
+        with "Header +4 Para" do |p|
+            text = p.inner_markdown
+            first_line = text.slice(0, END_CAPITAL).upcase
+            rest = text.slice(END_CAPITAL, text.size)
+            p.inner_markdown = first_line + rest
+        end
     end
-end
 ~~~ 
 
 Note that the distance is 4 rather than 1 because the way pandoc processes
@@ -288,39 +288,37 @@ Finally, filters can be used to create custom blocks, such as example blocks.
 Given the following markdown file:
 
 ~~~ {.markdown}
-    ...
+    <div class="example">
+      
+    ### Numbering figures
 
-<div class="example">
-  
-### Numbering figures
+    explaining how to number figures using pandoc filters...
 
-explaining how to number figures using pandoc filters...
-
-</div>
-
-...
+    </div>
 ~~~
 
 and the following filter:
 
 ~~~ {.ruby}
     #!/usr/bin/env ruby
-require 'paru/filter'
+    require 'paru/filter'
 
-example_count = 0
+    example_count = 0
 
-Paru::Filter.run do
-    with "Div.example > Header" do |header|
-        if header.level == 3 
-            example_count += 1
-            header.inner_markdown = "Example #{example_count}: #{header.inner_markdown}"
+    Paru::Filter.run do
+        with "Div.example > Header" do |header|
+            if header.level == 3 
+                example_count += 1
+                header.inner_markdown = "Example #{example_count}: #{header.inner_markdown}"
+            end
         end
     end
-end
 ~~~
 
 All headers of level 3 in custom example blocks are prefixed with "Example"
 and the sequence number of the example.
+
+## Accessing metadata
 
 To access the metadata, both setting and getting values, use the `metadata`
 method. This gives you access to the metadata as a hash (key, value store).
