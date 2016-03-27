@@ -10,6 +10,8 @@ multi-format document converter.
 - version 0.1.0 (beta)
 - licence: GPL3
 
+Get the code at <https://github.com/htdebeer/paru>.
+
 # Installation
 
 ~~~ {.bash}
@@ -18,7 +20,7 @@ gem install paru
 
 # Requirements
 
-Pandoc. See http://pandoc.org/installing.html about how to install pandoc on
+Pandoc. See i<http://pandoc.org/installing.html> about how to install pandoc on
 your system.
 
 # Usage
