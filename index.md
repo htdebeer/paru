@@ -31,7 +31,7 @@ Using Paru is straightforward. For example, to convert a markdown file to
 html and send it to stdout, you could use the following code:
 
 ~~~ {.ruby}
-require 'paru/pandoc'
+    require 'paru/pandoc'
 
 markdown = File.read 'path/to/markdown_file.md' 
 html = Paru::Pandoc.new do
@@ -58,8 +58,8 @@ One of the interesting aspects of pandoc's markdown format is its allowance
 for metadata in so-called yaml blocks. Using Paru and Ruby it is easy to strip
     a pandoc file for its metadata through pandoc's json output/input format:
 
-~~~~ {.ruby}
-require 'json'
+~~~ {.ruby}
+    require 'json'
 require 'paru/pandoc'
 
 pandoc2json = Paru::Pandoc.new {from 'markdown'; to 'json'}
@@ -84,7 +84,7 @@ pandoc on a markdown file using the pandoc options specified in that same file
 in a yaml metadata block:
 
 ~~~ {.ruby}
-#!/usr/bin/env ruby
+    #!/usr/bin/env ruby
 require 'json'
 require 'yaml'
 require 'paru/pandoc'
@@ -130,7 +130,7 @@ assuming that `my_document.md` contains a yaml metadata block like:
 
 ~~~ {.markdown}
 ---
-pandoc:
+    pandoc:
   from: markdown
   to: html5
   toc: true
@@ -155,7 +155,7 @@ Some output formats can number the figures in a document, others cannot. Using
 a filter, you can tell pandoc to number the figures anyway. For example:
 
 ~~~ {.ruby}
-#!/usr/bin/env ruby
+    #!/usr/bin/env ruby
 require 'paru/filter'
 
 current = 0;
@@ -221,7 +221,7 @@ As a slightly more involved example, figures are numbered per chapter as
 follows:
 
 ~~~ {.ruby}
-#!/usr/bin/env ruby
+    #!/usr/bin/env ruby
 require 'paru/filter'
 
 current_chapter = 0
@@ -264,7 +264,7 @@ number after the operator. For example, using the distance, you can capitalize
 the first couple of characters of each paragraph following a header:
 
 ~~~ {.ruby}
-#!/usr/bin/env ruby
+    #!/usr/bin/env ruby
 require 'paru/filter'
 
 END_CAPITAL = 10
@@ -288,7 +288,7 @@ Finally, filters can be used to create custom blocks, such as example blocks.
 Given the following markdown file:
 
 ~~~ {.markdown}
-...
+    ...
 
 <div class="example">
   
@@ -304,7 +304,7 @@ explaining how to number figures using pandoc filters...
 and the following filter:
 
 ~~~ {.ruby}
-#!/usr/bin/env ruby
+    #!/usr/bin/env ruby
 require 'paru/filter'
 
 example_count = 0
@@ -335,5 +335,5 @@ png depending on the output format. Or a filter that checks each external link
 if the link is dead or not. Or generating a pandoc table from a csv file. And
     so on.
 
-*Automate away!*
 
+*Automate away!*
