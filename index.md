@@ -1,5 +1,5 @@
 ---
-title: Paru: PAndoc wrapped around RUby
+title: Paru—PAndoc wrapped around RUby
 author: Huub de Beer
 licence: GPL3
 ...
