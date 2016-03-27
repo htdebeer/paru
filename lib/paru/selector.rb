@@ -104,7 +104,8 @@ module Paru
         end
 
         def matches? node, filtered_nodes
-            previous_nodes = previous filtered_nodes, @distance
+            level_nodes = filtered_nodes.keep_if {|n| node.is_inline? == n.is_inline?}
+            previous_nodes = previous level_nodes, @distance
             case @selector
             when "+"
                 in_sequence? node, previous_nodes
@@ -140,6 +141,7 @@ module Paru
         end
 
         def previous filtered_nodes, distance
+            distance = [distance, filtered_nodes.size - 1].min
             if distance <= 0
                 filtered_nodes.slice(0, filtered_nodes.size - 1)
             else
