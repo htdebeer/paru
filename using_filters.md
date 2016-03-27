@@ -118,10 +118,10 @@ figure counter is reset to zero.
 
 Note how easy it is to change the content of a node by using the
 `inner_markdown` property. This method is used twice, once in each selector.
-In the second selector an operator, `+` of "follows",  is used. Operators in
+In the second selector an operator, `+` or "follows",  is used. Operators in
 selectors denote a relationship between the current node that is being
 processed—the right hand side type—and nodes that came before.  In this case,
-the selector `Header + Image` denotes each image that follows a header. 
+the selector denotes each image that follows a header. 
 
 Paru has three different selection operators: 
 

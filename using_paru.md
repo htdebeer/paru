@@ -153,11 +153,11 @@ metadata block like:
 ~~~ {.yaml}
 ---
 pandoc:
-from: markdown
-to: html5
-toc: true
-standalone: true
-bibliography: 'path/to/bibliography.bib'
+    from: markdown
+    to: html5
+    toc: true
+    standalone: true
+    bibliography: 'path/to/bibliography.bib'
 ...
 ~~~
 
