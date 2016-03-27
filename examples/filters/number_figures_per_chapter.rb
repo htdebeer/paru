@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 require 'paru/filter'
 
 current_chapter = 0
