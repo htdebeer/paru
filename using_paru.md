@@ -64,7 +64,7 @@ example of real-world usage of paru.
 Once I started using pandoc for all my papers, articles, and other writings, I
 found that using the command line interface was a bit cumbersome because of
 the many options I used. Of course I used the shell's history so I did not
-have to retype the pandoc invocations each time I used them, but as write
+have to retype the pandoc invocations each time I used them, but as I write
 multiple documents at the same time and often on different computers, this
 felt as a stop-gap solution at best. Would it not be great if I could specify
 all the command-line options to pandoc in the markdown files themselves? To
