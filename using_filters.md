@@ -112,7 +112,7 @@ Paru::Filter.run do
         current_figure += 1
         image.inner_markdown = 
             "Figure #{current_chapter}.#{current_figure}" + 
-            #{image.inner_markdown}"
+            "#{image.inner_markdown}"
     end
 end
 ~~~
@@ -193,7 +193,7 @@ Paru::Filter.run do
             example_count += 1
             header.inner_markdown = 
                 "**Example #{example_count}:** " + 
-                #{header.inner_markdown}"
+                "#{header.inner_markdown}"
         end
     end
 end
