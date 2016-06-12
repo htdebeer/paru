@@ -47,7 +47,11 @@ Each time an image is encountered while processing the input file, that
 counter is incremented and the image's caption is prefixed with "Figure
 #{counter}. ".
 
-A filter consists of a number of selectors. You specify a selector through the `with "Type" do |node| ... end` construct. You can use any of [pandoc's internal types](http://hackage.haskell.org/package/pandoc-types-1.16.1/docs/Text-Pandoc-Definition.html) (see the table below).
+A filter consists of a number of selectors. You specify a selector through the
+`with "Type" do |node| ... end` construct. You can use any of [pandoc's
+internal
+types](http://hackage.haskell.org/package/pandoc-types-1.16.1/docs/Text-Pandoc-Definition.html)
+(see the table below).
 
 block                   inline
 --------------------    -------------------------
@@ -99,13 +103,16 @@ Paru::Filter.run do
             current_chapter += 1
             current_figure = 0
 
-            header.inner_markdown = "Chapter #{current_chapter}. #{header.inner_markdown}"
+            header.inner_markdown = 
+                "Chapter #{current_chapter}. #{header.inner_markdown}"
         end
     end
 
     with "Header + Image" do |image|
         current_figure += 1
-        image.inner_markdown = "Figure #{current_chapter}.#{current_figure} #{image.inner_markdown}"
+        image.inner_markdown = 
+            "Figure #{current_chapter}.#{current_figure}" + 
+            #{image.inner_markdown}"
     end
 end
 ~~~
@@ -184,7 +191,9 @@ Paru::Filter.run do
     with "Div.example > Header" do |header|
         if header.level == 3 
             example_count += 1
-            header.inner_markdown = "**Example #{example_count}:** #{header.inner_markdown}"
+            header.inner_markdown = 
+                "**Example #{example_count}:** " + 
+                #{header.inner_markdown}"
         end
     end
 end
