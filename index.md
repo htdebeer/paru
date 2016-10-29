@@ -32,7 +32,7 @@ gem install paru
 ~~~
 
 You can also download the latest gem
-[paru-0.2.0.gem](https://github.com/htdebeer/paru/blob/master/paru-0.2.0.gem)
+[paru-0.2.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.0.gem)
 and install it by:
 
 ~~~ {.bash}
