@@ -2,9 +2,17 @@
 # 
 # General options
 from:                     ""
+read:                     ""
 to:                       ""
+write:                    ""
 output:                   ""
 data_dir:                 ""
+list_input_formats:       true
+list_output_formats:      true
+list_extensions:          true
+list_highlight_languages: true
+list_highlight_styles:    true
+version:                  true
 # Reader options
 parse_raw:                true
 smart:                    true
@@ -12,10 +20,11 @@ old_dashes:               true
 base_header_level:        1
 indented_code_classes:    ""
 default_image_extension:  ""
+file_scope:               true
 filter:                   [""]
 metadata:                 [""]
 normalize:                true
-preserve_tabls:           true
+preserve_tabs:           true
 tab_stop:                 4
 track_changes:            "accept"
 extract_media:            true
@@ -23,6 +32,8 @@ extract_media:            true
 standalone:               true
 template:                 ""
 variable:                 [""]
+print_default_template:   ""
+print_default_data_file:  ""
 dpi:                      96
 wrap:                     "auto"
 no_wrap:                  true
@@ -40,8 +51,10 @@ self_contained:           true
 html_q_tags:              true
 ascii:                    true
 reference_links:          true
+reference_location:       "document"
 atx_headers:              true
 chapters:                 true
+top_level_division:       "section"
 number_sections:          true
 number_offset:            "0"
 no_tex_ligatures:         true
