@@ -33,8 +33,11 @@ module Paru
                         @children = []
                     else 
                         json = MARKDOWN2JSON << markdown
-                        meta, contents = JSON.parse json
-                        temp_doc = PandocFilter::Document.new meta, contents
+                        ast = JSON.parse json
+                        version = ast["version"]
+                        meta = ast["meta"]
+                        contents = ast["blocks"]
+                        temp_doc = PandocFilter::Document.new version, meta, contents
                         temp_doc.children.each {|c| c.parent = @parent}
 
                         if has_inline?
