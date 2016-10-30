@@ -11,7 +11,7 @@ class FilterTest < MiniTest::Test
         pandoc2json_with_identity = Paru::Pandoc.new do
             from "markdown" 
             to "json"
-            filter "examples/filters/identity.rb"
+            filter "test/identity_filter.rb"
         end
 
         json2pandoc = Paru::Pandoc.new do
@@ -43,20 +43,25 @@ class FilterTest < MiniTest::Test
             assert_output nil, "" do
                 output = filter input
             end
+
+            puts "\t#{path}"
                 
             assert_equal input, output, "Failure filtering #{path}" 
         end
     end
 
     def test_inline_elements
+        puts "Testing inline elements"
         assert_filtered_input_equals_input "inline"
     end
 
     def test_block_elements
+        puts "Testing block elements"
         assert_filtered_input_equals_input "block"
     end
 
     def test_metadata_elements
+        puts "Testing metadata elements"
         assert_filtered_input_equals_input "metadata"
     end
 end

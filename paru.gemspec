@@ -14,5 +14,5 @@ Gem::Specification.new do |s|
              'lib/paru/selector.rb']
   s.files += Dir['lib/paru/filter/*.rb']
   s.homepage = 'https://heerdebeer.org/Software/markdown/paru/'
-  s.license = 'GPL3'
+  s.license = 'GPL-3.0'
 end
