@@ -47,8 +47,14 @@ module Paru
         end
 
         def document
-            meta, contents = JSON.parse $stdin.read
-            document = PandocFilter::Document.new meta, contents
+            ast = JSON.parse $stdin.read
+
+            # todo: add some version checking.
+            version = ast["pandoc-api-version"]
+            meta = ast["meta"]
+            contents = ast["blocks"]
+
+            document = PandocFilter::Document.new version, meta, contents
             document
         end
 

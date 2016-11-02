@@ -5,6 +5,9 @@ module Paru
         require_relative "./node"
         require_relative "./plain"
         require_relative "./meta"
+        require_relative "./version"
+
+        PANDOC_VERSION = [1, 17, 0, 4]
 
         class Document < Node
 
@@ -12,30 +15,32 @@ module Paru
 
             def self.fragment node_list
                 meta = Hash.new
-                meta["unMeta"] = Hash.new
+                meta["meta"] = Hash.new
                 
                 if node_list.any? {|n| n.is_block?}
-                    new_doc = Document.new meta, []
+                    new_doc = Document.new PANDOC_VERSION, meta, []
                     new_doc.children = node_list
                 else
                     node = PandocFilter::Plain.new [] 
                     node.children = node_list
-                    new_doc = Document.new meta, [node.to_ast]
+                    new_doc = Document.new PANDOC_VERSION, meta, [node.to_ast]
                 end
 
                 new_doc
             end
 
-            def initialize(meta, contents)
+            def initialize(version, meta, contents)
+                @version = Version.new version
                 @meta = Meta.new meta
                 super contents
             end
 
             def to_ast
-                [
-                    @meta.to_ast,
-                    ast_contents
-                ]
+              {
+                "pandoc-api-version" => @version.to_ast,
+                "meta" => @meta.to_ast,
+                "blocks" => ast_contents
+              }
             end
 
             def to_json

@@ -8,6 +8,8 @@ keywords:
 - ruby
 ...
 
+# Using paru
+
 Using paru is straightforward. It is a thin "rubyesque" layer around the
 pandoc executable. After requiring paru in your ruby program, you create a new paru pandoc converter as follows:
 

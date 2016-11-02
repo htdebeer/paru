@@ -6,17 +6,15 @@ module Paru
             include Enumerable
 
             def initialize contents
-                super contents["unMeta"]
+                super contents
             end
 
             def ast_type
-                "unMeta"
+                "meta"
             end
 
             def to_ast
-                {
-                    "unMeta" => ast_contents
-                }
+                ast_contents
             end
 
         end

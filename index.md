@@ -14,10 +14,14 @@ great multi-format document converter. Paru supports automating pandoc by
 writing ruby programs and [using pandoc in your ruby programs](using_paru.html).
 Since version 0.1 it also supports [pandoc filters](using_filters.html).
 
-- current version 0.1.0 (beta)
+- current version 0.2.0 (beta)
 - licence: GPL3
 
 Get the code at <https://github.com/htdebeer/paru>.
+
+Do note that Paru version 0.2.0 is incompatible with pandoc version <
+[1.18](http://pandoc.org/releases.html#pandoc-1.18-26-oct-2016). Use Paru
+version 0.1.0 if you are using an older version of pandoc.
 
 # Installation
 
@@ -28,12 +32,12 @@ gem install paru
 ~~~
 
 You can also download the latest gem
-[paru-0.1.0.gem](https://github.com/htdebeer/paru/blob/master/paru-0.1.0.gem)
+[paru-0.2.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.0.gem)
 and install it by:
 
 ~~~ {.bash}
 cd /directory/you/downloaded/the/gem
-gem install paru-0.1.0.gem
+gem install paru-0.2.0.gem
 ~~~
 
 Paru, obviously, requires pandoc. See <http://pandoc.org/installing.html>
