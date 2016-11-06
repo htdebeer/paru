@@ -1,7 +1,6 @@
 module Paru
   module PandocFilter
 
-    require 'json'
     require_relative "./ast_manipulation"
     require_relative "./markdown"
     require_relative "../pandoc"

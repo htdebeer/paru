@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-require 'yaml'
-require 'paru/pandoc'
-require_relative './pandoc2yaml.rb'
+require "yaml"
+require "paru/pandoc"
+require_relative "./pandoc2yaml.rb"
 
 include Pandoc2Yaml
 
@@ -13,13 +13,13 @@ end
 input = ARGV.first
 metadata = YAML.load Pandoc2Yaml.extract_metadata(input)
 
-if metadata.has_key? 'pandoc' then
+if metadata.has_key? "pandoc" then
     begin
         pandoc = Paru::Pandoc.new
         to_stdout = true
-        metadata['pandoc'].each do |option, value|
+        metadata["pandoc"].each do |option, value|
             pandoc.send option, value
-            to_stdout = false if option == 'output'
+            to_stdout = false if option == "output"
         end
         output = pandoc << File.read(input)
         puts output if to_stdout

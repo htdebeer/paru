@@ -1,7 +1,7 @@
 module Paru
   module PandocFilter
 
-    require 'json'
+    require "json"
     require_relative "./node"
     require_relative "./plain"
     require_relative "./meta"

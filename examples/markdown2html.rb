@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'paru/pandoc'
+require "paru/pandoc"
 
 USAGE = <<EOU
 markdown2html.rb converts a markdown file to html
@@ -35,8 +35,8 @@ begin
     end
 
     html = Paru::Pandoc.new do
-        from 'markdown'
-        to 'html5'
+        from "markdown"
+        to "html5"
         standalone
         toc
         # add any pandoc option you like

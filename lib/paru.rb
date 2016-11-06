@@ -1,2 +1,2 @@
-require 'paru/pandoc'
-require 'paru/filter'
+require "paru/pandoc"
+require "paru/filter"

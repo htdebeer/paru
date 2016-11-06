@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'paru/filter'
+require "paru/filter"
 
 example_count = 0
 

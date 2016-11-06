@@ -10,14 +10,14 @@
 #
 ##
 module Pandoc2Yaml
-  require 'json'
-  require 'paru/pandoc'
+  require "json"
+  require "paru/pandoc"
 
   # Paru converters:
   # Note. When converting metadata back to the pandoc markdown format, you have
-  # to use the option 'standalone', otherwise the metadata is skipped
-  PANDOC_2_JSON = Paru::Pandoc.new {from 'markdown'; to 'json'}
-  JSON_2_PANDOC = Paru::Pandoc.new {from 'json'; to 'markdown'; standalone}
+  # to use the option "standalone", otherwise the metadata is skipped
+  PANDOC_2_JSON = Paru::Pandoc.new {from "markdown"; to "json"}
+  JSON_2_PANDOC = Paru::Pandoc.new {from "json"; to "markdown"; standalone}
 
   # When converting a pandoc document to JSON, or vice versa, the JSON object
   # has the following three properties:

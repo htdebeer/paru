@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'paru/filter'
+require "paru/filter"
 
 current = 0;
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative '../../lib/paru/filter'
+require_relative "../../lib/paru/filter"
 
 current_chapter = 0
 current_figure = 0;

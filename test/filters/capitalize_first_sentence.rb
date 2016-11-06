@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative '../../lib/paru/filter'
+require_relative "../../lib/paru/filter"
 
 END_CAPITAL = 10
 Paru::Filter.run do 

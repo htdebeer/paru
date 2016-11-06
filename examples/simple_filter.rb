@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'paru/filter'
+require "paru/filter"
 
 def printBlock block, indent = 0
     puts "#{'    ' * indent}#{block}"

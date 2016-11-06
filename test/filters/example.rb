@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative '../../lib/paru/filter'
+require_relative "../../lib/paru/filter"
 
 example_count = 0
 

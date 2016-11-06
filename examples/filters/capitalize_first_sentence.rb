@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'paru/filter'
+require "paru/filter"
 
 END_CAPITAL = 10
 Paru::Filter.run do 

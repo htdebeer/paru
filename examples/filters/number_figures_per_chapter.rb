@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'paru/filter'
+require "paru/filter"
 
 current_chapter = 0
 current_figure = 0;

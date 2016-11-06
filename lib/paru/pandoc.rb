@@ -1,6 +1,6 @@
 module Paru
 
-  require 'yaml'
+  require "yaml"
 
   # Pandoc is a wrapper around the pandoc system. See
   # <http://pandoc.org/README.html> for details about pandoc.  This file is
@@ -22,8 +22,8 @@ module Paru
     # Converts input string to output string using the pandoc invocation
     # configures in this Pandoc instance.
     def convert input
-      output = ''
-      IO.popen(to_command, 'r+') do |p|
+      output = ""
+      IO.popen(to_command, "r+") do |p|
         p << input
         p.close_write
         output << p.read
@@ -39,11 +39,11 @@ module Paru
     def to_option_string option_sep
       options_arr = []
       @options.each do |option, value|
-        option_string = "--#{option.to_s.gsub '_', '-'}"
+        option_string = "--#{option.to_s.gsub "_", "-"}"
 
         case value
         when TrueClass then
-          # Flags don't have a value, only its name
+          # Flags don"t have a value, only its name
           # For example: --standalone
           options_arr.push "#{option_string}"
         when FalseClass then
@@ -53,7 +53,7 @@ module Paru
           # For example: --css=main.css --css=print.css
           options_arr.push value.map {|val| "#{option_string}=#{val.to_s}"}.join(option_sep)
         else
-          # All options that aren't flags and can occur only once have the
+          # All options that aren"t flags and can occur only once have the
           # same pattern: --option=value
           options_arr.push "#{option_string}=#{value.to_s}"
         end
@@ -74,7 +74,7 @@ module Paru
     # an array with one value, the default value.
     #
     # For each of these options a method is defined as follows:
-    OPTIONS = YAML.load_file File.join(__dir__, 'pandoc_options.yaml')
+    OPTIONS = YAML.load_file File.join(__dir__, "pandoc_options.yaml")
 
     OPTIONS.keys.each do |option|
       if OPTIONS[option].is_a? Array then

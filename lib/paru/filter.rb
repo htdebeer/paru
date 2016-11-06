@@ -6,6 +6,7 @@ module Paru
   PANDOC_BLOCK = [
     "Plain",
     "Para",
+    "LineBlock",
     "CodeBlock",
     "RawBlock",
     "BlockQuote",
