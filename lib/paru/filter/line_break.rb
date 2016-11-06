@@ -1,16 +1,9 @@
+# LineBreak
 module Paru
-    module PandocFilter
-        require_relative "./inline"
+  module PandocFilter
+    require_relative "./empty_inline"
 
-        class LineBreak < Inline
-            def initialize contents
-                super []
-            end
-
-            def has_inline?
-                false
-            end
-        end
+    class LineBreak < EmptyInline
     end
+  end
 end
-

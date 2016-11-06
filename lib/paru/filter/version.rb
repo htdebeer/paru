@@ -1,7 +1,7 @@
 module Paru
   module PandocFilter
     require_relative "./node"
-    
+
     class Version < Node
       def initialize contents
         @major, @minor, @revision = contents

@@ -1,16 +1,9 @@
+# SoftBreak
 module Paru
-    module PandocFilter
-        require_relative "./inline"
+  module PandocFilter
+    require_relative "./empty_inline"
 
-        class SoftBreak < Inline
-            def initialize contents
-                super []
-            end
-
-            def has_inline?
-                false
-            end
-        end
+    class SoftBreak < EmptyInline
     end
+  end
 end
-

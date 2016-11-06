@@ -1,4 +1,4 @@
 module Paru
-    class Error < RuntimeError
-    end
+  class Error < RuntimeError
+  end
 end

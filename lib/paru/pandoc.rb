@@ -60,7 +60,7 @@ module Paru
       end
       options_arr.join(option_sep)
     end
-    
+
     # Pandoc has a number of command line options. Most are simple options,
     # like flags, that can be set only once. Other options can occur more than
     # once, such as the css option: to add more than one css file to a
@@ -85,12 +85,12 @@ module Paru
         default = OPTIONS[option][0]
 
         define_method(option) do |value = default|
-          if @options[option] then
-            @options[option].push value
-          else
-            @options[option] = [value]
-          end
-          self
+        if @options[option] then
+          @options[option].push value
+        else
+          @options[option] = [value]
+        end
+        self
         end
 
       else
@@ -99,8 +99,8 @@ module Paru
 
         default = OPTIONS[option]
         define_method(option) do |value = default|
-          @options[option] = value
-          self
+        @options[option] = value
+        self
         end
 
       end

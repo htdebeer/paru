@@ -1,13 +1,14 @@
+# MetaBlocks [Blocks]
 module Paru
-    module PandocFilter
+  module PandocFilter
 
-        require_relative "./node"
+    require_relative "./node"
 
-        class MetaBlocks < Node
+    class MetaBlocks < Node
 
-            def initialize value
-                super value
-            end
-        end
+      def initialize value
+        super value
+      end
     end
+  end
 end

@@ -1,15 +1,9 @@
+# Space
 module Paru
-    module PandocFilter
-        require_relative "./inline"
+  module PandocFilter
+    require_relative "./empty_inline"
 
-        class Space < Inline
-            def initialize contents
-                super []
-            end
-
-            def has_inline?
-                false
-            end
-        end
+    class Space < EmptyInline
     end
+  end
 end

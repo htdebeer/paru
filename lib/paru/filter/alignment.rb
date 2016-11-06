@@ -1,12 +1,12 @@
 module Paru
-    module PandocFilter
+  module PandocFilter
 
-        class Alignment
-            ALIGNMENTS = ["AlignLeft", "AlignRight", "AlignCenter", "AlignDefault"]
+    class Alignment
+      ALIGNMENTS = ["AlignLeft", "AlignRight", "AlignCenter", "AlignDefault"]
 
-            def initialize config
-                @config = config
-            end
-        end
+      def initialize config
+        @config = config
+      end
     end
+  end
 end

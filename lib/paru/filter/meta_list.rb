@@ -1,9 +1,10 @@
+# MetaList [MetaValue]
 module Paru
-    module PandocFilter
+  module PandocFilter
 
-        require_relative "./node"
+    require_relative "./node"
 
-        class MetaList < Node
-        end
+    class MetaList < Node
     end
+  end
 end

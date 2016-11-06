@@ -1,11 +1,9 @@
+# Null
 module Paru
-    module PandocFilter
-        require_relative "./block"
+  module PandocFilter
+    require_relative "./empty_block"
 
-        class Null < Block
-            def initialize contents
-                super []
-            end
-        end
+    class Null < EmptyBlock
     end
+  end
 end

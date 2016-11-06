@@ -1,13 +1,14 @@
+# MetaInlines [Inline]
 module Paru
-    module PandocFilter
+  module PandocFilter
 
-        require_relative "./node"
+    require_relative "./node"
 
-        class MetaInlines < Node
-            
-            def initialize value
-                super value
-            end
-        end
+    class MetaInlines < Node
+
+      def initialize value
+        super value
+      end
     end
+  end
 end

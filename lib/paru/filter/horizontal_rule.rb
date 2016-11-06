@@ -1,11 +1,9 @@
+# HorizontalRule
 module Paru
-    module PandocFilter
-        require_relative "./block"
+  module PandocFilter
+    require_relative "./empty_block"
 
-        class HorizontalRule < Block
-            def initialize contents
-                super []
-            end
-        end
+    class HorizontalRule < EmptyBlock
     end
+  end
 end

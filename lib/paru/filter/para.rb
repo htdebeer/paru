@@ -1,16 +1,17 @@
+# Para [Inline]
 module Paru
-    module PandocFilter
-        require_relative "./block"
+  module PandocFilter
+    require_relative "./block"
+  
+    class Para < Block
+      def initialize contents
+        super contents, true
+      end
 
-        class Para < Block
-            def initialize contents
-                super contents, true
-            end
+      def has_inline?
+        true
+      end
 
-            def has_inline?
-                true
-            end
-
-        end
     end
+  end
 end

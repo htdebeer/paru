@@ -1,9 +1,10 @@
+# MetaBool Bool
 module Paru
-    module PandocFilter
+  module PandocFilter
 
-        require_relative "./meta_value"
+    require_relative "./meta_value"
 
-        class MetaBool < MetaValue
-        end
+    class MetaBool < MetaValue
     end
+  end
 end

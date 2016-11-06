@@ -1,9 +1,10 @@
+# Subscript [Inline]
 module Paru
-    module PandocFilter
-        require_relative "./inline"
+  module PandocFilter
+    require_relative "./inline"
 
-        class Subscript < Inline
-        end
+    class Subscript < Inline
     end
+  end
 end
 

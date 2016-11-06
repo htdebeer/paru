@@ -1,20 +1,22 @@
+# MetaValue = MetaMap | MetaList | MetaBool | MetaString | MetaInlines |
+#   MetaBlocks
 module Paru
-    module PandocFilter
+  module PandocFilter
 
-        require_relative "./node"
+    require_relative "./node"
 
-        class MetaValue < Node
+    class MetaValue < Node
 
-            attr_accessor :value
+      attr_accessor :value
 
-            def initialize value
-                @value = value
-            end
+      def initialize value
+        @value = value
+      end
 
-            def ast_contents
-                @value
-            end
+      def ast_contents
+        @value
+      end
 
-        end
     end
+  end
 end
