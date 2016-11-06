@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
-require 'json'
 require 'yaml'
 require 'paru/pandoc'
+require_relative './pandoc2yaml.rb'
 
+include Pandoc2Yaml
 
 if ARGV.size != 1 then
     warn "Expecting exactly one argument: the pandoc file to convert"
@@ -10,17 +11,13 @@ if ARGV.size != 1 then
 end
 
 input = ARGV.first
+metadata = YAML.load Pandoc2Yaml.extract_metadata(input)
 
-pandoc2json = Paru::Pandoc.new {from 'markdown'; to 'json'}
-json2pandoc = Paru::Pandoc.new {from 'json'; to 'markdown'; standalone}
-json_metadata = JSON.parse(pandoc2json << File.read(input)).first
-yaml_metadata = YAML.load(json2pandoc << JSON.generate([json_metadata, []]))
-
-if yaml_metadata.has_key? 'pandoc' then
+if metadata.has_key? 'pandoc' then
     begin
         pandoc = Paru::Pandoc.new
         to_stdout = true
-        yaml_metadata['pandoc'].each do |option, value|
+        metadata['pandoc'].each do |option, value|
             pandoc.send option, value
             to_stdout = false if option == 'output'
         end

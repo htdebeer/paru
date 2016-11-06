@@ -1,8 +1,0 @@
-Rules everywhere
-
--------
-
-* * * * * 
-
-
-WHoHopo
