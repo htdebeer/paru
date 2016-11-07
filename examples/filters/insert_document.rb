@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative "../../lib/paru/filter"
+require_relative "paru/filter"
 
 Paru::Filter.run do 
   with "Para" do |paragraph|
