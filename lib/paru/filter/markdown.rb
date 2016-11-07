@@ -20,6 +20,27 @@ module Paru
         AST2MARKDOWN << temp_doc.to_json
       end
 
+      def outer_markdown= markdown
+        json = MARKDOWN2JSON << markdown
+        temp_doc = PandocFilter::Document.from_JSON json
+
+        if not has_parent? or is_root?
+          @children = temp_doc.children
+        else
+          # replace current node by new nodes
+          # There is a difference between inline and block nodes
+          current_index = parent.find_index self
+          index = current_index
+          temp_doc.each do |child|
+            index += 1
+            parent.insert index, child
+          end
+          # Remove the original node
+          parent.remove_at current_index
+        end
+
+      end
+
       def inner_markdown
         temp_doc = PandocFilter::Document.fragment @children
         AST2MARKDOWN << temp_doc.to_json
@@ -33,11 +54,7 @@ module Paru
             @children = []
           else 
             json = MARKDOWN2JSON << markdown
-            ast = JSON.parse json
-            version = ast["version"]
-            meta = ast["meta"]
-            contents = ast["blocks"]
-            temp_doc = PandocFilter::Document.new version, meta, contents
+            temp_doc = PandocFilter::Document.from_JSON json
             temp_doc.children.each {|c| c.parent = @parent}
 
             if has_inline?

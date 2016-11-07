@@ -117,4 +117,11 @@ class FilterTest < MiniTest::Test
         "test/pandoc_input/insert_code_blocks.md",
         "test/pandoc_output/insert_code_blocks.md"
     end
+
+    def test_insert_document
+      puts "Testing insert_document.rb"
+      run_example_filter "test/filters/insert_document.rb",
+        "test/pandoc_input/insert_document.md",
+        "test/pandoc_output/insert_document.md"
+    end
 end

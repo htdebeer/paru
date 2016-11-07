@@ -11,7 +11,7 @@ module Paru
     META = "meta"
     BLOCKS = "blocks"
 
-    CURRENT_PANDOC_VERSION = [1, 17, 0]
+    CURRENT_PANDOC_VERSION = [1, 17, 4]
 
     class Document < Node
 
