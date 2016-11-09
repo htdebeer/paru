@@ -144,3 +144,9 @@ filters that have different behavior depending on the metadata specified in
 the file. Furthermore, you can also set metadata. For example, each time you
 encounter a Strong node, you could add it to the keywords metadata to
 automatically generate a list of keywords.
+
+As an example, I have created a filter that removes a pandoc configuration
+from the metadata if any. I use this in combination with `do-pandoc.rb` to
+generate a file only once.
+
+    ::paru::insert ../examples/filters/remove_pandoc_metadata.rb

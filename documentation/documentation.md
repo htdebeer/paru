@@ -12,11 +12,11 @@ pandoc:
   to: markdown
   output: ../index.md
   standalone: true
-  toc: true
   filter:
   - ../examples/filters/insert_document.rb
   - ../examples/filters/number_figures_per_chapter.rb
   - ../examples/filters/insert_code_block.rb
+  - ../examples/filters/remove_pandoc_metadata.rb
 ...
 
 ::paru::insert preface.md

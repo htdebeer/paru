@@ -24,6 +24,13 @@ module Paru
         end
       end
 
+      def has_key? key 
+        @children.has_key? key
+      end
+
+      def delete key
+        @children.delete key
+      end
 
       def ast_contents
         ast = Hash.new

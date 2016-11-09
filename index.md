@@ -6,41 +6,8 @@ keywords:
 - paru
 - filter
 - pandoc filter
-pandoc:
-  filter:
-  - '../examples/filters/insert\_document.rb'
-  - '../examples/filters/number\_figures\_per\_chapter.rb'
-  - '../examples/filters/insert\_code\_block.rb'
-  from: markdown
-  output: '../index.md'
-  standalone: True
-  to: markdown
-  toc: True
 title: 'Paru—Pandoc wrapped around in Ruby'
 ---
-
--   [Chapter 1. Introduction](#introduction)
-    -   [Licence](#licence)
-    -   [Installation](#installation)
-    -   [Usage: Pary says hello to
-        pandoc](#usage-pary-says-hello-to-pandoc)
--   [Chapter 2. Automating the use of pandoc with
-    paru](#automating-the-use-of-pandoc-with-paru)
-    -   [Stripping a pandoc file for its YAML
-        metadata](#stripping-a-pandoc-file-for-its-yaml-metadata)
-    -   [Specify pandoc options in a markdown file
-        itself](#specify-pandoc-options-in-a-markdown-file-itself)
--   [Chapter 3. Writing and using pandoc filters with
-    paru](#writing-and-using-pandoc-filters-with-paru)
-    -   [Numbering figures](#numbering-figures)
-    -   [Numbering figures and
-        chapters](#numbering-figures-and-chapters)
-    -   [Capitalizing a first sentence](#capitalizing-a-first-sentence)
-    -   [Custom blocks](#custom-blocks)
-    -   [Inserting other pandoc files](#inserting-other-pandoc-files)
-    -   [Accessing metadata](#accessing-metadata)
--   [Chapter 4. Putting it all together](#putting-it-all-together)
--   [Chapter 5. Frequently asked questions](#frequently-asked-questions)
 
 Do note that Paru version 0.2.0 is incompatible with pandoc version &lt;
 [1.18](http://pandoc.org/releases.html#pandoc-1.18-26-oct-2016). Use
@@ -551,6 +518,17 @@ flexible filters that have different behavior depending on the metadata
 specified in the file. Furthermore, you can also set metadata. For
 example, each time you encounter a Strong node, you could add it to the
 keywords metadata to automatically generate a list of keywords.
+
+As an example, I have created a filter that removes a pandoc
+configuration from the metadata if any. I use this in combination with
+`do-pandoc.rb` to generate a file only once.
+
+    #!/usr/bin/env ruby
+    require "paru/filter"
+
+    Paru::Filter.run do 
+      metadata.delete "pandoc" if metadata.has_key? "pandoc"
+    end
 
 Chapter 4. Putting it all together {#putting-it-all-together}
 ==================================
