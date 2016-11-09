@@ -35,8 +35,17 @@ pandoc:
 
 # Automating the use of pandoc with paru
 
+::paru::insert using_paru.md
+
 # Writing and using pandoc filters with paru
+
+::paru::insert using_filters.md
 
 # Putting it all together
 
-# What is next
+::paru::insert putting_it_all_together.md
+
+# Frequently asked questions
+
+::paru::insert faq.md
+
