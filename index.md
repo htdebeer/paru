@@ -53,7 +53,7 @@ Paru, obviously, requires pandoc. See
 system and [pandoc's manual](http://pandoc.org/README.html) on how to
 use pandoc.
 
-Usage: Pary says hello to pandoc
+Usage: Paru says hello to pandoc
 --------------------------------
 
 Using paru is straightforward. It is a thin "rubyesque" layer around the
@@ -534,7 +534,71 @@ Chapter 4. Putting it all together {#putting-it-all-together}
 ==================================
 
 This document is created using the programs and filters described in the
-previous chapters. see documentation/documentation.md
+previous chapters. This document is created by running
+
+``` {.bash}
+do-pandoc.rb documentation.md
+```
+
+where `documentation.md` is:
+
+``` {.markdown}
+---
+title: Paru—Pandoc wrapped around in Ruby
+author: Huub de Beer
+keywords:
+- pandoc
+- ruby
+- paru
+- filter
+- pandoc filter
+pandoc:
+  from: markdown
+  to: markdown
+  output: ../index.md
+  standalone: true
+  filter:
+  - ../examples/filters/insert_document.rb
+  - ../examples/filters/number_figures_per_chapter.rb
+  - ../examples/filters/insert_code_block.rb
+  - ../examples/filters/remove_pandoc_metadata.rb
+...
+
+::paru::insert preface.md
+
+# Introduction
+
+::paru::insert introduction.md
+
+## Licence
+
+::paru::insert licence.md
+
+## Installation
+
+::paru::insert install.md
+
+## Usage: Paru says hello to pandoc
+
+::paru::insert usage.md
+
+# Automating the use of pandoc with paru
+
+::paru::insert using_paru.md
+
+# Writing and using pandoc filters with paru
+
+::paru::insert using_filters.md
+
+# Putting it all together
+
+::paru::insert putting_it_all_together.md
+
+# Frequently asked questions
+
+::paru::insert faq.md
+
+```
 
 Chapter 5. Frequently asked questions {#frequently-asked-questions}
 =====================================

@@ -33,7 +33,7 @@ pandoc:
 
 ::paru::insert install.md
 
-## Usage: Pary says hello to pandoc
+## Usage: Paru says hello to pandoc
 
 ::paru::insert usage.md
 
