@@ -5,31 +5,35 @@ keywords:
 - pandoc
 - ruby
 - paru
+- filter
+- pandoc filter
 pandoc:
   from: markdown
   to: markdown
   output: ../index.md
   standalone: true
+  toc: true
   filter:
   - ../examples/filters/insert_document.rb
-  - ../examples/filters/capitalize_first_sentence.rb
+  - ../examples/filters/number_figures_per_chapter.rb
+  - ../examples/filters/insert_code_block.rb
 ...
 
 ::paru::insert preface.md
-
-::paru::insert licence.md
 
 # Introduction
 
 ::paru::insert introduction.md
 
-# Installation
+## Licence
+
+::paru::insert licence.md
+
+## Installation
 
 ::paru::insert install.md
 
-# Usage
-
-## Say hello to pandoc
+## Usage: Pary says hello to pandoc
 
 ::paru::insert usage.md
 
