@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require "paru/filter"
 
-END_CAPITAL = 10
+END_CAPITAL = 20
 Paru::Filter.run do 
     with "Header +1 Para" do |p|
         text = p.inner_markdown

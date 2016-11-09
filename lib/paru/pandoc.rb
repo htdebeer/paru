@@ -85,12 +85,17 @@ module Paru
         default = OPTIONS[option][0]
 
         define_method(option) do |value = default|
-        if @options[option] then
-          @options[option].push value
-        else
-          @options[option] = [value]
-        end
-        self
+          if @options[option].nil? then
+            @options[option] = []
+          end
+
+          if value.is_a? Array then
+              @options[option] += value
+          else
+              @options[option].push value
+          end
+
+          self
         end
 
       else
