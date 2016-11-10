@@ -84,6 +84,6 @@ multiple times and re-configure the converter in between.
 
 ## Documentation
 
-For more information, please see paru's
-[documentation](https://heerdebeer.org/Software/markdown/paru/), which has
-been created with paru itself.
+For more information on automatic the use of pandoc with paru or writing
+pandoc filters in ruby, please see paru's
+[documentation](https://heerdebeer.org/Software/markdown/paru/).
