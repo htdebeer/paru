@@ -44,12 +44,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.2.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.0.gem)
+[paru-0.2.1.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.1.gem)
 and install it by:
 
 ``` {.bash}
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.2.0.gem
+gem install paru-0.2.1.gem
 ```
 
 Paru, obviously, requires pandoc. See
@@ -106,11 +106,14 @@ program, paru-style:
 #!/usr/bin/env ruby
 require "paru/pandoc"
 
-html = Paru::Pandoc.new do
+input = "Hello world, from **pandoc**"
+
+output = Paru::Pandoc.new do
     from "markdown"
     to "html"
-end << "Hello world, from **pandoc**"
-puts html
+end << input
+
+puts output
 ```
 
 Running the above program results in the following output:
@@ -125,32 +128,34 @@ an example of real-world usage of paru.
 Chapter 2. Automating the use of pandoc with paru {#automating-the-use-of-pandoc-with-paru}
 =================================================
 
-Once I started using pandoc for all my papers, articles, and other
-writings, I found that using the command line interface was a bit
-cumbersome because of the many options I used. Of course I used the
-shell's history so I did not have to retype the pandoc invocations each
-time I used them, but as I write multiple documents at the same time and
-often on different computers, this felt as a stop-gap solution at best.
-Would it not be great if I could specify all the command-line options to
-pandoc in the markdown files themselves? To that end, I developed
-do-pandoc.rb.
+Once I started using pandoc for all my writing, I found that using the
+command-line interface was a bit cumbersome because of the many options
+I used. Of course I used the shell's history so I did not have to retype
+the pandoc invocations each time I used them, but as I write multiple
+documents at the same time and often on different computers, this felt
+as a stop-gap solution at best. Would it not be great if I could specify
+all the command-line options to pandoc in the markdown files themselves?
+To that end, I developed *do-pandoc.rb*.
 
-I developed do-pandoc.rb in two steps:
+I developed *do-pandoc.rb* in two steps:
 
 1.  first I wrote a ruby script to mine the pandoc markdown files for
     its [YAML](http://yaml.org/) metadata.
-2.  using that script, I wrote another to first get the metadata about
-    pandoc's command-line options to use from an input file, fed them
-    into a dynamically generated pandoc converter, and used this
-    converter on that input file.
+2.  using that script, I wrote another script that would use the former
+    to get the pandoc command-line options to use from an input file,
+    fed these options into a dynamically generated pandoc converter, and
+    then use this converter on that same input file to generate my
+    output file.
 
-2.1 Stripping a pandoc file for its YAML metadata
--------------------------------------------------
+2.1 Mining a pandoc markdown file for its YAML metadata
+-------------------------------------------------------
 
 One of the interesting aspects of pandoc's markdown format is its
 allowance for metadata in so-called [YAML](http://yaml.org/) blocks.
 Using paru and Ruby it is easy to strip a pandoc file for its metadata
-through pandoc's [JSON](http://json.org/) output/input format:
+through pandoc's [JSON](http://json.org/) output/input format: the
+script/module *\[pandoc2yaml.rb* (which you will also find in the
+[examples](examples/) sub directory).
 
 ``` {.ruby}
 #!/usr/bin/env ruby
@@ -214,16 +219,41 @@ if __FILE__ == $0
 end
 ```
 
-Note that the `json2pandoc` converter has the `standalone` option.
+*pandoc2yaml.rb* is built in two parts:
+
+1.  a library module `Pandoc2Yaml`, which we will be using later again
+    in *do-pandoc.rb*,
+2.  and a self-contained part that, following a common Ruby pattern,
+    will be executed if the file is run as a script rather than
+    a library. It checks if there is an argument to the script and, if
+    so, interprets it as a path to a file, and mines its contents for
+    YAML metadata using the libray module.
+
+The library module `Pandoc2Yaml` has one method, `extract_metadata` that
+takes one argument, the path to a pandoc markdown file. It converts the
+contents of that file to a JSON representation of the document. Since
+pandoc version 1.18, this JSON representation consists of three
+elements:
+
+1.  the version of the [pandoc-types
+    API](http://hackage.haskell.org/package/pandoc-types-1.17.0.4) used
+    (`"pandoc-api-version"`),
+2.  the metadata in the document (`"meta"`),
+3.  and the contents of the document (`"blocks"`).
+
+The contents of the document are discarded and the metadata is converted
+back to pandoc's markdown format, which now only contains YAML metadata.
+Note that the `JSON_2_PANDOC` converter uses the `standalone` option.
 Without using it, pandoc does not convert the metadata back to its own
 markdown format.
 
 2.2 Specify pandoc options in a markdown file itself
 ----------------------------------------------------
 
-Using the ideas from `pandoc2yaml.rb`, it is easy to write a script that
-runs pandoc on a markdown file using the pandoc options specified in
-that same file in a [YAML](http://yaml.org) metadata block:
+Using the library module `Pandoc2Yaml` discussed in the previous
+section, it is easy to write a script that runs pandoc on a markdown
+file using the pandoc options specified in that same file in a
+[YAML](http://yaml.org) metadata block:
 
 ``` {.ruby}
 #!/usr/bin/env ruby
@@ -259,8 +289,13 @@ else
 end
 ```
 
-You now can convert a markdown file, say `my_document.md` that contains
-a metadata block like:
+The script `do-pandoc.rb` first checks if there is one argument. If so,
+it is treated as a path to a pandoc markdown file. That file is mined
+for its metadata and if that metadata contains the property *pandoc*,
+the fields of that property are interpreted are used to configure a paru
+pandoc converter. The key of a property is called as a method on a
+\`Paru::Pandoc\`\` object with the property's value as its argument.
+Thus, a pandoc markdown file that contains a metadata block like:
 
 ``` {.yaml}
 ---
@@ -273,14 +308,25 @@ pandoc:
 ...
 ```
 
-to html by running the following command:
+will configure a `Paru::Pandoc` object to convert the contents of that
+pandoc markdown file from *markdown* to *standalone* *html* code with a
+*table of contents* while using `path/to/bibliography.bib` as the
+*bibliographic database*.
 
-``` {.bash}
-do-pandoc.rb my_document.md
-```
+In [Chapter 4](#putting-it-all-together) this script `do-pandoc.rb` is
+used on [paru's documentation file](documentation/documentation.md) to
+generate a new pandoc markdown file, `index.md`, that is converted to
+HTML into **the manual you are reading now!**
+
+Note how `do-pandoc.rb` defaults to outputting the results of a
+conversion to standard out unless the *output* option is specified in
+the *pandoc* property in the metadata.
 
 Chapter 3. Writing and using pandoc filters with paru {#writing-and-using-pandoc-filters-with-paru}
 =====================================================
+
+3.1 Introduction
+----------------
 
 One of pandoc's interesting capabilities are [custom
 filters](http://pandoc.org/scripting.html). This is an extremely
@@ -288,15 +334,37 @@ powerful feature that allows you to automate certain tasks, such as
 numbering figures, using other command-line programs to pre or post
 process parts of the input, or change the structure of the input
 document before having pandoc writing it out. Paru allows you to write
-pandoc filters in ruby.
+pandoc filters in Ruby.
 
-In the next sections several simple but useful filters are developed to
-showcase the use of paru to write pandoc filters.
+The simplest paru pandoc filter is the *identity* filter that does do
+nothing:
 
-3.1 Numbering figures
----------------------
+``` {.ruby}
+#!/usr/bin/env ruby
+require "paru/filter"
 
-In some output formats, such as pdf, html+css, or odt, figures can be
+Paru::Filter.run do
+    # nothing
+end
+```
+
+Nevertheless, it shows the structure of every paru pandoc filter: A
+filter is an executable script (line 1), it uses the `paru/filter`
+module, and it executes a `Paru::Filter` object. Running the identity
+filter is a good way to start writing your own filters. In the next
+sections several simple but useful filters are developed to showcase the
+use of paru to write pandoc filters in Ruby.
+
+All example filters discussed in this chapter can be found in the
+[filters sub directory](examples/filters) of paru's
+[examples](examples/). Feel free to copy and adapt them to your needs.
+
+3.2 Filter basics
+-----------------
+
+### Numbering figures
+
+In some output formats, such as PDF, HTML + CSS, or ODT, figures can be
 automatically numbered. In other formats, notably markdown itself,
 numbering has to be done manually. However, it is very easy to create a
 filter that does this numbering of figures automatically as well:
@@ -315,16 +383,17 @@ Paru::Filter.run do
 end
 ```
 
-This filter keeps track of the last figure's sequence number in
-`counter`. Each time an image is encountered while processing the input
-file, that counter is incremented and the image's caption is prefixed
-with "Figure \#{counter}. ".
+The filter `number_figures.rb` keeps track of the last figure's sequence
+number in `counter`. Each time an *Image* is encountered while
+processing the input file, that counter is incremented and the image's
+caption is prefixed with "Figure \#{counter}. " by overwriting the
+image's node's inner markdown.
 
 A filter consists of a number of selectors. You specify a selector
-through the `with "Type" do |node| ... end` construct. You can use any
+through the "`with "Type" do |node| ... end`" construct. You can use any
 of [pandoc's internal
 types](https://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html)
-(see the table below).
+as a selector (see the table below).
 
   block            inline
   ---------------- -------------
@@ -353,23 +422,24 @@ types](https://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pando
 Usually, however, you want to number figures relative to the chapter
 they are in. How to do that is shown next.
 
-3.2 Numbering figures and chapters
-----------------------------------
+### Numbering figures and chapters
 
 One of the problems with using flat text input formats such as markdown,
-latex, or html is that a document is more of a sequence of structure
+LaTeX, or HTML is that a document is more of a sequence of structure
 elements rather than a tree. For example, in markdown there is no such
 thing as a chapter block that contains its title and contents. Instead,
 a chapter is implied by using a header followed by its contents.
 Nevertheless, assuming a properly structured input file where each
-chapter is implied by a header of level one, chapters and figures in
-chapters can be numbered as follows:
+chapter is implied by a header of level one and a section by a header of
+level two, the filter `numbering_figures.rb` can be extended to number
+chapters, sections, and figures as follows:
 
 ``` {.ruby}
 #!/usr/bin/env ruby
 require "paru/filter"
 
 current_chapter = 0
+current_section = 0
 current_figure = 0;
 
 Paru::Filter.run do
@@ -377,8 +447,14 @@ Paru::Filter.run do
         if header.level == 1 
             current_chapter += 1
             current_figure = 0
+            current_section = 0
 
             header.inner_markdown = "Chapter #{current_chapter}. #{header.inner_markdown}"
+        end
+
+        if header.level == 2
+          current_section += 1
+          header.inner_markdown = "#{current_chapter}.#{current_section} #{header.inner_markdown}"
         end
     end
 
@@ -389,21 +465,26 @@ Paru::Filter.run do
 end
 ```
 
-Now two counters have to be used, one to keep track of the current
-chapter and one to keep track of the current figure in that chapter. As
-a result, each time a new chapter is started—thus each time a header of
-level one is encountered—the current chapter counter is incremented
-whereas the current figure counter is reset to zero.
+In the filter `number_chapters_and_sections_and_figures.rb`, three
+counters have to be used. One to keep track of the current chapter, one
+to keep track of the current section in that chapter, and one to keep
+track of the current figure in that chapter. Each time a new chapter is
+started—thus each time a *Header* of level one is encountered—the
+current chapter counter is incremented whereas the current section and
+current figure counters are reset to zero. When a section—rather a
+*Header* of level 2—and an *Image* are encountered, their respective
+counters are incremented as well.
 
 Note how easy it is to change the content of a node by using the
-`inner_markdown` property. This method is used twice, once in each
-selector. In the second selector an operator, `+` or "follows", is used.
-Operators in selectors denote a relationship between the current node
-that is being processed—the right hand side type—and nodes that came
-before. In this case, the selector denotes each image that follows a
-header.
+`inner_markdown` property. This method is used thrice, once in each
+selector.
 
-Paru has three different selection operators:
+In the second selector the `+` or "follows" operator is used. Operators
+in selectors denote a relationship between the current node that is
+being processed—the right hand side type—and nodes that came before. In
+this case, the selector denotes each *Image* that follows a *Header*.
+
+You can use three different selection operators in paru:
 
 -   `A + B`, B follows A
 -   `A - B`, B does not follow A
@@ -415,8 +496,7 @@ used only sporadically.
 As a more interesting example of using operators, the first sentence of
 a section's first paragraph is capitalized next.
 
-3.3 Capitalizing a first sentence
----------------------------------
+### Capitalizing a first sentence
 
 An optional distance can be used in combination with a selector operator
 by putting an integer after the operator. To select the first paragraph
@@ -439,11 +519,15 @@ end
 
 ```
 
-3.4 Custom blocks
------------------
+Of course, just taking the first N letters to capitalize does not work
+that well because often the capitalization stops halfway a word. Is it
+not hard to improve this `capitalize_first_sentence.rb` filter to
+capitalize the first M words, for example.
 
-As another example filters are used to create a custom example block.
-Given the following code in your markdown file:
+### Custom blocks
+
+You can use filters to create a custom example block. Given the
+following code in your markdown file:
 
 ``` {.markdown}
 <div class="example">
@@ -454,8 +538,8 @@ You can number figures in pandoc by using a filter as follows: ...
 </div>
 ```
 
-you can automatically number the examples by selecting all headers of
-level 3 in all div elements that have class "example":
+you can automatically number the example blocks by selecting all
+*Header*s of level 3 in all *Div* elements that have class "*example*":
 
 ``` {.ruby}
 #!/usr/bin/env ruby
@@ -478,12 +562,22 @@ Paru::Filter.run do
 end
 ```
 
-3.5 Inserting other pandoc files
---------------------------------
+Here the descendant selection operator comes in handy to denote the
+hierarchical relationship between a block and its contents.
 
-A frequently asked for filter is a way to insert markdown files into
-another markdown file. A bit like LaTeX's input command. Using paru that
-is quite easy to accomplish:
+3.3 Going beyond the confines of a filter file
+----------------------------------------------
+
+Although filters in and of themselves are already quite useful, the fact
+that paru filters have the full power of ruby at their disposal makes
+for some truly powerful behavior.
+
+### Inserting other pandoc files
+
+A frequently asked for filter on the pandoc channel on IRC (\#pandoc on
+freenode.net, come join us!) is a way to include external files in a
+markdown file. An command that is a bit like LaTeX's input command can
+be created with a paru filter quite easily:
 
 ``` {.ruby}
 #!/usr/bin/env ruby
@@ -503,10 +597,26 @@ end
 
 ```
 
+The filter `insert_document.rb` inspects each *Para*graph. If it is
+exactly one line long, that line is split on a space (" "). If the
+left-most split off is equal to `::paru::insert`, the one-line paragraph
+is interpreted as an insert command with one parameter: the path to the
+file to insert. This one-line paragraph's contents are *replaced* by the
+contents of that file using the `outer_markdown` method.
+
+Note that, because I like to use file names with an underscore in it and
+pandoc puts an backslash (\\) in front of underscores, I had to replace
+all occurrences of "\\\_" by "\_" to get Ruby to find and read the file
+correctly.
+
+### Inserting code files
+
 Similarly, when writing a programming tutorial or manual (like this
-document), it is great if you can point markdown to a code sample and it
-is included automatically. This is even more simple that inserting
-markdown files!:
+manual; have a look at
+[documentation/using\_filters.md](documentation/using_filters.md) for
+example), it would be great if you can point pandoc to a file containing
+some programming code and have that code included automatically. This is
+even more simple that inserting markdown files!:
 
 ``` {.ruby}
 #!/usr/bin/env ruby
@@ -523,38 +633,137 @@ Paru::Filter.run do
 end
 ```
 
-3.6 Accessing metadata
-----------------------
+The *CodeBlock* element has a string property that can be inspected and
+replaced. As with the previous filter to include other markdown files,
+if the *CodeBlock* contains the "command" `::paru::insert` followed by a
+path and optionally more parameters, the code block is treated as an
+insert command. The file is read and its contents are used in stead of
+the command.
+
+3.4 Manipulating pandoc's metadata
+----------------------------------
 
 Finally, you can access metadata in an input file through the `metadata`
 method available in a selector. This gives you the ability to create
 flexible filters that have different behavior depending on the metadata
 specified in the file. Furthermore, you can also set metadata. For
-example, each time you encounter a Strong node, you could add it to the
-keywords metadata to automatically generate a list of keywords.
+example, each time you encounter a *Strong* node, you could add it to
+the keywords metadata to automatically generate a list of keywords.
 
 As an example, I have created a filter that removes a pandoc
-configuration from the metadata if any. I use this in combination with
-`do-pandoc.rb` to generate a file only once.
+configuration from the metadata if there is such a property:
 
-    #!/usr/bin/env ruby
-    require "paru/filter"
+``` {.ruby}
+#!/usr/bin/env ruby
+require "paru/filter"
 
-    Paru::Filter.run do 
-      metadata.delete "pandoc" if metadata.has_key? "pandoc"
-    end
+Paru::Filter.run do 
+  metadata.delete "pandoc" if metadata.has_key? "pandoc"
+end
+```
+
+Instead of removing the pandoc property all together, I could also have
+updated it to have a markdown file be converted differently the second
+time it is run by `do-pandoc.rb`.
+
+3.5 Paru filter API
+-------------------
+
+Each of [pandoc's internal
+types](https://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html)
+(see the table in [Section 3.2](#numbering-figures)) is a subclass of
+`Paru::PandocFilter::Node`. A `Node` has the following properties and
+methods:
+
+### Node's properties
+
+-   `parent`: a node's parent node, if any (see `has_parent?`). The root
+    node has not parent.
+-   `children`: an array of a node's children nodes. A leaf node has
+    no children.
+-   `string`: if this node has a string property, you can access its
+    contents. (See `has_string?`)
+-   `classes`: if this node has a classes property, you can access
+    its contents. (See `has_classes?`)
+
+### Node's methods
+
+#### Basic methods
+
+-   `type`: this node's pandoc type, such as *Image*, *Para*, *Header*,
+    *Strong*, and so on.
+-   `each`: execute block for each of this node's children
+-   `has_children?`: has this node any children?
+-   `children= list`: replace all this node's children by the list with
+    new child nodes.
+-   `has_parent?`: has this node a parent node?
+-   `is_root?`: is this node the root node?
+-   `is_node?`: if this node has any children
+-   `is_leaf?`: if this node has not any children
+-   `is_block?`: this node is a block level node?
+-   `is_inline?`: this node is an inline level node?
+-   `has_block?`: this node has block level child nodes?
+-   `can_act_as_both_block_and_inline?`: the *Image* and *Note* nodes
+    are inline nodes in pandoc, but often they act like block like
+    elements in a document.
+-   `has_string?`: does this node have a string property?
+-   `has_class?`: does this node have classes?
+
+#### AST manipulation methods
+
+-   `insert index, child`: inserts child node at position index of this
+    node's children.
+-   `delete child`: delete child node from this node's children.
+-   `remove_at index`: delete child node at index from this
+    node's children.
+-   `append child`: append a child node to this node's children. This
+    method is aliased by the `<<` operator.
+-   `prepend child`: prepend a child node to this node's children.
+-   `replace old_child, new_child`: replace old\_child with new\_child
+    node in this node's children.
+-   `replace_at index, new_child`: replace child node at index with
+    new\_child node in this node's children.
+-   `each_depth_first &block`: for each child node in this node's
+    children execute the block. The processing order is depth first
+    (rather than breadth first).
+
+#### Markdown methods
+
+-   `inner_markdown`: returns the markdown of this node's children.
+-   `inner_markdown= new_markdown`: replaces this node's children by the
+    AST of the parsed `new_markdown`.
+-   `outer_markdown`: returns the markdown of this node and
+    its children.
+-   `outer_markdown= new_markdown`: replaces this node and its children
+    by the AST of the parsed `new_markdown`.
+
+### The Document node
+
+The `Paru::PandocFilter::Document` node is a special node representing a
+pandoc document. It has special *static* methods to create a document:
+
+-   `from_JSON json`: create a new document node based on json data.
+-   `fragment node_list`: create a new document based on a list
+    of nodes. It has empty metadata.
+
+Furthermore, a document can be converted to json using the
+
+-   `to_JSON`
+
+method.
 
 Chapter 4. Putting it all together {#putting-it-all-together}
 ==================================
 
-This document is created using the programs and filters described in the
-previous chapters. This document is created by running
-
-``` {.bash}
-do-pandoc.rb documentation.md
-```
-
-where `documentation.md` is:
+Having discussed using paru and creating and using filters in the
+previous two chapters, it is now time to put it all together and into
+practice. As an example, the generation of this manual is used. In the
+directory [documentation](documentation/) you find a number of files
+that comprise this manual. The root file is
+[documentation.md](documentation/documentation.md), which contains some
+metadata, the outline of the manual, and a number of `::paru::insert`
+commands to include the other markdown files from the documentation
+directory:
 
 ``` {.markdown}
 ---
@@ -613,6 +822,17 @@ pandoc:
 ::paru::insert faq.md
 
 ```
+
+To generate the manual markdown file [index.md](index.md), run the
+`do-pandoc.rb` script on `document.md`:
+
+``` {.bash}
+do-pandoc.rb documentation.md
+```
+
+Using some simple filters and a small Ruby script, paru enables you to
+automate using pandoc and perform simple and complex transformations on
+your input files to generate quite complex documents.
 
 Chapter 5. Frequently asked questions {#frequently-asked-questions}
 =====================================
