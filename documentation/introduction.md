@@ -1,4 +1,9 @@
-Paru is a simple ruby wrapper around [pandoc](http://www.pandoc.org), the
+Paru is a simple Ruby wrapper around [pandoc](http://www.pandoc.org), the
 great multi-format document converter. Paru supports automating pandoc by
-writing ruby programs and [using pandoc in your ruby programs](using_paru.html).
-Since version 0.1 it also supports [pandoc filters](using_filters.html).
+writing Ruby programs and using pandoc in your Ruby programs (see [Chapter
+2](#automating-the-use-of-pandoc-with-paru)). Paru also supports writing
+pandoc filters in Ruby (see [Chapter
+3](#writing-and-using-pandoc-filters-with-paru)). In this manual the use of
+paru is explained in detail, from explaining how to install and use paru,
+creating and using filters, to putting it all together in a real-world use
+case: generating this manual!

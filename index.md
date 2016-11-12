@@ -16,22 +16,26 @@ Paru version 0.1.0 if you are using an older version of pandoc.
 Chapter 1. Introduction {#introduction}
 =======================
 
-Paru is a simple ruby wrapper around [pandoc](http://www.pandoc.org),
+Paru is a simple Ruby wrapper around [pandoc](http://www.pandoc.org),
 the great multi-format document converter. Paru supports automating
-pandoc by writing ruby programs and [using pandoc in your ruby
-programs](using_paru.html). Since version 0.1 it also supports [pandoc
-filters](using_filters.html).
+pandoc by writing Ruby programs and using pandoc in your Ruby programs
+(see [Chapter 2](#automating-the-use-of-pandoc-with-paru)). Paru also
+supports writing pandoc filters in Ruby (see [Chapter
+3](#writing-and-using-pandoc-filters-with-paru)). In this manual the use
+of paru is explained in detail, from explaining how to install and use
+paru, creating and using filters, to putting it all together in a
+real-world use case: generating this manual!
 
-Licence
--------
+1.1 Licence
+-----------
 
 Paru is [free sofware](https://www.gnu.org/philosophy/free-sw.en.html);
-Paru is released under the
+paru is released under the
 [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html). You find paru's
 source code on [github](https://github.com/htdebeer/paru).
 
-Installation
-------------
+1.2 Installation
+----------------
 
 Paru is installed through rubygems as follows:
 
@@ -44,7 +48,7 @@ You can also download the latest gem
 and install it by:
 
 ``` {.bash}
-cd /directory/you/downloaded/the/gem
+cd /directory/you/downloaded/the/gem/to
 gem install paru-0.2.0.gem
 ```
 
@@ -53,8 +57,8 @@ Paru, obviously, requires pandoc. See
 system and [pandoc's manual](http://pandoc.org/README.html) on how to
 use pandoc.
 
-Usage: Paru says hello to pandoc
---------------------------------
+1.3 Paru says hello to pandoc
+-----------------------------
 
 Using paru is straightforward. It is a thin "rubyesque" layer around the
 pandoc executable. After requiring paru in your ruby program, you create
@@ -68,10 +72,14 @@ converter = Paru::Pandoc.new
 
 The various [command-line options of
 pandoc](http://pandoc.org/README.html#options) map to methods on this
-newly created instance. For example, to convert from markdown to pdf
-using the lualatex engine, you call the `from`, `to`, and `latex_engine`
-to configure the converter. There is a convenience `configure` method
-that takes a block to configure multiple options at once:
+newly created instance. When you want to use a pandoc command-line
+option that contains dashes, replace all dashes with an underscore to
+get the corresponding paru method. For example, the pandoc command-line
+option `--latex-engine` becomes the paru method `latex_engine`. Knowing
+this convention, you can convert from markdown to pdf using the lualatex
+engine by calling the `from`, `to`, and `latex_engine` methods to
+configure the converter. There is a convenience `configure` method that
+takes a block to configure multiple options at once:
 
 ``` {.ruby}
 require "paru/pandoc"
@@ -87,23 +95,29 @@ end
 
 As creating and immediately configuring a converter is a common pattern,
 the constructor takes a configuration block as well. Finally, when you
-have configured the converter, you can use it to convert a string. To
-complete this first example, the string "Hello world, from **pandoc**"
-is converted as follows:
+have configured the converter, you can use it to convert a string with
+the `convert` method, which is aliased by The `<<` operator. You can
+call `convert` multiple times and re-configure the converter in between.
+
+This introductory section is ended by the obligatory "hello world"
+program, paru-style:
 
 ``` {.ruby}
+#!/usr/bin/env ruby
 require "paru/pandoc"
 
-converter = Paru::Pandoc.new do
+html = Paru::Pandoc.new do
     from "markdown"
-    to "latex"
-    latex_engine "lualatex"
-    output "my_first_pdf_file.pdf"
+    to "html"
 end << "Hello world, from **pandoc**"
+puts html
 ```
 
-The `<<` operator is an alias for the `convert` method. You can call
-`convert` multiple times and re-configure the converter in between.
+Running the above program results in the following output:
+
+``` {.html}
+<p>Hello world, from <strong>pandoc</strong></p>
+```
 
 In the next chapter, the development of *do-pandoc.rb* is presented as
 an example of real-world usage of paru.
@@ -130,8 +144,8 @@ I developed do-pandoc.rb in two steps:
     into a dynamically generated pandoc converter, and used this
     converter on that input file.
 
-Stripping a pandoc file for its YAML metadata
----------------------------------------------
+2.1 Stripping a pandoc file for its YAML metadata
+-------------------------------------------------
 
 One of the interesting aspects of pandoc's markdown format is its
 allowance for metadata in so-called [YAML](http://yaml.org/) blocks.
@@ -204,8 +218,8 @@ Note that the `json2pandoc` converter has the `standalone` option.
 Without using it, pandoc does not convert the metadata back to its own
 markdown format.
 
-Specify pandoc options in a markdown file itself
-------------------------------------------------
+2.2 Specify pandoc options in a markdown file itself
+----------------------------------------------------
 
 Using the ideas from `pandoc2yaml.rb`, it is easy to write a script that
 runs pandoc on a markdown file using the pandoc options specified in
@@ -279,8 +293,8 @@ pandoc filters in ruby.
 In the next sections several simple but useful filters are developed to
 showcase the use of paru to write pandoc filters.
 
-Numbering figures
------------------
+3.1 Numbering figures
+---------------------
 
 In some output formats, such as pdf, html+css, or odt, figures can be
 automatically numbered. In other formats, notably markdown itself,
@@ -339,8 +353,8 @@ types](https://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pando
 Usually, however, you want to number figures relative to the chapter
 they are in. How to do that is shown next.
 
-Numbering figures and chapters
-------------------------------
+3.2 Numbering figures and chapters
+----------------------------------
 
 One of the problems with using flat text input formats such as markdown,
 latex, or html is that a document is more of a sequence of structure
@@ -401,8 +415,8 @@ used only sporadically.
 As a more interesting example of using operators, the first sentence of
 a section's first paragraph is capitalized next.
 
-Capitalizing a first sentence
------------------------------
+3.3 Capitalizing a first sentence
+---------------------------------
 
 An optional distance can be used in combination with a selector operator
 by putting an integer after the operator. To select the first paragraph
@@ -425,8 +439,8 @@ end
 
 ```
 
-Custom blocks
--------------
+3.4 Custom blocks
+-----------------
 
 As another example filters are used to create a custom example block.
 Given the following code in your markdown file:
@@ -464,8 +478,8 @@ Paru::Filter.run do
 end
 ```
 
-Inserting other pandoc files
-----------------------------
+3.5 Inserting other pandoc files
+--------------------------------
 
 A frequently asked for filter is a way to insert markdown files into
 another markdown file. A bit like LaTeX's input command. Using paru that
@@ -509,8 +523,8 @@ Paru::Filter.run do
 end
 ```
 
-Accessing metadata
-------------------
+3.6 Accessing metadata
+----------------------
 
 Finally, you can access metadata in an input file through the `metadata`
 method available in a selector. This gives you the ability to create
@@ -559,7 +573,7 @@ pandoc:
   standalone: true
   filter:
   - ../examples/filters/insert_document.rb
-  - ../examples/filters/number_figures_per_chapter.rb
+  - ../examples/filters/number_chapters_and_sections_and_figures.rb
   - ../examples/filters/insert_code_block.rb
   - ../examples/filters/remove_pandoc_metadata.rb
 ...
@@ -578,7 +592,7 @@ pandoc:
 
 ::paru::insert install.md
 
-## Usage: Paru says hello to pandoc
+## Paru says hello to pandoc
 
 ::paru::insert usage.md
 

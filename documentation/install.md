@@ -9,7 +9,7 @@ You can also download the latest gem
 and install it by:
 
 ~~~ {.bash}
-cd /directory/you/downloaded/the/gem
+cd /directory/you/downloaded/the/gem/to
 gem install paru-0.2.0.gem
 ~~~
 
