@@ -1,3 +1,4 @@
+#--
 # Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
@@ -14,12 +15,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
-# Header Int Attr [Inline]
+#++
 module Paru
   module PandocFilter
     require_relative "./block"
     require_relative "./attr"
 
+    # Header Int Attr [Inline]
     class Header < Block
       attr_accessor :level, :attr
 

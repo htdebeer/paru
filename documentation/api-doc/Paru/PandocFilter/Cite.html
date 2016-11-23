@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::PandocFilter::Cite - RDoc Documentation</title>
+<title>class Paru::PandocFilter::Cite - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -87,6 +87,8 @@
 
   <section class="description">
     
+<p><a href="Cite.html">Cite</a> [Citation] [Inline]</p>
+
   </section>
 
   
@@ -153,7 +155,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/cite.rb, line 25</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/cite.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">contents</span>
   <span class="ruby-ivar">@citations</span> = []
   <span class="ruby-identifier">contents</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">citation</span><span class="ruby-operator">|</span>
@@ -203,7 +205,7 @@
 
           
           <div class="method-source-code" id="ast_contents-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/cite.rb, line 33</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/cite.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ast_contents</span>
   [
     <span class="ruby-ivar">@citations</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">citation</span><span class="ruby-operator">|</span> <span class="ruby-identifier">citation</span>.<span class="ruby-identifier">to_ast</span>},

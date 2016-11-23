@@ -1,3 +1,4 @@
+#--
 # Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
@@ -14,7 +15,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
-# Link Attr [Inline] Target
+#++
 module Paru
   module PandocFilter
 
@@ -22,6 +23,7 @@ module Paru
     require_relative "./attr"
     require_relative "./target"
 
+    # Link Attr [Inline] Target
     class Link < Inline
       attr_accessor :attr, :target
 

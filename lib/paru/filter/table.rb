@@ -1,3 +1,4 @@
+#--
 # Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
@@ -14,7 +15,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
-# Table [Inline] [Alignment] [Double] [TableCell] [[TableCell]]
+#++
 module Paru
   module PandocFilter
     require_relative "./block"
@@ -23,6 +24,7 @@ module Paru
 
     ALIGNMENTS = ["AlignLeft", "AlignRight", "AlignCenter", "AlignDefault"]
 
+    # Table [Inline] [Alignment] [Double] [TableCell] [[TableCell]]
     class Table < Block
       attr_accessor :caption, :alignment, :column_widths, :headers, :rows
 

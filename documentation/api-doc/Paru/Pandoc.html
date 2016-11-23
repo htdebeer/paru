@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::Pandoc - RDoc Documentation</title>
+<title>class Paru::Pandoc - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -167,7 +167,7 @@ array with one value, the default value.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/pandoc.rb, line 28</span>
+            <pre><span class="ruby-comment"># File lib/paru/pandoc.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> 
   <span class="ruby-ivar">@options</span> = {}
   <span class="ruby-identifier">configure</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
@@ -237,7 +237,7 @@ array with one value, the default value.</p>
 
           
           <div class="method-source-code" id="configure-source">
-            <pre><span class="ruby-comment"># File lib/paru/pandoc.rb, line 33</span>
+            <pre><span class="ruby-comment"># File lib/paru/pandoc.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">configure</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
   <span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
   <span class="ruby-keyword">self</span>
@@ -272,7 +272,7 @@ configures in this <a href="Pandoc.html">Pandoc</a> instance.</p>
 
           
           <div class="method-source-code" id="convert-source">
-            <pre><span class="ruby-comment"># File lib/paru/pandoc.rb, line 40</span>
+            <pre><span class="ruby-comment"># File lib/paru/pandoc.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert</span> <span class="ruby-identifier">input</span>
   <span class="ruby-identifier">output</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-constant">IO</span>.<span class="ruby-identifier">popen</span>(<span class="ruby-identifier">to_command</span>, <span class="ruby-string">&quot;r+&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
@@ -315,7 +315,7 @@ configures in this <a href="Pandoc.html">Pandoc</a> instance.</p>
 
           
           <div class="method-source-code" id="to_command-source">
-            <pre><span class="ruby-comment"># File lib/paru/pandoc.rb, line 51</span>
+            <pre><span class="ruby-comment"># File lib/paru/pandoc.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_command</span> <span class="ruby-identifier">option_sep</span> = <span class="ruby-string">&quot; \\\n\t&quot;</span>
   <span class="ruby-node">&quot;pandoc\t#{to_option_string option_sep}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -348,7 +348,7 @@ configures in this <a href="Pandoc.html">Pandoc</a> instance.</p>
 
           
           <div class="method-source-code" id="to_option_string-source">
-            <pre><span class="ruby-comment"># File lib/paru/pandoc.rb, line 55</span>
+            <pre><span class="ruby-comment"># File lib/paru/pandoc.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_option_string</span> <span class="ruby-identifier">option_sep</span>
   <span class="ruby-identifier">options_arr</span> = []
   <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>

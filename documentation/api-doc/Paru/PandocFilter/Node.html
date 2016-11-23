@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::PandocFilter::Node - RDoc Documentation</title>
+<title>class Paru::PandocFilter::Node - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -207,7 +207,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 37</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">contents</span>, <span class="ruby-identifier">inline_children</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-ivar">@children</span> = []
   <span class="ruby-ivar">@parent</span> = <span class="ruby-keyword">nil</span>
@@ -266,7 +266,7 @@
 
           
           <div class="method-source-code" id="ast_contents-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 143</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ast_contents</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">has_children?</span>
     <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">to_ast</span>}
@@ -303,7 +303,7 @@
 
           
           <div class="method-source-code" id="ast_markdown_contents-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 151</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ast_markdown_contents</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">has_children?</span>
     <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">to_ast</span>}
@@ -340,7 +340,7 @@
 
           
           <div class="method-source-code" id="ast_type-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 139</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 141</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ast_type</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;::&quot;</span>).<span class="ruby-identifier">last</span>
 <span class="ruby-keyword">end</span></pre>
@@ -373,7 +373,7 @@
 
           
           <div class="method-source-code" id="can_act_as_both_block_and_inline-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 115</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 117</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">can_act_as_both_block_and_inline?</span>
   <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
@@ -406,7 +406,7 @@
 
           
           <div class="method-source-code" id="children-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 70</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">children</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">has_children?</span>
     <span class="ruby-ivar">@children</span>
@@ -443,7 +443,7 @@
 
           
           <div class="method-source-code" id="children-3D-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 78</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">children=</span> <span class="ruby-identifier">list</span>
   <span class="ruby-ivar">@children</span> = <span class="ruby-identifier">list</span>
 <span class="ruby-keyword">end</span></pre>
@@ -476,7 +476,7 @@
 
           
           <div class="method-source-code" id="each-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 60</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">each</span>
   <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">yield</span> <span class="ruby-identifier">child</span>
@@ -511,7 +511,7 @@
 
           
           <div class="method-source-code" id="has_block-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 107</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_block?</span>
   <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
@@ -544,7 +544,7 @@
 
           
           <div class="method-source-code" id="has_children-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 66</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_children?</span>
   <span class="ruby-keyword">defined?</span> <span class="ruby-ivar">@children</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
@@ -577,7 +577,7 @@
 
           
           <div class="method-source-code" id="has_class-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 123</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_class?</span> <span class="ruby-identifier">name</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@attr</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-ivar">@attr</span>.<span class="ruby-identifier">has_class?</span> <span class="ruby-identifier">name</span>
@@ -614,7 +614,7 @@
 
           
           <div class="method-source-code" id="has_inline-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 103</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_inline?</span>
   <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
@@ -647,7 +647,7 @@
 
           
           <div class="method-source-code" id="has_parent-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 82</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_parent?</span>
   <span class="ruby-keyword">not</span> <span class="ruby-ivar">@parent</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -680,7 +680,7 @@
 
           
           <div class="method-source-code" id="has_string-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 99</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 101</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_string?</span>
   <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
@@ -713,7 +713,7 @@
 
           
           <div class="method-source-code" id="is_block-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 111</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 113</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_block?</span>
   <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
@@ -746,7 +746,7 @@
 
           
           <div class="method-source-code" id="is_inline-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 119</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_inline?</span>
   <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
@@ -779,7 +779,7 @@
 
           
           <div class="method-source-code" id="is_leaf-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 94</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_leaf?</span>
   <span class="ruby-keyword">not</span> <span class="ruby-identifier">has_children?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -812,7 +812,7 @@
 
           
           <div class="method-source-code" id="is_node-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 90</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_node?</span>
   <span class="ruby-keyword">not</span> <span class="ruby-identifier">is_leaf</span>
 <span class="ruby-keyword">end</span></pre>
@@ -845,7 +845,7 @@
 
           
           <div class="method-source-code" id="is_root-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 86</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_root?</span>
   <span class="ruby-keyword">not</span> <span class="ruby-identifier">has_parent?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -878,7 +878,7 @@
 
           
           <div class="method-source-code" id="to_ast-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 159</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 161</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_ast</span>
   {
     <span class="ruby-string">&quot;t&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ast_type</span>,
@@ -914,7 +914,7 @@
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 131</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
@@ -947,7 +947,7 @@
 
           
           <div class="method-source-code" id="type-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 135</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/node.rb, line 137</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">type</span>
   <span class="ruby-identifier">ast_type</span>
 <span class="ruby-keyword">end</span></pre>

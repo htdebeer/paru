@@ -1,3 +1,4 @@
+#--
 # Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
@@ -14,12 +15,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
-# OrderedList ListAttributes [[Block]]
+#++
 module Paru
   module PandocFilter
     require_relative "./list"
     require_relative "./list_attributes"
 
+    # OrderedList ListAttributes [[Block]]
     class OrderedList < List
       attr_accessor :list_attributes
 

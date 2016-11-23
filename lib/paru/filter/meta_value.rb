@@ -1,3 +1,4 @@
+#-- 
 # Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
@@ -14,13 +15,14 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
-# MetaValue = MetaMap | MetaList | MetaBool | MetaString | MetaInlines |
-#   MetaBlocks
+#++
 module Paru
   module PandocFilter
 
     require_relative "./node"
 
+    # MetaValue = MetaMap | MetaList | MetaBool | MetaString | MetaInlines |
+    #   MetaBlocks
     class MetaValue < Node
 
       attr_accessor :value

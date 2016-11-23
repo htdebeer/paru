@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::Filter - RDoc Documentation</title>
+<title>class Paru::Filter - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -95,6 +95,10 @@
 
   <section class="description">
     
+<p><a href="Filter.html">Filter</a> is used to write your own pandoc filter in
+Ruby. A <a href="Filter.html">Filter</a> is almost always created and
+immediately executed via the <code>run</code> method as</p>
+
   </section>
 
   
@@ -135,7 +139,7 @@
 
           
           <div class="method-source-code" id="run-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 62</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">run</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
   <span class="ruby-constant">Filter</span>.<span class="ruby-identifier">new</span>().<span class="ruby-identifier">filter</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -170,13 +174,14 @@
 
         <div class="method-description">
           
-          
+          <p><code>current_node</code> points to the node that is <strong>now</strong>
+being processed while running this filter.</p>
           
           
 
           
           <div class="method-source-code" id="current_node-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 83</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">current_node</span>
   <span class="ruby-ivar">@filtered_nodes</span>.<span class="ruby-identifier">last</span>
 <span class="ruby-keyword">end</span></pre>
@@ -203,13 +208,14 @@
 
         <div class="method-description">
           
-          
+          <p>Create a new Document node from JSON formatted pandoc document structure on
+STDIN</p>
           
           
 
           
           <div class="method-source-code" id="document-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 66</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">document</span>
   <span class="ruby-constant">PandocFilter</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">from_JSON</span> <span class="ruby-identifier">$stdin</span>.<span class="ruby-identifier">read</span>
 <span class="ruby-keyword">end</span></pre>
@@ -236,13 +242,13 @@
 
         <div class="method-description">
           
-          
+          <p>Create a filter using <code>block</code>.</p>
           
           
 
           
           <div class="method-source-code" id="filter-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 70</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">filter</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
   <span class="ruby-ivar">@selectors</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@filtered_nodes</span> = []
@@ -278,13 +284,14 @@
 
         <div class="method-description">
           
-          
+          <p>While running a filter you can access the document&#39;s metadata through
+the <code>metadata</code> method.</p>
           
           
 
           
           <div class="method-source-code" id="metadata-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 92</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">metadata</span>
   <span class="ruby-ivar">@doc</span>.<span class="ruby-identifier">meta</span>
 <span class="ruby-keyword">end</span></pre>
@@ -311,13 +318,15 @@
 
         <div class="method-description">
           
-          
+          <p>Specify what nodes to filter with a <code>selector</code>. If the
+<code>current_node</code> matches that selector, it is passed to the block
+to this <code>with</code> method.</p>
           
           
 
           
           <div class="method-source-code" id="with-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 87</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">with</span> <span class="ruby-identifier">selector</span>
   <span class="ruby-ivar">@selectors</span>[<span class="ruby-identifier">selector</span>] = <span class="ruby-constant">Selector</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">selector</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@selectors</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">selector</span>
   <span class="ruby-keyword">yield</span> <span class="ruby-identifier">current_node</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@selectors</span>[<span class="ruby-identifier">selector</span>].<span class="ruby-identifier">matches?</span> <span class="ruby-identifier">current_node</span>, <span class="ruby-ivar">@filtered_nodes</span>

@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>module Paru::PandocFilter::ASTManipulation - RDoc Documentation</title>
+<title>module Paru::PandocFilter::ASTManipulation - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -162,7 +162,7 @@
 
           
           <div class="method-source-code" id="append-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 33</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">append</span> <span class="ruby-identifier">child</span>
   <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">child</span>
 <span class="ruby-keyword">end</span></pre>
@@ -199,7 +199,7 @@
 
           
           <div class="method-source-code" id="delete-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 25</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span> <span class="ruby-identifier">child</span>
   <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">child</span>
 <span class="ruby-keyword">end</span></pre>
@@ -232,7 +232,7 @@
 
           
           <div class="method-source-code" id="each_depth_first-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 52</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">each_depth_first</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
   <span class="ruby-keyword">yield</span> <span class="ruby-keyword">self</span>
   <span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">each_depth_first</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)} <span class="ruby-keyword">if</span> <span class="ruby-identifier">has_children?</span>
@@ -266,7 +266,7 @@
 
           
           <div class="method-source-code" id="insert-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 21</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">insert</span> <span class="ruby-identifier">index</span>, <span class="ruby-identifier">child</span>
   <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">insert</span> <span class="ruby-identifier">index</span>, <span class="ruby-identifier">child</span>
 <span class="ruby-keyword">end</span></pre>
@@ -299,7 +299,7 @@
 
           
           <div class="method-source-code" id="prepend-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 38</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">prepend</span> <span class="ruby-identifier">child</span>
   <span class="ruby-identifier">insert</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">child</span>
 <span class="ruby-keyword">end</span></pre>
@@ -332,7 +332,7 @@
 
           
           <div class="method-source-code" id="remove_at-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 29</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_at</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">delete_at</span> <span class="ruby-identifier">index</span>
 <span class="ruby-keyword">end</span></pre>
@@ -365,7 +365,7 @@
 
           
           <div class="method-source-code" id="replace-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 42</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">replace</span> <span class="ruby-identifier">old_child</span>, <span class="ruby-identifier">new_child</span>
   <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">find_index</span> <span class="ruby-identifier">old_child</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">replace_at</span> <span class="ruby-identifier">index</span>, <span class="ruby-identifier">new_child</span>
@@ -400,7 +400,7 @@
 
           
           <div class="method-source-code" id="replace_at-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 48</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/ast_manipulation.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">replace_at</span> <span class="ruby-identifier">index</span>, <span class="ruby-identifier">new_child</span>
   <span class="ruby-ivar">@children</span>[<span class="ruby-identifier">index</span>] = <span class="ruby-identifier">new_child</span>
 <span class="ruby-keyword">end</span></pre>

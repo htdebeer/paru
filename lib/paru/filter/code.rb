@@ -1,3 +1,4 @@
+#--
 # Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
@@ -14,12 +15,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
-# Code Attr String
+#++
 module Paru
   module PandocFilter
     require_relative "./inline"
     require_relative "./attr"
 
+    # Code Attr String
     class Code < Inline
       attr_accessor :attr, :string
 

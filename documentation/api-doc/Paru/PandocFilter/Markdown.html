@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>module Paru::PandocFilter::Markdown - RDoc Documentation</title>
+<title>module Paru::PandocFilter::Markdown - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -143,7 +143,7 @@
 
           
           <div class="method-source-code" id="inner_markdown-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/markdown.rb, line 60</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/markdown.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">inner_markdown</span>
   <span class="ruby-identifier">temp_doc</span> = <span class="ruby-constant">PandocFilter</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">fragment</span> <span class="ruby-ivar">@children</span>
   <span class="ruby-constant">AST2MARKDOWN</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">temp_doc</span>.<span class="ruby-identifier">to_JSON</span>
@@ -177,7 +177,7 @@
 
           
           <div class="method-source-code" id="inner_markdown-3D-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/markdown.rb, line 65</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/markdown.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">inner_markdown=</span> <span class="ruby-identifier">markdown</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">has_string?</span>
     <span class="ruby-ivar">@string</span> = <span class="ruby-identifier">markdown</span>
@@ -228,7 +228,7 @@
 
           
           <div class="method-source-code" id="outer_markdown-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/markdown.rb, line 34</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/markdown.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">outer_markdown</span> 
   <span class="ruby-identifier">temp_doc</span> = <span class="ruby-constant">PandocFilter</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">fragment</span> [<span class="ruby-keyword">self</span>]
   <span class="ruby-constant">AST2MARKDOWN</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">temp_doc</span>.<span class="ruby-identifier">to_JSON</span>
@@ -262,7 +262,7 @@
 
           
           <div class="method-source-code" id="outer_markdown-3D-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/markdown.rb, line 39</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/markdown.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">outer_markdown=</span> <span class="ruby-identifier">markdown</span>
   <span class="ruby-identifier">json</span> = <span class="ruby-constant">MARKDOWN2JSON</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">markdown</span>
   <span class="ruby-identifier">temp_doc</span> = <span class="ruby-constant">PandocFilter</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">from_JSON</span> <span class="ruby-identifier">json</span>

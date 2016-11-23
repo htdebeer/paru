@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::PandocFilter::DefinitionList - RDoc Documentation</title>
+<title>class Paru::PandocFilter::DefinitionList - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -87,6 +87,8 @@
 
   <section class="description">
     
+<p><a href="DefinitionList.html">DefinitionList</a> [([Inline], [[Block]])]</p>
+
   </section>
 
   
@@ -132,7 +134,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/definition_list.rb, line 23</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/definition_list.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">contents</span>
   <span class="ruby-keyword">super</span> []
   <span class="ruby-identifier">contents</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
@@ -176,7 +178,7 @@
 
           
           <div class="method-source-code" id="ast_contents-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/definition_list.rb, line 30</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/definition_list.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ast_contents</span>
   <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">to_ast</span>}
 <span class="ruby-keyword">end</span></pre>

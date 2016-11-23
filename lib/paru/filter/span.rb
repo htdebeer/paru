@@ -1,3 +1,4 @@
+#--
 # Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
@@ -14,13 +15,14 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
-# Span Attr [Inline]
+#++
 module Paru
   module PandocFilter
 
     require_relative "./inline"
     require_relative "./attr"
 
+    # Span Attr [Inline]
     class Span < Inline
       attr_accessor :attr
 

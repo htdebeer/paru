@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::PandocFilter::DefinitionListItem - RDoc Documentation</title>
+<title>class Paru::PandocFilter::DefinitionListItem - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -161,7 +161,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/definition_list_item.rb, line 25</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/definition_list_item.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">item</span>
   <span class="ruby-ivar">@term</span> = <span class="ruby-constant">Block</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">item</span>[<span class="ruby-value">0</span>]
   <span class="ruby-ivar">@definition</span> = <span class="ruby-constant">List</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">item</span>[<span class="ruby-value">1</span>]
@@ -203,7 +203,7 @@
 
           
           <div class="method-source-code" id="to_ast-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/definition_list_item.rb, line 30</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/definition_list_item.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_ast</span>
   [
     <span class="ruby-ivar">@term</span>.<span class="ruby-identifier">ast_contents</span>,

@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::Selector - RDoc Documentation</title>
+<title>class Paru::Selector - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -176,7 +176,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/selector.rb, line 26</span>
+            <pre><span class="ruby-comment"># File lib/paru/selector.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">selector</span>
   <span class="ruby-ivar">@type</span> = <span class="ruby-string">&quot;Unknown&quot;</span>
   <span class="ruby-ivar">@relations</span> = []
@@ -219,7 +219,7 @@
 
           
           <div class="method-source-code" id="matches-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/selector.rb, line 32</span>
+            <pre><span class="ruby-comment"># File lib/paru/selector.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">matches?</span> <span class="ruby-identifier">node</span>, <span class="ruby-identifier">filtered_nodes</span>
   <span class="ruby-identifier">node</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@type</span> <span class="ruby-keyword">and</span> 
     <span class="ruby-ivar">@classes</span>.<span class="ruby-identifier">all?</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">has_class?</span> <span class="ruby-identifier">c</span> } <span class="ruby-keyword">and</span>    

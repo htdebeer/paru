@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::PandocFilter::Citation - RDoc Documentation</title>
+<title>class Paru::PandocFilter::Citation - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -213,7 +213,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/citation.rb, line 24</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/citation.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">spec</span>
   <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">spec</span>[<span class="ruby-string">&quot;citationId&quot;</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-string">&quot;citationId&quot;</span>
   <span class="ruby-ivar">@prefix</span> = <span class="ruby-constant">Inline</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">spec</span>[<span class="ruby-string">&quot;citationPrefix&quot;</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-string">&quot;citationPrefix&quot;</span>
@@ -259,7 +259,7 @@
 
           
           <div class="method-source-code" id="to_ast-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/citation.rb, line 33</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/citation.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_ast</span>
   <span class="ruby-identifier">citation</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">citation</span>[<span class="ruby-string">&quot;citationId&quot;</span>] = <span class="ruby-ivar">@id</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@id</span>.<span class="ruby-identifier">nil?</span>

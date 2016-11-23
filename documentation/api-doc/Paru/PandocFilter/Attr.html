@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::PandocFilter::Attr - RDoc Documentation</title>
+<title>class Paru::PandocFilter::Attr - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -180,7 +180,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 23</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">attributes</span>)
   <span class="ruby-ivar">@id</span>, <span class="ruby-ivar">@classes</span>, <span class="ruby-ivar">@data</span> = <span class="ruby-identifier">attributes</span>
 <span class="ruby-keyword">end</span></pre>
@@ -221,7 +221,7 @@
 
           
           <div class="method-source-code" id="5B-5D-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 31</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">key</span>) 
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">key_exists?</span> <span class="ruby-identifier">key</span>
     <span class="ruby-ivar">@data</span>[<span class="ruby-identifier">key</span>]
@@ -256,7 +256,7 @@
 
           
           <div class="method-source-code" id="each-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 27</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">each</span>
   <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">each</span>
 <span class="ruby-keyword">end</span></pre>
@@ -289,7 +289,7 @@
 
           
           <div class="method-source-code" id="has_class-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 41</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_class?</span> <span class="ruby-identifier">name</span>
   <span class="ruby-ivar">@classes</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
@@ -322,7 +322,7 @@
 
           
           <div class="method-source-code" id="has_key-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 37</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">name</span>
   <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">key_exists?</span> <span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
@@ -355,7 +355,7 @@
 
           
           <div class="method-source-code" id="to_ast-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 45</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/attr.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_ast</span>
   [
     <span class="ruby-ivar">@id</span>,

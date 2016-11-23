@@ -1,3 +1,4 @@
+#--
 # Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
@@ -14,10 +15,18 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
+#++
+
 module Paru
 
   require_relative "./selector"
   require_relative "filter/document"
+
+  # Paru filter is a wrapper around pandoc's JSON api, which is based on
+  # {pandoc-types}[https://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html].
+  # Pandoc treats block elements and inline elements differently. 
+  #
+  # Pandoc's block elements are:
 
   PANDOC_BLOCK = [
     "Plain",
@@ -35,6 +44,9 @@ module Paru
     "Div",
     "Null"
   ]
+
+  # Pandoc's inline elements are
+
   PANDOC_INLINE = [
     "Str",
     "Emph",
@@ -55,7 +67,14 @@ module Paru
     "Note",
     "Span"
   ]
+
+  # All of pandoc's type together:
+
   PANDOC_TYPES = PANDOC_BLOCK + PANDOC_INLINE
+
+
+  # Filter is used to write your own pandoc filter in Ruby. A Filter is
+  # almost always created and immediately executed via the +run+ method as
 
   class Filter
 
@@ -63,9 +82,15 @@ module Paru
       Filter.new().filter(&block)
     end
 
+
+    # Create a new Document node from JSON formatted pandoc document structure
+    # on STDIN
+
     def document
       PandocFilter::Document.from_JSON $stdin.read
     end
+
+    # Create a filter using +block+.
 
     def filter &block
       @selectors = Hash.new
@@ -80,14 +105,24 @@ module Paru
       puts @doc.to_JSON
     end
 
+
+    # +current_node+ points to the node that is *now* being processed while
+    # running this filter.
+
     def current_node
       @filtered_nodes.last
     end
+
+    # Specify what nodes to filter with a +selector+. If the +current_node+
+    # matches that selector, it is passed to the block to this +with+ method.
 
     def with selector
       @selectors[selector] = Selector.new selector unless @selectors.has_key? selector
       yield current_node if @selectors[selector].matches? current_node, @filtered_nodes
     end
+
+    # While running a filter you can access the document's metadata through
+    # the +metadata+ method.
 
     def metadata
       @doc.meta

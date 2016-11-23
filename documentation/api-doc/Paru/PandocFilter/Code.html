@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::PandocFilter::Code - RDoc Documentation</title>
+<title>class Paru::PandocFilter::Code - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -91,6 +91,8 @@
 
   <section class="description">
     
+<p><a href="Code.html">Code</a> <a href="Attr.html">Attr</a> String</p>
+
   </section>
 
   
@@ -165,7 +167,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/code.rb, line 26</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/code.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">contents</span>
   <span class="ruby-ivar">@attr</span> = <span class="ruby-constant">Attr</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">contents</span>[<span class="ruby-value">0</span>]
   <span class="ruby-ivar">@string</span> = <span class="ruby-identifier">contents</span>[<span class="ruby-value">1</span>]
@@ -207,7 +209,7 @@
 
           
           <div class="method-source-code" id="ast_contents-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/code.rb, line 31</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/code.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ast_contents</span>
   [
     <span class="ruby-ivar">@attr</span>.<span class="ruby-identifier">to_ast</span>,
@@ -243,7 +245,7 @@
 
           
           <div class="method-source-code" id="has_inline-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/code.rb, line 42</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/code.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_inline?</span>
   <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
@@ -276,7 +278,7 @@
 
           
           <div class="method-source-code" id="has_string-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/code.rb, line 38</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/code.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_string?</span>
   <span class="ruby-keyword">true</span>
 <span class="ruby-keyword">end</span></pre>

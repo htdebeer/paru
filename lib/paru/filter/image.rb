@@ -1,3 +1,4 @@
+#--
 # Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
@@ -14,12 +15,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
-# Image Attr [Inline] Target
+#++
 module Paru
   module PandocFilter
 
     require_relative "./link"
 
+    # Image Attr [Inline] Target
     class Image < Link
       # Although Image is defined to be inline, probably because in HTML it
       # can be an inline element, often it acts like a block element.

@@ -1,3 +1,4 @@
+#--
 # Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
@@ -14,11 +15,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
-# Para [Inline]
+#++
 module Paru
   module PandocFilter
     require_relative "./block"
   
+    # Para [Inline]
     class Para < Block
       def initialize contents
         super contents, true

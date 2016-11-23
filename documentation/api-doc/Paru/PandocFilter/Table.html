@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::PandocFilter::Table - RDoc Documentation</title>
+<title>class Paru::PandocFilter::Table - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -87,6 +87,9 @@
 
   <section class="description">
     
+<p><a href="Table.html">Table</a> [Inline] [Alignment] [Double] [TableCell]
+[[TableCell]]</p>
+
   </section>
 
   
@@ -200,7 +203,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/table.rb, line 29</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/table.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">contents</span>
   <span class="ruby-ivar">@caption</span> = <span class="ruby-constant">Inline</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">contents</span>[<span class="ruby-value">0</span>]
   <span class="ruby-ivar">@alignment</span> = <span class="ruby-identifier">contents</span>[<span class="ruby-value">1</span>]
@@ -248,7 +251,7 @@
 
           
           <div class="method-source-code" id="ast_contents-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/table.rb, line 40</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/table.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ast_contents</span>
   [
     <span class="ruby-ivar">@caption</span>.<span class="ruby-identifier">ast_contents</span>,

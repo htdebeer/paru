@@ -1,3 +1,4 @@
+#--
 # Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
@@ -14,7 +15,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
+#++
+
 module Paru
+
+  # An error class to use as a basis for paru specific errors. It has not yet
+  # been used in that capacity much, however.
+  
   class Error < RuntimeError
   end
 end

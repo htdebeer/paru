@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::PandocFilter::Document - RDoc Documentation</title>
+<title>class Paru::PandocFilter::Document - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -154,7 +154,7 @@
 
           
           <div class="method-source-code" id="fragment-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/document.rb, line 42</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/document.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">fragment</span> <span class="ruby-identifier">node_list</span>
   <span class="ruby-identifier">meta</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
 
@@ -198,7 +198,7 @@
 
           
           <div class="method-source-code" id="from_JSON-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/document.rb, line 36</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/document.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">from_JSON</span> <span class="ruby-identifier">json</span>
   <span class="ruby-identifier">doc</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">json</span>
   <span class="ruby-identifier">version</span>, <span class="ruby-identifier">metadata</span>, <span class="ruby-identifier">contents</span> = <span class="ruby-identifier">doc</span>.<span class="ruby-identifier">values_at</span>(<span class="ruby-constant">VERSION</span>, <span class="ruby-constant">META</span>, <span class="ruby-constant">BLOCKS</span>)
@@ -238,7 +238,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/document.rb, line 57</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/document.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">version</span>, <span class="ruby-identifier">meta</span>, <span class="ruby-identifier">contents</span>)
   <span class="ruby-ivar">@version</span> = <span class="ruby-constant">Version</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">version</span>
   <span class="ruby-ivar">@meta</span> = <span class="ruby-constant">Meta</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">meta</span>
@@ -281,7 +281,7 @@
 
           
           <div class="method-source-code" id="to_JSON-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/document.rb, line 71</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/document.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_JSON</span>
   <span class="ruby-identifier">to_ast</span>.<span class="ruby-identifier">to_json</span>
 <span class="ruby-keyword">end</span></pre>
@@ -314,7 +314,7 @@
 
           
           <div class="method-source-code" id="to_ast-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/document.rb, line 63</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/document.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_ast</span>
   {
     <span class="ruby-constant">VERSION</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@version</span>.<span class="ruby-identifier">to_ast</span>,

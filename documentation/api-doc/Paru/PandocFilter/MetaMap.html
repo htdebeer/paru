@@ -2,9 +2,9 @@
 
 <html>
 <head>
-<meta charset="utf8">
+<meta charset="UTF-8">
 
-<title>class Paru::PandocFilter::MetaMap - RDoc Documentation</title>
+<title>class Paru::PandocFilter::MetaMap - Paru API documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../../";
@@ -93,6 +93,9 @@
 
   <section class="description">
     
+<p><a href="MetaMap.html">MetaMap</a> (M.Map String <a
+href="MetaValue.html">MetaValue</a>)</p>
+
   </section>
 
   
@@ -133,7 +136,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/meta_map.rb, line 25</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/meta_map.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">contents</span>
   <span class="ruby-ivar">@children</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
 
@@ -182,7 +185,7 @@
 
           
           <div class="method-source-code" id="5B-5D-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/meta_map.rb, line 37</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/meta_map.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">key</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">key_exists?</span>
     <span class="ruby-ivar">@children</span>[<span class="ruby-identifier">key</span>]
@@ -217,7 +220,7 @@
 
           
           <div class="method-source-code" id="ast_contents-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/meta_map.rb, line 51</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/meta_map.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ast_contents</span>
   <span class="ruby-identifier">ast</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">each_pair</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
@@ -254,7 +257,7 @@
 
           
           <div class="method-source-code" id="delete-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/meta_map.rb, line 47</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/meta_map.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span> <span class="ruby-identifier">key</span>
   <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">key</span>
 <span class="ruby-keyword">end</span></pre>
@@ -287,7 +290,7 @@
 
           
           <div class="method-source-code" id="has_key-3F-source">
-            <pre><span class="ruby-comment"># File lib/paru/filter/meta_map.rb, line 43</span>
+            <pre><span class="ruby-comment"># File lib/paru/filter/meta_map.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">key</span> 
   <span class="ruby-ivar">@children</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-identifier">key</span>
 <span class="ruby-keyword">end</span></pre>
