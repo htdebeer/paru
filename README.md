@@ -5,7 +5,7 @@ multi-format document converter. See
 <https://heerdebeer.org/Software/markdown/paru/> for more information on Paru.
 
 The latest version of Paru is
-[0.2.1](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.1.gem)
+[0.2.2](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.2.gem)
 which is incompatible with pandoc <
 [1.18](http://pandoc.org/releases.html#pandoc-1.18-26-oct-2016). Use Paru
 version
@@ -26,11 +26,11 @@ Paru is installed through rubygems as follows:
     gem install paru
 
 You can also download the latest gem
-[paru-0.2.1.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.1.gem)
+[paru-0.2.2.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.2.gem)
 and install it by:
 
     cd /directory/you/downloaded/the/gem/to
-    gem install paru-0.2.1.gem
+    gem install paru-0.2.2.gem
 
 Paru, obviously, requires pandoc. See
 <http://pandoc.org/installing.html> about how to install pandoc on your
@@ -98,3 +98,9 @@ Running the above program results in the following output:
 For more information on automatic the use of pandoc with paru or writing
 pandoc filters in ruby, please see paru's
 [documentation](https://heerdebeer.org/Software/markdown/paru/).
+
+One of the examples described in that documentation is the development of
+`do-pandoc.rb`, a program that converts an input file given the pandoc
+configuration embedded in the YAML metadata in that input file. This script
+`do-pandoc.rb` is installed as a binary when you install paru so you can use
+it whenever you want.

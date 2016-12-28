@@ -23,7 +23,14 @@ for metadata in so-called [YAML](http://yaml.org/) blocks. Using paru and Ruby
   it is easy to strip a pandoc file for its metadata through pandoc's
   [JSON](http://json.org/) output/input format: the script/module
   *[pandoc2yaml.rb* (which you will also find in the [examples](examples/) sub
-  directory).
+  directory). Furthermore, it is also installed as an executable when you
+  install paru, so you can run it from the command line like:
+
+~~~{.bash}
+pandoc2yaml my-noce-pandoc-file.md
+~~~
+
+  The `pandoc2yaml.rb` script is quite straightforward:
 
     ::paru::insert ../examples/pandoc2yaml.rb ruby
 
@@ -85,6 +92,13 @@ will configure a `Paru::Pandoc` object to convert the contents of that pandoc
 markdown file from *markdown* to *standalone* *html* code with a *table of
 contents* while using `path/to/bibliography.bib` as the *bibliographic
 database*.
+
+`do-pandoc.rb` is also installed as an executable script when you istall paru.
+You can run it from the command line as follows:
+
+~~~{.bash}
+do-pandoc.rb my-file.md
+~~~
 
 In [Chapter 4](#putting-it-all-together) this script `do-pandoc.rb` is used on
 [paru's documentation file](documentation/documentation.md) to generate a new
