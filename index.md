@@ -45,12 +45,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.2.1.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.1.gem)
+[paru-0.2.2.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.2.gem)
 and install it by:
 
 ``` {.bash}
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.2.1.gem
+gem install paru-0.2.2.gem
 ```
 
 Paru, obviously, requires pandoc. See
@@ -156,7 +156,15 @@ allowance for metadata in so-called [YAML](http://yaml.org/) blocks.
 Using paru and Ruby it is easy to strip a pandoc file for its metadata
 through pandoc's [JSON](http://json.org/) output/input format: the
 script/module *\[pandoc2yaml.rb* (which you will also find in the
-[examples](examples/) sub directory).
+[examples](examples/) sub directory). Furthermore, it is also installed
+as an executable when you install paru, so you can run it from the
+command line like:
+
+``` {.bash}
+pandoc2yaml my-noce-pandoc-file.md
+```
+
+The `pandoc2yaml.rb` script is quite straightforward:
 
 ``` {.ruby}
 #!/usr/bin/env ruby
@@ -313,6 +321,13 @@ will configure a `Paru::Pandoc` object to convert the contents of that
 pandoc markdown file from *markdown* to *standalone* *html* code with a
 *table of contents* while using `path/to/bibliography.bib` as the
 *bibliographic database*.
+
+`do-pandoc.rb` is also installed as an executable script when you istall
+paru. You can run it from the command line as follows:
+
+``` {.bash}
+do-pandoc.rb my-file.md
+```
 
 In [Chapter 4](#putting-it-all-together) this script `do-pandoc.rb` is
 used on [paru's documentation file](documentation/documentation.md) to
