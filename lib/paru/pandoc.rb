@@ -27,6 +27,21 @@ module Paru
 
   class Pandoc
 
+    def self.info
+      output = ''
+      IO.popen('pandoc --version', 'r+') do |p|
+        p.close_write
+        output << p.read
+      end
+      version = output.match(/pandoc (\d+\.\d+)$/)[1]
+      data_dir = output.match(/Default user data directory: (.+)$/)[1]
+
+      {
+        :version => version,
+        :data_dir => data_dir
+      }
+    end
+
     def initialize &block 
       @options = {}
       configure(&block) if block_given?
