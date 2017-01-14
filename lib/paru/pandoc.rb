@@ -27,6 +27,8 @@ module Paru
 
   class Pandoc
 
+    # Gather information about pandoc. It runs `pandoc --version` and extracts
+    # pandoc's version number and default data directory.
     def self.info
       output = ''
       IO.popen('pandoc --version', 'r+') do |p|

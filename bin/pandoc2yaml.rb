@@ -61,7 +61,7 @@ if __FILE__ == $0
     end
 
     opts.on("-v", "--version", "Show version") do 
-      puts "pandoc2yaml.rb is part of paru version 0.2.2"
+      puts "pandoc2yaml.rb is part of paru version 0.2.3"
       exit
     end
   end
