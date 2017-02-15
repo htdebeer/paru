@@ -31,4 +31,5 @@
 # Paru.  If not, see <http://www.gnu.org/licenses/>.
 
 require "paru/pandoc"
+require "paru/error"
 require "paru/filter"
