@@ -14,10 +14,11 @@ Rake::RDocTask.new do |t|
   t.title = "Paru API documentation"
 end
 
-task :documentation do
-  sh "cd documentation; ../examples/do-pandoc.rb documentation.md"
+task :generate_index_md do
+  sh "cd documentation; ../bin/do-pandoc.rb documentation.md"
 end
 
 task :build do
   sh "gem build paru.gemspec; mv *.*.*.gem releases"
+  Rake::Task["generate_index_md"].execute
 end
