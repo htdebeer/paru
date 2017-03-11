@@ -7,6 +7,9 @@ using other command-line programs to pre or post process parts of the input,
 or change the structure of the input document before having pandoc writing it
 out. Paru allows you to write pandoc filters in Ruby. 
 
+For a collection of paru filters, have a look at the
+[paru-filter-collection](https://github.com/htdebeer/paru-filter-collection).
+
 The simplest paru pandoc filter is the *identity* filter that does do nothing:
 
     ::paru::insert ../examples/filters/identity.rb ruby

@@ -11,8 +11,10 @@ title: 'Paru—Pandoc wrapped around in Ruby'
 
 Do note that Paru version &gt;= 0.2.0 is incompatible with pandoc
 version &lt;
-[1.18](http://pandoc.org/releases.html#pandoc-1.18-26-oct-2016). Use
-Paru version 0.1.0 if you are using an older version of pandoc.
+[1.18](http://pandoc.org/releases.html#pandoc-1.18-26-oct-2016).
+
+For a collection of paru filters, have a look at the
+[paru-filter-collection](https://github.com/htdebeer/paru-filter-collection).
 
 Chapter 1. Introduction {#introduction}
 =======================
@@ -233,10 +235,10 @@ end
 1.  a library module `Pandoc2Yaml`, which we will be using later again
     in *do-pandoc.rb*,
 2.  and a self-contained part that, following a common Ruby pattern,
-    will be executed if the file is run as a script rather than
-    a library. It checks if there is an argument to the script and, if
-    so, interprets it as a path to a file, and mines its contents for
-    YAML metadata using the libray module.
+    will be executed if the file is run as a script rather than a
+    library. It checks if there is an argument to the script and, if so,
+    interprets it as a path to a file, and mines its contents for YAML
+    metadata using the libray module.
 
 The library module `Pandoc2Yaml` has one method, `extract_metadata` that
 takes one argument, the path to a pandoc markdown file. It converts the
@@ -697,12 +699,12 @@ methods:
 
 -   `parent`: a node's parent node, if any (see `has_parent?`). The root
     node has not parent.
--   `children`: an array of a node's children nodes. A leaf node has
-    no children.
+-   `children`: an array of a node's children nodes. A leaf node has no
+    children.
 -   `string`: if this node has a string property, you can access its
     contents. (See `has_string?`)
--   `classes`: if this node has a classes property, you can access
-    its contents. (See `has_classes?`)
+-   `classes`: if this node has a classes property, you can access its
+    contents. (See `has_classes?`)
 
 ### Node's methods
 
@@ -732,8 +734,8 @@ methods:
 -   `insert index, child`: inserts child node at position index of this
     node's children.
 -   `delete child`: delete child node from this node's children.
--   `remove_at index`: delete child node at index from this
-    node's children.
+-   `remove_at index`: delete child node at index from this node's
+    children.
 -   `append child`: append a child node to this node's children. This
     method is aliased by the `<<` operator.
 -   `prepend child`: prepend a child node to this node's children.
@@ -750,8 +752,8 @@ methods:
 -   `inner_markdown`: returns the markdown of this node's children.
 -   `inner_markdown= new_markdown`: replaces this node's children by the
     AST of the parsed `new_markdown`.
--   `outer_markdown`: returns the markdown of this node and
-    its children.
+-   `outer_markdown`: returns the markdown of this node and its
+    children.
 -   `outer_markdown= new_markdown`: replaces this node and its children
     by the AST of the parsed `new_markdown`.
 
@@ -761,8 +763,8 @@ The `Paru::PandocFilter::Document` node is a special node representing a
 pandoc document. It has special *static* methods to create a document:
 
 -   `from_JSON json`: create a new document node based on json data.
--   `fragment node_list`: create a new document based on a list
-    of nodes. It has empty metadata.
+-   `fragment node_list`: create a new document based on a list of
+    nodes. It has empty metadata.
 
 Furthermore, a document can be converted to json using the
 
