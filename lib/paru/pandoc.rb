@@ -35,7 +35,7 @@ module Paru
         p.close_write
         output << p.read
       end
-      version = output.match(/pandoc (\d+\.\d+)$/)[1]
+      version = output.match(/pandoc (\d+\.\d+.*)$/)[1]
       data_dir = output.match(/Default user data directory: (.+)$/)[1]
 
       {
