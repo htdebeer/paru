@@ -42,8 +42,9 @@ module Paru
       end
 
       def replace old_child, new_child
-        @children.find_index old_child do |index|
-          replace_at index, new_child
+        old_child_index = @children.find_index old_child
+        if old_child_index then
+          replace_at old_child_index, new_child
         end
       end
 
