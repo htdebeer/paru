@@ -380,6 +380,10 @@ All example filters discussed in this chapter can be found in the
 [filters sub directory](examples/filters) of paru's
 [examples](examples/). Feel free to copy and adapt them to your needs.
 
+The [API
+documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/)
+can be found on this website as well.
+
 3.2 Filter basics
 -----------------
 
@@ -691,6 +695,11 @@ time it is run by `do-pandoc.rb`.
 
 3.5 Paru filter API
 -------------------
+
+Currently I am documenting paru and generating the [API
+documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/)
+here. This is still a work in progress. For now, a quick overview is
+given below.
 
 Each of [pandoc's internal
 types](https://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html)

@@ -97,7 +97,9 @@ Running the above program results in the following output:
 
 For more information on automatic the use of pandoc with paru or writing
 pandoc filters in ruby, please see paru's
-[documentation](https://heerdebeer.org/Software/markdown/paru/).
+[documentation](https://heerdebeer.org/Software/markdown/paru/). The [API
+documentation can be found there as
+well](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
 
 One of the examples described in that documentation is the development of
 `do-pandoc.rb`, a program that converts an input file given the pandoc

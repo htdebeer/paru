@@ -1,5 +1,5 @@
 require "rake/testtask"
-require "rdoc/task"
+require "yard"
 
 Rake::TestTask.new do |t|
     t.libs << 'test'
@@ -7,11 +7,8 @@ end
 
 task :default => :test
 
-Rake::RDocTask.new do |t|
-  t.main = "README.rdoc"
-  t.rdoc_files.include("documentation/README.rdoc", "lib/**/*.rb")
-  t.rdoc_dir = "documentation/api-doc"
-  t.title = "Paru API documentation"
+YARD::Rake::YardocTask.new do |t|
+    t.files = ['LICENCE', 'lib/paru.rb', 'lib/**/*.rb']
 end
 
 task :generate_index_md do
@@ -19,6 +16,7 @@ task :generate_index_md do
 end
 
 task :build do
+  Rake::Task["yard"]
   sh "gem build paru.gemspec; mv *.*.*.gem releases"
   Rake::Task["generate_index_md"].execute
 end

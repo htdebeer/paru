@@ -19,9 +19,8 @@
 
 module Paru
 
-  # An error class to use as a basis for paru specific errors. It has not yet
-  # been used in that capacity much, however.
-  
-  class Error < RuntimeError
-  end
+    # An error class to use as a basis for paru specific errors.
+
+    class Error < RuntimeError
+    end
 end
