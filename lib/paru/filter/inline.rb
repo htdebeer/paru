@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -20,18 +20,29 @@ module Paru
     module PandocFilter
         require_relative "./node"
 
+        # An Inline node
+        # @see http://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html#t:Inline
         class Inline < Node
-           def initialize contents
-              super contents, true
-           end 
 
-           def is_inline?
-               true
-           end
+            # Create a new Inline node with contents
+            # @param contents [String] the contents of this inline node
+            def initialize(contents)
+                super contents, true
+            end 
 
-           def has_inline?
-               true
-           end
+            # Is this Inline node inline? Of course!
+            #
+            # @return [Boolean] true
+            def is_inline?()
+                true
+            end
+
+            # Has this Inline node inline contents? Of course!
+            #
+            # @return [Boolean] true
+            def has_inline?()
+                true
+            end
         end
     end
 end

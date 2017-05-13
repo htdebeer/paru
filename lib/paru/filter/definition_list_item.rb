@@ -17,24 +17,37 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
-    require_relative "./list"
-    require_relative "./inline"
+    module PandocFilter
+        require_relative "./block"
+        require_relative "./list"
+        require_relative "./inline"
 
-    class DefinitionListItem < Block
-      attr_accessor :term, :definition
-      def initialize item
-        @term = Block.new item[0]
-        @definition = List.new item[1]
-      end
+        # A DefinitionListItem is a helper node to represent the pair of a term
+        # and its definition in a DefinitionList
+        #
+        # @!attribute term
+        #   @return [Block]
+        #
+        # @!attribute definition
+        #   @return [List]
+        class DefinitionListItem < Block
+            attr_accessor :term, :definition
 
-      def to_ast
-        [
-          @term.ast_contents,
-          @definition.ast_contents
-        ]
-      end
+            # Create a new DefinitionListItem 
+            #
+            # @param item [Array] the [term, definition]
+            def initialize(item)
+                @term = Block.new item[0]
+                @definition = List.new item[1]
+            end
+
+            # Create an AST representation of this DefinitionListItem
+            def to_ast
+                [
+                    @term.ast_contents,
+                    @definition.ast_contents
+                ]
+            end
+        end
     end
-  end
 end

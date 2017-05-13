@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,24 +17,33 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
+    module PandocFilter
+        require_relative "./block"
 
-    class List < Block
-      def initialize contents
-        super []
-        contents.each do |item|
-          @children.push Block.new item
+        # A List node is a base node for various List node types
+        class List < Block
+
+            # Create a new List node based on contents
+            #
+            # @param contents [Array] the contents of the list
+            def initialize contents
+                super []
+                contents.each do |item|
+                    @children.push Block.new item
+                end
+            end
+
+            # Create an AST representation of this List node
+            def ast_contents
+                @children.map {|child| child.ast_contents}
+            end
+
+            # Has this List node block contents?
+            #
+            # @return [Boolean] true
+            def has_block?
+                true
+            end
         end
-      end
-
-      def ast_contents
-        @children.map {|child| child.ast_contents}
-      end
-
-      def has_block?
-        true
-      end
     end
-  end
 end

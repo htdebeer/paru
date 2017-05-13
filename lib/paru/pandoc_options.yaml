@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 # See http://pandoc.org/README.html for an overview of all options
-# 
+#++
 # General options
 from:                     ""
 read:                     ""
@@ -41,7 +41,7 @@ file_scope:               true
 filter:                   [""]
 metadata:                 [""]
 normalize:                true
-preserve_tabs:           true
+preserve_tabs:            true
 tab_stop:                 4
 track_changes:            "accept"
 extract_media:            true

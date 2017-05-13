@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,30 +17,42 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
+    module PandocFilter
 
-    require_relative "./inline"
-    require_relative "./attr"
-    require_relative "./target"
+        require_relative "./inline"
+        require_relative "./attr"
+        require_relative "./target"
 
-    # Link Attr [Inline] Target
-    class Link < Inline
-      attr_accessor :attr, :target
+        # A Link node has an attribute object, an Inline description and a
+        # target
+        #
+        # @!attribute attr
+        #   @return [Attr]
+        #
+        # @!attribute targer
+        #   @return [Target]
+        class Link < Inline
+            attr_accessor :attr, :target
 
-      def initialize contents
-        @attr = Attr.new contents[0]
-        super contents[1]
-        @target = Target.new contents[2]
-      end
+            # Create a new Link node with contents
+            #
+            # @param contents [Array] an array with attributes, description,
+            #   and target information
+            def initialize(contents)
+                @attr = Attr.new contents[0]
+                super contents[1]
+                @target = Target.new contents[2]
+            end
 
-      def ast_contents
-        [
-          @attr.to_ast,
-          super,
-          @target.to_ast
-        ]
-      end
+            # Create an AST representation of this Link node
+            def ast_contents
+                [
+                    @attr.to_ast,
+                    super,
+                    @target.to_ast
+                ]
+            end
 
+        end
     end
-  end
 end

@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,28 +17,36 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
-    require_relative "./attr"
+    module PandocFilter
+        require_relative "./block"
+        require_relative "./attr"
 
-    # Div Attr [Block]
-    class Div < Block
-      def initialize contents
-        @attr = Attr.new contents[0]
-        super contents[1]
-      end
+        # A Div node consisting of an attribute object and a list of Block nodes.
+        class Div < Block
 
-      def ast_contents
-        [
-          @attr.to_ast,
-          super
-        ]
-      end
+            # Create a new Div node based on the contents
+            #
+            # @param contents [Array] an array containing the attribute object
+            #   and the contents of this div.
+            def initialize(contents)
+                @attr = Attr.new contents[0]
+                super contents[1]
+            end
 
-      def has_block?
-        true
-      end
+            # Create an AST representation of this Div node.
+            def ast_contents()
+                [
+                    @attr.to_ast,
+                    super
+                ]
+            end
+
+            # Has this Div node Blocks as children?
+            #
+            # @return [Boolean] true
+            def has_block?
+                true
+            end
+        end
     end
-  end
 end
-

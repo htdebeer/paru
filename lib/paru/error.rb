@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -20,7 +20,6 @@
 module Paru
 
     # An error class to use as a basis for paru specific errors.
-
     class Error < RuntimeError
     end
 end

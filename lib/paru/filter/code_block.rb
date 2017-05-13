@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,29 +17,44 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
-    require_relative "./attr"
+    module PandocFilter
+        require_relative "./block"
+        require_relative "./attr"
 
-    # CodeBlock Attr String
-    class CodeBlock < Block
-      attr_accessor :attr, :string
+        # A CodeBlock is a Block level node with an attribute object and the
+        # code as a string
+        #
+        # @!attribute attr 
+        #   @return [Attr]
+        #
+        # @!attribute string
+        #   @return [String]
+        class CodeBlock < Block
+            attr_accessor :attr, :string
 
-      def initialize(contents)
-        @attr = Attr.new contents[0]
-        @string = contents[1]
-      end
+            # Create a new CodeBlock based on the contents
+            #
+            # @param contents [Array] an array with the attribute and the code
+            #   string
+            def initialize(contents)
+                @attr = Attr.new contents[0]
+                @string = contents[1]
+            end
 
-      def ast_contents
-        [
-          @attr.to_ast,
-          @string
-        ]
-      end
+            # An AST representation of this CodeBlock
+            def ast_contents()
+                [
+                    @attr.to_ast,
+                    @string
+                ]
+            end
 
-      def has_string?
-        true
-      end
+            # Has this CodeBlock string contents?
+            #
+            # @return [Boolean] true
+            def has_string?()
+                true
+            end
+        end
     end
-  end
 end

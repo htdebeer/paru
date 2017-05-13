@@ -106,7 +106,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Div Attr [Block]</p>
+<p>A Div node consisting of an attribute object and a list of Block nodes.</p>
 
 
   </div>
@@ -146,7 +146,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Create an AST representation of this Div node.</p>
+</div></span>
   
 </li>
 
@@ -168,7 +170,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Has this Div node Blocks as children?.</p>
+</div></span>
   
 </li>
 
@@ -193,7 +197,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of Div.</p>
+<p>Create a new Div node based on the contents.</p>
 </div></span>
   
 </li>
@@ -226,13 +230,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of Div</p>
+<p>Create a new Div node based on the contents</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>contents</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>an array containing the attribute object and the contents of this div.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -240,17 +264,17 @@
       <pre class="lines">
 
 
-26
-27
-28
-29</pre>
+31
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/div.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/div.rb', line 31</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_contents'>contents</span>
-  <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
-  <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+    <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -273,27 +297,38 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create an AST representation of this Div node.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-31
-32
-33
-34
-35
-36</pre>
+37
+38
+39
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/div.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/div.rb', line 37</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
-  <span class='lbracket'>[</span>
-    <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
-    <span class='kw'>super</span>
-  <span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='lbracket'>[</span>
+        <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+        <span class='kw'>super</span>
+    <span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -312,6 +347,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Has this Div node Blocks as children?</p>
+
 
   </div>
 </div>
@@ -327,6 +364,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>true</p>
+</div>
+      
     </li>
   
 </ul>
@@ -337,15 +379,15 @@
       <pre class="lines">
 
 
-38
-39
-40</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/div.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/div.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_block?'>has_block?</span>
-  <span class='kw'>true</span>
+    <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -357,7 +399,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat May 13 07:39:27 2017 by
+  Generated on Sat May 13 23:41:39 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

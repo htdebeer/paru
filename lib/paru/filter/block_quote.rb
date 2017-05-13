@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,14 +17,17 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
+    module PandocFilter
+        require_relative "./block"
 
-    # BlockQuote [Block]
-    class BlockQuote < Block
-      def has_block?
-        true
-      end
+        # A BlockQuote node. Contains a list of Blocks
+        class BlockQuote < Block
+            # Has this node a block?
+            #
+            # @return [Boolean] true
+            def has_block?
+                true
+            end
+        end
     end
-  end
 end

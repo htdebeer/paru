@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,11 +17,11 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./inline"
+    module PandocFilter
+        require_relative "./inline"
 
-    # Emph [Inline]
-    class Emph < Inline
+        # An Emph, emphasized Inline
+        class Emph < Inline
+        end
     end
-  end
 end

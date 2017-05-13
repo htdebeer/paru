@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,22 +17,26 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
+    module PandocFilter
+        require_relative "./block"
 
-    # DefinitionList [([Inline], [[Block]])]
-    class DefinitionList < Block
-      def initialize contents
-        super []
-        contents.each do |item|
-          @children.push DefinitionListItem.new item
+        # A DefinitionList is a list of term-definition pairs, respecitively an Inline list and a Block list.
+        class DefinitionList < Block
+            # Create a new DefinitionList node
+            #
+            # @param contents [Array] the contents of this definition list.
+            def initialize(contents)
+                super []
+                contents.each do |item|
+                    @children.push DefinitionListItem.new item
+                end
+            end
+
+            # Create an AST representation of this DefinitionList node
+            def ast_contents
+                @children.map {|child| child.to_ast}
+            end
+
         end
-      end
-
-      def ast_contents
-        @children.map {|child| child.to_ast}
-      end
-
     end
-  end
 end

@@ -106,7 +106,8 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Header Int Attr [Inline]</p>
+<p>A Header node has a level, an attribute object and the contents of the
+header as a list on Inline nodes.</p>
 
 
   </div>
@@ -124,7 +125,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#attr-instance_method" title="#attr (instance method)">#<strong>attr</strong>  &#x21d2; Object </a>
+      <a href="#attr-instance_method" title="#attr (instance method)">#<strong>attr</strong>  &#x21d2; Attr </a>
     
 
     
@@ -141,9 +142,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute attr.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -151,7 +150,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#level-instance_method" title="#level (instance method)">#<strong>level</strong>  &#x21d2; Object </a>
+      <a href="#level-instance_method" title="#level (instance method)">#<strong>level</strong>  &#x21d2; Integer </a>
     
 
     
@@ -168,9 +167,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute level.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -205,7 +202,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Create an AST representation of this Header node.</p>
+</div></span>
   
 </li>
 
@@ -227,7 +226,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Has this Header node inline contents?.</p>
+</div></span>
   
 </li>
 
@@ -252,7 +253,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of Header.</p>
+<p>Create a new Header node.</p>
 </div></span>
   
 </li>
@@ -285,13 +286,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of Header</p>
+<p>Create a new Header node</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>contents</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>an array with the level, attribute, and the header contents</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -299,19 +320,19 @@
       <pre class="lines">
 
 
-28
-29
-30
-31
-32</pre>
+39
+40
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/header.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/header.rb', line 39</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_contents'>contents</span>
-  <span class='ivar'>@level</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
-  <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
-  <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>true</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+    <span class='ivar'>@level</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -328,7 +349,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="attr-instance_method">
   
-    #<strong>attr</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>attr</strong>  &#x21d2; <tt><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></tt> 
   
 
   
@@ -337,13 +358,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute attr</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -351,15 +383,67 @@
       <pre class="lines">
 
 
-26
-27
-28</pre>
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/header.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/header.rb', line 32</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_attr'>attr</span>
-  <span class='ivar'>@attr</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Header (class)">Header</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:level</span><span class='comma'>,</span> <span class='symbol'>:attr</span>
+
+    <span class='comment'># Create a new Header node
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param contents [Array] an array with the level, attribute, and
+</span>    <span class='comment'>#   the header contents
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+        <span class='ivar'>@level</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+        <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>true</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Create an AST representation of this Header node
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='lbracket'>[</span>
+            <span class='ivar'>@level</span><span class='comma'>,</span>
+            <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+            <span class='kw'>super</span>
+        <span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Has this Header node inline contents?
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Boolean] true
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_has_inline?'>has_inline?</span>
+        <span class='kw'>true</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -371,7 +455,7 @@
       <div class="method_details ">
   <h3 class="signature " id="level-instance_method">
   
-    #<strong>level</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>level</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -380,13 +464,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute level</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -394,15 +489,67 @@
       <pre class="lines">
 
 
-26
-27
-28</pre>
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/header.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/header.rb', line 32</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_level'>level</span>
-  <span class='ivar'>@level</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Header (class)">Header</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:level</span><span class='comma'>,</span> <span class='symbol'>:attr</span>
+
+    <span class='comment'># Create a new Header node
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param contents [Array] an array with the level, attribute, and
+</span>    <span class='comment'>#   the header contents
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+        <span class='ivar'>@level</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+        <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>true</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Create an AST representation of this Header node
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='lbracket'>[</span>
+            <span class='ivar'>@level</span><span class='comma'>,</span>
+            <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+            <span class='kw'>super</span>
+        <span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Has this Header node inline contents?
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Boolean] true
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_has_inline?'>has_inline?</span>
+        <span class='kw'>true</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -425,29 +572,40 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create an AST representation of this Header node</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-34
-35
-36
-37
-38
-39
-40</pre>
+46
+47
+48
+49
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/header.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/header.rb', line 46</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
-  <span class='lbracket'>[</span>
-    <span class='ivar'>@level</span><span class='comma'>,</span>
-    <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
-    <span class='kw'>super</span>
-  <span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='lbracket'>[</span>
+        <span class='ivar'>@level</span><span class='comma'>,</span>
+        <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+        <span class='kw'>super</span>
+    <span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -466,6 +624,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Has this Header node inline contents?</p>
+
 
   </div>
 </div>
@@ -481,6 +641,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>true</p>
+</div>
+      
     </li>
   
 </ul>
@@ -491,15 +656,15 @@
       <pre class="lines">
 
 
-42
-43
-44</pre>
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/header.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/header.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_inline?'>has_inline?</span>
-  <span class='kw'>true</span>
+    <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -511,7 +676,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat May 13 07:39:28 2017 by
+  Generated on Sat May 13 23:41:40 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

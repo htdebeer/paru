@@ -106,7 +106,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>BlockQuote [Block]</p>
+<p>A BlockQuote node. Contains a list of Blocks</p>
 
 
   </div>
@@ -146,7 +146,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Has this node a block?.</p>
+</div></span>
   
 </li>
 
@@ -187,6 +189,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Has this node a block?</p>
+
 
   </div>
 </div>
@@ -202,6 +206,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>true</p>
+</div>
+      
     </li>
   
 </ul>
@@ -212,15 +221,15 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+28
+29
+30</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/block_quote.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/block_quote.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_block?'>has_block?</span>
-  <span class='kw'>true</span>
+    <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -232,7 +241,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat May 13 07:39:28 2017 by
+  Generated on Sat May 13 23:41:41 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

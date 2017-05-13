@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,19 +17,23 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
+    module PandocFilter
+        require_relative "./block"
 
-    class EmptyBlock < Block
-      def initialize _
-        super []
-      end
+        # An EmptyBlock, has not contents
+        class EmptyBlock < Block
 
-      def to_ast
-        {
-          "t" => ast_type
-        }
-      end
+            # Create an empty block
+            def initialize _
+                super []
+            end
+
+            # Create an AST representation of this EmptyBlock
+            def to_ast
+                {
+                    "t" => ast_type
+                }
+            end
+        end
     end
-  end
 end

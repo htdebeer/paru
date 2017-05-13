@@ -103,7 +103,18 @@
   
 </div>
 
-<div id="subclasses">
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>A List node is a base node for various List node types</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
   <p class="children"><span class='object_link'><a href="BulletList.html" title="Paru::PandocFilter::BulletList (class)">BulletList</a></span>, <span class='object_link'><a href="LineBlock.html" title="Paru::PandocFilter::LineBlock (class)">LineBlock</a></span>, <span class='object_link'><a href="OrderedList.html" title="Paru::PandocFilter::OrderedList (class)">OrderedList</a></span></p>
 </div>
@@ -139,7 +150,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Create an AST representation of this List node.</p>
+</div></span>
   
 </li>
 
@@ -161,7 +174,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Has this List node block contents?.</p>
+</div></span>
   
 </li>
 
@@ -186,7 +201,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of List.</p>
+<p>Create a new List node based on contents.</p>
 </div></span>
   
 </li>
@@ -219,13 +234,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of List</p>
+<p>Create a new List node based on contents</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>contents</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the contents of the list</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -233,21 +268,21 @@
       <pre class="lines">
 
 
-24
-25
-26
-27
-28
-29</pre>
+29
+30
+31
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/list.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/list.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_contents'>contents</span>
-  <span class='kw'>super</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
-    <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Node.html#initialize-instance_method" title="Paru::PandocFilter::Node#initialize (method)">new</a></span></span> <span class='id identifier rubyid_item'>item</span>
-  <span class='kw'>end</span>
+    <span class='kw'>super</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
+        <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Node.html#initialize-instance_method" title="Paru::PandocFilter::Node#initialize (method)">new</a></span></span> <span class='id identifier rubyid_item'>item</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -270,21 +305,32 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create an AST representation of this List node</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-31
-32
-33</pre>
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/list.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/list.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
-  <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='rbrace'>}</span>
+    <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -303,6 +349,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Has this List node block contents?</p>
+
 
   </div>
 </div>
@@ -318,6 +366,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>true</p>
+</div>
+      
     </li>
   
 </ul>
@@ -328,15 +381,15 @@
       <pre class="lines">
 
 
-35
-36
-37</pre>
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/list.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/list.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_block?'>has_block?</span>
-  <span class='kw'>true</span>
+    <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -348,7 +401,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat May 13 07:39:27 2017 by
+  Generated on Sat May 13 23:41:39 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,17 +17,19 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
+    module PandocFilter
 
-    require_relative "./link"
+        require_relative "./link"
 
-    # Image Attr [Inline] Target
-    class Image < Link
-      # Although Image is defined to be inline, probably because in HTML it
-      # can be an inline element, often it acts like a block element.
-      def can_act_as_both_block_and_inline?
-        true
-      end
+        # An Image has an attribute object, a caption, and a target
+        class Image < Link
+
+            # Although Image is defined to be inline, probably because in HTML it
+            # can be an inline element, often it acts like a block element.
+            # @return [Boolean] true 
+            def can_act_as_both_block_and_inline?
+                true
+            end
+        end
     end
-  end
 end

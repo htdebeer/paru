@@ -99,7 +99,26 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>A Citation consists of an id, a prefix, a suffix, a mode, a note number,
+and integer hash. All of which are optional.</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://hackage.haskell.org/package/pandoc-types-1.17.0.5/docs/Text-Pandoc-Definition.html#t:Citation" target="_parent" title="https://hackage.haskell.org/package/pandoc-types-1.17.0.5/docs/Text-Pandoc-Definition.html#t:Citation">https://hackage.haskell.org/package/pandoc-types-1.17.0.5/docs/Text-Pandoc-Definition.html#t:Citation</a></li>
+    
+  </ul>
+
+</div>
 
 
 
@@ -109,7 +128,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#hash-instance_method" title="#hash (instance method)">#<strong>hash</strong>  &#x21d2; Object </a>
+      <a href="#hash-instance_method" title="#hash (instance method)">#<strong>hash</strong>  &#x21d2; Integer </a>
     
 
     
@@ -126,9 +145,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute hash.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -136,7 +153,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#id-instance_method" title="#id (instance method)">#<strong>id</strong>  &#x21d2; Object </a>
+      <a href="#id-instance_method" title="#id (instance method)">#<strong>id</strong>  &#x21d2; String </a>
     
 
     
@@ -153,9 +170,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute id.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -163,7 +178,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#mode-instance_method" title="#mode (instance method)">#<strong>mode</strong>  &#x21d2; Object </a>
+      <a href="#mode-instance_method" title="#mode (instance method)">#<strong>mode</strong>  &#x21d2; String </a>
     
 
     
@@ -180,9 +195,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute mode.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -190,7 +203,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#note_num-instance_method" title="#note_num (instance method)">#<strong>note_num</strong>  &#x21d2; Object </a>
+      <a href="#note_num-instance_method" title="#note_num (instance method)">#<strong>note_num</strong>  &#x21d2; Integer </a>
     
 
     
@@ -207,9 +220,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute note_num.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -217,7 +228,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#prefix-instance_method" title="#prefix (instance method)">#<strong>prefix</strong>  &#x21d2; Object </a>
+      <a href="#prefix-instance_method" title="#prefix (instance method)">#<strong>prefix</strong>  &#x21d2; Array&lt;Inline&gt; </a>
     
 
     
@@ -234,9 +245,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute prefix.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -244,7 +253,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#suffix-instance_method" title="#suffix (instance method)">#<strong>suffix</strong>  &#x21d2; Object </a>
+      <a href="#suffix-instance_method" title="#suffix (instance method)">#<strong>suffix</strong>  &#x21d2; Array&lt;Inline&gt; </a>
     
 
     
@@ -261,9 +270,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute suffix.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -301,7 +308,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of Citation.</p>
+<p>Create a new Citation node base on an AST specification.</p>
 </div></span>
   
 </li>
@@ -324,7 +331,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Convert this Citation to an AST representation.</p>
+</div></span>
   
 </li>
 
@@ -347,13 +356,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of Citation</p>
+<p>Create a new Citation node base on an AST specification</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>spec</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the specification of this citation</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -361,25 +390,25 @@
       <pre class="lines">
 
 
-26
-27
-28
-29
-30
-31
-32
-33</pre>
+51
+52
+53
+54
+55
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 51</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_spec'>spec</span>
-  <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span>
-  <span class='ivar'>@prefix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span>
-  <span class='ivar'>@suffix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span>
-  <span class='ivar'>@mode</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span>
-  <span class='ivar'>@note_num</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span>
-  <span class='ivar'>@hash</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_spec'>spec</span><span class='rparen'>)</span>
+    <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span>
+    <span class='ivar'>@prefix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span>
+    <span class='ivar'>@suffix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span>
+    <span class='ivar'>@mode</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span>
+    <span class='ivar'>@note_num</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span>
+    <span class='ivar'>@hash</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -396,7 +425,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="hash-instance_method">
   
-    #<strong>hash</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>hash</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -405,13 +434,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute hash</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -419,15 +459,63 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 45</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_hash'>hash</span>
-  <span class='ivar'>@hash</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Citation (class)">Citation</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:prefix</span><span class='comma'>,</span> <span class='symbol'>:suffix</span><span class='comma'>,</span> <span class='symbol'>:mode</span><span class='comma'>,</span> <span class='symbol'>:note_num</span><span class='comma'>,</span> <span class='symbol'>:hash</span>
+
+    <span class='comment'># Create a new Citation node base on an AST specification
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param spec [Hash] the specification of this citation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_spec'>spec</span><span class='rparen'>)</span>
+        <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@prefix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@suffix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@mode</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@note_num</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@hash</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Convert this Citation to an AST representation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_citation'>citation</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@id</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@mode</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@mode</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@note_num</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@note_num</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@hash</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@hash</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -439,7 +527,7 @@
       <div class="method_details ">
   <h3 class="signature " id="id-instance_method">
   
-    #<strong>id</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>id</strong>  &#x21d2; <tt>String</tt> 
   
 
   
@@ -448,13 +536,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute id</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -462,15 +561,63 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 45</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_id'>id</span>
-  <span class='ivar'>@id</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Citation (class)">Citation</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:prefix</span><span class='comma'>,</span> <span class='symbol'>:suffix</span><span class='comma'>,</span> <span class='symbol'>:mode</span><span class='comma'>,</span> <span class='symbol'>:note_num</span><span class='comma'>,</span> <span class='symbol'>:hash</span>
+
+    <span class='comment'># Create a new Citation node base on an AST specification
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param spec [Hash] the specification of this citation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_spec'>spec</span><span class='rparen'>)</span>
+        <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@prefix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@suffix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@mode</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@note_num</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@hash</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Convert this Citation to an AST representation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_citation'>citation</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@id</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@mode</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@mode</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@note_num</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@note_num</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@hash</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@hash</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -482,7 +629,7 @@
       <div class="method_details ">
   <h3 class="signature " id="mode-instance_method">
   
-    #<strong>mode</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>mode</strong>  &#x21d2; <tt>String</tt> 
   
 
   
@@ -491,13 +638,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute mode</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -505,15 +663,63 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 45</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_mode'>mode</span>
-  <span class='ivar'>@mode</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Citation (class)">Citation</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:prefix</span><span class='comma'>,</span> <span class='symbol'>:suffix</span><span class='comma'>,</span> <span class='symbol'>:mode</span><span class='comma'>,</span> <span class='symbol'>:note_num</span><span class='comma'>,</span> <span class='symbol'>:hash</span>
+
+    <span class='comment'># Create a new Citation node base on an AST specification
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param spec [Hash] the specification of this citation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_spec'>spec</span><span class='rparen'>)</span>
+        <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@prefix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@suffix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@mode</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@note_num</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@hash</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Convert this Citation to an AST representation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_citation'>citation</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@id</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@mode</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@mode</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@note_num</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@note_num</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@hash</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@hash</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -525,7 +731,7 @@
       <div class="method_details ">
   <h3 class="signature " id="note_num-instance_method">
   
-    #<strong>note_num</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>note_num</strong>  &#x21d2; <tt>Integer</tt> 
   
 
   
@@ -534,13 +740,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute note_num</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -548,15 +765,63 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 45</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_note_num'>note_num</span>
-  <span class='ivar'>@note_num</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Citation (class)">Citation</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:prefix</span><span class='comma'>,</span> <span class='symbol'>:suffix</span><span class='comma'>,</span> <span class='symbol'>:mode</span><span class='comma'>,</span> <span class='symbol'>:note_num</span><span class='comma'>,</span> <span class='symbol'>:hash</span>
+
+    <span class='comment'># Create a new Citation node base on an AST specification
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param spec [Hash] the specification of this citation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_spec'>spec</span><span class='rparen'>)</span>
+        <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@prefix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@suffix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@mode</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@note_num</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@hash</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Convert this Citation to an AST representation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_citation'>citation</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@id</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@mode</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@mode</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@note_num</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@note_num</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@hash</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@hash</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -568,7 +833,7 @@
       <div class="method_details ">
   <h3 class="signature " id="prefix-instance_method">
   
-    #<strong>prefix</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>prefix</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span>&gt;</tt> 
   
 
   
@@ -577,13 +842,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute prefix</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span>&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -591,15 +867,63 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 45</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_prefix'>prefix</span>
-  <span class='ivar'>@prefix</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Citation (class)">Citation</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:prefix</span><span class='comma'>,</span> <span class='symbol'>:suffix</span><span class='comma'>,</span> <span class='symbol'>:mode</span><span class='comma'>,</span> <span class='symbol'>:note_num</span><span class='comma'>,</span> <span class='symbol'>:hash</span>
+
+    <span class='comment'># Create a new Citation node base on an AST specification
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param spec [Hash] the specification of this citation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_spec'>spec</span><span class='rparen'>)</span>
+        <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@prefix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@suffix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@mode</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@note_num</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@hash</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Convert this Citation to an AST representation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_citation'>citation</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@id</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@mode</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@mode</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@note_num</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@note_num</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@hash</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@hash</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -611,7 +935,7 @@
       <div class="method_details ">
   <h3 class="signature " id="suffix-instance_method">
   
-    #<strong>suffix</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>suffix</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span>&gt;</tt> 
   
 
   
@@ -620,13 +944,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute suffix</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span>&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -634,15 +969,63 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 45</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_suffix'>suffix</span>
-  <span class='ivar'>@suffix</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Citation (class)">Citation</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:prefix</span><span class='comma'>,</span> <span class='symbol'>:suffix</span><span class='comma'>,</span> <span class='symbol'>:mode</span><span class='comma'>,</span> <span class='symbol'>:note_num</span><span class='comma'>,</span> <span class='symbol'>:hash</span>
+
+    <span class='comment'># Create a new Citation node base on an AST specification
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param spec [Hash] the specification of this citation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_spec'>spec</span><span class='rparen'>)</span>
+        <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@prefix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@suffix</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@mode</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@note_num</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@hash</span> <span class='op'>=</span> <span class='id identifier rubyid_spec'>spec</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_spec'>spec</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Convert this Citation to an AST representation
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_citation'>citation</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@id</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@mode</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@mode</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@note_num</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@note_num</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@hash</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@hash</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='id identifier rubyid_citation'>citation</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -665,35 +1048,46 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Convert this Citation to an AST representation</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44</pre>
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/citation.rb', line 61</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span>
-  <span class='id identifier rubyid_citation'>citation</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-  <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@id</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@mode</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@mode</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@note_num</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@note_num</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@hash</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@hash</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='id identifier rubyid_citation'>citation</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_citation'>citation</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationId</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@id</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationPrefix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@prefix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationSuffix</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@suffix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationMode</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@mode</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@mode</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationNoteNum</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@note_num</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@note_num</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_citation'>citation</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>citationHash</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@hash</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@hash</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_citation'>citation</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -705,7 +1099,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat May 13 07:39:28 2017 by
+  Generated on Sat May 13 23:41:40 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

@@ -106,7 +106,8 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>CodeBlock Attr String</p>
+<p>A CodeBlock is a Block level node with an attribute object and the code as
+a string</p>
 
 
   </div>
@@ -124,7 +125,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#attr-instance_method" title="#attr (instance method)">#<strong>attr</strong>  &#x21d2; Object </a>
+      <a href="#attr-instance_method" title="#attr (instance method)">#<strong>attr</strong>  &#x21d2; Attr </a>
     
 
     
@@ -141,9 +142,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute attr.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -151,7 +150,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#string-instance_method" title="#string (instance method)">#<strong>string</strong>  &#x21d2; Object </a>
+      <a href="#string-instance_method" title="#string (instance method)">#<strong>string</strong>  &#x21d2; String </a>
     
 
     
@@ -168,9 +167,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute string.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -205,7 +202,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>An AST representation of this CodeBlock.</p>
+</div></span>
   
 </li>
 
@@ -227,7 +226,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Has this CodeBlock string contents?.</p>
+</div></span>
   
 </li>
 
@@ -252,7 +253,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of CodeBlock.</p>
+<p>Create a new CodeBlock based on the contents.</p>
 </div></span>
   
 </li>
@@ -285,13 +286,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of CodeBlock</p>
+<p>Create a new CodeBlock based on the contents</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>contents</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>an array with the attribute and the code string</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -299,17 +320,17 @@
       <pre class="lines">
 
 
-28
-29
-30
-31</pre>
+39
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/code_block.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/code_block.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
-  <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
-  <span class='ivar'>@string</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='ivar'>@string</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -326,7 +347,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="attr-instance_method">
   
-    #<strong>attr</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>attr</strong>  &#x21d2; <tt><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></tt> 
   
 
   
@@ -335,13 +356,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute attr</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -349,15 +381,63 @@
       <pre class="lines">
 
 
-26
-27
-28</pre>
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/code_block.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/code_block.rb', line 32</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_attr'>attr</span>
-  <span class='ivar'>@attr</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::CodeBlock (class)">CodeBlock</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:attr</span><span class='comma'>,</span> <span class='symbol'>:string</span>
+
+    <span class='comment'># Create a new CodeBlock based on the contents
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param contents [Array] an array with the attribute and the code
+</span>    <span class='comment'>#   string
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+        <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='ivar'>@string</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># An AST representation of this CodeBlock
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='lbracket'>[</span>
+            <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+            <span class='ivar'>@string</span>
+        <span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Has this CodeBlock string contents?
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Boolean] true
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_has_string?'>has_string?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='kw'>true</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -369,7 +449,7 @@
       <div class="method_details ">
   <h3 class="signature " id="string-instance_method">
   
-    #<strong>string</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>string</strong>  &#x21d2; <tt>String</tt> 
   
 
   
@@ -378,13 +458,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute string</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -392,15 +483,63 @@
       <pre class="lines">
 
 
-26
-27
-28</pre>
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/code_block.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/code_block.rb', line 32</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_string'>string</span>
-  <span class='ivar'>@string</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::CodeBlock (class)">CodeBlock</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:attr</span><span class='comma'>,</span> <span class='symbol'>:string</span>
+
+    <span class='comment'># Create a new CodeBlock based on the contents
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param contents [Array] an array with the attribute and the code
+</span>    <span class='comment'>#   string
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+        <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='ivar'>@string</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># An AST representation of this CodeBlock
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='lbracket'>[</span>
+            <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+            <span class='ivar'>@string</span>
+        <span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Has this CodeBlock string contents?
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Boolean] true
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_has_string?'>has_string?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='kw'>true</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -423,27 +562,38 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>An AST representation of this CodeBlock</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-33
-34
-35
-36
-37
-38</pre>
+45
+46
+47
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/code_block.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/code_block.rb', line 45</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
-  <span class='lbracket'>[</span>
-    <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
-    <span class='ivar'>@string</span>
-  <span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='lbracket'>[</span>
+        <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+        <span class='ivar'>@string</span>
+    <span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -462,6 +612,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Has this CodeBlock string contents?</p>
+
 
   </div>
 </div>
@@ -477,6 +629,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>true</p>
+</div>
+      
     </li>
   
 </ul>
@@ -487,15 +644,15 @@
       <pre class="lines">
 
 
-40
-41
-42</pre>
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/code_block.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/code_block.rb', line 55</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_has_string?'>has_string?</span>
-  <span class='kw'>true</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_has_string?'>has_string?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -507,7 +664,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat May 13 07:39:28 2017 by
+  Generated on Sat May 13 23:41:41 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

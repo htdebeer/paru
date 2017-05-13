@@ -101,7 +101,25 @@
   
 </div>
 
-<div id="subclasses">
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>An Inline node</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="http://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html#t:Inline" target="_parent" title="http://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html#t:Inline">http://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html#t:Inline</a></li>
+    
+  </ul>
+
+</div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
   <p class="children"><span class='object_link'><a href="Cite.html" title="Paru::PandocFilter::Cite (class)">Cite</a></span>, <span class='object_link'><a href="Code.html" title="Paru::PandocFilter::Code (class)">Code</a></span>, <span class='object_link'><a href="Emph.html" title="Paru::PandocFilter::Emph (class)">Emph</a></span>, <span class='object_link'><a href="EmptyInline.html" title="Paru::PandocFilter::EmptyInline (class)">EmptyInline</a></span>, <span class='object_link'><a href="Link.html" title="Paru::PandocFilter::Link (class)">Link</a></span>, <span class='object_link'><a href="Math.html" title="Paru::PandocFilter::Math (class)">Math</a></span>, <span class='object_link'><a href="Note.html" title="Paru::PandocFilter::Note (class)">Note</a></span>, <span class='object_link'><a href="Quoted.html" title="Paru::PandocFilter::Quoted (class)">Quoted</a></span>, <span class='object_link'><a href="RawInline.html" title="Paru::PandocFilter::RawInline (class)">RawInline</a></span>, <span class='object_link'><a href="SmallCaps.html" title="Paru::PandocFilter::SmallCaps (class)">SmallCaps</a></span>, <span class='object_link'><a href="Span.html" title="Paru::PandocFilter::Span (class)">Span</a></span>, <span class='object_link'><a href="Str.html" title="Paru::PandocFilter::Str (class)">Str</a></span>, <span class='object_link'><a href="Strikeout.html" title="Paru::PandocFilter::Strikeout (class)">Strikeout</a></span>, <span class='object_link'><a href="Strong.html" title="Paru::PandocFilter::Strong (class)">Strong</a></span>, <span class='object_link'><a href="Subscript.html" title="Paru::PandocFilter::Subscript (class)">Subscript</a></span>, <span class='object_link'><a href="Superscript.html" title="Paru::PandocFilter::Superscript (class)">Superscript</a></span></p>
 </div>
@@ -137,7 +155,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Has this Inline node inline contents? Of course!.</p>
+</div></span>
   
 </li>
 
@@ -162,7 +182,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of Inline.</p>
+<p>Create a new Inline node with contents.</p>
 </div></span>
   
 </li>
@@ -185,7 +205,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Is this Inline node inline? Of course!.</p>
+</div></span>
   
 </li>
 
@@ -215,13 +237,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of Inline</p>
+<p>Create a new Inline node with contents</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>contents</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the contents of this inline node</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -229,15 +271,15 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/inline.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/inline.rb', line 29</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_contents'>contents</span>
-   <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='comma'>,</span> <span class='kw'>true</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+    <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='comma'>,</span> <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -263,6 +305,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Has this Inline node inline contents? Of course!</p>
+
 
   </div>
 </div>
@@ -278,6 +322,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>true</p>
+</div>
+      
     </li>
   
 </ul>
@@ -288,14 +337,14 @@
       <pre class="lines">
 
 
-32
-33
-34</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/inline.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/inline.rb', line 43</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_has_inline?'>has_inline?</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_has_inline?'>has_inline?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -315,6 +364,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Is this Inline node inline? Of course!</p>
+
 
   </div>
 </div>
@@ -330,6 +381,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>true</p>
+</div>
+      
     </li>
   
 </ul>
@@ -340,14 +396,14 @@
       <pre class="lines">
 
 
-28
-29
-30</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/inline.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/inline.rb', line 36</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_is_inline?'>is_inline?</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_is_inline?'>is_inline?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -360,7 +416,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat May 13 07:39:28 2017 by
+  Generated on Sat May 13 23:41:40 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

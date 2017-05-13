@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,14 +17,16 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
+    module PandocFilter
 
-    class Alignment
-      ALIGNMENTS = ["AlignLeft", "AlignRight", "AlignCenter", "AlignDefault"]
+        # Alignment for columns in a table. 
+        # @see https://hackage.haskell.org/package/pandoc-types-1.17.0.5/docs/Text-Pandoc-Definition.html#t:Alignment
+        class Alignment
+            ALIGNMENTS = ["AlignLeft", "AlignRight", "AlignCenter", "AlignDefault"]
 
-      def initialize config
-        @config = config
-      end
+            def initialize config
+                @config = config
+            end
+        end
     end
-  end
 end

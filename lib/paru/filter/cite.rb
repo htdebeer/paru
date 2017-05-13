@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,28 +17,37 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./inline"
+    module PandocFilter
+        require_relative "./inline"
 
-    # Cite [Citation] [Inline]
-    class Cite < Inline
-      attr_accessor :citations
+        # A Cite node, consisting of a list of Citation nodes, and a list of
+        # Inline nodes
+        #
+        # @!attribute citations
+        #   @return [Array<Citation>]
+        class Cite < Inline
+            attr_accessor :citations
 
-      def initialize contents
-        @citations = []
-        contents[0].each do |citation|
-          @citations.push Citation.new(citation)
+            # Create a new Cite node
+            #
+            # @param contents [Array] an array containing a list of citations
+            #   and a list of inline nodes
+            def initialize contents
+                @citations = []
+                contents[0].each do |citation|
+                    @citations.push Citation.new(citation)
+                end
+                super contents[1]
+            end
+
+            # Create an AST representation of this Cite node.
+            def ast_contents()
+                [
+                    @citations.map {|citation| citation.to_ast},
+                    super
+                ]
+            end
         end
-        super contents[1]
-      end
-
-      def ast_contents
-        [
-          @citations.map {|citation| citation.to_ast},
-          super
-        ]
-      end
     end
-  end
 end
 

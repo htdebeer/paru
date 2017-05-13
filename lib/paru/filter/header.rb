@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,31 +17,46 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
-    require_relative "./attr"
+    module PandocFilter
+        require_relative "./block"
+        require_relative "./attr"
 
-    # Header Int Attr [Inline]
-    class Header < Block
-      attr_accessor :level, :attr
+        # A Header node has a level, an attribute object and the contents of
+        # the header as a list on Inline nodes.
+        #
+        # @!attribute level
+        #   @return [Integer]
+        #
+        # @!attribute attr
+        #   @return [Attr]
+        class Header < Block
+            attr_accessor :level, :attr
 
-      def initialize contents
-        @level = contents[0]
-        @attr = Attr.new contents[1]
-        super contents[2], true
-      end
+            # Create a new Header node
+            #
+            # @param contents [Array] an array with the level, attribute, and
+            #   the header contents
+            def initialize(contents)
+                @level = contents[0]
+                @attr = Attr.new contents[1]
+                super contents[2], true
+            end
 
-      def ast_contents
-        [
-          @level,
-          @attr.to_ast,
-          super
-        ]
-      end
+            # Create an AST representation of this Header node
+            def ast_contents()
+                [
+                    @level,
+                    @attr.to_ast,
+                    super
+                ]
+            end
 
-      def has_inline?
-        true
-      end
+            # Has this Header node inline contents?
+            #
+            # @return [Boolean] true
+            def has_inline?
+                true
+            end
+        end
     end
-  end
 end
