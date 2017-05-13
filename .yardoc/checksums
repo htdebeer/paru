@@ -28,7 +28,7 @@ lib/paru/filter/inline.rb 07dee7253eeaf5d1b37cc61de56e539633569e4e
 lib/paru/filter/quoted.rb 18494df72b73c4697d287bb75faef35a1074665e
 lib/paru/filter/strong.rb 5c1692b005a918513f2e484e4957128381148d32
 lib/paru/filter/target.rb 175f03d373eb68f5873fcf49f5680a88cdc7cae1
-lib/paru/filter/version.rb f28104bc28323095f4cab80abea98a526b899eb9
+lib/paru/filter/version.rb f0b6c7265d592a8b40a2978688deaf73f4db867d
 lib/paru/filter/citation.rb f05550ca542b465618b98b018e415bbed5a13e8f
 lib/paru/filter/document.rb b08d10b09688da521ce81e665114c721eb2d1746
 lib/paru/filter/markdown.rb 8515ed947ab55f1f79b0ee4cf83595baf7b65148
