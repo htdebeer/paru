@@ -126,12 +126,17 @@ module Paru
         end
         alias << convert
 
-        private
-        
+        # Create a string representation of this converter's pandoc command
+        # line invocation. This is useful for debugging purposes.
+        #
+        # @param option_sep [String] the string to separate options with
+        # @return [String] This converter's command line invocation string.
         def to_command(option_sep = " \\\n\t")
             "pandoc\t#{to_option_string option_sep}"
         end
 
+        private
+        
         def to_option_string(option_sep)
             options_arr = []
             @options.each do |option, value|

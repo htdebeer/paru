@@ -1,7 +1,7 @@
 lib/paru.rb b7de7eb7d326412fa2e1a5bd3876ee27df2e2b64
 lib/paru/error.rb 52e26a4b4115e5f8b31fc4c58d68e2b0dfdeb3ed
 lib/paru/filter.rb 8c9edbd3cfefcd03ffed6ecd0b292d46c680ec59
-lib/paru/pandoc.rb 59563be36da3b5e2d8aa09db24b003b1b596b6bf
+lib/paru/pandoc.rb e4b532e1de00c90c7a67930b96da88b5162afdbb
 lib/paru/selector.rb e738576cbe7f8d6477aa6eac0b00fca53ea57d5a
 lib/paru/filter/div.rb bbc8789944105e9a8d9c43f5a80fb285d58def75
 lib/paru/filter/str.rb c139578f50582696f8b3ab6a9c252eb901ed5b76

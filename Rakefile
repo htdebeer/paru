@@ -12,11 +12,12 @@ YARD::Rake::YardocTask.new do |t|
 end
 
 task :generate_index_md do
-  sh "cd documentation; ../bin/do-pandoc.rb documentation.md"
+    sh "cd documentation; ../bin/do-pandoc.rb documentation.md"
 end
 
 task :build do
-  Rake::Task["yard"]
-  sh "gem build paru.gemspec; mv *.*.*.gem releases"
-  Rake::Task["generate_index_md"].execute
+    Rake::Task["test"].execute
+    Rake::Task["yard"].execute
+    sh "gem build paru.gemspec; mv *.*.*.gem releases"
+    Rake::Task["generate_index_md"].execute
 end
