@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,26 +17,42 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./list"
-    require_relative "./list_attributes"
+    module PandocFilter
+        require_relative "./list"
+        require_relative "./list_attributes"
 
-    # OrderedList ListAttributes [[Block]]
-    class OrderedList < List
-      attr_accessor :list_attributes
+        # An OrderedList Node 
+        # 
+        # @example In markdown an ordered list looks like
+        #   1. this is the first item
+        #   2. this the second
+        #   3. and so on
+        #
+        # It has an ListAttributes object and a list of items
+        #
+        # @!attribute list_attributes
+        #   @return [ListAttributes]
+        class OrderedList < List
+            attr_accessor :list_attributes
 
-      def initialize contents
-        @list_attributes = ListAttributes.new contents[0]
-        super contents[1]
-      end
+            # Create a new OrderedList node based on the contents
+            #
+            # @param contents [Array]
+            def initialize(contents)
+                @list_attributes = ListAttributes.new contents[0]
+                super contents[1]
+            end
 
-      def ast_contents
-        [
-          @list_attributes.to_ast,
-          super
-        ] 
-      end
+            # The AST contents
+            #
+            # @return [Array]
+            def ast_contents
+                [
+                    @list_attributes.to_ast,
+                    super
+                ] 
+            end
 
+        end
     end
-  end
 end

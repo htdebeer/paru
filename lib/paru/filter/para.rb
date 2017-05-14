@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,19 +17,26 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
-  
-    # Para [Inline]
-    class Para < Block
-      def initialize contents
-        super contents, true
-      end
+    module PandocFilter
+        require_relative "./block"
 
-      def has_inline?
-        true
-      end
+        # A Para is a paragraph: a list of Inline nodes
+        class Para < Block
 
+            # Create a new Para node based on the contents
+            #
+            # @param contents [Array]
+            def initialize(contents)
+                super contents, true
+            end
+
+            # Does a Para have inline content?
+            #
+            # @return [Boolean] true
+            def has_inline?
+                true
+            end
+
+        end
     end
-  end
 end

@@ -104,7 +104,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>MetaMap (M.Map String MetaValue)</p>
+<p>A MetaMap Node is a map of String keys with MetaValue values</p>
 
 
   </div>
@@ -134,7 +134,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#[]-instance_method" title="#[] (instance method)">#<strong>[]</strong>(key)  &#x21d2; Object </a>
+      <a href="#[]-instance_method" title="#[] (instance method)">#<strong>[]</strong>(key)  &#x21d2; MetaValue </a>
     
 
     
@@ -148,7 +148,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Get the value belonging to key.</p>
+</div></span>
   
 </li>
 
@@ -170,7 +172,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The AST contents.</p>
+</div></span>
   
 </li>
 
@@ -192,7 +196,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Delete the key-value pair from this MetaMap.</p>
+</div></span>
   
 </li>
 
@@ -214,7 +220,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Does this MetaMap node have key?.</p>
+</div></span>
   
 </li>
 
@@ -239,7 +247,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of MetaMap.</p>
+<p>Create a new MetaMap based on the contents.</p>
 </div></span>
   
 </li>
@@ -270,13 +278,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of MetaMap</p>
+<p>Create a new MetaMap based on the contents</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>contents</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a list of key-value pairs</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -284,9 +312,6 @@
       <pre class="lines">
 
 
-27
-28
-29
 30
 31
 32
@@ -294,21 +319,24 @@
 34
 35
 36
-37</pre>
+37
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/meta_map.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/meta_map.rb', line 30</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_contents'>contents</span>
-  <span class='ivar'>@children</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+    <span class='ivar'>@children</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 
-  <span class='kw'>if</span> <span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Hash</span>
-    <span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
-      <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='kw'>and</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span> <span class='id identifier rubyid_value'>value</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
-        <span class='ivar'>@children</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_value'>value</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
-      <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Hash</span>
+        <span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+            <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='kw'>and</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span> <span class='id identifier rubyid_value'>value</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+                <span class='ivar'>@children</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_value'>value</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+            <span class='kw'>end</span>
+        <span class='kw'>end</span>
     <span class='kw'>end</span>
-  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -325,31 +353,80 @@
       <div class="method_details first">
   <h3 class="signature first" id="[]-instance_method">
   
-    #<strong>[]</strong>(key)  &#x21d2; <tt>Object</tt> 
+    #<strong>[]</strong>(key)  &#x21d2; <tt><span class='object_link'><a href="MetaValue.html" title="Paru::PandocFilter::MetaValue (class)">MetaValue</a></span></tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get the value belonging to key</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the key</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="MetaValue.html" title="Paru::PandocFilter::MetaValue (class)">MetaValue</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the value belonging to the key</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-39
-40
-41
-42
-43</pre>
+47
+48
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/meta_map.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/meta_map.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_key_exists?'>key_exists?</span>
-    <span class='ivar'>@children</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
-  <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_key_exists?'>key_exists?</span>
+        <span class='ivar'>@children</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -365,29 +442,40 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The AST contents</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-53
-54
-55
-56
-57
-58
-59</pre>
+70
+71
+72
+73
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/meta_map.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/meta_map.rb', line 70</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
-  <span class='id identifier rubyid_ast'>ast</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-  <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
-    <span class='id identifier rubyid_ast'>ast</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span>
-  <span class='kw'>end</span>
-  <span class='id identifier rubyid_ast'>ast</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ast'>ast</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+        <span class='id identifier rubyid_ast'>ast</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_ast'>ast</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -403,21 +491,52 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Delete the key-value pair from this MetaMap</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the key to delete</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-49
-50
-51</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/meta_map.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/meta_map.rb', line 65</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_key'>key</span>
-  <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_key'>key</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+    <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_key'>key</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -436,11 +555,33 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Does this MetaMap node have key?</p>
+
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the key to find</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -450,6 +591,11 @@
         <span class='type'>(<tt>Boolean</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'>
+<p>true if this MetaMap node contains this key</p>
+</div>
       
     </li>
   
@@ -461,15 +607,15 @@
       <pre class="lines">
 
 
-45
-46
-47</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/meta_map.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/meta_map.rb', line 58</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_key'>key</span> 
-  <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_key'>key</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+    <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_key'>key</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -481,7 +627,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 00:07:09 2017 by
+  Generated on Sun May 14 12:57:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

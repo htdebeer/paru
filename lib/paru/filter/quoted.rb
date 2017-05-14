@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,26 +17,35 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./inline"
+    module PandocFilter
+        require_relative "./inline"
 
-    # Quoted QuoteType [Inline]
-    class Quoted < Inline
-      QUOTE_TYPE = ["SingleQuote", "DoubleQuote"]
+        # A Quoted node represents a quote with a type and the contents of the
+        # quote
+        #
+        # @!attribute quote_type
+        #   @return [QUOTE_TYPE]
+        class Quoted < Inline
+            # A quote is either a single quote or a double quote
+            QUOTE_TYPE = ["SingleQuote", "DoubleQuote"]
 
-      attr_accessor :quote_type
+            attr_accessor :quote_type
 
-      def initialize contents
-        @quote_type = contents[0]
-        super contents[1]
-      end
+            # Create a new Quote node based on the contents
+            #
+            # @param contents [Array]
+            def initialize(contents)
+                @quote_type = contents[0]
+                super contents[1]
+            end
 
-      def ast_contents
-        [
-          @quote_type,
-          super
-        ]
-      end
+            # The AST contents of a Quote node
+            def ast_contents()
+                [
+                    @quote_type,
+                    super
+                ]
+            end
+        end
     end
-  end
 end

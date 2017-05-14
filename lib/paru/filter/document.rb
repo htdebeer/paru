@@ -77,8 +77,8 @@ module Paru
             # metadata, and the contents of the document
             #
             # @param version [Array<Integer>] the version of pandoc types
-            # @param meta [String] metadata
-            # @param contents [String] contents
+            # @param meta [Array] metadata
+            # @param contents [Array] contents
             def initialize(version, meta, contents)
                 @version = Version.new version
                 @meta = Meta.new meta

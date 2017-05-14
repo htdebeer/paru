@@ -106,7 +106,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Para [Inline]</p>
+<p>A Para is a paragraph: a list of Inline nodes</p>
 
 
   </div>
@@ -146,7 +146,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Does a Para have inline content?.</p>
+</div></span>
   
 </li>
 
@@ -171,7 +173,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of Para.</p>
+<p>Create a new Para node based on the contents.</p>
 </div></span>
   
 </li>
@@ -204,13 +206,28 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of Para</p>
+<p>Create a new Para node based on the contents</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>contents</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -218,15 +235,15 @@
       <pre class="lines">
 
 
-25
-26
-27</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/para.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/para.rb', line 29</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_contents'>contents</span>
-  <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='comma'>,</span> <span class='kw'>true</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+    <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='comma'>,</span> <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -252,6 +269,8 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+<p>Does a Para have inline content?</p>
+
 
   </div>
 </div>
@@ -267,6 +286,11 @@
       
       
       
+        &mdash;
+        <div class='inline'>
+<p>true</p>
+</div>
+      
     </li>
   
 </ul>
@@ -277,15 +301,15 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/para.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/para.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_inline?'>has_inline?</span>
-  <span class='kw'>true</span>
+    <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -297,7 +321,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 00:07:08 2017 by
+  Generated on Sun May 14 12:57:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

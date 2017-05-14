@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,26 +17,37 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./inline"
+    module PandocFilter
+        require_relative "./inline"
 
-    # Str String
-    class Str < Inline
-      def initialize value
-        @string = value
-      end
+        # A Str node represents a string
+        class Str < Inline
 
-      def ast_contents
-        @string
-      end
+            # Create a new Str node based on the value
+            #
+            # @param value [String]
+            def initialize(value)
+                @string = value
+            end
 
-      def has_string?
-        true
-      end
+            # The AST contents
+            def ast_contents()
+                @string
+            end
 
-      def has_inline?
-        false
-      end
+            # Has the Str node a string value? Of course!
+            #
+            # @return [Boolean] true
+            def has_string?()
+                true
+            end
+
+            # Has the Str node inline contents? 
+            #
+            # @return [Boolean] false
+            def has_inline?()
+                false
+            end
+        end
     end
-  end
 end

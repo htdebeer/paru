@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,27 +17,38 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
+    module PandocFilter
 
-    require_relative "./inline"
-    require_relative "./block"
+        require_relative "./inline"
+        require_relative "./block"
 
-    # Note [Block]
-    class Note < Inline
-      def has_block?
-        true
-      end
+        # A Note node like a foot note or end note. It is a special node in
+        # the sense that itself is an Inline level node, but its contents are
+        # Block level.
+        class Note < Inline
 
-      def has_inline?
-        false
-      end
-      
-      # Although Note is defined to be inline, often it will act like a block
-      # element.
-      def can_act_as_both_block_and_inline?
-        true
-      end
-      
+            # Has this Note block contents?
+            #
+            # @return [Boolean] true
+            def has_block?
+                true
+            end
+
+            # Has this Note inline contents?
+            #
+            # @return [Boolean] false
+            def has_inline?
+                false
+            end
+
+            # Although Note is defined to be inline, often it will act like a block
+            # element.
+            #
+            # @return [Boolean] true
+            def can_act_as_both_block_and_inline?
+                true
+            end
+
+        end
     end
-  end
 end

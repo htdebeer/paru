@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -25,16 +25,17 @@ module Paru
         require_relative "../pandoc"
         require_relative "./document"
 
-        # Every node in a Pandoc AST is mapped to Node.
+        # Every node in a Pandoc AST is mapped to Node. Filters are all about
+        # manipulating Nodes.
+        #
+        # @!attribute parent
+        #   @return [Node] the parent node, if any.
         class Node
             include Enumerable
             include ASTManipulation
             include Markdown
 
-            # The parent Node. All nodes, except Document, do have a parent.
             attr_accessor :parent
-
-            # require all pandoc types
 
             Dir[File.dirname(__FILE__) + '/*.rb'].each do |file|
                 require_relative file
@@ -134,33 +135,62 @@ module Paru
             def is_leaf?()
                 not has_children?
             end
-
-
-            def has_string?
+            
+            # Does this node has a string value?
+            #
+            # @return [Boolean] true if this node has a string value, false
+            #   otherwise
+            def has_string?()
                 false
             end
 
-            def has_inline?
+            # Does this node have Inline contents?
+            #
+            # @return [Boolean] true if this node has Inline contents, false
+            #   otherwise
+            def has_inline?()
                 false
             end
 
-            def has_block?
+            # Does this node have Block contents?
+            #
+            # @return [Boolean] true if this node has Block contents, false
+            #   otherwise
+            def has_block?()
                 false
             end
 
-            def is_block?
+            # Is this node a Block level node?
+            #
+            # @return [Boolean] true if this node is a block level node, false
+            #   otherwise
+            def is_block?()
                 false
             end
 
-            def can_act_as_both_block_and_inline?
+            # Can this node act both as a block and inline node? Some nodes
+            # are hybrids in this regard, like Math or Image
+            #
+            # @return [Boolean]
+            def can_act_as_both_block_and_inline?()
                 false
             end
 
-            def is_inline?
+            # Is this an Inline level node?
+            #
+            # @return [Boolean] true if this node is an inline level node,
+            #   false otherwise
+            def is_inline?()
                 false
             end
 
-            def has_class? name
+            # If this node has attributes with classes, is name among them?
+            #
+            # @param name [String] the class name to search for
+            #
+            # @return [Boolean] true if this node has attributes with classes
+            #   and name is among them, false otherwise
+            def has_class?(name)
                 if not @attr.nil?
                     @attr.has_class? name
                 else
@@ -168,35 +198,42 @@ module Paru
                 end
             end
 
-            def to_s
+            # A String representation of this Node
+            #
+            # @return [String]
+            def to_s()
                 self.class.name
             end
 
-            def type
+            # The pandoc type of this Node
+            #
+            # @return [String]
+            def type()
                 ast_type
             end
 
-            def ast_type
+            # The AST type of this Node
+            #
+            # @return [String]
+            def ast_type()
                 self.class.name.split("::").last
             end
 
-            def ast_contents
+            # An AST representation of the contents of this node
+            #
+            # @return [Array]
+            def ast_contents()
                 if has_children?
                     @children.map {|child| child.to_ast}
                 else
                     []
                 end
             end
-
-            def ast_markdown_contents
-                if has_children?
-                    @children.map {|child| child.to_ast}
-                else
-                    []
-                end
-            end
-
-            def to_ast
+            
+            # Create an AST representation of this Node
+            #
+            # @return [Hash]
+            def to_ast()
                 {
                     "t" => ast_type,
                     "c" => ast_contents

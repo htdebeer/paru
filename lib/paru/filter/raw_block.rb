@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,27 +17,40 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
+    module PandocFilter
+        require_relative "./block"
 
-    # RawBlock Format String
-    class RawBlock < Block
-      attr_accessor :format, :string
+        # A RawBlock node has a format and a string contents
+        #
+        # @!attribute format
+        #   @return [String]
+        #
+        # @!attribute string
+        #   @return [String]
+        class RawBlock < Block
+            attr_accessor :format, :string
 
-      def initialize(contents)
-        @format, @string = contents
-      end
+            # Create a new RawBlock node based on the contents
+            #
+            # @param contents [Array]
+            def initialize(contents)
+                @format, @string = contents
+            end
 
-      def to_ast
-        [
-          @format,
-          @string
-        ]
-      end
+            # Create an AST representation of this RawBlock node
+            def to_ast()
+                [
+                    @format,
+                    @string
+                ]
+            end
 
-      def has_string?
-        true
-      end
+            # Has this RawBlock node a string value?
+            #
+            # @return [Boolean] true
+            def has_string?
+                true
+            end
+        end
     end
-  end
 end

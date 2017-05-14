@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,18 +17,27 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
+    module PandocFilter
+        require_relative "./block"
 
-    # Plain [Inline]
-    class Plain < Block
-      def initialize contents
-        super contents, true
-      end
+        # A Plain node is a basic Block level node with Inline children. Not
+        # to be confused with Para, which represents a paragraph. A Plain
+        # is more general.
+        class Plain < Block
 
-      def has_inline?
-        true
-      end
+            # Create a new Plain node based on contents
+            #
+            # @param contents [Array]
+            def initialize(contents)
+                super contents, true
+            end
+
+            # Has a Plain node inline contents?
+            #
+            # @return [Boolean] true
+            def has_inline?
+                true
+            end
+        end
     end
-  end
 end

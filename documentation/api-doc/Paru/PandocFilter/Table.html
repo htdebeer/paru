@@ -106,7 +106,8 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Table [Inline] [Alignment] [Double] [TableCell] [[TableCell]]</p>
+<p>A Table node represents a table with an inline caption, column definition,
+widths, headers, and rows.</p>
 
 
   </div>
@@ -124,7 +125,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#alignment-instance_method" title="#alignment (instance method)">#<strong>alignment</strong>  &#x21d2; Object </a>
+      <a href="#alignment-instance_method" title="#alignment (instance method)">#<strong>alignment</strong>  &#x21d2; ALIGNMENTS </a>
     
 
     
@@ -141,9 +142,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute alignment.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -151,7 +150,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#caption-instance_method" title="#caption (instance method)">#<strong>caption</strong>  &#x21d2; Object </a>
+      <a href="#caption-instance_method" title="#caption (instance method)">#<strong>caption</strong>  &#x21d2; Inline </a>
     
 
     
@@ -168,9 +167,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute caption.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -178,7 +175,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#column_widths-instance_method" title="#column_widths (instance method)">#<strong>column_widths</strong>  &#x21d2; Object </a>
+      <a href="#column_widths-instance_method" title="#column_widths (instance method)">#<strong>column_widths</strong>  &#x21d2; Float </a>
     
 
     
@@ -195,9 +192,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute column_widths.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -205,7 +200,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#headers-instance_method" title="#headers (instance method)">#<strong>headers</strong>  &#x21d2; Object </a>
+      <a href="#headers-instance_method" title="#headers (instance method)">#<strong>headers</strong>  &#x21d2; TableRow </a>
     
 
     
@@ -222,9 +217,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute headers.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -232,7 +225,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#rows-instance_method" title="#rows (instance method)">#<strong>rows</strong>  &#x21d2; Object </a>
+      <a href="#rows-instance_method" title="#rows (instance method)">#<strong>rows</strong>  &#x21d2; Array&lt;TableRow&gt; </a>
     
 
     
@@ -249,9 +242,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute rows.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -272,7 +263,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ast_contents-instance_method" title="#ast_contents (instance method)">#<strong>ast_contents</strong>  &#x21d2; Object </a>
+      <a href="#ast_contents-instance_method" title="#ast_contents (instance method)">#<strong>ast_contents</strong>  &#x21d2; Array </a>
     
 
     
@@ -286,7 +277,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The AST contents of this Table node.</p>
+</div></span>
   
 </li>
 
@@ -311,7 +304,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of Table.</p>
+<p>Create a new Table based on the contents.</p>
 </div></span>
   
 </li>
@@ -344,13 +337,28 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of Table</p>
+<p>Create a new Table based on the contents</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>contents</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -358,29 +366,29 @@
       <pre class="lines">
 
 
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40</pre>
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 50</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_contents'>contents</span>
-  <span class='ivar'>@caption</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
-  <span class='ivar'>@alignment</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
-  <span class='ivar'>@column_widths</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
-  <span class='ivar'>@headers</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span>
-  <span class='ivar'>@rows</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>4</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row_data'>row_data</span><span class='op'>|</span>
-    <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_row_data'>row_data</span>
-  <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+    <span class='ivar'>@caption</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='ivar'>@alignment</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='ivar'>@column_widths</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+    <span class='ivar'>@headers</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span>
+    <span class='ivar'>@rows</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>4</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row_data'>row_data</span><span class='op'>|</span>
+        <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_row_data'>row_data</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -397,7 +405,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="alignment-instance_method">
   
-    #<strong>alignment</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>alignment</strong>  &#x21d2; <tt><span class='object_link'><a href="../PandocFilter.html#ALIGNMENTS-constant" title="Paru::PandocFilter::ALIGNMENTS (constant)">ALIGNMENTS</a></span></tt> 
   
 
   
@@ -406,13 +414,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute alignment</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../PandocFilter.html#ALIGNMENTS-constant" title="Paru::PandocFilter::ALIGNMENTS (constant)">ALIGNMENTS</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -420,15 +439,69 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 44</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_alignment'>alignment</span>
-  <span class='ivar'>@alignment</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Table (class)">Table</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:caption</span><span class='comma'>,</span> <span class='symbol'>:alignment</span><span class='comma'>,</span> <span class='symbol'>:column_widths</span><span class='comma'>,</span> <span class='symbol'>:headers</span><span class='comma'>,</span> <span class='symbol'>:rows</span>
+
+    <span class='comment'># Create a new Table based on the contents
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param contents [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+        <span class='ivar'>@caption</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='ivar'>@alignment</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+        <span class='ivar'>@column_widths</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+        <span class='ivar'>@headers</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span>
+        <span class='ivar'>@rows</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>4</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row_data'>row_data</span><span class='op'>|</span>
+            <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_row_data'>row_data</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># The AST contents of this Table node
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='lbracket'>[</span>
+            <span class='ivar'>@caption</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+            <span class='ivar'>@alignment</span><span class='comma'>,</span>
+            <span class='ivar'>@column_widths</span><span class='comma'>,</span>
+            <span class='ivar'>@headers</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+            <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span> <span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='rbrace'>}</span>
+        <span class='rbracket'>]</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -440,7 +513,7 @@
       <div class="method_details ">
   <h3 class="signature " id="caption-instance_method">
   
-    #<strong>caption</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>caption</strong>  &#x21d2; <tt><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></tt> 
   
 
   
@@ -449,13 +522,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute caption</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -463,15 +547,69 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 44</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_caption'>caption</span>
-  <span class='ivar'>@caption</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Table (class)">Table</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:caption</span><span class='comma'>,</span> <span class='symbol'>:alignment</span><span class='comma'>,</span> <span class='symbol'>:column_widths</span><span class='comma'>,</span> <span class='symbol'>:headers</span><span class='comma'>,</span> <span class='symbol'>:rows</span>
+
+    <span class='comment'># Create a new Table based on the contents
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param contents [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+        <span class='ivar'>@caption</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='ivar'>@alignment</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+        <span class='ivar'>@column_widths</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+        <span class='ivar'>@headers</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span>
+        <span class='ivar'>@rows</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>4</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row_data'>row_data</span><span class='op'>|</span>
+            <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_row_data'>row_data</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># The AST contents of this Table node
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='lbracket'>[</span>
+            <span class='ivar'>@caption</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+            <span class='ivar'>@alignment</span><span class='comma'>,</span>
+            <span class='ivar'>@column_widths</span><span class='comma'>,</span>
+            <span class='ivar'>@headers</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+            <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span> <span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='rbrace'>}</span>
+        <span class='rbracket'>]</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -483,7 +621,7 @@
       <div class="method_details ">
   <h3 class="signature " id="column_widths-instance_method">
   
-    #<strong>column_widths</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>column_widths</strong>  &#x21d2; <tt>Float</tt> 
   
 
   
@@ -492,13 +630,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute column_widths</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -506,15 +655,69 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 44</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_column_widths'>column_widths</span>
-  <span class='ivar'>@column_widths</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Table (class)">Table</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:caption</span><span class='comma'>,</span> <span class='symbol'>:alignment</span><span class='comma'>,</span> <span class='symbol'>:column_widths</span><span class='comma'>,</span> <span class='symbol'>:headers</span><span class='comma'>,</span> <span class='symbol'>:rows</span>
+
+    <span class='comment'># Create a new Table based on the contents
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param contents [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+        <span class='ivar'>@caption</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='ivar'>@alignment</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+        <span class='ivar'>@column_widths</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+        <span class='ivar'>@headers</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span>
+        <span class='ivar'>@rows</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>4</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row_data'>row_data</span><span class='op'>|</span>
+            <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_row_data'>row_data</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># The AST contents of this Table node
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='lbracket'>[</span>
+            <span class='ivar'>@caption</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+            <span class='ivar'>@alignment</span><span class='comma'>,</span>
+            <span class='ivar'>@column_widths</span><span class='comma'>,</span>
+            <span class='ivar'>@headers</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+            <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span> <span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='rbrace'>}</span>
+        <span class='rbracket'>]</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -526,7 +729,7 @@
       <div class="method_details ">
   <h3 class="signature " id="headers-instance_method">
   
-    #<strong>headers</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>headers</strong>  &#x21d2; <tt><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></tt> 
   
 
   
@@ -535,13 +738,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute headers</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -549,15 +763,69 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 44</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_headers'>headers</span>
-  <span class='ivar'>@headers</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Table (class)">Table</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:caption</span><span class='comma'>,</span> <span class='symbol'>:alignment</span><span class='comma'>,</span> <span class='symbol'>:column_widths</span><span class='comma'>,</span> <span class='symbol'>:headers</span><span class='comma'>,</span> <span class='symbol'>:rows</span>
+
+    <span class='comment'># Create a new Table based on the contents
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param contents [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+        <span class='ivar'>@caption</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='ivar'>@alignment</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+        <span class='ivar'>@column_widths</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+        <span class='ivar'>@headers</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span>
+        <span class='ivar'>@rows</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>4</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row_data'>row_data</span><span class='op'>|</span>
+            <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_row_data'>row_data</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># The AST contents of this Table node
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='lbracket'>[</span>
+            <span class='ivar'>@caption</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+            <span class='ivar'>@alignment</span><span class='comma'>,</span>
+            <span class='ivar'>@column_widths</span><span class='comma'>,</span>
+            <span class='ivar'>@headers</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+            <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span> <span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='rbrace'>}</span>
+        <span class='rbracket'>]</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -569,7 +837,7 @@
       <div class="method_details ">
   <h3 class="signature " id="rows-instance_method">
   
-    #<strong>rows</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>rows</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span>&gt;</tt> 
   
 
   
@@ -578,13 +846,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute rows</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span>&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -592,15 +871,69 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 44</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_rows'>rows</span>
-  <span class='ivar'>@rows</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Table (class)">Table</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:caption</span><span class='comma'>,</span> <span class='symbol'>:alignment</span><span class='comma'>,</span> <span class='symbol'>:column_widths</span><span class='comma'>,</span> <span class='symbol'>:headers</span><span class='comma'>,</span> <span class='symbol'>:rows</span>
+
+    <span class='comment'># Create a new Table based on the contents
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param contents [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+        <span class='ivar'>@caption</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='ivar'>@alignment</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+        <span class='ivar'>@column_widths</span> <span class='op'>=</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+        <span class='ivar'>@headers</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span>
+        <span class='ivar'>@rows</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>4</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row_data'>row_data</span><span class='op'>|</span>
+            <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="TableRow.html" title="Paru::PandocFilter::TableRow (class)">TableRow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TableRow.html#initialize-instance_method" title="Paru::PandocFilter::TableRow#initialize (method)">new</a></span></span> <span class='id identifier rubyid_row_data'>row_data</span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># The AST contents of this Table node
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='lbracket'>[</span>
+            <span class='ivar'>@caption</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+            <span class='ivar'>@alignment</span><span class='comma'>,</span>
+            <span class='ivar'>@column_widths</span><span class='comma'>,</span>
+            <span class='ivar'>@headers</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+            <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span> <span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='rbrace'>}</span>
+        <span class='rbracket'>]</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -617,39 +950,63 @@
       <div class="method_details first">
   <h3 class="signature first" id="ast_contents-instance_method">
   
-    #<strong>ast_contents</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>ast_contents</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The AST contents of this Table node</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-42
-43
-44
-45
-46
-47
-48
-49
-50</pre>
+64
+65
+66
+67
+68
+69
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/table.rb', line 64</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
-  <span class='lbracket'>[</span>
-    <span class='ivar'>@caption</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
-    <span class='ivar'>@alignment</span><span class='comma'>,</span>
-    <span class='ivar'>@column_widths</span><span class='comma'>,</span>
-    <span class='ivar'>@headers</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
-    <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span> <span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='rbrace'>}</span>
-  <span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='lbracket'>[</span>
+        <span class='ivar'>@caption</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+        <span class='ivar'>@alignment</span><span class='comma'>,</span>
+        <span class='ivar'>@column_widths</span><span class='comma'>,</span>
+        <span class='ivar'>@headers</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='comma'>,</span>
+        <span class='ivar'>@rows</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span> <span class='id identifier rubyid_row'>row</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='rbrace'>}</span>
+    <span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -661,7 +1018,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 00:07:08 2017 by
+  Generated on Sun May 14 12:57:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

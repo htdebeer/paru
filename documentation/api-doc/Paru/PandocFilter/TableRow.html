@@ -103,7 +103,18 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>A TableRow node represents a row in a table&#39;s head or body</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -121,7 +132,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ast_contents-instance_method" title="#ast_contents (instance method)">#<strong>ast_contents</strong>  &#x21d2; Object </a>
+      <a href="#ast_contents-instance_method" title="#ast_contents (instance method)">#<strong>ast_contents</strong>  &#x21d2; Array </a>
     
 
     
@@ -135,7 +146,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The AST contents of this TableRow.</p>
+</div></span>
   
 </li>
 
@@ -160,7 +173,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of TableRow.</p>
+<p>Create a new TableRow based on the row_data.</p>
 </div></span>
   
 </li>
@@ -193,13 +206,28 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of TableRow</p>
+<p>Create a new TableRow based on the row_data</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>row_data</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -207,21 +235,21 @@
       <pre class="lines">
 
 
-24
-25
-26
-27
 28
-29</pre>
+29
+30
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/table_row.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/table_row.rb', line 28</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_row_data'>row_data</span>
-  <span class='kw'>super</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_row_data'>row_data</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_cell'>cell</span><span class='op'>|</span>
-    <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Node.html#initialize-instance_method" title="Paru::PandocFilter::Node#initialize (method)">new</a></span></span> <span class='id identifier rubyid_cell'>cell</span>
-  <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_row_data'>row_data</span><span class='rparen'>)</span>
+    <span class='kw'>super</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_row_data'>row_data</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_cell'>cell</span><span class='op'>|</span>
+        <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Node.html#initialize-instance_method" title="Paru::PandocFilter::Node#initialize (method)">new</a></span></span> <span class='id identifier rubyid_cell'>cell</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -238,27 +266,51 @@
       <div class="method_details first">
   <h3 class="signature first" id="ast_contents-instance_method">
   
-    #<strong>ast_contents</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>ast_contents</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The AST contents of this TableRow</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-31
-32
-33</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/table_row.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/table_row.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
-  <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='rbrace'>}</span>
+    <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -270,7 +322,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 00:07:09 2017 by
+  Generated on Sun May 14 12:57:12 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

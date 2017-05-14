@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,16 +17,19 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
+    module PandocFilter
 
-    require_relative "./node"
+        require_relative "./node"
 
-    # MetaBlocks [Blocks]
-    class MetaBlocks < Node
+        # A MetaBlocks Node contains a list of Blocks
+        class MetaBlocks < Node
 
-      def initialize value
-        super value
-      end
+            # Create a MetaBlocks node based on the contents
+            #
+            # @param value [String] the contents of the MetaBlocks
+            def initialize(value)
+                super value
+            end
+        end
     end
-  end
 end

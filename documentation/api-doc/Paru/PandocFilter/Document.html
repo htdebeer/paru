@@ -348,7 +348,7 @@ the contents of the document</p>
         <span class='name'>meta</span>
       
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
@@ -364,7 +364,7 @@ the contents of the document</p>
         <span class='name'>contents</span>
       
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
@@ -561,8 +561,8 @@ the contents of the document</p>
 </span>    <span class='comment'># metadata, and the contents of the document
 </span>    <span class='comment'>#
 </span>    <span class='comment'># @param version [Array&lt;Integer&gt;] the version of pandoc types
-</span>    <span class='comment'># @param meta [String] metadata
-</span>    <span class='comment'># @param contents [String] contents
+</span>    <span class='comment'># @param meta [Array] metadata
+</span>    <span class='comment'># @param contents [Array] contents
 </span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
         <span class='ivar'>@version</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Version.html" title="Paru::PandocFilter::Version (class)">Version</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Version.html#initialize-instance_method" title="Paru::PandocFilter::Version#initialize (method)">new</a></span></span> <span class='id identifier rubyid_version'>version</span>
         <span class='ivar'>@meta</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Meta.html" title="Paru::PandocFilter::Meta (class)">Meta</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Meta.html#initialize-instance_method" title="Paru::PandocFilter::Meta#initialize (method)">new</a></span></span> <span class='id identifier rubyid_meta'>meta</span>
@@ -884,7 +884,7 @@ to write back the manipulated AST in a format that pandoc understands.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 00:07:09 2017 by
+  Generated on Sun May 14 12:57:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

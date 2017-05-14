@@ -1,5 +1,5 @@
 #-- 
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,24 +17,32 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
+    module PandocFilter
 
-    require_relative "./node"
+        require_relative "./node"
 
-    # MetaValue = MetaMap | MetaList | MetaBool | MetaString | MetaInlines |
-    #   MetaBlocks
-    class MetaValue < Node
+        # A MetaValue Node is either a MetaMap, MetaList, MetaBool, MetaString, MetaInlines, or a MetaBlocks.
+        #
+        # @see http://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html#t:MetaValue
+        #
+        # @!attribute value
+        #   @return [String]
+        class MetaValue < Node
 
-      attr_accessor :value
+            attr_accessor :value
 
-      def initialize value
-        @value = value
-      end
+            # Create a new MetaValue Node based on the value
+            # 
+            # @param value [String]
+            def initialize(value)
+                @value = value
+            end
 
-      def ast_contents
-        @value
-      end
+            # The AST contents
+            def ast_contents()
+                @value
+            end
 
+        end
     end
-  end
 end

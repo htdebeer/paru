@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,47 +17,63 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
+    module PandocFilter
 
-    require_relative "./node"
+        require_relative "./node"
 
-    # MetaMap (M.Map String MetaValue)
-    class MetaMap < Node
+        # A MetaMap Node is a map of String keys with MetaValue values
+        class MetaMap < Node
 
-      def initialize contents
-        @children = Hash.new
+            # Create a new MetaMap based on the contents
+            #
+            # @param contents [Array] a list of key-value pairs
+            def initialize(contents)
+                @children = Hash.new
 
-        if contents.is_a? Hash
-          contents.each_pair do |key, value|
-            if not value.empty? and PandocFilter.const_defined? value["t"]
-              @children[key] = PandocFilter.const_get(value["t"]).new value["c"]
+                if contents.is_a? Hash
+                    contents.each_pair do |key, value|
+                        if not value.empty? and PandocFilter.const_defined? value["t"]
+                            @children[key] = PandocFilter.const_get(value["t"]).new value["c"]
+                        end
+                    end
+                end
             end
-          end
+
+            # Get the value belonging to key
+            #
+            # @param key [String] the key
+            #
+            # @return [MetaValue] the value belonging to the key
+            def [](key)
+                if @children.key_exists?
+                    @children[key]
+                end
+            end
+
+            # Does this MetaMap node have key?
+            #
+            # @param key [String] the key to find
+            #
+            # @return [Boolean] true if this MetaMap node contains this key
+            def has_key?(key)
+                @children.has_key? key
+            end
+
+            # Delete the key-value pair from this MetaMap
+            #
+            # @param key [String] the key to delete
+            def delete(key)
+                @children.delete key
+            end
+
+            # The AST contents
+            def ast_contents()
+                ast = Hash.new
+                @children.each_pair do |key, value|
+                    ast[key] = value.to_ast
+                end
+                ast
+            end
         end
-      end
-
-      def [](key)
-        if @children.key_exists?
-          @children[key]
-        end
-      end
-
-      def has_key? key 
-        @children.has_key? key
-      end
-
-      def delete key
-        @children.delete key
-      end
-
-      def ast_contents
-        ast = Hash.new
-        @children.each_pair do |key, value|
-          ast[key] = value.to_ast
-        end
-        ast
-      end
-
     end
-  end
 end

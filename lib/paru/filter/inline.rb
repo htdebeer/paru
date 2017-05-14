@@ -25,7 +25,7 @@ module Paru
         class Inline < Node
 
             # Create a new Inline node with contents
-            # @param contents [String] the contents of this inline node
+            # @param contents [Array] the contents of this inline node
             def initialize(contents)
                 super contents, true
             end 

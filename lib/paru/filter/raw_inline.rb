@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,32 +17,50 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
+    module PandocFilter
 
-    require_relative "./inline"
+        require_relative "./inline"
 
-    # RawInline Format String
-    class RawInline < Inline
-      attr_accessor :format, :string
+        # A RawInline node has a format  and a string value
+        #
+        # @!attribute format
+        #   @return [String]
+        #
+        # @!attribute string
+        #   @return [String]
+        class RawInline < Inline
+            attr_accessor :format, :string
 
-      def initialize contents
-        @format, @string = contents
-      end
+            # Create a new RawInline node based on the contents
+            #
+            # @param contents [Array]
+            def initialize(contents)
+                @format, @string = contents
+            end
 
-      def ast_contents
-        [
-          @format,
-          @string
-        ]
-      end
+            # The AST contents
+            #
+            # @return [Array]
+            def ast_contents()
+                [
+                    @format,
+                    @string
+                ]
+            end
 
-      def has_string?
-        true
-      end
+            # Has this RawInline a string value?
+            #
+            # @return [Boolean] true
+            def has_string?()
+                true
+            end
 
-      def has_inline?
-        false
-      end
+            # Has this RawInline inline contents?
+            #
+            # @return [Boolean] false
+            def has_inline?()
+                false
+            end
+        end
     end
-  end
 end

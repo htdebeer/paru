@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,20 +17,27 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./block"
+    module PandocFilter
+        require_relative "./block"
 
-    class TableRow < Block
-      def initialize row_data
-        super []
-        row_data.each do |cell|
-          @children.push Block.new cell
+        # A TableRow node represents a row in a table's head or body
+        class TableRow < Block
+            # Create a new TableRow based on the row_data
+            #
+            # @param row_data [Array]
+            def initialize(row_data)
+                super []
+                row_data.each do |cell|
+                    @children.push Block.new cell
+                end
+            end
+
+            # The AST contents of this TableRow
+            #
+            # @return [Array]
+            def ast_contents
+                @children.map {|child| child.ast_contents}
+            end
         end
-      end
-
-      def ast_contents
-        @children.map {|child| child.ast_contents}
-      end
     end
-  end
 end

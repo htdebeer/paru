@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,12 +17,13 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
-    require_relative "./inline"
+    module PandocFilter
+        require_relative "./inline"
 
-    # SmallCaps [Inline]
-    class SmallCaps < Inline
+        # A SmallCaps node is an inline level node representing SMALL CAPS
+        # text
+        class SmallCaps < Inline
+        end
     end
-  end
 end
 

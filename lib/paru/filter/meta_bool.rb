@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,12 +17,12 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-  module PandocFilter
+    module PandocFilter
 
-    require_relative "./meta_value"
+        require_relative "./meta_value"
 
-    # MetaBool Bool
-    class MetaBool < MetaValue
+        # A MetaBool Note representa a Boolean value
+        class MetaBool < MetaValue
+        end
     end
-  end
 end

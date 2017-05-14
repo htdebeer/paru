@@ -106,7 +106,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>Span Attr [Inline]</p>
+<p>A Span node is a general Inline level node with attributes and contens</p>
 
 
   </div>
@@ -124,7 +124,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#attr-instance_method" title="#attr (instance method)">#<strong>attr</strong>  &#x21d2; Object </a>
+      <a href="#attr-instance_method" title="#attr (instance method)">#<strong>attr</strong>  &#x21d2; Attr </a>
     
 
     
@@ -141,9 +141,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns the value of attribute attr.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -164,7 +162,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ast_contents-instance_method" title="#ast_contents (instance method)">#<strong>ast_contents</strong>  &#x21d2; Object </a>
+      <a href="#ast_contents-instance_method" title="#ast_contents (instance method)">#<strong>ast_contents</strong>  &#x21d2; Array </a>
     
 
     
@@ -178,7 +176,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>The AST contents.</p>
+</div></span>
   
 </li>
 
@@ -203,7 +203,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of Span.</p>
+<p>Create a new Span node based on the contents.</p>
 </div></span>
   
 </li>
@@ -236,13 +236,28 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of Span</p>
+<p>Create a new Span node based on the contents</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>contents</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -250,17 +265,17 @@
       <pre class="lines">
 
 
-29
-30
-31
-32</pre>
+36
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/span.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/span.rb', line 36</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_contents'>contents</span>
-  <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
-  <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+    <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -277,7 +292,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="attr-instance_method">
   
-    #<strong>attr</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>attr</strong>  &#x21d2; <tt><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></tt> 
   
 
   
@@ -286,13 +301,24 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns the value of attribute attr</p>
-
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -300,15 +326,51 @@
       <pre class="lines">
 
 
-27
-28
-29</pre>
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/span.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/span.rb', line 30</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_attr'>attr</span>
-  <span class='ivar'>@attr</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Span (class)">Span</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span>
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:attr</span>
+
+    <span class='comment'># Create a new Span node based on the contents
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param contents [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+        <span class='ivar'>@attr</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Attr.html" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Attr.html#initialize-instance_method" title="Paru::PandocFilter::Attr#initialize (method)">new</a></span></span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># The AST contents
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Array]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='lbracket'>[</span>
+            <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+            <span class='kw'>super</span>
+        <span class='rbracket'>]</span>
+    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -325,33 +387,57 @@
       <div class="method_details first">
   <h3 class="signature first" id="ast_contents-instance_method">
   
-    #<strong>ast_contents</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>ast_contents</strong>  &#x21d2; <tt>Array</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The AST contents</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-34
-35
-36
-37
-38
-39</pre>
+44
+45
+46
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/span.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/span.rb', line 44</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
-  <span class='lbracket'>[</span>
-    <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
-    <span class='kw'>super</span>
-  <span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='lbracket'>[</span>
+        <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+        <span class='kw'>super</span>
+    <span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -363,7 +449,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 00:07:08 2017 by
+  Generated on Sun May 14 12:57:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>
