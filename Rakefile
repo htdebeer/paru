@@ -8,7 +8,10 @@ end
 task :default => :test
 
 YARD::Rake::YardocTask.new do |t|
-    t.files = ['LICENCE', 'lib/paru.rb', 'lib/**/*.rb']
+    t.files = [
+        'lib/paru.rb', 
+        'lib/**/*.rb'
+    ]
 end
 
 task :generate_index_md do

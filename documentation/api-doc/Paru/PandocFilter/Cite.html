@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <iframe id="nav" src="../../class_list.html"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,6 +58,8 @@
 </div>
         <div class="clear"></div>
       </div>
+
+      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Paru::PandocFilter::Cite
   
@@ -285,7 +287,7 @@ nodes</p>
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_contents'>contents</span>
     <span class='ivar'>@citations</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_citation'>citation</span><span class='op'>|</span>
-        <span class='ivar'>@citations</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="Citation.html" title="Paru::PandocFilter::Citation (class)">Citation</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Citation.html#initialize-instance_method" title="Paru::PandocFilter::Citation#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_citation'>citation</span><span class='rparen'>)</span>
+        <span class='ivar'>@citations</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'>Citation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_citation'>citation</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
     <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
@@ -365,7 +367,7 @@ nodes</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/paru/filter/cite.rb', line 28</span>
 
-<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Cite (class)">Cite</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span>
+<span class='kw'>class</span> <span class='const'>Cite</span> <span class='op'>&lt;</span> <span class='const'>Inline</span>
     <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:citations</span>
 
     <span class='comment'># Create a new Cite node
@@ -375,7 +377,7 @@ nodes</p>
 </span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_contents'>contents</span>
         <span class='ivar'>@citations</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
         <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_citation'>citation</span><span class='op'>|</span>
-            <span class='ivar'>@citations</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="Citation.html" title="Paru::PandocFilter::Citation (class)">Citation</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Citation.html#initialize-instance_method" title="Paru::PandocFilter::Citation#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_citation'>citation</span><span class='rparen'>)</span>
+            <span class='ivar'>@citations</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'>Citation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_citation'>citation</span><span class='rparen'>)</span>
         <span class='kw'>end</span>
         <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
@@ -452,9 +454,9 @@ nodes</p>
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 12:57:10 2017 by
+  Generated on Wed May 17 22:31:43 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.5 (ruby-2.3.3).
 </div>
 
     </div>

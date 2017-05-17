@@ -12,6 +12,10 @@ which is incompatible with pandoc <
 For a collection of paru filters, have a look at the
 [paru-filter-collection](https://github.com/htdebeer/paru-filter-collection).
 
+
+See also the [paru API
+documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
+
 ## Licence
 
 Paru is [free sofware](https://www.gnu.org/philosophy/free-sw.en.html);
