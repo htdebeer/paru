@@ -18,6 +18,7 @@
 #++
 module Paru
 
+    require "shellwords"
     require "yaml"
 
     # Pandoc is a wrapper around the pandoc document converter. See
@@ -144,7 +145,7 @@ module Paru
 
                 case value
                 when TrueClass then
-                    # Flags don"t have a value, only its name
+                    # Flags don't have a value, only its name
                     # For example: --standalone
                     options_arr.push "#{option_string}"
                 when FalseClass then
@@ -152,18 +153,18 @@ module Paru
                 when Array then
                     # This option can occur multiple times: list each with its value.
                     # For example: --css=main.css --css=print.css
-                    options_arr.push value.map {|val| "#{option_string}=#{val.to_s}"}.join(option_sep)
+                    options_arr.push value.map {|val| "#{option_string}=#{val.to_s.shellescape}"}.join(option_sep)
                 else
-                    # All options that aren"t flags and can occur only once have the
+                    # All options that aren't flags and can occur only once have the
                     # same pattern: --option=value
-                    options_arr.push "#{option_string}=#{value.to_s}"
+                    options_arr.push "#{option_string}=#{value.to_s.shellescape}"
                 end
             end
             options_arr.join(option_sep)
         end
 
         # For each pandoc command line option a method is defined as follows:
-        OPTIONS = YAML.load_file File.join(__dir__, "pandoc_options.yaml")
+        OPTIONS = YAML.load_file File.join(__dir__, 'pandoc_options.yaml')
 
         OPTIONS.keys.each do |option|
             if OPTIONS[option].is_a? Array then
