@@ -5,7 +5,7 @@ multi-format document converter. See
 <https://heerdebeer.org/Software/markdown/paru/> for more information on Paru.
 
 The latest version of Paru is
-[0.2.4.2](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.4.2.gem)
+[0.2.4.3](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.4.3.gem)
 which is incompatible with pandoc <
 [1.18](http://pandoc.org/releases.html#pandoc-1.18-26-oct-2016). 
 
@@ -30,11 +30,11 @@ Paru is installed through rubygems as follows:
     gem install paru
 
 You can also download the latest gem
-[paru-0.2.4.2.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.4.2.gem)
+[paru-0.2.4.3.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.4.3.gem)
 and install it by:
 
     cd /directory/you/downloaded/the/gem/to
-    gem install paru-0.2.4.2.gem
+    gem install paru-0.2.4.3.gem
 
 Paru, obviously, requires pandoc. See
 <http://pandoc.org/installing.html> about how to install pandoc on your
