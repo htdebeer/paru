@@ -29,6 +29,9 @@ of paru is explained in detail, from explaining how to install and use
 paru, creating and using filters, to putting it all together in a
 real-world use case: generating this manual!
 
+See also the [paru API
+documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
+
 1.1 Licence
 -----------
 
@@ -693,96 +696,8 @@ Instead of removing the pandoc property all together, I could also have
 updated it to have a markdown file be converted differently the second
 time it is run by `do-pandoc.rb`.
 
-3.5 Paru filter API
--------------------
-
-Currently I am documenting paru and generating the [API
-documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/)
-here. This is still a work in progress. For now, a quick overview is
-given below.
-
-Each of [pandoc's internal
-types](https://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html)
-(see the table in [Section 3.2](#numbering-figures)) is a subclass of
-`Paru::PandocFilter::Node`. A `Node` has the following properties and
-methods:
-
-### Node's properties
-
--   `parent`: a node's parent node, if any (see `has_parent?`). The root
-    node has not parent.
--   `children`: an array of a node's children nodes. A leaf node has no
-    children.
--   `string`: if this node has a string property, you can access its
-    contents. (See `has_string?`)
--   `classes`: if this node has a classes property, you can access its
-    contents. (See `has_classes?`)
-
-### Node's methods
-
-#### Basic methods
-
--   `type`: this node's pandoc type, such as *Image*, *Para*, *Header*,
-    *Strong*, and so on.
--   `each`: execute block for each of this node's children
--   `has_children?`: has this node any children?
--   `children= list`: replace all this node's children by the list with
-    new child nodes.
--   `has_parent?`: has this node a parent node?
--   `is_root?`: is this node the root node?
--   `is_node?`: if this node has any children
--   `is_leaf?`: if this node has not any children
--   `is_block?`: this node is a block level node?
--   `is_inline?`: this node is an inline level node?
--   `has_block?`: this node has block level child nodes?
--   `can_act_as_both_block_and_inline?`: the *Image* and *Note* nodes
-    are inline nodes in pandoc, but often they act like block like
-    elements in a document.
--   `has_string?`: does this node have a string property?
--   `has_class?`: does this node have classes?
-
-#### AST manipulation methods
-
--   `insert index, child`: inserts child node at position index of this
-    node's children.
--   `delete child`: delete child node from this node's children.
--   `remove_at index`: delete child node at index from this node's
-    children.
--   `append child`: append a child node to this node's children. This
-    method is aliased by the `<<` operator.
--   `prepend child`: prepend a child node to this node's children.
--   `replace old_child, new_child`: replace old\_child with new\_child
-    node in this node's children.
--   `replace_at index, new_child`: replace child node at index with
-    new\_child node in this node's children.
--   `each_depth_first &block`: for each child node in this node's
-    children execute the block. The processing order is depth first
-    (rather than breadth first).
-
-#### Markdown methods
-
--   `inner_markdown`: returns the markdown of this node's children.
--   `inner_markdown= new_markdown`: replaces this node's children by the
-    AST of the parsed `new_markdown`.
--   `outer_markdown`: returns the markdown of this node and its
-    children.
--   `outer_markdown= new_markdown`: replaces this node and its children
-    by the AST of the parsed `new_markdown`.
-
-### The Document node
-
-The `Paru::PandocFilter::Document` node is a special node representing a
-pandoc document. It has special *static* methods to create a document:
-
--   `from_JSON json`: create a new document node based on json data.
--   `fragment node_list`: create a new document based on a list of
-    nodes. It has empty metadata.
-
-Furthermore, a document can be converted to json using the
-
--   `to_JSON`
-
-method.
+For more information, see the [paru filter API
+documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
 
 Chapter 4. Putting it all together {#putting-it-all-together}
 ==================================
@@ -827,7 +742,7 @@ pandoc:
 
 ## Licence
 
-::paru::insert licence.md
+::paru::insert license.md
 
 ## Installation
 

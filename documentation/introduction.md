@@ -7,3 +7,6 @@ pandoc filters in Ruby (see [Chapter
 paru is explained in detail, from explaining how to install and use paru,
 creating and using filters, to putting it all together in a real-world use
 case: generating this manual!
+
+See also the [paru API
+documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).

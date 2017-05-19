@@ -384,14 +384,14 @@ the contents of the document</p>
       <pre class="lines">
 
 
-82
-83
-84
 85
-86</pre>
+86
+87
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
     <span class='ivar'>@version</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Version.html" title="Paru::PandocFilter::Version (class)">Version</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Version.html#initialize-instance_method" title="Paru::PandocFilter::Version#initialize (method)">new</a></span></span> <span class='id identifier rubyid_version'>version</span>
@@ -454,9 +454,6 @@ the contents of the document</p>
       <pre class="lines">
 
 
-41
-42
-43
 44
 45
 46
@@ -517,10 +514,13 @@ the contents of the document</p>
 101
 102
 103
-104</pre>
+104
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 44</span>
 
 <span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Document (class)">Document</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Node.html" title="Paru::PandocFilter::Node (class)">Node</a></span></span>
 
@@ -662,9 +662,6 @@ the contents of the document</p>
       <pre class="lines">
 
 
-61
-62
-63
 64
 65
 66
@@ -675,10 +672,13 @@ the contents of the document</p>
 71
 72
 73
-74</pre>
+74
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fragment'>fragment</span><span class='lparen'>(</span><span class='id identifier rubyid_node_list'>node_list</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_meta'>meta</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -763,14 +763,14 @@ the contents of the document</p>
       <pre class="lines">
 
 
-49
-50
-51
 52
-53</pre>
+53
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_JSON'>from_JSON</span><span class='lparen'>(</span><span class='id identifier rubyid_json'>json</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_doc'>doc</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_json'>json</span>
@@ -814,16 +814,16 @@ the contents of the document</p>
       <pre class="lines">
 
 
-89
-90
-91
 92
 93
 94
-95</pre>
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='lbrace'>{</span>
@@ -864,12 +864,12 @@ to write back the manipulated AST in a format that pandoc understands.</p>
       <pre class="lines">
 
 
-100
-101
-102</pre>
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_JSON'>to_JSON</span>
     <span class='id identifier rubyid_to_ast'>to_ast</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span>
@@ -884,7 +884,7 @@ to write back the manipulated AST in a format that pandoc understands.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri May 19 21:28:25 2017 by
+  Generated on Fri May 19 21:32:40 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

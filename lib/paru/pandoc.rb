@@ -22,32 +22,69 @@ module Paru
     require "yaml"
 
     # Pandoc is a wrapper around the pandoc document converter. See
-    # <http://pandoc.org/README.html> for details about pandoc.  This file is
-    # basically a straightforward translation from the pandoc command line
-    # program to a ruby class, giving a Rubyesque API to work with pandoc.
+    # <http://pandoc.org/README.html> for details about pandoc.  The Pandoc
+    # class is basically a straightforward translation from the pandoc command
+    # line program to Ruby. It is a Rubyesque API to work with pandoc.
+    #
+    # For information about writing pandoc filters in Ruby see {Filter}.
+    #
+    # Creating a Paru pandoc converter in Ruby is quite straightforward: you
+    # create a new Paru::Pandoc object with a block that configures that
+    # Pandoc object with pandoc options. Each command-line option to pandoc is
+    # a method on the Pandoc object. Command-line options with dashes in them,
+    # such as "--reference-docx", can be called by replacing the dash with an
+    # underscore. So, "--reference-docx" becomes the method +reference_docx+.
+    #
+    # Pandoc command-line flags, such as "--parse-raw", "--chapters", or
+    # "--toc", have been translated to Paru::Pandoc methods that take an
+    # optional Boolean parameter; +true+ is the default value. Therefore, if
+    # you want to enable a flag, no parameter is needed.
+    #
+    # All other pandoc command-line options are translated to Paru::Pandoc
+    # methods that take either one String or Number argument, or a list of
+    # String arguments if that command-line option can occur more than once
+    # (such as "--include-before-header" or "--filter").
+    #
+    # Once you have configured a Paru::Pandoc converter, you can call
+    # +convert+ or +<<+ (which is an alias for +convert+) with a string to
+    # convert. You can call +convert+ as often as you like and, if you like,
+    # reconfigure the converter in between!
+    #
     #
     # @example Convert the markdown string 'hello *world*' to HTML
-    #     converter = Paru::Pandoc.new
-    #     converter.configure do
-    #         from "markdown"
-    #         to "html"
-    #     end
-    #     converter.convert 'hello *world*'
-    #
-    # @example Convert markdown to HTML, written in a more commonly used shorthand
     #     Paru::Pandoc.new do
-    #         from markdown
-    #         to html
+    #         from 'markdown
+    #         to 'html'
     #     end << 'hello *world*'
+    #
+    # @example Convert a HTML file to DOCX with a reference file
+    #     Paru::Pandoc.new do
+    #         from "html"
+    #         to "docx"
+    #         reference_docx "styled_output.docx"
+    #         output "output.docx"
+    #     end.convert File.read("input.html")
+    #
+    # @example Convert a markdown file to html but add in references in APA style
+    #     Paru::Pandoc.new do
+    #         from "markdown"
+    #         toc
+    #         bibliography "literature.bib"
+    #         to "html"
+    #         csl "apa.csl"
+    #         output "report_with_references.md"
+    #     end << File.read("report.md")
     #
     #
     class Pandoc
 
-        # Gather information about pandoc. It runs `pandoc --version` and extracts
-        # pandoc's version number and default data directory.
+        # Gather information about the pandoc installation. It runs +pandoc
+        # --version+ and extracts pandoc's version number and default data
+        # directory. This method is typically used in scripts that use Paru to
+        # automate the use of pandoc.
         #
-        # @return [Hash] Return a Hash with the :verion and :data_dir of the
-        #   pandoc installation
+        # @return [Hash{:version => String, :data_dir => String}] Pandoc's
+        #   version, such as "1.17.0.4" and the data directory, such as "/home/huub/.pandoc".
         def self.info()
             output = ''
             IO.popen('pandoc --version', 'r+') do |p|
@@ -63,10 +100,10 @@ module Paru
             }
         end
 
-        # Create a new Pandoc converter, optionally configured by block
+        # Create a new Pandoc converter, optionally configured by a block with
+        # pandoc options. See {#configure} on how to configure a converter.
         #
-        # @param block [Proc] an optional configuration block. See #configure
-        #   for how to configure a Pandoc converter
+        # @param block [Proc] an optional configuration block.
         def initialize(&block)
             @options = {}
             configure(&block) if block_given?

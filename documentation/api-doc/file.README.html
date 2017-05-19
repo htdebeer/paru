@@ -58,6 +58,8 @@
       </div>
 
       <div id="content"><div id='filecontents'>
+<h1 id="label-Introduction">Introduction</h1>
+
 <p>Paru is a simple Ruby wrapper around <a
 href="http://www.pandoc.org">pandoc</a>, the great multi-format document
 converter. Paru supports automating pandoc by writing Ruby programs and
@@ -69,10 +71,87 @@ paru, creating and using filters, to putting it all together in a
 real-world use case: generating that manual!</p>
 
 <p>In this document, however, you will find the API documentation.</p>
+
+<h1 id="label-Using+paru">Using paru</h1>
+
+<h2 id="label-Creating+a+pandoc+converter+in+Ruby+wit+paru">Creating a pandoc converter in Ruby wit paru</h2>
+
+<p>For automating the use of pandoc, see the <span class='object_link'><a href="Paru/Pandoc.html" title="Paru::Pandoc (class)">Paru::Pandoc</a></span> class on how to
+create, configure, and run a pandoc converter in Ruby. Using Paru in this
+regard is quite straightforward. For example, to convert the markdown
+string +“Hello world, from <strong>pandoc</strong>”+ to HTML you can write
+the following Ruby program:</p>
+
+<p><pre class="code ruby"><span class='comment'>#!/usr/bin/env ruby
+</span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>paru/pandoc</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='id identifier rubyid_input'>input</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hello world, from **pandoc**</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Paru/Pandoc.html" title="Paru::Pandoc (class)">Pandoc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Paru/Pandoc.html#initialize-instance_method" title="Paru::Pandoc#initialize (method)">new</a></span></span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_from'>from</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>markdown</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_to'>to</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>html</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_input'>input</span>
+
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_output'>output</span></pre></p>
+
+<h2 id="label-Creating+a+pandoc+filter+in+Ruby+with+paru">Creating a pandoc filter in Ruby with paru</h2>
+
+<p>For writing pandoc filters in Ruby, see the <span class='object_link'><a href="Paru/Filter.html" title="Paru::Filter (class)">Paru::Filter</a></span> class. In a
+filter, you can select pandoc nodes and specify an action to perform on
+each selection. In a filter action, you usually manipulate the selected
+<span class='object_link'><a href="Paru/PandocFilter/Node.html" title="Paru::PandocFilter::Node (class)">Paru::PandocFilter::Node</a></span>s.</p>
+
+<p>For eample, to delete all horizontal lines in a document you might specify
+the following filter:</p>
+
+<p><pre class="code ruby"><span class='comment'>#!/usr/bin/env ruby
+</span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>paru/filter</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='const'><span class='object_link'><a href="Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Paru/Filter.html" title="Paru::Filter (class)">Filter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="Paru/Filter.html#run-class_method" title="Paru::Filter.run (method)">run</a></span></span> <span class='kw'>do</span> 
+    <span class='id identifier rubyid_with'>with</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HorizontalRule</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_rule'>rule</span><span class='op'>|</span>
+
+        <span class='kw'>if</span> <span class='id identifier rubyid_rule'>rule</span><span class='period'>.</span><span class='id identifier rubyid_has_parent?'>has_parent?</span> <span class='kw'>then</span>
+            <span class='id identifier rubyid_rule'>rule</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_rule'>rule</span>
+        <span class='kw'>else</span>
+            <span class='id identifier rubyid_rule'>rule</span><span class='period'>.</span><span class='id identifier rubyid_outerMarkdown'>outerMarkdown</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre></p>
+
+<h1 id="label-Installation">Installation</h1>
+
+<p>Paru is installed via Rubygems:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_paru'>paru</span>
+</code></pre>
+
+<p>You can also download the paru gem through its <a
+href="delete_horizontal_rules">github repository</a>.</p>
+
+<h1 id="label-License">License</h1>
+
+<p>Copyright 2015, 2016, 2017 Huub de Beer <a
+href="mailto:Huub@heerdebeer.org">Huub@heerdebeer.org</a></p>
+
+<p>This file is part of Paru</p>
+
+<p>Paru is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.</p>
+
+<p>Paru is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.</p>
+
+<p>You should have received a copy of the GNU General Public License along
+with Paru. If not, see <a
+href="http://www.gnu.org/licenses">www.gnu.org/licenses</a>/.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Fri May 19 21:28:23 2017 by
+  Generated on Fri May 19 21:32:38 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

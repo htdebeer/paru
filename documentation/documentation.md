@@ -27,7 +27,7 @@ pandoc:
 
 ## Licence
 
-::paru::insert licence.md
+::paru::insert license.md
 
 ## Installation
 

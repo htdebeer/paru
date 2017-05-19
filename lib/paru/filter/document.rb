@@ -25,8 +25,11 @@ module Paru
         require_relative "./meta"
         require_relative "./version"
 
+        # Pandoc type version key
         VERSION = "pandoc-api-version"
+        # Pandoc type meta key
         META = "meta"
+        # Pandoc type block key
         BLOCKS = "blocks"
 
         # The current pandoc type version
