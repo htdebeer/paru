@@ -69,3 +69,7 @@ For example, the following markdown file (`hello.md`),
 can be converted by pandoc to HTML by running the following command:
 
     do-pandoc.rb hello.md
+
+# Writing and using pandoc filters with paru
+
+::paru::insert using_filters.md
