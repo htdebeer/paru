@@ -17,6 +17,7 @@ pandoc:
   - ../examples/filters/number_chapters_and_sections_and_figures.rb
   - ../examples/filters/insert_code_block.rb
   - ../examples/filters/remove_pandoc_metadata.rb
+  - ../examples/filters/insert_paru_version.rb
 ...
 
 ::paru::insert preface.md

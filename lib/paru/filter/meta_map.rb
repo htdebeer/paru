@@ -50,6 +50,16 @@ module Paru
                 end
             end
 
+            # Set a value with a key
+            #
+            # @param key [String] the key to set
+            # @param value
+            #   [MetaBlocks|MetaBool|MetaInline|MetaList|MetaMap|MetaString|MetaValue]
+            #   the value to set
+            def []=(key, value)
+                @children[key] = value
+            end
+
             # Does this MetaMap node have key?
             #
             # @param key [String] the key to find

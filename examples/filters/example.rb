@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# Annotate custom blocks: example blocks and important blocks
 require "paru/filter"
 
 example_count = 0

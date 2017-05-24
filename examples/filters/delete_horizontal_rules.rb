@@ -6,8 +6,6 @@ Paru::Filter.run do
 
         if rule.has_parent? then
             rule.parent.delete rule
-        else
-            rule.outerMarkdown = ""
         end
     end
 end

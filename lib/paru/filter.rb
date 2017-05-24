@@ -70,24 +70,132 @@ module Paru
 
 
     # Filter is used to write your own pandoc filter in Ruby. A Filter is
-    # almost always created and immediately executed via the +run+ method as
-    # shown in the following examples:
+    # almost always created and immediately executed via the +run+ method. The
+    # most simple filter you can write in paru is the so-called "identity":
     #
-    # @example Identity filter
-    #     Paru::Filter.run do
-    #         # nothing
-    #     end
+    # {include:file:examples/filters/identity.rb}
     #
-    # @example Remove horizontal lines
-    #     Paru::Filter.run do
-    #       with "HorizontalRule" do |rule|
-    #           if rule.has_parent? then
-    #               rule.parent.delete rule
-    #           else
-    #               rule.outer_markdown = ""
-    #           end
-    #       end
-    #     end
+    # It runs the filter, but it makes no selection nor performs an action.
+    # This is pretty useless, of course—although it makes for a great way to
+    # test the filter functionality—, but it shows the general setup of a
+    # filter well.
+    #
+    # = Writing a simple filter: numbering figures
+    #
+    # Inside a {Filter#run} block, you specify *selectors* with *actions*. For
+    # example, to number all figures in a document and prefix their captions
+    # with "Figure", the following filter would work:
+    #
+    # {include:file:examples/filters/number_figures.rb}
+    #
+    # This filter selects all {PandocFilter::Image} nodes. For each
+    # {PandocFilter::Image} node it increments the figure counter
+    # +figure_counter+ and then sets the figure's caption to "Figure" followed
+    # by the figure count and the original caption.  In other words, the
+    # following input document
+    #
+    #     ![My first image](img/horse.png)
+    #
+    #     ![My second image](img/rabbit.jpeg)
+    #
+    # will be transformed into
+    #
+    #     ![Figure 1. My first image](img/horse.png)
+    #
+    #     ![Figure 2. My second image](img/rabbit.jpeg)
+    #
+    # The method {PandocFilter::Node#inner_markdown} and its counterpart
+    # {PandocFilter::Node#outer_markdown} are a great way to manipulate the
+    # contents of a selected {PandocFilter::Node}. No messing about creating
+    # and filling {PandocFilter::Node}s, you can just use pandoc's own
+    # markdown format!
+    #
+    # = Writing a more involved filters
+    #
+    # == Using the "follows" selector: Numbering figures and chapters
+    #
+    # The previous example can be extended to also number chapters and to
+    # start numbering figures anew per chapter. As you would expect, we need
+    # two counters, one for the figures and one for the chapters:
+    #
+    # {include:file:examples/filters/number_figures_per_chapter.rb}
+    #
+    # What is new in this filter, however, is the selector "Header + Image"
+    # which selects all {PandocFilter::Image} nodes that *follow* a
+    # {PandocFilter::Header} node. Documents in pandoc have a _flat_ structure
+    # where chapters do not exists as separate concepts. Instead, a chapter is
+    # implied by a header of a certain level and everything that follows until
+    # the next header of that level.
+    #
+    # == Using the "child of" selector: Annotate custom blocks
+    #
+    # Hierarchical structures do exist in a pandoc document, however. For
+    # example, the contents of a paragraph ({PandocFilter::Para}), which
+    # itself is a {PandocFilter::Block} level node, are {PandocFilter::Inline}
+    # level nodes. Another example are custom block or {PandocFilter::Div}
+    # nodes.  You select a child node by using the +>+ selector as in the
+    # example below:
+    #
+    # {include:file:examples/filters/example.rb}
+    #
+    # Here all {PandocFilter::Header} nodes that are inside a
+    # {PandocFilter::Div} node are selected. Furthermore, if these headers are
+    # of level 3, they are prefixed by the string "Example" followed by a
+    # count.
+    #
+    # In this example, "important" {PandocFilter::Div} nodes are annotated by
+    # putting the string *important* before the contents of the node.
+    #
+    # == Using a distance in a selector: Capitalize the first N characters of
+    # a paragraph
+    #
+    # Given the flat structure of a pandoc document, the "follows" selector
+    # has quite a reach. For example, "Header + Para" selects all paragraphs
+    # that follow a header. In most well-structured documents, this would
+    # select basically all paragraphs.
+    #
+    # But what if you need to be more specific? For example, if you would like
+    # to capitalize the first sentence of each first paragraph of a chapter,
+    # you need a way to specify a sequence number of sorts. To that end, paru
+    # filter selectors take an optional *distance* parameter. A filter for
+    # this example could look like:
+    #
+    # {include:file:examples/filters/capitalize_first_sentence.rb}
+    #     
+    # The distance is denoted after a selector by an integer. In this case
+    # "Header +1 Para" selects all {PandocFilter::Para} nodes that directly
+    # follow an {PandocFilter::Header} node. You can use a distance with any
+    # selector.
+    #
+    # == Manipulating nodes: Removing horizontal lines
+    #
+    # Although the {PandocFilter::Node#inner_markdown} and
+    # {PandocFilter::Node#outer_markdown} work in most situations, sometimes
+    # direct manipulation of the pandoc document AST is useful. These
+    # {PandocFilter::ASTManipulation} methods are mixed in
+    # {PandocFilter::Node} and can be used on any node in your filter. For
+    # example, to delete all {PandocFilter::HorizontalRule} nodes, can use a
+    # filter like:
+    #
+    # {include:file:examples/filters/delete_horizontal_rules.rb}
+    #
+    # Note that you could have arrived at the same effect by using:
+    #
+    #     rule.outer_markdown = ""
+    #
+    # 
+    #
+    # == Manipulating metadata: 
+    #
+    # One of the interesting features of the pandoc markdown format is the
+    # ability to add metadata to a document via a YAML block or command line
+    # options. For example, if you use a template that uses the metadata
+    # property +$date$+ to write a date on a title page, it is quite useful to
+    # automatically add the date of _today_ to the metadata. You can do so
+    # with a filter like:
+    #
+    # {include:file:examples/filters/add_today.rb}
+    #
     class Filter
 
         # Run the filter specified by block. In the block you specify

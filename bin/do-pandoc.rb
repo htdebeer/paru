@@ -51,6 +51,11 @@ if metadata.has_key? "pandoc" then
     pandoc = Paru::Pandoc.new
     to_stdout = true
     metadata["pandoc"].each do |option, value|
+      if value.is_a? String then
+          value = value.gsub '\\', ''
+      elsif value.is_a? Array then
+          value = value.map {|v| v.gsub '\\', '' if v.is_a? String}
+      end
       pandoc.send option, value
       to_stdout = false if option == "output"
     end

@@ -365,6 +365,7 @@ nothing:
 
 ``` {.ruby}
 #!/usr/bin/env ruby
+# Identity filter
 require "paru/filter"
 
 Paru::Filter.run do
@@ -399,14 +400,15 @@ filter that does this numbering of figures automatically as well:
 
 ``` {.ruby}
 #!/usr/bin/env ruby
+# Number all figures in a document and prefix the caption with "Figure".
 require "paru/filter"
 
-current = 0;
+figure_counter = 0;
 
 Paru::Filter.run do 
     with "Image" do |image|
-        current += 1
-        image.inner_markdown = "Figure #{current}. #{image.inner_markdown}"
+        figure_counter += 1
+        image.inner_markdown = "Figure #{figure_counter}. #{image.inner_markdown}"
     end
 end
 ```
@@ -535,9 +537,10 @@ of 1 nodes from a header like so:
 
 ``` {.ruby}
 #!/usr/bin/env ruby
+# Capitalize the first N characters of a paragraph
 require "paru/filter"
 
-END_CAPITAL = 20
+END_CAPITAL = 10
 Paru::Filter.run do 
     with "Header +1 Para" do |p|
         text = p.inner_markdown
@@ -573,6 +576,7 @@ you can automatically number the example blocks by selecting all
 
 ``` {.ruby}
 #!/usr/bin/env ruby
+# Annotate custom blocks: example blocks and important blocks
 require "paru/filter"
 
 example_count = 0
@@ -732,6 +736,7 @@ pandoc:
   - ../examples/filters/number_chapters_and_sections_and_figures.rb
   - ../examples/filters/insert_code_block.rb
   - ../examples/filters/remove_pandoc_metadata.rb
+  - ../examples/filters/insert_paru_version.rb
 ...
 
 ::paru::insert preface.md

@@ -120,6 +120,38 @@
 
 
 
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string-instance_method" title="#string (instance method)">#<strong>string</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The value of this Str node.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
 
 
 
@@ -285,12 +317,12 @@
       <pre class="lines">
 
 
-29
-30
-31</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/str.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/str.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
     <span class='ivar'>@string</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -301,6 +333,126 @@
 </div>
   
 </div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="string=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="string-instance_method">
+  
+    #<strong>string</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of this Str node.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the value of this Str node.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/str.rb', line 27</span>
+
+<span class='kw'>class</span> <span class='const'>Str</span> <span class='op'>&lt;</span> <span class='const'>Inline</span>
+
+    <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:string</span>
+
+    <span class='comment'># Create a new Str node based on the value
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param value [String]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+        <span class='ivar'>@string</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># The AST contents
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='ivar'>@string</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Has the Str node a string value? Of course!
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Boolean] true
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_has_string?'>has_string?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='kw'>true</span>
+    <span class='kw'>end</span>
+
+    <span class='comment'># Has the Str node inline contents? 
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Boolean] false
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_has_inline?'>has_inline?</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='kw'>false</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 
   <div id="instance_method_details" class="method_details_list">
@@ -333,12 +485,12 @@
       <pre class="lines">
 
 
-34
-35
-36</pre>
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/str.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/str.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='ivar'>@string</span>
@@ -392,12 +544,12 @@
       <pre class="lines">
 
 
-48
-49
-50</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/str.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/str.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_inline?'>has_inline?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>false</span>
@@ -451,12 +603,12 @@
       <pre class="lines">
 
 
-41
-42
-43</pre>
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/str.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/str.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_string?'>has_string?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>true</span>
@@ -471,7 +623,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 24 19:22:47 2017 by
+  Generated on Wed May 24 22:31:31 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.3).
 </div>

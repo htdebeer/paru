@@ -21,7 +21,12 @@ module Paru
         require_relative "./inline"
 
         # A Str node represents a string
+        #
+        # @!attribute string
+        #   @return [String] the value of this Str node.
         class Str < Inline
+
+            attr_accessor :string
 
             # Create a new Str node based on the value
             #

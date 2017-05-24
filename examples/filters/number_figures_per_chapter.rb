@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# Number figures per chapter; number chapters as well
 require "paru/filter"
 
 current_chapter = 0

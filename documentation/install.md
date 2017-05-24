@@ -5,12 +5,12 @@ gem install paru
 ~~~
 
 You can also download the latest gem
-[paru-0.2.4.3.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.4.3.gem)
+[paru-::paru::version.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-::paru::version.gem)
 and install it by:
 
 ~~~ {.bash}
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.2.4.3.gem
+gem install paru-::paru::version.gem
 ~~~
 
 Paru, obviously, requires pandoc. See <http://pandoc.org/installing.html>

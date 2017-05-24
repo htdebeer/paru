@@ -34,7 +34,7 @@ selection. In a filter action, you usually manipulate the selected
 For eample, to delete all horizontal lines in a document you might specify the
 following filter:
 
-{include:file:test/filters/delete_horizontal_rules.rb}
+{include:file:examples/filters/delete_horizontal_rules.rb}
 
 # Installation
 

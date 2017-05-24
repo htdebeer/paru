@@ -29,7 +29,7 @@ module Paru
         # @!attribute attr
         #   @return [Attr]
         #
-        # @!attribute targer
+        # @!attribute target
         #   @return [Target]
         class Link < Inline
             attr_accessor :attr, :target

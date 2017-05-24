@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# Capitalize the first N characters of a paragraph
 require "paru/filter"
 
 END_CAPITAL = 10
