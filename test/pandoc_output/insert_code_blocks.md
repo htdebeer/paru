@@ -5,7 +5,7 @@ example, you insert the code of that filter here as follows:
 
 ``` {..ruby}
 #!/usr/bin/env ruby
-require_relative "../../lib/paru/filter"
+require "paru/filter"
 
 Paru::Filter.run do 
   with "CodeBlock" do |code_block|

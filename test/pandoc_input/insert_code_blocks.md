@@ -3,7 +3,7 @@ hassle. It would be great if you could insert a code block by pointing pandoc
 to a path. With `insert_code_block.rb` you can do so. For example, you insert
 the code of that filter here as follows:
 
-    ::paru::insert test/filters/insert_code_block.rb .ruby
+    ::paru::insert examples/filters/insert_code_block.rb .ruby
 
 That is, you use the pseudo command `::paru::insert` followed by a path to the
 file you want to insert, and some optional classes to add to the code block.

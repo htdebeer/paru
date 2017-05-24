@@ -16,6 +16,6 @@ Paru::Filter.run do
 
     with "Header + Image" do |image|
         current_figure += 1
-        image.inner_markdown = "Figure #{current_chapter}.#{current_figure} #{image.inner_markdown}"
+        image.inner_markdown = "Figure #{current_chapter}.#{current_figure}. #{image.inner_markdown}"
     end
 end

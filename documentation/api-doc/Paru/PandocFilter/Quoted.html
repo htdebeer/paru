@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <iframe id="nav" src="../../class_list.html"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,6 +58,8 @@
 </div>
         <div class="clear"></div>
       </div>
+
+      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Paru::PandocFilter::Quoted
   
@@ -373,9 +375,9 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/paru/filter/quoted.rb', line 28</span>
 
-<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Quoted (class)">Quoted</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span>
+<span class='kw'>class</span> <span class='const'>Quoted</span> <span class='op'>&lt;</span> <span class='const'>Inline</span>
     <span class='comment'># A quote is either a single quote or a double quote
-</span>    <span class='const'><span class='object_link'><a href="#QUOTE_TYPE-constant" title="Paru::PandocFilter::Quoted::QUOTE_TYPE (constant)">QUOTE_TYPE</a></span></span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SingleQuote</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DoubleQuote</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+</span>    <span class='const'>QUOTE_TYPE</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SingleQuote</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DoubleQuote</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
 
     <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:quote_type</span>
 
@@ -459,9 +461,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri May 19 21:34:18 2017 by
+  Generated on Wed May 24 19:22:50 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.5 (ruby-2.3.3).
 </div>
 
     </div>
