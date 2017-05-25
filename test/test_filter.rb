@@ -138,9 +138,18 @@ class FilterTest < MiniTest::Test
     end
 
     def test_add_today()
+        puts "Testing adding today's date to the metadata"
         output = filter_input "examples/filters/add_today.rb",
             "test/pandoc_input/add_today.md"
         assert_match(/#{Date.today.to_s}/, output)
+    end
+
+    def test_insert_paru_filter()
+        puts "Testing inserting paru's version"
+        output = filter_input "examples/filters/insert_paru_version.rb",
+            "test/pandoc_input/paru_version.md"
+
+        assert_match(/#{Paru::VERSION.join(".")}/, output)
     end
 
 end
