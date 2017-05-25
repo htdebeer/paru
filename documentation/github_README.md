@@ -12,6 +12,7 @@ pandoc:
   to: markdown_github
   output: ../README.md
   standalone: true
+  template: ./github_template.md
   toc: true
   filter:
   - ../examples/filters/insert_document.rb
