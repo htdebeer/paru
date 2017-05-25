@@ -128,9 +128,9 @@ Paru::Filter.run do
 end
 ```
 
-The filter `number_figures.rb` keeps track of the last figure's sequence number in `counter`. Each time an \[Image\]{https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/Paru/PandocFilter/Image.html} is encountered while processing the input file, that counter is incremented and the image's caption is prefixed with "Figure \#{counter}. " by overwriting the image's node's inner markdown.
+The filter `number_figures.rb` keeps track of the last figure's sequence number in `counter`. Each time an [Image](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/Paru/PandocFilter/Image.html) is encountered while processing the input file, that counter is incremented and the image's caption is prefixed with "Figure \#{counter}. " by overwriting the image's node's inner markdown.
 
-For more information about writing filters, please see [paru's manual](https://heerdebeer.org/Software/markdown/paru/) or the API documentation for the \[Filter\]{https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/Paru/Filter.html} class. Furthermore, example filters can also be found in the [filters sub directory](examples/filters) of paru's [examples](examples/). Feel free to copy and adapt them to your needs.
+For more information about writing filters, please see [paru's manual](https://heerdebeer.org/Software/markdown/paru/) or the API documentation for the [Filter](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/Paru/Filter.html) class. Furthermore, example filters can also be found in the [filters sub directory](examples/filters) of paru's [examples](examples/). Feel free to copy and adapt them to your needs.
 
 Documentation
 -------------
