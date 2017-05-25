@@ -7,7 +7,7 @@ class FilterTest < MiniTest::Test
     def setup
     end
 
-    def run_example_filter filter_file, input_file, output_file
+    def filter_input(filter_file, input_file)
         pandoc2json = Paru::Pandoc.new do
             from "markdown"
             to "json"
@@ -22,6 +22,11 @@ class FilterTest < MiniTest::Test
 
         filtered_input = pandoc2json << File.read(input_file)
         filtered_output = json2pandoc << filtered_input
+        return filtered_output
+    end
+
+    def run_example_filter(filter_file, input_file, output_file)
+        filtered_output = filter_input(filter_file, input_file)
         assert_equal File.read(output_file), filtered_output, "Failure running #{filter_file} on #{input_file}"
     end
 
@@ -130,6 +135,12 @@ class FilterTest < MiniTest::Test
         run_example_filter "examples/filters/delete_horizontal_rules.rb",
             "test/pandoc_input/delete_horizontal_rules.md",
             "test/pandoc_output/delete_horizontal_rules.md"
+    end
+
+    def test_add_today()
+        output = filter_input "examples/filters/add_today.rb",
+            "test/pandoc_input/add_today.md"
+        assert_match(/#{Date.today.to_s}/, output)
     end
 
 end
