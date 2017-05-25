@@ -1,5 +1,7 @@
 # Paru—Pandoc wrapped around in Ruby
 
+## Contents
+
 -   [Introduction](#introduction)
 -   [Licence](#licence)
 -   [Installation](#installation)
