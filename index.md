@@ -9,13 +9,6 @@ keywords:
 title: 'Paru—Pandoc wrapped around in Ruby'
 ---
 
-Do note that Paru version &gt;= 0.2.0 is incompatible with pandoc
-version &lt;
-[1.18](http://pandoc.org/releases.html#pandoc-1.18-26-oct-2016).
-
-For a collection of paru filters, have a look at the
-[paru-filter-collection](https://github.com/htdebeer/paru-filter-collection).
-
 Chapter 1. Introduction {#introduction}
 =======================
 
@@ -738,8 +731,6 @@ pandoc:
   - ../examples/filters/remove_pandoc_metadata.rb
   - ../examples/filters/insert_paru_version.rb
 ...
-
-::paru::insert preface.md
 
 # Introduction
 

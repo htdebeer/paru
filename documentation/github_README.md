@@ -12,6 +12,7 @@ pandoc:
   to: markdown_github
   output: ../README.md
   standalone: true
+  toc: true
   filter:
   - ../examples/filters/insert_document.rb
   - ../examples/filters/insert_code_block.rb
@@ -19,9 +20,7 @@ pandoc:
   - ../examples/filters/insert_paru_version.rb
 ...
 
-::paru::insert preface.md
-
-# Introduction
+## Introduction
 
 ::paru::insert introduction.md
 
@@ -37,15 +36,19 @@ pandoc:
 
 ::paru::insert usage.md
 
+## Writing and using pandoc filters with paru
+
+::paru::insert introduction_filters.md
+
 ## Documentation
 
 For more information on automatic the use of pandoc with paru or writing
 pandoc filters in ruby, please see paru's
-[documentation](https://heerdebeer.org/Software/markdown/paru/). The [API
+[manual](https://heerdebeer.org/Software/markdown/paru/). The [API
 documentation can be found there as
 well](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
 
-One of the examples described in that documentation is the development of
+One of the examples described in the manual is the development of
 `do-pandoc.rb`, a program that converts an input file given the pandoc
 configuration embedded in the YAML metadata in that input file. This script
 `do-pandoc.rb` is installed as a binary when you install paru so you can use
@@ -70,6 +73,3 @@ can be converted by pandoc to HTML by running the following command:
 
     do-pandoc.rb hello.md
 
-# Writing and using pandoc filters with paru
-
-::paru::insert using_filters.md

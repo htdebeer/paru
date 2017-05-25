@@ -20,8 +20,6 @@ pandoc:
   - ../examples/filters/insert_paru_version.rb
 ...
 
-::paru::insert preface.md
-
 # Introduction
 
 ::paru::insert introduction.md

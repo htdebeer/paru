@@ -22,5 +22,5 @@ module Paru
     require "paru/filter"
 
     # Paru's current version
-    VERSION = [0, 2, 4, 3]
+    VERSION = [0, 2, 4, 4]
 end

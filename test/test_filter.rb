@@ -132,10 +132,4 @@ class FilterTest < MiniTest::Test
             "test/pandoc_output/delete_horizontal_rules.md"
     end
 
-    def test_add_today_to_metadata
-        puts "Testing adding today to metadata"
-        run_example_filter "examples/filters/add_today.rb",
-            "test/pandoc_input/add_today.md",
-            "test/pandoc_output/add_today.md"
-    end
 end
