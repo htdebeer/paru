@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <iframe id="nav" src="../../class_list.html"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,6 +58,8 @@
 </div>
         <div class="clear"></div>
       </div>
+
+      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Module: Paru::PandocFilter::ASTManipulation
   
@@ -185,6 +187,30 @@ methods such as inserting or removing nodes, replacing nodes, and so on.</p>
     <span class="summary_desc"><div class='inline'>
 <p>Walk the node tree starting at this node, depth first, and apply block to
 each node in the tree.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_index-instance_method" title="#find_index (instance method)">#<strong>find_index</strong>(child)  &#x21d2; Number </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Find index of child.</p>
 </div></span>
   
 </li>
@@ -370,12 +396,12 @@ new child.</p>
       <pre class="lines">
 
 
-52
-53
-54</pre>
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_append'>append</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
     <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='id identifier rubyid_child'>child</span>
@@ -431,12 +457,12 @@ new child.</p>
       <pre class="lines">
 
 
-38
-39
-40</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
     <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_child'>child</span>
@@ -511,17 +537,96 @@ each node in the tree</p>
       <pre class="lines">
 
 
-91
-92
-93
-94</pre>
+100
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 100</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each_depth_first'>each_depth_first</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
     <span class='kw'>yield</span> <span class='kw'>self</span>
     <span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_each_depth_first'>each_depth_first</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span><span class='rbrace'>}</span> <span class='kw'>if</span> <span class='id identifier rubyid_has_children?'>has_children?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_index-instance_method">
+  
+    #<strong>find_index</strong>(child)  &#x21d2; <tt>Number</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Find index of child</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>child</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Node.html" title="Paru::PandocFilter::Node (class)">Node</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the child to find the index for</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the index of child or nil</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_index'>find_index</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
+    <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_find_index'>find_index</span> <span class='id identifier rubyid_child'>child</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -590,12 +695,12 @@ each node in the tree</p>
       <pre class="lines">
 
 
-31
-32
-33</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
     <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span> <span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_child'>child</span>
@@ -651,12 +756,12 @@ each node in the tree</p>
       <pre class="lines">
 
 
-60
-61
-62</pre>
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prepend'>prepend</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_insert'>insert</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_child'>child</span>
@@ -712,12 +817,12 @@ each node in the tree</p>
       <pre class="lines">
 
 
-45
-46
-47</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_at'>remove_at</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
     <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_delete_at'>delete_at</span> <span class='id identifier rubyid_index'>index</span>
@@ -789,18 +894,18 @@ each node in the tree</p>
       <pre class="lines">
 
 
-68
-69
-70
-71
-72
-73</pre>
+77
+78
+79
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_replace'>replace</span><span class='lparen'>(</span><span class='id identifier rubyid_old_child'>old_child</span><span class='comma'>,</span> <span class='id identifier rubyid_new_child'>new_child</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_old_child_index'>old_child_index</span> <span class='op'>=</span> <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_find_index'>find_index</span> <span class='id identifier rubyid_old_child'>old_child</span>
+    <span class='id identifier rubyid_old_child_index'>old_child_index</span> <span class='op'>=</span> <span class='id identifier rubyid_find_index'>find_index</span> <span class='id identifier rubyid_old_child'>old_child</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_old_child_index'>old_child_index</span> <span class='kw'>then</span>
         <span class='id identifier rubyid_replace_at'>replace_at</span> <span class='id identifier rubyid_old_child_index'>old_child_index</span><span class='comma'>,</span> <span class='id identifier rubyid_new_child'>new_child</span>
     <span class='kw'>end</span>
@@ -873,12 +978,12 @@ new child.</p>
       <pre class="lines">
 
 
-80
-81
-82</pre>
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/ast_manipulation.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_replace_at'>replace_at</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_new_child'>new_child</span><span class='rparen'>)</span>
     <span class='ivar'>@children</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_child'>new_child</span>
@@ -893,9 +998,9 @@ new child.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu May 25 08:49:01 2017 by
+  Generated on Sat May 27 17:39:35 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.5 (ruby-2.3.3).
 </div>
 
     </div>

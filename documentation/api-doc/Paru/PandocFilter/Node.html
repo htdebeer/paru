@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <iframe id="nav" src="../../class_list.html"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,6 +58,8 @@
 </div>
         <div class="clear"></div>
       </div>
+
+      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Paru::PandocFilter::Node
   
@@ -159,6 +161,39 @@ manipulating Nodes.</p>
 
 
 
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#from_markdown-class_method" title="from_markdown (class method)">.<strong>from_markdown</strong>(markdown_string)  &#x21d2; Block|Div </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Create a new node from a markdown string.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
   
     <h2>
       Instance Method Summary
@@ -298,7 +333,7 @@ in this regard, like Math or Image.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#children=-instance_method" title="#children= (instance method)">#<strong>children=</strong>(list)  &#x21d2; Object </a>
+      <a href="#children%3D-instance_method" title="#children= (instance method)">#<strong>children=</strong>(list)  &#x21d2; Object </a>
     
 
     
@@ -397,6 +432,35 @@ in this regard, like Math or Image.</p>
     <span class="summary_desc"><div class='inline'>
 <p>Walk the node tree starting at this node, depth first, and apply block to
 each node in the tree.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_index-instance_method" title="#find_index (instance method)">#<strong>find_index</strong>(child)  &#x21d2; Number </a>
+    
+
+    
+  </span>
+  
+    <span class="note title not_defined_here">
+      included
+      from <span class='object_link'><a href="ASTManipulation.html#find_index-instance_method" title="Paru::PandocFilter::ASTManipulation#find_index (method)">ASTManipulation</a></span>
+    </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Find index of child.</p>
 </div></span>
   
 </li>
@@ -604,7 +668,7 @@ each node in the tree.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#inner_markdown=-instance_method" title="#inner_markdown= (instance method)">#<strong>inner_markdown=</strong>(markdown)  &#x21d2; Object </a>
+      <a href="#inner_markdown%3D-instance_method" title="#inner_markdown= (instance method)">#<strong>inner_markdown=</strong>(markdown)  &#x21d2; Object </a>
     
 
     
@@ -612,7 +676,7 @@ each node in the tree.</p>
   
     <span class="note title not_defined_here">
       included
-      from <span class='object_link'><a href="Markdown.html#inner_markdown=-instance_method" title="Paru::PandocFilter::Markdown#inner_markdown= (method)">Markdown</a></span>
+      from <span class='object_link'><a href="Markdown.html#inner_markdown%3D-instance_method" title="Paru::PandocFilter::Markdown#inner_markdown= (method)">Markdown</a></span>
     </span>
   
   
@@ -812,7 +876,7 @@ string.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#outer_markdown=-instance_method" title="#outer_markdown= (instance method)">#<strong>outer_markdown=</strong>(markdown)  &#x21d2; Object </a>
+      <a href="#outer_markdown%3D-instance_method" title="#outer_markdown= (instance method)">#<strong>outer_markdown=</strong>(markdown)  &#x21d2; Object </a>
     
 
     
@@ -820,7 +884,7 @@ string.</p>
   
     <span class="note title not_defined_here">
       included
-      from <span class='object_link'><a href="Markdown.html#outer_markdown=-instance_method" title="Paru::PandocFilter::Markdown#outer_markdown= (method)">Markdown</a></span>
+      from <span class='object_link'><a href="Markdown.html#outer_markdown%3D-instance_method" title="Paru::PandocFilter::Markdown#outer_markdown= (method)">Markdown</a></span>
     </span>
   
   
@@ -1007,6 +1071,30 @@ new child.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#toMetadata-instance_method" title="#toMetadata (instance method)">#<strong>toMetadata</strong>  &#x21d2; MetaInlines|MetaBlocks </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Convert this Node to a metadata value.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#type-instance_method" title="#type (instance method)">#<strong>type</strong>  &#x21d2; String </a>
     
 
@@ -1135,13 +1223,13 @@ children or block children.</p>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
         <span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_elt'>elt</span><span class='op'>|</span>
-            <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
-                <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+            <span class='kw'>if</span> <span class='const'>PandocFilter</span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+                <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'>PandocFilter</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
             <span class='kw'>else</span>
                 <span class='kw'>if</span> <span class='id identifier rubyid_inline_children'>inline_children</span>
-                    <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+                    <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'>PandocFilter</span><span class='op'>::</span><span class='const'>Inline</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
                 <span class='kw'>else</span>
-                    <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Plain.html" title="Paru::PandocFilter::Plain (class)">Plain</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Plain.html#initialize-instance_method" title="Paru::PandocFilter::Plain#initialize (method)">new</a></span></span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+                    <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'>PandocFilter</span><span class='op'>::</span><span class='const'>Plain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
                 <span class='kw'>end</span>
             <span class='kw'>end</span>
 
@@ -1416,15 +1504,56 @@ children or block children.</p>
 240
 241
 242
-243</pre>
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 33</span>
 
-<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Node (class)">Node</a></span></span>
+<span class='kw'>class</span> <span class='const'>Node</span>
     <span class='id identifier rubyid_include'>include</span> <span class='const'>Enumerable</span>
-    <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="ASTManipulation.html" title="Paru::PandocFilter::ASTManipulation (module)">ASTManipulation</a></span></span>
-    <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="Markdown.html" title="Paru::PandocFilter::Markdown (module)">Markdown</a></span></span>
+    <span class='id identifier rubyid_include'>include</span> <span class='const'>ASTManipulation</span>
+    <span class='id identifier rubyid_include'>include</span> <span class='const'>Markdown</span>
 
     <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:parent</span>
 
@@ -1445,13 +1574,13 @@ children or block children.</p>
 
         <span class='kw'>if</span> <span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
             <span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_elt'>elt</span><span class='op'>|</span>
-                <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
-                    <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+                <span class='kw'>if</span> <span class='const'>PandocFilter</span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+                    <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'>PandocFilter</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
                 <span class='kw'>else</span>
                     <span class='kw'>if</span> <span class='id identifier rubyid_inline_children'>inline_children</span>
-                        <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Inline.html" title="Paru::PandocFilter::Inline (class)">Inline</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Inline.html#initialize-instance_method" title="Paru::PandocFilter::Inline#initialize (method)">new</a></span></span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+                        <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'>PandocFilter</span><span class='op'>::</span><span class='const'>Inline</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
                     <span class='kw'>else</span>
-                        <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Plain.html" title="Paru::PandocFilter::Plain (class)">Plain</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Plain.html#initialize-instance_method" title="Paru::PandocFilter::Plain#initialize (method)">new</a></span></span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+                        <span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='const'>PandocFilter</span><span class='op'>::</span><span class='const'>Plain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_elt'>elt</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
                     <span class='kw'>end</span>
                 <span class='kw'>end</span>
 
@@ -1459,6 +1588,32 @@ children or block children.</p>
                 <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='id identifier rubyid_child'>child</span>
             <span class='kw'>end</span>
         <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    
+    <span class='comment'># Create a new node from a markdown string. This is always a block
+</span>    <span class='comment'># level node. If more
+</span>    <span class='comment'># than one new node is created, a {Div} is created as a parent for
+</span>    <span class='comment'># the newly created block nodes..
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param markdown_string [String] the markdown string to convert
+</span>    <span class='comment'>#   to a AST node
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [Block|Div] The {Block} node created by converting
+</span>    <span class='comment'>#   markdown_string with pandoc; A {Div} node if this conversion
+</span>    <span class='comment'>#   holds more than one {Block} node.
+</span>    <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_markdown'>from_markdown</span><span class='lparen'>(</span><span class='id identifier rubyid_markdown_string'>markdown_string</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='const'>Node</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_outer_markdown'>outer_markdown</span> <span class='op'>=</span> <span class='id identifier rubyid_markdown_string'>markdown_string</span>
+
+        <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span>
+            <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+        <span class='kw'>else</span>
+            <span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='id identifier rubyid_from_markdown'>from_markdown</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;div&gt;&lt;/div&gt;</span><span class='tstring_end'>&quot;</span></span>
+            <span class='id identifier rubyid_container'>container</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span>
+            <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='id identifier rubyid_container'>container</span>
+        <span class='kw'>end</span>
+
+        <span class='kw'>return</span> <span class='id identifier rubyid_node'>node</span> 
     <span class='kw'>end</span>
 
     <span class='comment'># For each child of this Node, yield the child
@@ -1575,6 +1730,21 @@ children or block children.</p>
         <span class='kw'>false</span>
     <span class='kw'>end</span>
 
+    <span class='comment'># Convert this Node to a metadata value. If this Node
+</span>    <span class='comment'># {is_inline?}, it is converted to {MetaInlines} if it is
+</span>    <span class='comment'># {is_block?}, it is converted to {MetaBlocks}.
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @return [MetaInlines|MetaBlocks]
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_toMetadata'>toMetadata</span><span class='lparen'>(</span><span class='rparen'>)</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_is_inline?'>is_inline?</span> <span class='kw'>then</span>
+            <span class='const'>MetaInlines</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span> <span class='kw'>true</span>
+        <span class='kw'>elsif</span> <span class='id identifier rubyid_is_blocks?'>is_blocks?</span> <span class='kw'>then</span>
+            <span class='const'>MetaBlocks</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span> <span class='kw'>false</span>
+        <span class='kw'>else</span>
+            <span class='comment'># ?
+</span>        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
     <span class='comment'># If this node has attributes with classes, is name among them?
 </span>    <span class='comment'>#
 </span>    <span class='comment'># @param name [String] the class name to search for
@@ -1639,6 +1809,116 @@ children or block children.</p>
     
   </div>
 
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="from_markdown-class_method">
+  
+    .<strong>from_markdown</strong>(markdown_string)  &#x21d2; <tt><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span>|<span class='object_link'><a href="Div.html" title="Paru::PandocFilter::Div (class)">Div</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create a new node from a markdown string. This is always a block level
+node. If more than one new node is created, a <span class='object_link'><a href="Div.html" title="Paru::PandocFilter::Div (class)">Div</a></span> is created as a parent
+for the newly created block nodes..</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>markdown_string</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the markdown string to convert to a AST node</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span>|<span class='object_link'><a href="Div.html" title="Paru::PandocFilter::Div (class)">Div</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The <span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span> node created by converting markdown_string with pandoc; A <span class='object_link'><a href="Div.html" title="Paru::PandocFilter::Div (class)">Div</a></span>
+node if this conversion holds more than one <span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span> node.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 84</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_markdown'>from_markdown</span><span class='lparen'>(</span><span class='id identifier rubyid_markdown_string'>markdown_string</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='const'>Node</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_outer_markdown'>outer_markdown</span> <span class='op'>=</span> <span class='id identifier rubyid_markdown_string'>markdown_string</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span>
+        <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+    <span class='kw'>else</span>
+        <span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='id identifier rubyid_from_markdown'>from_markdown</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;div&gt;&lt;/div&gt;</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_container'>container</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span>
+        <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='id identifier rubyid_container'>container</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>return</span> <span class='id identifier rubyid_node'>node</span> 
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
@@ -1735,16 +2015,16 @@ children or block children.</p>
       <pre class="lines">
 
 
-225
-226
-227
-228
-229
-230
-231</pre>
+266
+267
+268
+269
+270
+271
+272</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 225</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 266</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_has_children?'>has_children?</span>
@@ -1797,12 +2077,12 @@ children or block children.</p>
       <pre class="lines">
 
 
-218
-219
-220</pre>
+259
+260
+261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 218</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 259</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ast_type'>ast_type</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>::</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
@@ -1852,12 +2132,12 @@ in this regard, like Math or Image</p>
       <pre class="lines">
 
 
-175
-176
-177</pre>
+201
+202
+203</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 175</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 201</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_can_act_as_both_block_and_inline?'>can_act_as_both_block_and_inline?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>false</span>
@@ -1911,16 +2191,16 @@ in this regard, like Math or Image</p>
       <pre class="lines">
 
 
-93
-94
-95
-96
-97
-98
-99</pre>
+119
+120
+121
+122
+123
+124
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_children'>children</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_has_children?'>has_children?</span>
@@ -1980,12 +2260,12 @@ in this regard, like Math or Image</p>
       <pre class="lines">
 
 
-104
-105
-106</pre>
+130
+131
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 130</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_children='>children=</span><span class='lparen'>(</span><span class='id identifier rubyid_list'>list</span><span class='rparen'>)</span>
     <span class='ivar'>@children</span> <span class='op'>=</span> <span class='id identifier rubyid_list'>list</span>
@@ -2082,14 +2362,14 @@ in this regard, like Math or Image</p>
       <pre class="lines">
 
 
-76
-77
-78
-79
-80</pre>
+102
+103
+104
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 102</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span>
@@ -2169,6 +2449,72 @@ each node in the tree</p>
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="find_index-instance_method">
+  
+    #<strong>find_index</strong>(child)  &#x21d2; <tt>Number</tt> 
+  
+
+  
+
+  
+    <span class="not_defined_here">
+      Originally defined in module
+        <span class='object_link'><a href="ASTManipulation.html#find_index-instance_method" title="Paru::PandocFilter::ASTManipulation#find_index (method)">ASTManipulation</a></span>
+    </span>
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Find index of child</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>child</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Paru::PandocFilter::Node (class)">Node</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the child to find the index for</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Number</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the index of child or nil</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="has_block?-instance_method">
   
     #<strong>has_block?</strong>  &#x21d2; <tt>Boolean</tt> 
@@ -2212,12 +2558,12 @@ each node in the tree</p>
       <pre class="lines">
 
 
-159
-160
-161</pre>
+185
+186
+187</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 185</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_block?'>has_block?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>false</span>
@@ -2271,12 +2617,12 @@ each node in the tree</p>
       <pre class="lines">
 
 
-86
-87
-88</pre>
+112
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_children?'>has_children?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>defined?</span> <span class='ivar'>@children</span> <span class='kw'>and</span> <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -2351,16 +2697,16 @@ otherwise</p>
       <pre class="lines">
 
 
-193
-194
-195
-196
-197
-198
-199</pre>
+234
+235
+236
+237
+238
+239
+240</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 193</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 234</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_class?'>has_class?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@attr</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -2418,12 +2764,12 @@ otherwise</p>
       <pre class="lines">
 
 
-151
-152
-153</pre>
+177
+178
+179</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 177</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_inline?'>has_inline?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>false</span>
@@ -2477,12 +2823,12 @@ otherwise</p>
       <pre class="lines">
 
 
-112
-113
-114</pre>
+138
+139
+140</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 138</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_parent?'>has_parent?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>not</span> <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -2536,12 +2882,12 @@ otherwise</p>
       <pre class="lines">
 
 
-143
-144
-145</pre>
+169
+170
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 169</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_string?'>has_string?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>false</span>
@@ -2583,7 +2929,7 @@ otherwise</p>
 <p>Replace all occurrences of “hello” by “world” in all paragraphs</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Filter.html" title="Paru::Filter (class)">Filter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="../Filter.html#run-class_method" title="Paru::Filter.run (method)">run</a></span></span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'>Paru</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_with'>with</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Para</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_p'>p</span><span class='op'>|</span>
         <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_inner_markdown'>inner_markdown</span> <span class='op'>=</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_inner_markdown'>inner_markdown</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hello</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>world</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
@@ -2624,7 +2970,7 @@ otherwise</p>
   
     <span class="not_defined_here">
       Originally defined in module
-        <span class='object_link'><a href="Markdown.html#inner_markdown=-instance_method" title="Paru::PandocFilter::Markdown#inner_markdown= (method)">Markdown</a></span>
+        <span class='object_link'><a href="Markdown.html#inner_markdown%3D-instance_method" title="Paru::PandocFilter::Markdown#inner_markdown= (method)">Markdown</a></span>
     </span>
   
 </h3><div class="docstring">
@@ -2646,7 +2992,7 @@ string</p>
 <p>Replace all occurrences of “hello” by “world” in all paragraphs</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Filter.html" title="Paru::Filter (class)">Filter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="../Filter.html#run-class_method" title="Paru::Filter.run (method)">run</a></span></span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'>Paru</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_with'>with</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Para</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_p'>p</span><span class='op'>|</span>
         <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_inner_markdown'>inner_markdown</span> <span class='op'>=</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_inner_markdown'>inner_markdown</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hello</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>world</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
@@ -2786,12 +3132,12 @@ string</p>
       <pre class="lines">
 
 
-167
-168
-169</pre>
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 167</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 193</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_block?'>is_block?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>false</span>
@@ -2845,12 +3191,12 @@ string</p>
       <pre class="lines">
 
 
-183
-184
-185</pre>
+209
+210
+211</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 209</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_inline?'>is_inline?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>false</span>
@@ -2904,12 +3250,12 @@ string</p>
       <pre class="lines">
 
 
-135
-136
-137</pre>
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_leaf?'>is_leaf?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>not</span> <span class='id identifier rubyid_has_children?'>has_children?</span>
@@ -2963,12 +3309,12 @@ string</p>
       <pre class="lines">
 
 
-127
-128
-129</pre>
+153
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_node?'>is_node?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>not</span> <span class='id identifier rubyid_is_leaf'>is_leaf</span>
@@ -3022,12 +3368,12 @@ string</p>
       <pre class="lines">
 
 
-120
-121
-122</pre>
+146
+147
+148</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 120</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 146</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_root?'>is_root?</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>not</span> <span class='id identifier rubyid_has_parent?'>has_parent?</span>
@@ -3094,14 +3440,16 @@ string</p>
   
     <span class="not_defined_here">
       Originally defined in module
-        <span class='object_link'><a href="Markdown.html#outer_markdown=-instance_method" title="Paru::PandocFilter::Markdown#outer_markdown= (method)">Markdown</a></span>
+        <span class='object_link'><a href="Markdown.html#outer_markdown%3D-instance_method" title="Paru::PandocFilter::Markdown#outer_markdown= (method)">Markdown</a></span>
     </span>
   
 </h3><div class="docstring">
   <div class="discussion">
     
 <p>Set the markdown representation of this Node: replace this Node by the Node
-represented by the markdown string</p>
+represented by the markdown string. If an inline node is being replaced and
+the replacement has more than one paragraph, only the contents of the first
+paragraph is used</p>
 
 
   </div>
@@ -3116,7 +3464,7 @@ represented by the markdown string</p>
 <p>Replacing all horizontal lines by a Plain node saying “hi”</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Filter.html" title="Paru::Filter (class)">Filter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="../Filter.html#run-class_method" title="Paru::Filter.run (method)">run</a></span></span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'>Paru</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_with'>with</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HorizontalLine</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>
         <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_outer_markdown'>outer_markdown</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hi</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
@@ -3412,15 +3760,15 @@ new child.</p>
       <pre class="lines">
 
 
-236
-237
-238
-239
-240
-241</pre>
+277
+278
+279
+280
+281
+282</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 236</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 277</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='lbrace'>{</span>
@@ -3472,15 +3820,83 @@ new child.</p>
       <pre class="lines">
 
 
-204
-205
-206</pre>
+245
+246
+247</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 204</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 245</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="toMetadata-instance_method">
+  
+    #<strong>toMetadata</strong>  &#x21d2; <tt><span class='object_link'><a href="MetaInlines.html" title="Paru::PandocFilter::MetaInlines (class)">MetaInlines</a></span>|<span class='object_link'><a href="MetaBlocks.html" title="Paru::PandocFilter::MetaBlocks (class)">MetaBlocks</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Convert this Node to a metadata value. If this Node <span class='object_link'><a href="#is_inline%3F-instance_method" title="Paru::PandocFilter::Node#is_inline? (method)">#is_inline?</a></span>, it is
+converted to <span class='object_link'><a href="MetaInlines.html" title="Paru::PandocFilter::MetaInlines (class)">MetaInlines</a></span> if it is <span class='object_link'><a href="#is_block%3F-instance_method" title="Paru::PandocFilter::Node#is_block? (method)">#is_block?</a></span>, it is converted to
+<span class='object_link'><a href="MetaBlocks.html" title="Paru::PandocFilter::MetaBlocks (class)">MetaBlocks</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="MetaInlines.html" title="Paru::PandocFilter::MetaInlines (class)">MetaInlines</a></span>|<span class='object_link'><a href="MetaBlocks.html" title="Paru::PandocFilter::MetaBlocks (class)">MetaBlocks</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+218
+219
+220
+221
+222
+223
+224
+225
+226</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 218</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_toMetadata'>toMetadata</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_is_inline?'>is_inline?</span> <span class='kw'>then</span>
+        <span class='const'>MetaInlines</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span> <span class='kw'>true</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_is_blocks?'>is_blocks?</span> <span class='kw'>then</span>
+        <span class='const'>MetaBlocks</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span> <span class='kw'>false</span>
+    <span class='kw'>else</span>
+        <span class='comment'># ?
+</span>    <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3526,12 +3942,12 @@ new child.</p>
       <pre class="lines">
 
 
-211
-212
-213</pre>
+252
+253
+254</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 211</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/node.rb', line 252</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type'>type</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_ast_type'>ast_type</span>
@@ -3546,9 +3962,9 @@ new child.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu May 25 08:49:02 2017 by
+  Generated on Sat May 27 17:39:37 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.5 (ruby-2.3.3).
 </div>
 
     </div>

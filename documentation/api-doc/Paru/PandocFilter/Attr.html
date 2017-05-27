@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <iframe id="nav" src="../../class_list.html"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,6 +58,8 @@
 </div>
         <div class="clear"></div>
       </div>
+
+      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Paru::PandocFilter::Attr
   
@@ -196,7 +198,7 @@ list of class names and a list of key-value pairs.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#[]-instance_method" title="#[] (instance method)">#<strong>[]</strong>(key)  &#x21d2; Object </a>
+      <a href="#%5B%5D-instance_method" title="#[] (instance method)">#<strong>[]</strong>(key)  &#x21d2; Object </a>
     
 
     
@@ -292,7 +294,7 @@ list of class names and a list of key-value pairs.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(attributes)  &#x21d2; Attr </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(attributes = [])  &#x21d2; Attr </a>
     
 
     
@@ -349,7 +351,7 @@ list of class names and a list of key-value pairs.</p>
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(attributes)  &#x21d2; <tt><span class='object_link'><a href="" title="Paru::PandocFilter::Attr (class)">Attr</a></span></tt> 
+    #<strong>initialize</strong>(attributes = [])  &#x21d2; <tt><span class='object_link'><a href="" title="Paru::PandocFilter::Attr (class)">Attr</a></span></tt> 
   
 
   
@@ -372,8 +374,10 @@ list of class names and a list of key-value pairs.</p>
         <span class='name'>attributes</span>
       
       
-        <span class='type'>(<tt>Array</tt>)</span>
+        <span class='type'>(<tt>Array = []</tt>)</span>
       
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
       
       
         &mdash;
@@ -396,13 +400,27 @@ list of class names and a list of key-value pairs.</p>
 
 41
 42
-43</pre>
+43
+44
+45
+46
+47
+48
+49
+50</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 41</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span>
-    <span class='ivar'>@id</span><span class='comma'>,</span> <span class='ivar'>@classes</span><span class='comma'>,</span> <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_classes'>classes</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span>
+          
+    <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+
+    <span class='ivar'>@classes</span> <span class='op'>=</span> <span class='id identifier rubyid_classes'>classes</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='ivar'>@classes</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='ivar'>@classes</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='ivar'>@classes</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
+
+    <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -511,22 +529,36 @@ list of class names and a list of key-value pairs.</p>
 87
 88
 89
-90</pre>
+90
+91
+92
+93
+94
+95
+96
+97</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 32</span>
 
-<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span>
+<span class='kw'>class</span> <span class='const'>Attr</span>
     <span class='id identifier rubyid_include'>include</span> <span class='const'>Enumerable</span>
 
     <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:classes</span>
 
     <span class='comment'># Create a new attributes object
 </span>    <span class='comment'>#
-</span>    <span class='comment'># @param attributes [Array] the attributes as [id, [class names],
+</span>    <span class='comment'># @param attributes [Array = []] the attributes as [id, [class names],
 </span>    <span class='comment'>#   [key-value pairs]]
-</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span>
-        <span class='ivar'>@id</span><span class='comma'>,</span> <span class='ivar'>@classes</span><span class='comma'>,</span> <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span>
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_classes'>classes</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span>
+  
+        <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+
+        <span class='ivar'>@classes</span> <span class='op'>=</span> <span class='id identifier rubyid_classes'>classes</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='ivar'>@classes</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='ivar'>@classes</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='ivar'>@classes</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
+
+        <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
     <span class='kw'>end</span>
 
     <span class='comment'># For each key-value pair of this attributes object
@@ -677,22 +709,36 @@ list of class names and a list of key-value pairs.</p>
 87
 88
 89
-90</pre>
+90
+91
+92
+93
+94
+95
+96
+97</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 32</span>
 
-<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Attr (class)">Attr</a></span></span>
+<span class='kw'>class</span> <span class='const'>Attr</span>
     <span class='id identifier rubyid_include'>include</span> <span class='const'>Enumerable</span>
 
     <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:classes</span>
 
     <span class='comment'># Create a new attributes object
 </span>    <span class='comment'>#
-</span>    <span class='comment'># @param attributes [Array] the attributes as [id, [class names],
+</span>    <span class='comment'># @param attributes [Array = []] the attributes as [id, [class names],
 </span>    <span class='comment'>#   [key-value pairs]]
-</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span>
-        <span class='ivar'>@id</span><span class='comma'>,</span> <span class='ivar'>@classes</span><span class='comma'>,</span> <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span>
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_classes'>classes</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span>
+  
+        <span class='ivar'>@id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+
+        <span class='ivar'>@classes</span> <span class='op'>=</span> <span class='id identifier rubyid_classes'>classes</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='ivar'>@classes</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='ivar'>@classes</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='ivar'>@classes</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
+
+        <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
     <span class='kw'>end</span>
 
     <span class='comment'># For each key-value pair of this attributes object
@@ -801,14 +847,14 @@ list of class names and a list of key-value pairs.</p>
       <pre class="lines">
 
 
-54
-55
-56
-57
-58</pre>
+61
+62
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span> 
     <span class='kw'>if</span> <span class='ivar'>@data</span><span class='period'>.</span><span class='id identifier rubyid_key_exists?'>key_exists?</span> <span class='id identifier rubyid_key'>key</span>
@@ -846,12 +892,12 @@ list of class names and a list of key-value pairs.</p>
       <pre class="lines">
 
 
-46
-47
-48</pre>
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_each'>each</span>
     <span class='ivar'>@data</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span>
@@ -925,12 +971,12 @@ list of class names and a list of key-value pairs.</p>
       <pre class="lines">
 
 
-75
-76
-77</pre>
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 82</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_class?'>has_class?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
     <span class='ivar'>@classes</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_name'>name</span>
@@ -1004,12 +1050,12 @@ list of class names and a list of key-value pairs.</p>
       <pre class="lines">
 
 
-65
-66
-67</pre>
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
     <span class='ivar'>@data</span><span class='period'>.</span><span class='id identifier rubyid_key_exists?'>key_exists?</span> <span class='id identifier rubyid_name'>name</span>
@@ -1063,16 +1109,16 @@ list of class names and a list of key-value pairs.</p>
       <pre class="lines">
 
 
-83
-84
-85
-86
-87
-88
-89</pre>
+90
+91
+92
+93
+94
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/attr.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span>
     <span class='lbracket'>[</span>
@@ -1091,9 +1137,9 @@ list of class names and a list of key-value pairs.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu May 25 08:49:01 2017 by
+  Generated on Sat May 27 17:39:36 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.5 (ruby-2.3.3).
 </div>
 
     </div>
