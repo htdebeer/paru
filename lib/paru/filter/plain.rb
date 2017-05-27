@@ -20,9 +20,9 @@ module Paru
     module PandocFilter
         require_relative "./block"
 
-        # A Plain node is a basic Block level node with Inline children. Not
-        # to be confused with Para, which represents a paragraph. A Plain
-        # is more general.
+        # A Plain node is a basic {Block} level node with {Inline} child nodes. Not
+        # to be confused with {Para}, which represents a paragraph. A Plain
+        # is a more general type of block level node.
         class Plain < Block
 
             # Create a new Plain node based on contents

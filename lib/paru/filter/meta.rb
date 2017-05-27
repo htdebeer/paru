@@ -19,20 +19,12 @@
 module Paru
     module PandocFilter
         require_relative "./meta_map"
-
+  
         # A Meta node represents the metadata of a document. It is a MetaMap
         # node.
         #
         # @see http://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html#t:Meta
         class Meta < MetaMap
-            include Enumerable
-
-            # Create a new Meta node based on the contents
-            #
-            # @param value [String]
-            def initialize(value)
-                super value
-            end
 
             # The type of a Meta is "meta"
             # 
@@ -44,6 +36,15 @@ module Paru
             # Convert this Meta node to an AST representation
             def to_ast()
                 ast_contents
+            end
+
+            # Convert this Meta node to an {MetaMap} node
+            #
+            # @return [MetaMap] a MetaMap representation of this metadata
+            def to_meta_map()
+                map = MetaMap.new []
+                map.children = @children
+                map
             end
 
         end

@@ -69,6 +69,32 @@ module Paru
                     end
                 end
             end
+            
+            # Create a new node from a markdown string. This is always a block
+            # level node. If more
+            # than one new node is created, a {Div} is created as a parent for
+            # the newly created block nodes..
+            #
+            # @param markdown_string [String] the markdown string to convert
+            #   to a AST node
+            #
+            # @return [Block|Div] The {Block} node created by converting
+            #   markdown_string with pandoc; A {Div} node if this conversion
+            #   holds more than one {Block} node.
+            def self.from_markdown(markdown_string)
+                node = Node.new []
+                node.outer_markdown = markdown_string
+
+                if node.children.size == 1
+                    node = node.children.first
+                else
+                    container = from_markdown "<div></div>"
+                    container.children = node.children
+                    node = container
+                end
+
+                return node 
+            end
 
             # For each child of this Node, yield the child
             #
@@ -182,6 +208,21 @@ module Paru
             #   false otherwise
             def is_inline?()
                 false
+            end
+
+            # Convert this Node to a metadata value. If this Node
+            # {is_inline?}, it is converted to {MetaInlines} if it is
+            # {is_block?}, it is converted to {MetaBlocks}.
+            #
+            # @return [MetaInlines|MetaBlocks]
+            def toMetadata()
+                if is_inline? then
+                    MetaInlines.new to_ast, true
+                elsif is_blocks? then
+                    MetaBlocks.new to_ast, false
+                else
+                    # ?
+                end
             end
 
             # If this node has attributes with classes, is name among them?

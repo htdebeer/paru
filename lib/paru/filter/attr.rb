@@ -36,10 +36,17 @@ module Paru
 
             # Create a new attributes object
             #
-            # @param attributes [Array] the attributes as [id, [class names],
+            # @param attributes [Array = []] the attributes as [id, [class names],
             #   [key-value pairs]]
-            def initialize(attributes)
-                @id, @classes, @data = attributes
+            def initialize(attributes = [])
+                id, classes, data = attributes
+          
+                @id = id || ""
+
+                @classes = classes || []
+                @classes = [@classes] unless @classes.is_a? Array
+
+                @data = data || {}
             end
 
             # For each key-value pair of this attributes object

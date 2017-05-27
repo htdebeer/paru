@@ -45,7 +45,9 @@ module Paru
             end
 
             # Set the markdown representation of this Node: replace this Node
-            # by the Node represented by the markdown string
+            # by the Node represented by the markdown string. If an inline
+            # node is being replaced and the replacement has more than one
+            # paragraph, only the contents of the first paragraph is used
             #
             # @param markdown [String] the markdown string to replace this
             #   Node
@@ -67,6 +69,20 @@ module Paru
                     # replace current node by new nodes
                     # There is a difference between inline and block nodes
                     current_index = parent.find_index self
+
+                    # By default, pandoc creates a Block level node when
+                    # converting a string. However, if the original is a
+                    # inline level node, so should its replacement node(s) be.
+                    # Only using first block node (paragraph?)
+                    if is_inline?
+                        temp_doc = temp_doc.children.first
+                        
+                        if not temp_doc.children.all? {|node| node.is_inline?}
+                            raise Error.new "Cannot replace the inline level node represented by '#{outer_markdown}' with markdown that converts to block level nodes: '#{markdown}'."
+                        end
+                        
+                    end
+                        
                     index = current_index
                     temp_doc.each do |child|
                         index += 1
@@ -119,7 +135,7 @@ module Paru
                         temp_doc.children.each {|c| c.parent = @parent}
 
                         if has_inline?
-                            @children = temp_doc.children[0].children
+                            @children = temp_doc.children.first.children
                         elsif has_block?
                             @children = temp_doc.children
                         else
@@ -128,6 +144,7 @@ module Paru
                     end
                 end
             end
+
         end
     end
 end

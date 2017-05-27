@@ -18,18 +18,10 @@
 #++
 module Paru
     module PandocFilter
-
         require_relative "./node"
 
-        # A MetaInlines node contains a list of Inline nodes
+        # A MetaInlines node contains a list of {Inline} nodes
         class MetaInlines < Node
-
-            # Create a new MetaInlines Node based on the contents
-            #
-            # @param value [String] the contents of this MetaInlines node
-            def initialize(value)
-                super value
-            end
         end
     end
 end

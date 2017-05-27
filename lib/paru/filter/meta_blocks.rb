@@ -18,18 +18,10 @@
 #++
 module Paru
     module PandocFilter
-
         require_relative "./node"
 
-        # A MetaBlocks Node contains a list of Blocks
+        # A MetaBlocks Node contains a list of {Block} nodes
         class MetaBlocks < Node
-
-            # Create a MetaBlocks node based on the contents
-            #
-            # @param value [String] the contents of the MetaBlocks
-            def initialize(value)
-                super value
-            end
         end
     end
 end

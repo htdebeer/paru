@@ -24,6 +24,15 @@ module Paru
         # nodes, and so on.
         module ASTManipulation
 
+            # Find index of child
+            #
+            # @param child [Node] the child to find the index for
+            #
+            # @return [Number] the index of child or nil
+            def find_index(child)
+                @children.find_index child
+            end
+
             # Insert child node among this node's children at position index.
             #
             # @param index [Integer] the position to insert the child
@@ -66,7 +75,7 @@ module Paru
             # @param old_child [Node] the child to replace
             # @param new_child [Node] the replacement child
             def replace(old_child, new_child)
-                old_child_index = @children.find_index old_child
+                old_child_index = find_index old_child
                 if old_child_index then
                     replace_at old_child_index, new_child
                 end

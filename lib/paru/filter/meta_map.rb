@@ -20,9 +20,11 @@ module Paru
     module PandocFilter
 
         require_relative "./node"
+        require_relative "../pandoc.rb"
 
         # A MetaMap Node is a map of String keys with MetaValue values
         class MetaMap < Node
+            include Enumerable
 
             # Create a new MetaMap based on the contents
             #
@@ -39,18 +41,19 @@ module Paru
                 end
             end
 
-            # Get the value belonging to key
+            # Get the value belonging to key. Prefer to use the {has?}, {get},
+            # and {delete} methods to manipulate metadata.
             #
             # @param key [String] the key
             #
             # @return [MetaValue] the value belonging to the key
             def [](key)
-                if @children.key_exists?
-                    @children[key]
-                end
+                @children[key]
             end
 
-            # Set a value with a key
+            # Set a value with a key. It is easier to use the {yaml} method to set
+            # metadata properties; the {yaml} method is the preferred method
+            # to set the metadata.
             #
             # @param key [String] the key to set
             # @param value
@@ -60,21 +63,95 @@ module Paru
                 @children[key] = value
             end
 
-            # Does this MetaMap node have key?
+            # Execute block for each key-value pair
+            def each()
+                @children.each do |key, value|
+                    yield(key, value)
+                end
+            end
+            
+            # Mixin the YAML code into this metadata object
             #
-            # @param key [String] the key to find
+            # @param yaml_string [YAML] A string with YAML data
             #
-            # @return [Boolean] true if this MetaMap node contains this key
-            def has_key?(key)
-                @children.has_key? key
+            # @example Set some properties in the metadata
+            #   #!/usr/bin/env ruby
+            #   require "paru/filter"
+            #   require "date"
+            #
+            #   Paru::Filter.run do
+            #     metadata.yaml <<~YAML
+            #       ---
+            #       date: Date.today.to_s
+            #       title: This **is** the title
+            #       pandoc_options:
+            #         from: markdown
+            #         toc: true
+            #       keywords:
+            #       - metadata
+            #       - pandoc
+            #       - filter
+            #       ...
+            #     YAML
+            #   end
+            #
+            def yaml(yaml_string)
+                meta_from_yaml(yaml_string).each do |key, value|
+                    self[key] = value
+                end
             end
 
-            # Delete the key-value pair from this MetaMap
+            # Replace the property in this MetaMap matching the selector with
+            # metadata specified by second parameter. If that parameter is a
+            # String, it is treated as a YAML string.
             #
-            # @param key [String] the key to delete
-            def delete(key)
-                @children.delete key
+            # @param selector [String] a dot-separated sequence of property
+            # names denoting a sequence of descendants.
+            #
+            # @param value
+            # [MetaBlocks|MetaBool|MetaInline|MetaList|MetaMap|MetaString|MetaValue|String]
+            #   if value is a String, it is treated as a yaml string
+            def replace(selector, value)
+                parent = select(selector, true)
+                if value.is_a? String
+                    value = meta_from_yaml(value)
+                end
+                parent.children[last_key(selector)] = value
             end
+
+            # Get the property in this MetaMap matching the selector
+            #
+            # @param selector [String] a dot-separated sequence of property
+            #   names denoting a sequence of descendants.
+            #
+            # @return [MetaBlocks|MetaBool|MetaInline|MetaList|MetaMap|MetaString|MetaValue] the value matching the selected property, nil if it cannot be found
+            def get(selector)
+                select(selector)
+            end 
+
+            # Has this MetaMap a descendant matching selector?
+            #
+            # @param selector [String] a dot-separated sequence of property
+            #   names denoting a sequence of descendants
+            #
+            # @return [Boolean] True if this MetaMap contains a descendant
+            #   matching selector, false otherwise
+            def has?(selector)
+                not select(selector).nil?
+            end
+
+            # Delete the property in this MetaMap that matches the selector
+            #
+            # @param selector [String] a dot-separated sequence of property
+            #   names denoting a sequence of descendants
+            #
+            # @return [MetaBlocks|MetaBool|MetaInline|MetaList|MetaMap|MetaString|MetaValue] the value of the deleted property, nil if it cannot be found
+            #
+            def delete(selector)
+                parent = select(selector, true)
+                parent.children.delete(last_key(selector))
+            end
+
 
             # The AST contents
             def ast_contents()
@@ -83,6 +160,54 @@ module Paru
                     ast[key] = value.to_ast
                 end
                 ast
+            end
+            
+            private
+
+            # Select a node given a selector as a dot separated sequence of
+            # descendant names.
+            #
+            # @param selector [String] Dot separated sequence of property
+            #   names
+            #
+            # @param get_parent [Boolean = false] Get the parent MetaMap
+            #   of the selected property instead of its value
+            # 
+            # @return [MetaBlocks|MetaBool|MetaInline|MetaList|MetaMap|MetaString|MetaValue] the value of the deleted property, nil if it cannot be found
+            def select(selector, get_parent = false)
+                keys = selector.split(".")
+                level = self
+
+                while not keys.empty?
+                    key = keys.shift
+                    if not level.children.has_key? key
+                        return nil
+                    else
+                        if get_parent and keys.empty?
+                            return level
+                        else
+                            level = level[key]
+                        end
+                    end
+                end
+
+                level
+            end 
+
+            # Get the last key in this selector
+            def last_key(selector)
+                selector.split(".").last
+            end
+
+            # Convert a yaml string to a MetaMap
+            def meta_from_yaml(yaml_string)
+                json_string = Pandoc.new do
+                    from "markdown"
+                    to "json"
+                end << yaml_string
+
+                meta_doc = PandocFilter::Document.from_JSON json_string
+                meta_doc.meta.to_meta_map
             end
         end
     end
