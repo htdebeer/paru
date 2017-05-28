@@ -1,12 +1,11 @@
 require "minitest/autorun"
 
-require_relative "../lib/paru"
+require_relative "../lib/paru/pandoc.rb"
 
 class ParuTest < MiniTest::Test
 
     def setup
     end
-
 
     def run_converter(converter, input_file, output_file, use_output_option = false)
         input = File.read(input_file)
