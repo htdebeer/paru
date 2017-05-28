@@ -42,7 +42,7 @@ module Paru
             end
 
             # Get the value belonging to key. Prefer to use the {has?}, {get},
-            # and {delete} methods to manipulate metadata.
+            # {replace} and {delete} methods to manipulate metadata.
             #
             # @param key [String] the key
             #
@@ -56,9 +56,7 @@ module Paru
             # to set the metadata.
             #
             # @param key [String] the key to set
-            # @param value
-            #   [MetaBlocks|MetaBool|MetaInline|MetaList|MetaMap|MetaString|MetaValue]
-            #   the value to set
+            # @param value [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue] the value to set
             def []=(key, value)
                 @children[key] = value
             end
@@ -73,6 +71,7 @@ module Paru
             # Mixin the YAML code into this metadata object
             #
             # @param yaml_string [YAML] A string with YAML data
+            # @return [MetaMap] this MetaMap object
             #
             # @example Set some properties in the metadata
             #   #!/usr/bin/env ruby
@@ -82,7 +81,7 @@ module Paru
             #   Paru::Filter.run do
             #     metadata.yaml <<~YAML
             #       ---
-            #       date: Date.today.to_s
+            #       date: #{Date.today.to_s}
             #       title: This **is** the title
             #       pandoc_options:
             #         from: markdown
@@ -99,6 +98,7 @@ module Paru
                 meta_from_yaml(yaml_string).each do |key, value|
                     self[key] = value
                 end
+                self
             end
 
             # Replace the property in this MetaMap matching the selector with
@@ -108,8 +108,7 @@ module Paru
             # @param selector [String] a dot-separated sequence of property
             # names denoting a sequence of descendants.
             #
-            # @param value
-            # [MetaBlocks|MetaBool|MetaInline|MetaList|MetaMap|MetaString|MetaValue|String]
+            # @param value [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue|String]
             #   if value is a String, it is treated as a yaml string
             def replace(selector, value)
                 parent = select(selector, true)
@@ -124,7 +123,7 @@ module Paru
             # @param selector [String] a dot-separated sequence of property
             #   names denoting a sequence of descendants.
             #
-            # @return [MetaBlocks|MetaBool|MetaInline|MetaList|MetaMap|MetaString|MetaValue] the value matching the selected property, nil if it cannot be found
+            # @return [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue] the value matching the selected property, nil if it cannot be found
             def get(selector)
                 select(selector)
             end 
@@ -145,13 +144,12 @@ module Paru
             # @param selector [String] a dot-separated sequence of property
             #   names denoting a sequence of descendants
             #
-            # @return [MetaBlocks|MetaBool|MetaInline|MetaList|MetaMap|MetaString|MetaValue] the value of the deleted property, nil if it cannot be found
+            # @return [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue] the value of the deleted property, nil if it cannot be found
             #
             def delete(selector)
                 parent = select(selector, true)
                 parent.children.delete(last_key(selector))
             end
-
 
             # The AST contents
             def ast_contents()
@@ -173,7 +171,7 @@ module Paru
             # @param get_parent [Boolean = false] Get the parent MetaMap
             #   of the selected property instead of its value
             # 
-            # @return [MetaBlocks|MetaBool|MetaInline|MetaList|MetaMap|MetaString|MetaValue] the value of the deleted property, nil if it cannot be found
+            # @return [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue] the value of the deleted property, nil if it cannot be found
             def select(selector, get_parent = false)
                 keys = selector.split(".")
                 level = self

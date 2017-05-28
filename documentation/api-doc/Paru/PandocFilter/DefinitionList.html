@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Paru::PandocFilter::DefinitionList
   
@@ -256,7 +254,7 @@ Inline list and a Block list.</p>
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
     <span class='kw'>super</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
-        <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'>DefinitionListItem</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_item'>item</span>
+        <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span> <span class='const'><span class='object_link'><a href="DefinitionListItem.html" title="Paru::PandocFilter::DefinitionListItem (class)">DefinitionListItem</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="DefinitionListItem.html#initialize-instance_method" title="Paru::PandocFilter::DefinitionListItem#initialize (method)">new</a></span></span> <span class='id identifier rubyid_item'>item</span>
     <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -317,9 +315,9 @@ Inline list and a Block list.</p>
 </div>
 
       <div id="footer">
-  Generated on Sat May 27 17:39:41 2017 by
+  Generated on Sun May 28 09:45:15 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.3.3).
+  0.9.9 (ruby-2.3.3).
 </div>
 
     </div>
