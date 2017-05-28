@@ -1,6 +1,6 @@
 lib/paru.rb 3ea43baa3ccc78d25cce365f2a47760e4b9c6fce
 lib/paru/error.rb f999782e3069dbc2ecda3acc071dae6e14801131
-lib/paru/filter.rb d2e281b707a085e3f94bc7f69d1dc116acd40484
+lib/paru/filter.rb 767513431ae24c1b67ba5ea4cc112f8c5177407c
 lib/paru/pandoc.rb e8592771ff5245bef2754619d2056feee8db2d16
 lib/paru/selector.rb 1a1a9dc6e7424d74d64ec9786374324d48fa683b
 lib/paru/filter/div.rb 9696ff7af140ffda94b7236aa78aaf240cf34044

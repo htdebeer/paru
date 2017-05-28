@@ -198,7 +198,10 @@ module Paru
     #
     class Filter
 
-        # Create a new Filter instance
+        # Create a new Filter instance. For convenience, {run} creates a new
+        # {Filter} and runs it immediately. Use this constructor if you want
+        # to run a filter on different input and output streams that STDIN and
+        # STDOUT respectively.
         #
         # @param input [IO = $stdin] the input stream to read, defaults to
         #   STDIN
@@ -209,11 +212,9 @@ module Paru
             @output = output
         end
 
-        # Run the filter specified by block. In the block you specify
-        # selectors and actions to be performed on selected nodes. In the
-        # example below, the selector is "Image", which selects all image
-        # nodes. The action is to prepend the contents of the image's caption
-        # by the string "Figure. ".
+        # Run the filter specified by block. This is a convenience method that
+        # creates a new {Filter} using input stream STDIN and output stream
+        # STDOUT and immediately runs {filter} with the block supplied. 
         #
         # @param block [Proc] the filter specification
         #
@@ -236,10 +237,27 @@ module Paru
             PandocFilter::Document.from_JSON @input.read
         end
 
-        # Create a filter using +block+.
+        # Create a filter using +block+. In the block you specify
+        # selectors and actions to be performed on selected nodes. In the
+        # example below, the selector is "Image", which selects all image
+        # nodes. The action is to prepend the contents of the image's caption
+        # by the string "Figure. ".
         #
-        # @param block [Proc] a block specifying selectors and actions
+        # @param block [Proc] the filter specification
+        #
         # @return [JSON] a JSON string with the filtered pandoc AST
+        #
+        # @example Add 'Figure' to each image's caption
+        #   input = IOString.new(File.read("my_report.md")
+        #   output = IOString.new
+        #
+        #   Paru::Filter.new(input, output).filter do
+        #       with "Image" do |image|
+        #           image.inner_markdown = "Figure. #{image.inner_markdown}"
+        #       end
+        #   end
+        #
+        #   # do something with output.string
         def filter(&block)
             @selectors = Hash.new
             @filtered_nodes = []
@@ -252,7 +270,6 @@ module Paru
 
             @output.write @doc.to_JSON
         end
-
 
         # +current_node+ points to the node that is *now* being processed while
         # running this filter.
