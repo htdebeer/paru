@@ -1,10 +1,43 @@
 require "minitest/autorun"
 
 require_relative "../lib/paru"
+require_relative "../lib/paru/filter.rb"
 
 class FilterTest < MiniTest::Test
 
     def setup
+    end
+
+    def filter_string(string, &filter_specification)
+        pandoc2json = Paru::Pandoc.new do
+            from "markdown"
+            to "json"
+        end
+
+        json2pandoc = Paru::Pandoc.new do
+            from "json"
+            to "markdown"
+            standalone
+        end
+
+        input = StringIO.new(pandoc2json << string)
+        output = StringIO.new
+        
+        Paru::Filter.new(input, output).filter(&filter_specification)
+        
+        result = json2pandoc << output.string
+        return result
+    end
+
+    def filter_file(file, &filter_specification)
+        filter_string(File.read(file), &filter_specification)
+    end
+
+    def filter_file_and_equal_file(input_file, output_file, &filter_specification)
+        input = File.read(input_file)
+        output = File.read(output_file)
+        result = filter_string(input, &filter_specification)
+        assert_equal(output.strip, result.strip)
     end
 
     def filter_input(filter_file, input_file)
@@ -25,28 +58,9 @@ class FilterTest < MiniTest::Test
         return filtered_output
     end
 
-    def run_example_filter(filter_file, input_file, output_file)
-        filtered_output = filter_input(filter_file, input_file)
-        assert_equal File.read(output_file), filtered_output, "Failure running #{filter_file} on #{input_file}"
-    end
-
-    def filter input
-        pandoc2json_with_identity = Paru::Pandoc.new do
-            from "markdown" 
-            to "json"
-            filter "examples/filters/identity.rb"
-        end
-
-        json2pandoc = Paru::Pandoc.new do
-            from "json"
-            to "markdown"
-            standalone
-        end
-
-        filtered_input = pandoc2json_with_identity << input
-        json2pandoc << filtered_input
-    end
-
+    # When converting from markdown to markdown, pandoc can outputs something
+    # different than the input. So reformat the input to something pandoc
+    # outputs first.
     def reformat input
         pandoc2pandoc = Paru::Pandoc.new do
             from "markdown"
@@ -54,102 +68,196 @@ class FilterTest < MiniTest::Test
             standalone
         end
 
-        pandoc2pandoc << input
+        reformatted_input = pandoc2pandoc << input
+        reformatted_input.chop
     end
 
     def assert_filtered_input_equals_input dir
         Dir.glob("test/pandoc_input/#{dir}/*.md") do |path|
 
-            input = reformat (File.read path)
-            output = ""
-
-            assert_output nil, "" do
-                output = filter input
-            end
-
-            puts "\t#{path}"
-
+            original_input = File.read(path)
+            input = reformat original_input
+            output = filter_string(input) do
+                # nothing
+            end.chop
+            
             assert_equal input, output, "Failure filtering #{path}" 
         end
     end
 
     def test_inline_elements
-        puts "Testing inline elements"
         assert_filtered_input_equals_input "inline"
     end
 
     def test_block_elements
-        puts "Testing block elements"
         assert_filtered_input_equals_input "block"
     end
 
     def test_metadata_elements
-        puts "Testing metadata elements"
         assert_filtered_input_equals_input "metadata"
     end
 
     def test_capitalize_first_sentence
-        puts "Testing example filter capitalize_first_sentence.rb"
-        run_example_filter "examples/filters/capitalize_first_sentence.rb",
+        filter_file_and_equal_file(
             "test/pandoc_input/paragraphs.md",
             "test/pandoc_output/paragraphs.md"
+        ) do
+            with "Header +1 Para" do |p|
+                text = p.inner_markdown
+                first_line = text.slice(0, 10).upcase
+                rest = text.slice(10, text.size)
+                p.inner_markdown = first_line + rest
+            end
+        end
     end
 
     def test_number_figures
-        puts "Testing example filter number_figures.rb"
-        run_example_filter "examples/filters/number_figures.rb",
+        figure_counter = 0
+
+        filter_file_and_equal_file(
             "test/pandoc_input/figures.md",
             "test/pandoc_output/figures.md"
+        ) do
+            with "Image" do |image|
+                figure_counter += 1
+                image.inner_markdown = "Figure #{figure_counter}. #{image.inner_markdown}"
+            end
+        end
     end
 
     def test_number_figures_per_chapter
-        puts "Testing example filter number_figures_per_chapter.rb"
-        run_example_filter "examples/filters/number_figures_per_chapter.rb",
+        current_chapter = 0
+        current_figure = 0;
+
+        filter_file_and_equal_file(
             "test/pandoc_input/figures_in_sections.md",
             "test/pandoc_output/figures_in_sections.md"
+        ) do
+            with "Header" do |header|
+                if header.level == 1 
+                    current_chapter += 1
+                    current_figure = 0
+
+                    header.inner_markdown = "Chapter #{current_chapter}. #{header.inner_markdown}"
+                end
+            end
+
+            with "Header + Image" do |image|
+                current_figure += 1
+                image.inner_markdown = "Figure #{current_chapter}.#{current_figure}. #{image.inner_markdown}"
+            end
+        end
     end
 
     def test_example_blocks
-        puts "Testing example filter example.rb"
-        run_example_filter "examples/filters/example.rb",
+        example_count = 0
+
+        filter_file_and_equal_file(
             "test/pandoc_input/example_blocks.md",
             "test/pandoc_output/example_blocks.md"
+        ) do
+            with "Div.example > Header" do |header|
+                if header.level == 3 
+                    example_count += 1
+                    header.inner_markdown = "Example #{example_count}: #{header.inner_markdown}"
+                end
+            end
+
+            with "Div.important" do |d|
+                d.inner_markdown = d.inner_markdown + "\n\n*(important)*"
+            end
+        end
     end
 
     def test_insert_code_block
-        puts "Testing insert_code_block.rb"
-        run_example_filter "examples/filters/insert_code_block.rb",
+        filter_file_and_equal_file(
             "test/pandoc_input/insert_code_blocks.md",
             "test/pandoc_output/insert_code_blocks.md"
+        ) do
+            with "CodeBlock" do |code_block|
+                command, path, *classes = code_block.string.strip.split " "
+                if command == "::paru::insert"
+                    code_block.string = File.read path.gsub(/\\_/, "_")
+                    classes.each {|c| code_block.attr.classes.push c}
+                end
+            end
+        end
     end
 
     def test_insert_document
-        puts "Testing insert_document.rb"
-        run_example_filter "examples/filters/insert_document.rb",
+        filter_file_and_equal_file(
             "test/pandoc_input/insert_document.md",
             "test/pandoc_output/insert_document.md"
+        ) do
+            with "Para" do |paragraph|
+                if paragraph.inner_markdown.lines.length == 1
+                    command, path = paragraph.inner_markdown.strip.split " "
+                    if command == "::paru::insert"
+                        markdown = File.read path.gsub(/\\_/, "_")
+                        paragraph.outer_markdown = markdown
+                    end
+                end
+            end
+        end
     end
 
     def test_delete_horizontal_rules
-        puts "Testing delete horizontal rules"
-        run_example_filter "examples/filters/delete_horizontal_rules.rb",
+        filter_file_and_equal_file(
             "test/pandoc_input/delete_horizontal_rules.md",
             "test/pandoc_output/delete_horizontal_rules.md"
+        ) do
+            with "HorizontalRule" do |rule|
+                if rule.has_parent? then
+                    rule.parent.delete rule
+                end
+            end
+        end
     end
 
     def test_add_today()
-        puts "Testing adding today's date to the metadata"
-        output = filter_input "examples/filters/add_today.rb",
-            "test/pandoc_input/add_today.md"
+        output = filter_file("examples/filters/add_today.rb") do
+            metadata.yaml <<~YAML
+                ---
+                date: #{Date.today.to_s}
+                ...
+            YAML
+        end
         assert_match(/#{Date.today.to_s}/, output)
     end
 
-    def test_insert_paru_filter()
-        puts "Testing inserting paru's version"
-        output = filter_input "examples/filters/insert_paru_version.rb",
-            "test/pandoc_input/paru_version.md"
+    def test_insert_paru_version_filter()
+        version = lambda do |str|
+            str.gsub "::paru::version", Paru::VERSION.join(".")
+        end
+        
+        output = filter_file("test/pandoc_input/paru_version.md") do
+            with "Str" do |str|
+                str.string = version.call(str.string)
+            end
+
+            with "CodeBlock" do |code|
+                code.string = version.call(code.string)
+            end
+
+            with "Link" do |link|
+                link.target.url = version.call(link.target.url)
+                link.target.title = version.call(link.target.title)
+            end
+        end
 
         assert_match(/#{Paru::VERSION.join(".")}/, output)
+    end
+
+    def test_world_to_moon()
+        input = "hello **world**"
+        output = filter_string(input) do 
+            with "Str" do |s|
+                if s.string == "world"
+                    s.string = "moon"
+                end
+            end
+        end
+        assert_equal("hello **moon**\n", output)
     end
 
 end

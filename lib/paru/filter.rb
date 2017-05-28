@@ -198,6 +198,17 @@ module Paru
     #
     class Filter
 
+        # Create a new Filter instance
+        #
+        # @param input [IO = $stdin] the input stream to read, defaults to
+        #   STDIN
+        # @param output [IO = $stdout] the output stream to write, defaults to 
+        #   STDOUT
+        def initialize(input = $stdin, output = $stdout)
+            @input = input
+            @output = output
+        end
+
         # Run the filter specified by block. In the block you specify
         # selectors and actions to be performed on selected nodes. In the
         # example below, the selector is "Image", which selects all image
@@ -213,9 +224,8 @@ module Paru
         #       end
         #   end
         def self.run(&block)
-            Filter.new().filter(&block)
+            Filter.new($stdin, $stdout).filter(&block)
         end
-
 
         # The Document node from JSON formatted pandoc document structure
         # on STDIN that is being filtered
@@ -223,7 +233,7 @@ module Paru
         # @return [Document] create a new Document node from a pandoc AST from
         #   JSON from STDIN
         def document()
-            PandocFilter::Document.from_JSON $stdin.read
+            PandocFilter::Document.from_JSON @input.read
         end
 
         # Create a filter using +block+.
@@ -240,7 +250,7 @@ module Paru
                 instance_eval(&block)
             end
 
-            puts @doc.to_JSON
+            @output.write @doc.to_JSON
         end
 
 

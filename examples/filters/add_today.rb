@@ -4,5 +4,9 @@ require "paru/filter"
 require "date"
 
 Paru::Filter.run do 
-    metadata["date"] = Paru::PandocFilter::MetaString.new(Date.today.to_s)
+    metadata.yaml <<~YAML
+        ---
+        date: #{Date.today.to_s}
+        ...
+    YAML
 end
