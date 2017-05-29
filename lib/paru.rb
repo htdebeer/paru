@@ -20,7 +20,8 @@ module Paru
     require "paru/pandoc"
     require "paru/error"
     require "paru/filter"
+    require "paru/pandoc2yaml"
 
     # Paru's current version
-    VERSION = [0, 2, 4, 4]
+    VERSION = [0, 2, 4, 5]
 end

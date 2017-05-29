@@ -9,86 +9,51 @@
 #  pandoc2yaml.rb input_file
 #
 ##
-module Pandoc2Yaml
-  require "json"
-  require "paru/pandoc"
+require "json"
+require 'optparse'
+require 'paru/pandoc2yaml'
 
-  # Paru converters:
-  # Note. When converting metadata back to the pandoc markdown format, you have
-  # to use the option "standalone", otherwise the metadata is skipped
-  PANDOC_2_JSON = Paru::Pandoc.new {from "markdown"; to "json"}
-  JSON_2_PANDOC = Paru::Pandoc.new {from "json"; to "markdown"; standalone}
-
-  # When converting a pandoc document to JSON, or vice versa, the JSON object
-  # has the following three properties:
-  VERSION = "pandoc-api-version"
-  META = "meta"
-  BLOCKS = "blocks"
-
-  def extract_metadata input_document
-    json = JSON.parse(PANDOC_2_JSON << File.read(input_document))
-    yaml = ""
-
-    version, metadata = json.values_at(VERSION, META)
-
-    if not metadata.empty? then
-      metadata_document = {
-        VERSION => version, 
-        META => metadata, 
-        BLOCKS => []
-      }
-
-      yaml = JSON_2_PANDOC << JSON.generate(metadata_document)
-    end
-
-    yaml
-  end
-end
-
-if __FILE__ == $0
-  include Pandoc2Yaml
-  require 'optparse'
-
-  parser = OptionParser.new do |opts|
+parser = OptionParser.new do |opts|
     opts.banner = "pandoc2yaml.rb mines a pandoc markdown file for its YAML metadata"
     opts.banner << "\n\nUsage: pandoc2yaml.rb some-pandoc-markdownfile.md"
     opts.separator ""
     opts.separator "Common options"
 
     opts.on_tail("-h", "--help", "Show this message") do
-      puts opts
-      exit
+        puts opts
+        exit
     end
 
     opts.on("-v", "--version", "Show version") do 
-      puts "pandoc2yaml.rb is part of paru version 0.2.3"
-      exit
+        puts "pandoc2yaml.rb is part of paru version 0.2.3"
+        exit
     end
-  end
+end
 
-  parser.parse! ARGV
+parser.parse! ARGV
 
-  input_document = ARGV.pop
+input_document = ARGV.pop
 
-  if ARGV.size != 0 then
+if ARGV.size != 0 then
     warn "Expecting exactly one argument: the pandoc file to strip for metadata"
     puts ""
     puts parser
     exit
-  end
+end
 
-  document = File.expand_path input_document
-  if not File.exist? document
+document = File.expand_path input_document
+if not File.exist? document
     warn "Cannot find file: #{input_document}"
     exit
-  end
+end
 
-  if !File.readable? document
+if !File.readable? document
     warn "Cannot read file: #{input_document}"
     exit
-  end
-
-  output_metadata = Pandoc2Yaml.extract_metadata document
-  
-  puts output_metadata
 end
+
+yaml = Paru::Pandoc2Yaml.extract_metadata(document)
+
+yaml = "---\n..." if yaml.empty?
+
+puts yaml

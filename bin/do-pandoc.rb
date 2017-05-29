@@ -2,9 +2,7 @@
 require "yaml"
 require 'optparse'
 require "paru/pandoc"
-require_relative "./pandoc2yaml.rb"
-
-include Pandoc2Yaml
+require "paru/pandoc2yaml"
 
 parser = OptionParser.new do |opts|
   opts.banner = "do-pandoc.rb runs pandoc on an input file using the pandoc configuration specified in that input file."
@@ -44,7 +42,9 @@ if !File.readable? document
   warn "Cannot read file: #{input_document}"
   exit
 end
-metadata = YAML.load Pandoc2Yaml.extract_metadata(document)
+
+yaml = Paru::Pandoc2Yaml.extract_metadata(document)
+metadata = YAML.load yaml
 
 if metadata.has_key? "pandoc" then
   begin
@@ -65,5 +65,5 @@ if metadata.has_key? "pandoc" then
     warn "Something went wrong while using pandoc:\n\n#{e.message}"
   end
 else
-    warn "Unsure what to do: no pandoc options in #{input}"
+    warn "Unsure what to do: no pandoc options in #{input_document}"
 end

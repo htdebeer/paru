@@ -79,7 +79,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/paru.rb<span class="defines">,<br />
-  lib/paru/error.rb,<br /> lib/paru/filter.rb,<br /> lib/paru/pandoc.rb,<br /> lib/paru/selector.rb,<br /> lib/paru/filter/div.rb,<br /> lib/paru/filter/str.rb,<br /> lib/paru/filter/attr.rb,<br /> lib/paru/filter/cite.rb,<br /> lib/paru/filter/code.rb,<br /> lib/paru/filter/emph.rb,<br /> lib/paru/filter/link.rb,<br /> lib/paru/filter/list.rb,<br /> lib/paru/filter/math.rb,<br /> lib/paru/filter/meta.rb,<br /> lib/paru/filter/node.rb,<br /> lib/paru/filter/note.rb,<br /> lib/paru/filter/null.rb,<br /> lib/paru/filter/para.rb,<br /> lib/paru/filter/span.rb,<br /> lib/paru/filter/block.rb,<br /> lib/paru/filter/image.rb,<br /> lib/paru/filter/plain.rb,<br /> lib/paru/filter/space.rb,<br /> lib/paru/filter/table.rb,<br /> lib/paru/filter/header.rb,<br /> lib/paru/filter/inline.rb,<br /> lib/paru/filter/quoted.rb,<br /> lib/paru/filter/strong.rb,<br /> lib/paru/filter/target.rb,<br /> lib/paru/filter/version.rb,<br /> lib/paru/filter/citation.rb,<br /> lib/paru/filter/document.rb,<br /> lib/paru/filter/markdown.rb,<br /> lib/paru/filter/meta_map.rb,<br /> lib/paru/filter/meta_bool.rb,<br /> lib/paru/filter/meta_list.rb,<br /> lib/paru/filter/raw_block.rb,<br /> lib/paru/filter/strikeout.rb,<br /> lib/paru/filter/subscript.rb,<br /> lib/paru/filter/table_row.rb,<br /> lib/paru/filter/code_block.rb,<br /> lib/paru/filter/line_block.rb,<br /> lib/paru/filter/line_break.rb,<br /> lib/paru/filter/meta_value.rb,<br /> lib/paru/filter/raw_inline.rb,<br /> lib/paru/filter/small_caps.rb,<br /> lib/paru/filter/soft_break.rb,<br /> lib/paru/filter/block_quote.rb,<br /> lib/paru/filter/bullet_list.rb,<br /> lib/paru/filter/empty_block.rb,<br /> lib/paru/filter/meta_blocks.rb,<br /> lib/paru/filter/meta_string.rb,<br /> lib/paru/filter/superscript.rb,<br /> lib/paru/filter/empty_inline.rb,<br /> lib/paru/filter/meta_inlines.rb,<br /> lib/paru/filter/ordered_list.rb,<br /> lib/paru/filter/definition_list.rb,<br /> lib/paru/filter/horizontal_rule.rb,<br /> lib/paru/filter/list_attributes.rb,<br /> lib/paru/filter/ast_manipulation.rb,<br /> lib/paru/filter/definition_list_item.rb</span>
+  lib/paru/error.rb,<br /> lib/paru/filter.rb,<br /> lib/paru/pandoc.rb,<br /> lib/paru/selector.rb,<br /> lib/paru/filter/div.rb,<br /> lib/paru/filter/str.rb,<br /> lib/paru/filter/attr.rb,<br /> lib/paru/filter/cite.rb,<br /> lib/paru/filter/code.rb,<br /> lib/paru/filter/emph.rb,<br /> lib/paru/filter/link.rb,<br /> lib/paru/filter/list.rb,<br /> lib/paru/filter/math.rb,<br /> lib/paru/filter/meta.rb,<br /> lib/paru/filter/node.rb,<br /> lib/paru/filter/note.rb,<br /> lib/paru/filter/null.rb,<br /> lib/paru/filter/para.rb,<br /> lib/paru/filter/span.rb,<br /> lib/paru/pandoc2yaml.rb,<br /> lib/paru/filter/block.rb,<br /> lib/paru/filter/image.rb,<br /> lib/paru/filter/plain.rb,<br /> lib/paru/filter/space.rb,<br /> lib/paru/filter/table.rb,<br /> lib/paru/filter/header.rb,<br /> lib/paru/filter/inline.rb,<br /> lib/paru/filter/quoted.rb,<br /> lib/paru/filter/strong.rb,<br /> lib/paru/filter/target.rb,<br /> lib/paru/filter/version.rb,<br /> lib/paru/filter/citation.rb,<br /> lib/paru/filter/document.rb,<br /> lib/paru/filter/markdown.rb,<br /> lib/paru/filter/meta_map.rb,<br /> lib/paru/filter/meta_bool.rb,<br /> lib/paru/filter/meta_list.rb,<br /> lib/paru/filter/raw_block.rb,<br /> lib/paru/filter/strikeout.rb,<br /> lib/paru/filter/subscript.rb,<br /> lib/paru/filter/table_row.rb,<br /> lib/paru/filter/code_block.rb,<br /> lib/paru/filter/line_block.rb,<br /> lib/paru/filter/line_break.rb,<br /> lib/paru/filter/meta_value.rb,<br /> lib/paru/filter/raw_inline.rb,<br /> lib/paru/filter/small_caps.rb,<br /> lib/paru/filter/soft_break.rb,<br /> lib/paru/filter/block_quote.rb,<br /> lib/paru/filter/bullet_list.rb,<br /> lib/paru/filter/empty_block.rb,<br /> lib/paru/filter/meta_blocks.rb,<br /> lib/paru/filter/meta_string.rb,<br /> lib/paru/filter/superscript.rb,<br /> lib/paru/filter/empty_inline.rb,<br /> lib/paru/filter/meta_inlines.rb,<br /> lib/paru/filter/ordered_list.rb,<br /> lib/paru/filter/definition_list.rb,<br /> lib/paru/filter/horizontal_rule.rb,<br /> lib/paru/filter/list_attributes.rb,<br /> lib/paru/filter/ast_manipulation.rb,<br /> lib/paru/filter/definition_list_item.rb</span>
 </dd>
   </dl>
   
@@ -116,7 +116,7 @@ href="http://www.gnu.org/licenses">www.gnu.org/licenses</a>/&gt;. ++</p>
 <p class="children">
   
     
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Paru/PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Paru/Pandoc2Yaml.html" title="Paru::Pandoc2Yaml (module)">Pandoc2Yaml</a></span>, <span class='object_link'><a href="Paru/PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span>
     
   
     
@@ -142,7 +142,7 @@ href="http://www.gnu.org/licenses">www.gnu.org/licenses</a>/&gt;. ++</p>
 
 </div>
       </dt>
-      <dd><pre class="code"><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='int'>4</span><span class='comma'>,</span> <span class='int'>4</span><span class='rbracket'>]</span></pre></dd>
+      <dd><pre class="code"><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='int'>4</span><span class='comma'>,</span> <span class='int'>5</span><span class='rbracket'>]</span></pre></dd>
     
       <dt id="PANDOC_BLOCK-constant" class="">PANDOC_BLOCK =
         <div class="docstring">
@@ -243,7 +243,7 @@ Pandoc treats block elements and inline elements differently.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun May 28 11:28:23 2017 by
+  Generated on Mon May 29 22:37:31 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

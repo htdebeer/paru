@@ -147,8 +147,12 @@ module Paru
             # @return [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue] the value of the deleted property, nil if it cannot be found
             #
             def delete(selector)
-                parent = select(selector, true)
-                parent.children.delete(last_key(selector))
+                if has?(selector)
+                    parent = select(selector, true)
+                    parent.children.delete(last_key(selector))
+                else
+                    nil
+                end
             end
 
             # The AST contents

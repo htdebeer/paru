@@ -61,4 +61,14 @@ class ParuTest < MiniTest::Test
 
         run_converter converter, "test/pandoc_input/simple_cite.md", "test/pandoc_output/simple_cite.html"
     end
+
+    def test_pandoc2yaml()
+        require_relative '../lib/paru/pandoc2yaml'
+
+        input = "test/pandoc_input/simple_yaml_metadata.md"
+        output = File.read "test/pandoc_output/simple_yaml_metadata.yaml"
+
+        result = Paru::Pandoc2Yaml.extract_metadata input
+        assert_equal output, result
+    end
 end
