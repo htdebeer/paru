@@ -27,12 +27,12 @@ for metadata in so-called [YAML](http://yaml.org/) blocks. Using paru and Ruby
   install paru, so you can run it from the command line like:
 
 ~~~{.bash}
-pandoc2yaml my-noce-pandoc-file.md
+pandoc2yaml.rb my-noce-pandoc-file.md
 ~~~
 
   The `pandoc2yaml.rb` script is quite straightforward:
 
-    ::paru::insert ../examples/pandoc2yaml.rb ruby
+    ::paru::insert ../bin/pandoc2yaml.rb ruby
 
 *pandoc2yaml.rb* is built in two parts: 
 

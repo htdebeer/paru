@@ -18,7 +18,7 @@ lib/paru/filter/note.rb f6bb1f822625e7449219127d5432817f1430a7a7
 lib/paru/filter/null.rb da6f03bde821aa39f95d41c3a74c84d7384f31d3
 lib/paru/filter/para.rb 4f6af395b3cd472337a78c691aabb6b7995cacf6
 lib/paru/filter/span.rb 94ac8d1091c764b5fa088f258e7b2d9713b2e02c
-lib/paru/pandoc2yaml.rb c0fd9c6e0a17649de5b2c898b6b747284495e491
+lib/paru/pandoc2yaml.rb 28eeab6fdbb67a2c7aee1b40a2770ef4fd2cf71a
 lib/paru/filter/block.rb 1544e5c656cb1a1308241f3de1bbb5f9845b32c3
 lib/paru/filter/image.rb 3b6e26586c9047596e44bebcb6a4c60986d16e54
 lib/paru/filter/plain.rb 9cea89fd9f18b5453fbfea040916d747fb7a7d92
