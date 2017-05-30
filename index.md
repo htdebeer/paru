@@ -138,9 +138,9 @@ To that end, I developed *do-pandoc.rb*.
 
 I developed *do-pandoc.rb* in two steps:
 
-1.  first I wrote a ruby script to mine the pandoc markdown files for
+1.  first I wrote a ruby module to mine the pandoc markdown files for
     its [YAML](http://yaml.org/) metadata.
-2.  using that script, I wrote another script that would use the former
+2.  using that module, I wrote another script that would use the former
     to get the pandoc command-line options to use from an input file,
     fed these options into a dynamically generated pandoc converter, and
     then use this converter on that same input file to generate my
@@ -230,11 +230,9 @@ puts yaml
 
 1.  a library module `Pandoc2Yaml`, which we will be using later again
     in *do-pandoc.rb*,
-2.  and a self-contained part that, following a common Ruby pattern,
-    will be executed if the file is run as a script rather than a
-    library. It checks if there is an argument to the script and, if so,
-    interprets it as a path to a file, and mines its contents for YAML
-    metadata using the libray module.
+2.  and a script that checks if there is an argument to the script and,
+    if so, interprets it as a path to a file, and mines its contents for
+    YAML metadata using the libray module.
 
 The library module `Pandoc2Yaml` has one method, `extract_metadata` that
 takes one argument, the path to a pandoc markdown file.
@@ -321,34 +319,72 @@ file using the pandoc options specified in that same file in a
 ``` {.ruby}
 #!/usr/bin/env ruby
 require "yaml"
+require 'optparse'
 require "paru/pandoc"
-require_relative "./pandoc2yaml.rb"
+require "paru/pandoc2yaml"
 
-include Pandoc2Yaml
+parser = OptionParser.new do |opts|
+  opts.banner = "do-pandoc.rb runs pandoc on an input file using the pandoc configuration specified in that input file."
+  opts.banner << "\n\nUsage: do-pandoc.rb some-pandoc-markdownfile.md"
+  opts.separator ""
+  opts.separator "Common options"
 
-if ARGV.size != 1 then
-    warn "Expecting exactly one argument: the pandoc file to convert"
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
     exit
+  end
+
+  opts.on("-v", "--version", "Show version") do 
+    puts "do-pandoc.rb is part of paru version 0.2.3"
+    exit
+  end
 end
 
-input = ARGV.first
-metadata = YAML.load Pandoc2Yaml.extract_metadata(input)
+parser.parse! ARGV
+
+input_document = ARGV.pop
+
+if ARGV.size != 0 then
+  warn "Expecting exactly one argument: the pandoc file to convert"
+  puts ""
+  puts parser
+  exit
+end
+
+document = File.expand_path input_document
+if not File.exist? document
+  warn "Cannot find file: #{input_document}"
+  exit
+end
+
+if !File.readable? document
+  warn "Cannot read file: #{input_document}"
+  exit
+end
+
+yaml = Paru::Pandoc2Yaml.extract_metadata(document)
+metadata = YAML.load yaml
 
 if metadata.has_key? "pandoc" then
-    begin
-        pandoc = Paru::Pandoc.new
-        to_stdout = true
-        metadata["pandoc"].each do |option, value|
-            pandoc.send option, value
-            to_stdout = false if option == "output"
-        end
-        output = pandoc << File.read(input)
-        puts output if to_stdout
-    rescue Exception => e
-        warn "Something went wrong while using pandoc:\n\n#{e.message}"
+  begin
+    pandoc = Paru::Pandoc.new
+    to_stdout = true
+    metadata["pandoc"].each do |option, value|
+      if value.is_a? String then
+          value = value.gsub '\\', ''
+      elsif value.is_a? Array then
+          value = value.map {|v| v.gsub '\\', '' if v.is_a? String}
+      end
+      pandoc.send option, value
+      to_stdout = false if option == "output"
     end
+    output = pandoc << File.read(document)
+    puts output if to_stdout
+  rescue Exception => e
+    warn "Something went wrong while using pandoc:\n\n#{e.message}"
+  end
 else
-    warn "Unsure what to do: no pandoc options in #{input}"
+    warn "Unsure what to do: no pandoc options in #{input_document}"
 end
 ```
 

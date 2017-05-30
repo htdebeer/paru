@@ -9,9 +9,9 @@ I developed *do-pandoc.rb*.
 
 I developed *do-pandoc.rb* in two steps: 
 
-1. first I wrote a ruby script to mine the pandoc markdown files for its
+1. first I wrote a ruby module to mine the pandoc markdown files for its
    [YAML](http://yaml.org/) metadata.
-2. using that script, I wrote another script that would use the former to get
+2. using that module, I wrote another script that would use the former to get
    the pandoc command-line options to use from an input file, fed these
    options into a dynamically generated pandoc converter, and then use this
    converter on that same input file to generate my output file.
@@ -38,18 +38,14 @@ pandoc2yaml.rb my-noce-pandoc-file.md
 
 1.  a library module `Pandoc2Yaml`, which we will be using later again in
     *do-pandoc.rb*,
-2.  and a self-contained part that, following a common Ruby pattern, will be
-    executed if the file is run as a script rather than a library. It checks
-    if there is an argument to the script and, if so, interprets it as a path
-      to a file, and mines its contents for YAML metadata using the libray
-      module.
+2.  and a script that checks if there is an argument to the script and, if so,
+    interprets it as a path to a file, and mines its contents for YAML
+    metadata using the libray module.
 
 The library module `Pandoc2Yaml` has one method, `extract_metadata` that takes
 one argument, the path to a pandoc markdown file. 
 
-
     ::paru::insert ../lib/paru/pandoc2yaml.rb ruby
-
 
 This method converts the contents of that file to a JSON representation of the
 document. Since pandoc version 1.18, this JSON representation consists of
@@ -73,7 +69,7 @@ is easy to write a script that runs pandoc on a markdown file using the pandoc
 options specified in that same file in a [YAML](http://yaml.org) metadata
 block:
 
-    ::paru::insert ../examples/do-pandoc.rb ruby
+    ::paru::insert ../bin/do-pandoc.rb ruby
 
 The script `do-pandoc.rb` first checks if there is one argument. If so, it is treated
 as a path to a pandoc markdown file. That file is mined for its metadata and
