@@ -45,9 +45,15 @@ pandoc2yaml my-noce-pandoc-file.md
       module.
 
 The library module `Pandoc2Yaml` has one method, `extract_metadata` that takes
-one argument, the path to a pandoc markdown file. It converts the contents of
-that file to a JSON representation of the document. Since pandoc version 1.18,
-this JSON representation consists of three elements:
+one argument, the path to a pandoc markdown file. 
+
+
+    ::paru::insert ../lib/paru/pandoc2yaml.rb ruby
+
+
+This method converts the contents of that file to a JSON representation of the
+document. Since pandoc version 1.18, this JSON representation consists of
+three elements:
 
 1.  the version of the [pandoc-types
     API](http://hackage.haskell.org/package/pandoc-types-1.17.0.4) used
