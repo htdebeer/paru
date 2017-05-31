@@ -213,9 +213,21 @@ class FilterTest < MiniTest::Test
             end
         end
     end
+    
+    def test_raw_latex()
+        filter_file_and_equal_file(
+            "test/pandoc_input/raw_latex.md",
+            "test/pandoc_output/raw_latex.md"
+        ) do
+            with "Image" do |image|
+                image.inner_markdown = "Figure. #{image.inner_markdown}"
+            end
+        end
+    end
+
 
     def test_add_today()
-        output = filter_file("examples/filters/add_today.rb") do
+        output = filter_file("test/pandoc_input/add_today.md") do
             metadata.yaml <<~YAML
                 ---
                 date: #{Date.today.to_s}

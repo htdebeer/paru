@@ -38,7 +38,7 @@ module Paru
             end
 
             # Create an AST representation of this RawBlock node
-            def to_ast()
+            def ast_contents()
                 [
                     @format,
                     @string

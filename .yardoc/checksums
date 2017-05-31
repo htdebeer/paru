@@ -36,7 +36,7 @@ lib/paru/filter/markdown.rb 90be4504db27ba119f69d8ab0ef29c2e1b98d201
 lib/paru/filter/meta_map.rb 8c14949ca71738d100296d0af876573b9936c6ef
 lib/paru/filter/meta_bool.rb 40683b85d955ddadb7782b7c0eab6d09ab39611f
 lib/paru/filter/meta_list.rb c2034ae62aa1df939b75e09c558caab90004f5d6
-lib/paru/filter/raw_block.rb 6be2fb6c7ca65749b6fc6a1c7fd2c8be9257636e
+lib/paru/filter/raw_block.rb 2bfa988650745cf72417f37a27159b5b9d444d41
 lib/paru/filter/strikeout.rb d3ea1f112a8bfae67a3bd0b1020e1bc73ed40147
 lib/paru/filter/subscript.rb 370dbfd71bcd29e6f4ab136778500f7c0abd21a6
 lib/paru/filter/table_row.rb 4eec773d94d18fc1025388bf32cb352561ecde7a
