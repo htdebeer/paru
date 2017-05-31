@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Module: Paru::Pandoc2Yaml
+  Class: Paru::Pandoc2Yaml
   
     &mdash; Paru
   
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <iframe id="nav" src="../class_list.html"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -59,12 +59,30 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><h1>Module: Paru::Pandoc2Yaml
+      <iframe id="search_frame" src="../class_list.html"></iframe>
+
+      <div id="content"><h1>Class: Paru::Pandoc2Yaml
   
   
   
 </h1>
 <div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Paru::Pandoc2Yaml</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
   
 
   
@@ -83,7 +101,19 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Utility class to extract YAML metadata form a markdown file in pandoc&#39;s
+own markdown format.</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
   <h2>Constant Summary</h2>
   <dl class="constants">
     
@@ -91,9 +121,7 @@
         <div class="docstring">
   <div class="discussion">
     
-<p>Paru converters: Note. When converting metadata back to the pandoc markdown
-format, you have to use the option “standalone”, otherwise the metadata is
-skipped</p>
+<p>Converter from pandoc&#39;s markdown to pandoc&#39;s AST JSON</p>
 
 
   </div>
@@ -103,19 +131,31 @@ skipped</p>
 
 </div>
       </dt>
-      <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pandoc.html" title="Paru::Pandoc (class)">Pandoc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Pandoc.html#initialize-instance_method" title="Paru::Pandoc#initialize (method)">new</a></span></span> <span class='lbrace'>{</span><span class='id identifier rubyid_from'>from</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>markdown</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_to'>to</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>json</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span></pre></dd>
+      <dd><pre class="code"><span class='const'>Paru</span><span class='op'>::</span><span class='const'>Pandoc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span><span class='id identifier rubyid_from'>from</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>markdown</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_to'>to</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>json</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span></pre></dd>
     
       <dt id="JSON_2_PANDOC-constant" class="">JSON_2_PANDOC =
-        
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Converter from pandoc&#39;s AST JSON back to pandoc. Note the
+&#39;standalone&#39; property, which is needed to output the metadata as
+well.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
       </dt>
-      <dd><pre class="code"><span class='const'><span class='object_link'><a href="../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pandoc.html" title="Paru::Pandoc (class)">Pandoc</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Pandoc.html#initialize-instance_method" title="Paru::Pandoc#initialize (method)">new</a></span></span> <span class='lbrace'>{</span><span class='id identifier rubyid_from'>from</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>json</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_to'>to</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>markdown</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_standalone'>standalone</span><span class='rbrace'>}</span></pre></dd>
+      <dd><pre class="code"><span class='const'>Paru</span><span class='op'>::</span><span class='const'>Pandoc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span><span class='id identifier rubyid_from'>from</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>json</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_to'>to</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>markdown</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_standalone'>standalone</span><span class='rbrace'>}</span></pre></dd>
     
       <dt id="VERSION-constant" class="">VERSION =
         <div class="docstring">
   <div class="discussion">
     
-<p>When converting a pandoc document to JSON, or vice versa, the JSON object
-has the following three properties:</p>
+<p>Pandoc-type API version key</p>
 
 
   </div>
@@ -128,12 +168,34 @@ has the following three properties:</p>
       <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pandoc-api-version</span><span class='tstring_end'>&quot;</span></span></pre></dd>
     
       <dt id="META-constant" class="">META =
-        
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Meta block key</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
       </dt>
       <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>meta</span><span class='tstring_end'>&quot;</span></span></pre></dd>
     
       <dt id="BLOCKS-constant" class="">BLOCKS =
-        
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Content&#39;s blocks key</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
       </dt>
       <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>blocks</span><span class='tstring_end'>&quot;</span></span></pre></dd>
     
@@ -250,42 +312,42 @@ has the following three properties:</p>
       <pre class="lines">
 
 
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50</pre>
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/pandoc2yaml.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/pandoc2yaml.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_extract_metadata'>extract_metadata</span> <span class='id identifier rubyid_input_document'>input_document</span>
-    <span class='id identifier rubyid_json'>json</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#PANDOC_2_JSON-constant" title="Paru::Pandoc2Yaml::PANDOC_2_JSON (constant)">PANDOC_2_JSON</a></span></span> <span class='op'>&lt;&lt;</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_input_document'>input_document</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_json'>json</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='const'>PANDOC_2_JSON</span> <span class='op'>&lt;&lt;</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_input_document'>input_document</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_yaml'>yaml</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
 
-    <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_metadata'>metadata</span> <span class='op'>=</span> <span class='id identifier rubyid_json'>json</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#VERSION-constant" title="Paru::Pandoc2Yaml::VERSION (constant)">VERSION</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="#META-constant" title="Paru::Pandoc2Yaml::META (constant)">META</a></span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_metadata'>metadata</span> <span class='op'>=</span> <span class='id identifier rubyid_json'>json</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='const'>VERSION</span><span class='comma'>,</span> <span class='const'>META</span><span class='rparen'>)</span>
 
     <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='kw'>then</span>
         <span class='id identifier rubyid_metadata_document'>metadata_document</span> <span class='op'>=</span> <span class='lbrace'>{</span>
-            <span class='const'><span class='object_link'><a href="#VERSION-constant" title="Paru::Pandoc2Yaml::VERSION (constant)">VERSION</a></span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> 
-            <span class='const'><span class='object_link'><a href="#META-constant" title="Paru::Pandoc2Yaml::META (constant)">META</a></span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='comma'>,</span> 
-            <span class='const'><span class='object_link'><a href="#BLOCKS-constant" title="Paru::Pandoc2Yaml::BLOCKS (constant)">BLOCKS</a></span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+            <span class='const'>VERSION</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> 
+            <span class='const'>META</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='comma'>,</span> 
+            <span class='const'>BLOCKS</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
         <span class='rbrace'>}</span>
 
-        <span class='id identifier rubyid_yaml'>yaml</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="#JSON_2_PANDOC-constant" title="Paru::Pandoc2Yaml::JSON_2_PANDOC (constant)">JSON_2_PANDOC</a></span></span> <span class='op'>&lt;&lt;</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='id identifier rubyid_metadata_document'>metadata_document</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_yaml'>yaml</span> <span class='op'>=</span> <span class='const'>JSON_2_PANDOC</span> <span class='op'>&lt;&lt;</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_generate'>generate</span><span class='lparen'>(</span><span class='id identifier rubyid_metadata_document'>metadata_document</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_yaml'>yaml</span>
@@ -300,9 +362,9 @@ has the following three properties:</p>
 </div>
 
       <div id="footer">
-  Generated on Wed May 31 15:32:44 2017 by
+  Generated on Wed May 31 21:36:00 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.5 (ruby-2.3.3).
 </div>
 
     </div>

@@ -2,6 +2,8 @@ require "minitest/autorun"
 
 require_relative "../lib/paru"
 require_relative "../lib/paru/filter.rb"
+require_relative "../lib/paru/filter_error.rb"
+require_relative "../lib/paru/filter/document.rb"
 
 class FilterTest < MiniTest::Test
 
@@ -270,6 +272,25 @@ class FilterTest < MiniTest::Test
             end
         end
         assert_equal("hello **moon**\n", output)
+    end
+
+    def test_reading_problematic_document()
+        api_version = Paru::PandocFilter::CURRENT_PANDOC_VERSION.join(".")
+
+        json = File.read("test/pandoc_input/json_strong_hi-faulty_json.json")
+        err = assert_raises Paru::FilterError do
+            Paru::PandocFilter::Document.from_JSON json        
+        end
+
+        assert_match(/#{api_version}/, err.message)
+
+        # use '_debug' metadata property to show warning
+        json = File.read("test/pandoc_input/json_strong_hi-previous_version.json")
+        _, err = capture_io do
+            Paru::PandocFilter::Document.from_JSON json            
+        end
+
+        assert_match(/#{api_version}/, err)
     end
 
 end

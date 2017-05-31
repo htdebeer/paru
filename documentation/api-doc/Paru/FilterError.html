@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Exception: Paru::SelectorParseError
+  Exception: Paru::FilterError
   
     &mdash; Paru
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "Paru::SelectorParseError";
+  pathId = "Paru::FilterError";
   relpath = '../';
 </script>
 
@@ -36,10 +36,10 @@
       <div id="header">
         <div id="menu">
   
-    <a href="../_index.html">Index (S)</a> &raquo;
+    <a href="../_index.html">Index (F)</a> &raquo;
     <span class='title'><span class='object_link'><a href="../Paru.html" title="Paru (module)">Paru</a></span></span>
      &raquo; 
-    <span class="title">SelectorParseError</span>
+    <span class="title">FilterError</span>
   
 </div>
 
@@ -61,7 +61,7 @@
 
       <iframe id="search_frame" src="../class_list.html"></iframe>
 
-      <div id="content"><h1>Exception: Paru::SelectorParseError
+      <div id="content"><h1>Exception: Paru::FilterError
   
   
   
@@ -80,7 +80,7 @@
           
             <li class="next"><span class='object_link'><a href="Error.html" title="Paru::Error (class)">Error</a></span></li>
           
-            <li class="next">Paru::SelectorParseError</li>
+            <li class="next">Paru::FilterError</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -100,7 +100,9 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/paru/selector.rb</dd>
+    <dd>lib/paru/filter.rb<span class="defines">,<br />
+  lib/paru/filter_error.rb</span>
+</dd>
   </dl>
   
 </div>
@@ -108,8 +110,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<p>SelectorParseError is thrown when there is an error parsing a selector used
-in a filter.</p>
+<p>A FilterError raised when there is an error while running a filter.</p>
 
 
   </div>

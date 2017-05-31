@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <iframe id="nav" src="../../class_list.html"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,6 +58,8 @@
 </div>
         <div class="clear"></div>
       </div>
+
+      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Paru::PandocFilter::Meta
   
@@ -387,7 +389,7 @@
       <pre class="code"><span class="info file"># File 'lib/paru/filter/meta.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_meta_map'>to_meta_map</span><span class='lparen'>(</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_map'>map</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MetaMap.html" title="Paru::PandocFilter::MetaMap (class)">MetaMap</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="MetaMap.html#initialize-instance_method" title="Paru::PandocFilter::MetaMap#initialize (method)">new</a></span></span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_map'>map</span> <span class='op'>=</span> <span class='const'>MetaMap</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_map'>map</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span> <span class='op'>=</span> <span class='ivar'>@children</span>
     <span class='id identifier rubyid_map'>map</span>
 <span class='kw'>end</span></pre>
@@ -401,9 +403,9 @@
 </div>
 
       <div id="footer">
-  Generated on Wed May 31 15:32:45 2017 by
+  Generated on Wed May 31 21:35:59 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.5 (ruby-2.3.3).
 </div>
 
     </div>

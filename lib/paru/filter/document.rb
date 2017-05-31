@@ -20,10 +20,11 @@ module Paru
     module PandocFilter
 
         require "json"
-        require_relative "./node"
-        require_relative "./plain"
-        require_relative "./meta"
-        require_relative "./version"
+        require_relative "./node.rb"
+        require_relative "./plain.rb"
+        require_relative "./meta.rb"
+        require_relative "./version.rb"
+        require_relative "../filter_error.rb"
 
         # Pandoc type version key
         VERSION = "pandoc-api-version"
@@ -49,9 +50,37 @@ module Paru
             #
             # @param json [String] a JSON string representation of the AST of a document
             # @return [Document] the newly created document
+            #
+            # @raise [ParuFilterError] when parsing JSON AST from pandoc fails
+            #   or the parsed results do not make sense.
             def self.from_JSON(json)
-                doc = JSON.parse json
-                version, metadata, contents = doc.values_at(VERSION, META, BLOCKS)
+                begin
+                    doc = JSON.parse json
+                    version, metadata, contents = doc.values_at(VERSION, META, BLOCKS)
+                rescue Exception => e
+                    raise FilterError.new <<~WARNING
+Unable to read document.
+
+Most likely cause: Paru expects a pandoc installation that has been
+compiled with pandoc-types >= #{CURRENT_PANDOC_VERSION.join('.')}. You can
+check which pandoc-types have been compiled with your pandoc installation by
+running `pandoc -v`. 
+
+Original error message: #{e.message}
+WARNING
+                end
+
+                if -1 == (version <=> CURRENT_PANDOC_VERSION)
+                    if metadata.has_key?('_debug')
+                        warn <<~WARNING
+pandoc-types API version used in document (version = #{version.join('.')}) is
+smaller than the version of pandoc-types used by paru
+(#{CURRENT_PANDOC_VERSION.join('.')}. If you experience unexpected results,
+please try updating pandoc or downgrading paru.
+                        WARNING
+                    end
+                end
+
                 PandocFilter::Document.new version, metadata, contents
             end
 

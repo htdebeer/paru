@@ -26,7 +26,7 @@ module Paru
         # @see http://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html#t:MetaValue
         #
         # @!attribute value
-        #   @return [String]
+        #   @return [String|Boolean]
         class MetaValue < Node
 
             attr_accessor :value

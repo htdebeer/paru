@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <iframe id="nav" src="../../class_list.html"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,6 +58,8 @@
 </div>
         <div class="clear"></div>
       </div>
+
+      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Paru::PandocFilter::MetaValue
   
@@ -134,7 +136,7 @@ MetaInlines, or a MetaBlocks.</p>
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#value-instance_method" title="#value (instance method)">#<strong>value</strong>  &#x21d2; String </a>
+      <a href="#value-instance_method" title="#value (instance method)">#<strong>value</strong>  &#x21d2; String|Boolean </a>
     
 
     
@@ -298,7 +300,7 @@ MetaInlines, or a MetaBlocks.</p>
       <div class="method_details first">
   <h3 class="signature first" id="value-instance_method">
   
-    #<strong>value</strong>  &#x21d2; <tt>String</tt> 
+    #<strong>value</strong>  &#x21d2; <tt>String|Boolean</tt> 
   
 
   
@@ -318,7 +320,7 @@ MetaInlines, or a MetaBlocks.</p>
     <li>
       
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt>String|Boolean</tt>)</span>
       
       
       
@@ -353,7 +355,7 @@ MetaInlines, or a MetaBlocks.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/paru/filter/meta_value.rb', line 30</span>
 
-<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::MetaValue (class)">MetaValue</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Node.html" title="Paru::PandocFilter::Node (class)">Node</a></span></span>
+<span class='kw'>class</span> <span class='const'>MetaValue</span> <span class='op'>&lt;</span> <span class='const'>Node</span>
 
     <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:value</span>
 
@@ -428,9 +430,9 @@ MetaInlines, or a MetaBlocks.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed May 31 15:32:46 2017 by
+  Generated on Wed May 31 21:36:02 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.5 (ruby-2.3.3).
 </div>
 
     </div>

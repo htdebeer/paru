@@ -25,7 +25,6 @@ module Paru
     class SelectorParseError < Error
     end
 
-
     # A Selector models a relationship between Pandoc AST nodes, such as
     # parent-child or sibling. Selectors in paru are like CSS selectors, but
     # more limited because the Pandoc AST is quite simple.

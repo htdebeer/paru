@@ -19,7 +19,7 @@
 module Paru
 
     require_relative "./selector"
-    require_relative "filter/document"
+    require_relative "./filter/document"
 
     # Paru filter is a wrapper around pandoc's JSON api, which is based on
     # {pandoc-types}[https://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html].
@@ -297,5 +297,9 @@ module Paru
             @doc.meta
         end
 
+    end
+    
+    # FilterError is thrown when there is an error during fitlering
+    class FilterError < Error
     end
 end

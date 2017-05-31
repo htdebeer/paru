@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html?1"></iframe>
+      <iframe id="nav" src="../../class_list.html"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,6 +58,8 @@
 </div>
         <div class="clear"></div>
       </div>
+
+      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Paru::PandocFilter::Document
   
@@ -384,18 +386,18 @@ the contents of the document</p>
       <pre class="lines">
 
 
-85
-86
-87
-88
-89</pre>
+114
+115
+116
+117
+118</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 114</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
-    <span class='ivar'>@version</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Version.html" title="Paru::PandocFilter::Version (class)">Version</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Version.html#initialize-instance_method" title="Paru::PandocFilter::Version#initialize (method)">new</a></span></span> <span class='id identifier rubyid_version'>version</span>
-    <span class='ivar'>@meta</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Meta.html" title="Paru::PandocFilter::Meta (class)">Meta</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="MetaMap.html#initialize-instance_method" title="Paru::PandocFilter::MetaMap#initialize (method)">new</a></span></span> <span class='id identifier rubyid_meta'>meta</span>
+    <span class='ivar'>@version</span> <span class='op'>=</span> <span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_version'>version</span>
+    <span class='ivar'>@meta</span> <span class='op'>=</span> <span class='const'>Meta</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_meta'>meta</span>
     <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -454,7 +456,6 @@ the contents of the document</p>
       <pre class="lines">
 
 
-44
 45
 46
 47
@@ -517,12 +518,41 @@ the contents of the document</p>
 104
 105
 106
-107</pre>
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 45</span>
 
-<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Document (class)">Document</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Node.html" title="Paru::PandocFilter::Node (class)">Node</a></span></span>
+<span class='kw'>class</span> <span class='const'>Document</span> <span class='op'>&lt;</span> <span class='const'>Node</span>
 
     <span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:meta</span>
 
@@ -530,10 +560,38 @@ the contents of the document</p>
 </span>    <span class='comment'>#
 </span>    <span class='comment'># @param json [String] a JSON string representation of the AST of a document
 </span>    <span class='comment'># @return [Document] the newly created document
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @raise [ParuFilterError] when parsing JSON AST from pandoc fails
+</span>    <span class='comment'>#   or the parsed results do not make sense.
 </span>    <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_JSON'>from_JSON</span><span class='lparen'>(</span><span class='id identifier rubyid_json'>json</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_doc'>doc</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_json'>json</span>
-        <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span> <span class='op'>=</span> <span class='id identifier rubyid_doc'>doc</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../PandocFilter.html#VERSION-constant" title="Paru::PandocFilter::VERSION (constant)">VERSION</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html#META-constant" title="Paru::PandocFilter::META (constant)">META</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html#BLOCKS-constant" title="Paru::PandocFilter::BLOCKS (constant)">BLOCKS</a></span></span><span class='rparen'>)</span>
-        <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Document (class)">Document</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Paru::PandocFilter::Document#initialize (method)">new</a></span></span> <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span>
+        <span class='kw'>begin</span>
+            <span class='id identifier rubyid_doc'>doc</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_json'>json</span>
+            <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span> <span class='op'>=</span> <span class='id identifier rubyid_doc'>doc</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='const'>VERSION</span><span class='comma'>,</span> <span class='const'>META</span><span class='comma'>,</span> <span class='const'>BLOCKS</span><span class='rparen'>)</span>
+        <span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+            <span class='id identifier rubyid_raise'>raise</span> <span class='const'>FilterError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='heredoc_beg'>&lt;&lt;~WARNING</span>
+<span class='tstring_content'>Unable to read document.
+
+Most likely cause: Paru expects a pandoc installation that has been
+compiled with pandoc-types &gt;= </span><span class='embexpr_beg'>#{</span><span class='const'>CURRENT_PANDOC_VERSION</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>. You can
+check which pandoc-types have been compiled with your pandoc installation by
+running `pandoc -v`. 
+
+Original error message: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+</span><span class='heredoc_end'>WARNING
+</span>        <span class='kw'>end</span>
+
+        <span class='kw'>if</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>==</span> <span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span> <span class='op'>&lt;=&gt;</span> <span class='const'>CURRENT_PANDOC_VERSION</span><span class='rparen'>)</span>
+            <span class='kw'>if</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_debug</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+                <span class='id identifier rubyid_warn'>warn</span> <span class='heredoc_beg'>&lt;&lt;~WARNING</span>
+<span class='tstring_content'>pandoc-types API version used in document (version = </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_version'>version</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>) is
+smaller than the version of pandoc-types used by paru
+(</span><span class='embexpr_beg'>#{</span><span class='const'>CURRENT_PANDOC_VERSION</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>. If you experience unexpected results,
+please try updating pandoc or downgrading paru.
+</span><span class='heredoc_end'>                WARNING
+</span>            <span class='kw'>end</span>
+        <span class='kw'>end</span>
+
+        <span class='const'>PandocFilter</span><span class='op'>::</span><span class='const'>Document</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span>
     <span class='kw'>end</span>
 
     <span class='comment'># Create a new Document fragment from a list of Node elements
@@ -546,12 +604,12 @@ the contents of the document</p>
         <span class='id identifier rubyid_meta'>meta</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 
         <span class='kw'>if</span> <span class='id identifier rubyid_node_list'>node_list</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_n'>n</span><span class='op'>|</span> <span class='id identifier rubyid_n'>n</span><span class='period'>.</span><span class='id identifier rubyid_is_block?'>is_block?</span><span class='rbrace'>}</span>
-            <span class='id identifier rubyid_new_doc'>new_doc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Document (class)">Document</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Paru::PandocFilter::Document#initialize (method)">new</a></span></span> <span class='const'><span class='object_link'><a href="../PandocFilter.html#CURRENT_PANDOC_VERSION-constant" title="Paru::PandocFilter::CURRENT_PANDOC_VERSION (constant)">CURRENT_PANDOC_VERSION</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+            <span class='id identifier rubyid_new_doc'>new_doc</span> <span class='op'>=</span> <span class='const'>Document</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='const'>CURRENT_PANDOC_VERSION</span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
             <span class='id identifier rubyid_new_doc'>new_doc</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span> <span class='op'>=</span> <span class='id identifier rubyid_node_list'>node_list</span>
         <span class='kw'>else</span>
-            <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Plain.html" title="Paru::PandocFilter::Plain (class)">Plain</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Plain.html#initialize-instance_method" title="Paru::PandocFilter::Plain#initialize (method)">new</a></span></span> <span class='lbracket'>[</span><span class='rbracket'>]</span> 
+            <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='const'>PandocFilter</span><span class='op'>::</span><span class='const'>Plain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> 
             <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span> <span class='op'>=</span> <span class='id identifier rubyid_node_list'>node_list</span>
-            <span class='id identifier rubyid_new_doc'>new_doc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Document (class)">Document</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Paru::PandocFilter::Document#initialize (method)">new</a></span></span> <span class='const'><span class='object_link'><a href="../PandocFilter.html#CURRENT_PANDOC_VERSION-constant" title="Paru::PandocFilter::CURRENT_PANDOC_VERSION (constant)">CURRENT_PANDOC_VERSION</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='rbracket'>]</span>
+            <span class='id identifier rubyid_new_doc'>new_doc</span> <span class='op'>=</span> <span class='const'>Document</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='const'>CURRENT_PANDOC_VERSION</span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='rbracket'>]</span>
         <span class='kw'>end</span>
 
         <span class='id identifier rubyid_new_doc'>new_doc</span>
@@ -564,17 +622,17 @@ the contents of the document</p>
 </span>    <span class='comment'># @param meta [Array] metadata
 </span>    <span class='comment'># @param contents [Array] contents
 </span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
-        <span class='ivar'>@version</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Version.html" title="Paru::PandocFilter::Version (class)">Version</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Version.html#initialize-instance_method" title="Paru::PandocFilter::Version#initialize (method)">new</a></span></span> <span class='id identifier rubyid_version'>version</span>
-        <span class='ivar'>@meta</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Meta.html" title="Paru::PandocFilter::Meta (class)">Meta</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="MetaMap.html#initialize-instance_method" title="Paru::PandocFilter::MetaMap#initialize (method)">new</a></span></span> <span class='id identifier rubyid_meta'>meta</span>
+        <span class='ivar'>@version</span> <span class='op'>=</span> <span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_version'>version</span>
+        <span class='ivar'>@meta</span> <span class='op'>=</span> <span class='const'>Meta</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_meta'>meta</span>
         <span class='kw'>super</span> <span class='id identifier rubyid_contents'>contents</span>
     <span class='kw'>end</span>
 
     <span class='comment'># Create an AST representation of this Document
 </span>    <span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='lparen'>(</span><span class='rparen'>)</span>
         <span class='lbrace'>{</span>
-            <span class='const'><span class='object_link'><a href="../PandocFilter.html#VERSION-constant" title="Paru::PandocFilter::VERSION (constant)">VERSION</a></span></span> <span class='op'>=&gt;</span> <span class='ivar'>@version</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
-            <span class='const'><span class='object_link'><a href="../PandocFilter.html#META-constant" title="Paru::PandocFilter::META (constant)">META</a></span></span> <span class='op'>=&gt;</span> <span class='ivar'>@meta</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
-            <span class='const'><span class='object_link'><a href="../PandocFilter.html#BLOCKS-constant" title="Paru::PandocFilter::BLOCKS (constant)">BLOCKS</a></span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
+            <span class='const'>VERSION</span> <span class='op'>=&gt;</span> <span class='ivar'>@version</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+            <span class='const'>META</span> <span class='op'>=&gt;</span> <span class='ivar'>@meta</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+            <span class='const'>BLOCKS</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
         <span class='rbrace'>}</span>
     <span class='kw'>end</span>
 
@@ -662,34 +720,34 @@ the contents of the document</p>
       <pre class="lines">
 
 
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77</pre>
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fragment'>fragment</span><span class='lparen'>(</span><span class='id identifier rubyid_node_list'>node_list</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_meta'>meta</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_node_list'>node_list</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_n'>n</span><span class='op'>|</span> <span class='id identifier rubyid_n'>n</span><span class='period'>.</span><span class='id identifier rubyid_is_block?'>is_block?</span><span class='rbrace'>}</span>
-        <span class='id identifier rubyid_new_doc'>new_doc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Document (class)">Document</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Paru::PandocFilter::Document#initialize (method)">new</a></span></span> <span class='const'><span class='object_link'><a href="../PandocFilter.html#CURRENT_PANDOC_VERSION-constant" title="Paru::PandocFilter::CURRENT_PANDOC_VERSION (constant)">CURRENT_PANDOC_VERSION</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_new_doc'>new_doc</span> <span class='op'>=</span> <span class='const'>Document</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='const'>CURRENT_PANDOC_VERSION</span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
         <span class='id identifier rubyid_new_doc'>new_doc</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span> <span class='op'>=</span> <span class='id identifier rubyid_node_list'>node_list</span>
     <span class='kw'>else</span>
-        <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Plain.html" title="Paru::PandocFilter::Plain (class)">Plain</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Plain.html#initialize-instance_method" title="Paru::PandocFilter::Plain#initialize (method)">new</a></span></span> <span class='lbracket'>[</span><span class='rbracket'>]</span> 
+        <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='const'>PandocFilter</span><span class='op'>::</span><span class='const'>Plain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> 
         <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span> <span class='op'>=</span> <span class='id identifier rubyid_node_list'>node_list</span>
-        <span class='id identifier rubyid_new_doc'>new_doc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Document (class)">Document</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Paru::PandocFilter::Document#initialize (method)">new</a></span></span> <span class='const'><span class='object_link'><a href="../PandocFilter.html#CURRENT_PANDOC_VERSION-constant" title="Paru::PandocFilter::CURRENT_PANDOC_VERSION (constant)">CURRENT_PANDOC_VERSION</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_new_doc'>new_doc</span> <span class='op'>=</span> <span class='const'>Document</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='const'>CURRENT_PANDOC_VERSION</span><span class='comma'>,</span> <span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_new_doc'>new_doc</span>
@@ -756,6 +814,25 @@ the contents of the document</p>
     </li>
   
 </ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ParuFilterError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>when parsing JSON AST from pandoc fails or the parsed results do not make
+sense.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -763,19 +840,69 @@ the contents of the document</p>
       <pre class="lines">
 
 
-52
-53
-54
-55
-56</pre>
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_JSON'>from_JSON</span><span class='lparen'>(</span><span class='id identifier rubyid_json'>json</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_doc'>doc</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_json'>json</span>
-    <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span> <span class='op'>=</span> <span class='id identifier rubyid_doc'>doc</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../PandocFilter.html#VERSION-constant" title="Paru::PandocFilter::VERSION (constant)">VERSION</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html#META-constant" title="Paru::PandocFilter::META (constant)">META</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../PandocFilter.html#BLOCKS-constant" title="Paru::PandocFilter::BLOCKS (constant)">BLOCKS</a></span></span><span class='rparen'>)</span>
-    <span class='const'><span class='object_link'><a href="../PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::Document (class)">Document</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Paru::PandocFilter::Document#initialize (method)">new</a></span></span> <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span>
+    <span class='kw'>begin</span>
+        <span class='id identifier rubyid_doc'>doc</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_json'>json</span>
+        <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span> <span class='op'>=</span> <span class='id identifier rubyid_doc'>doc</span><span class='period'>.</span><span class='id identifier rubyid_values_at'>values_at</span><span class='lparen'>(</span><span class='const'>VERSION</span><span class='comma'>,</span> <span class='const'>META</span><span class='comma'>,</span> <span class='const'>BLOCKS</span><span class='rparen'>)</span>
+    <span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>FilterError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='heredoc_beg'>&lt;&lt;~WARNING</span>
+<span class='tstring_content'>Unable to read document.
+
+Most likely cause: Paru expects a pandoc installation that has been
+compiled with pandoc-types &gt;= </span><span class='embexpr_beg'>#{</span><span class='const'>CURRENT_PANDOC_VERSION</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>. You can
+check which pandoc-types have been compiled with your pandoc installation by
+running `pandoc -v`. 
+
+Original error message: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_content'>
+</span><span class='heredoc_end'>WARNING
+</span>    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>==</span> <span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span> <span class='op'>&lt;=&gt;</span> <span class='const'>CURRENT_PANDOC_VERSION</span><span class='rparen'>)</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_debug</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_warn'>warn</span> <span class='heredoc_beg'>&lt;&lt;~WARNING</span>
+<span class='tstring_content'>pandoc-types API version used in document (version = </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_version'>version</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>) is
+smaller than the version of pandoc-types used by paru
+(</span><span class='embexpr_beg'>#{</span><span class='const'>CURRENT_PANDOC_VERSION</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>. If you experience unexpected results,
+please try updating pandoc or downgrading paru.
+</span><span class='heredoc_end'>            WARNING
+</span>        <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='const'>PandocFilter</span><span class='op'>::</span><span class='const'>Document</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='id identifier rubyid_metadata'>metadata</span><span class='comma'>,</span> <span class='id identifier rubyid_contents'>contents</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -814,22 +941,22 @@ the contents of the document</p>
       <pre class="lines">
 
 
-92
-93
-94
-95
-96
-97
-98</pre>
+121
+122
+123
+124
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_ast'>to_ast</span><span class='lparen'>(</span><span class='rparen'>)</span>
     <span class='lbrace'>{</span>
-        <span class='const'><span class='object_link'><a href="../PandocFilter.html#VERSION-constant" title="Paru::PandocFilter::VERSION (constant)">VERSION</a></span></span> <span class='op'>=&gt;</span> <span class='ivar'>@version</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
-        <span class='const'><span class='object_link'><a href="../PandocFilter.html#META-constant" title="Paru::PandocFilter::META (constant)">META</a></span></span> <span class='op'>=&gt;</span> <span class='ivar'>@meta</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
-        <span class='const'><span class='object_link'><a href="../PandocFilter.html#BLOCKS-constant" title="Paru::PandocFilter::BLOCKS (constant)">BLOCKS</a></span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
+        <span class='const'>VERSION</span> <span class='op'>=&gt;</span> <span class='ivar'>@version</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+        <span class='const'>META</span> <span class='op'>=&gt;</span> <span class='ivar'>@meta</span><span class='period'>.</span><span class='id identifier rubyid_to_ast'>to_ast</span><span class='comma'>,</span>
+        <span class='const'>BLOCKS</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_ast_contents'>ast_contents</span>
     <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -864,12 +991,12 @@ to write back the manipulated AST in a format that pandoc understands.</p>
       <pre class="lines">
 
 
-103
-104
-105</pre>
+132
+133
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/paru/filter/document.rb', line 132</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_JSON'>to_JSON</span>
     <span class='id identifier rubyid_to_ast'>to_ast</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span>
@@ -884,9 +1011,9 @@ to write back the manipulated AST in a format that pandoc understands.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed May 31 15:32:46 2017 by
+  Generated on Wed May 31 21:36:02 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.5 (ruby-2.3.3).
 </div>
 
     </div>
