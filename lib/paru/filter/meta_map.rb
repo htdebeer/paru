@@ -177,23 +177,28 @@ module Paru
             # 
             # @return [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue] the value of the deleted property, nil if it cannot be found
             def select(selector, get_parent = false)
-                keys = selector.split(".")
-                level = self
+                if @children.empty? 
+                    return nil
+                else
+                    keys = selector.split(".")
+                    level = self
 
-                while not keys.empty?
-                    key = keys.shift
-                    if not level.children.has_key? key
-                        return nil
-                    else
-                        if get_parent and keys.empty?
-                            return level
+                    while not keys.empty?
+                        key = keys.shift
+
+                        if not level.children.has_key? key
+                            return nil
                         else
-                            level = level[key]
+                            if get_parent and keys.empty?
+                                return level
+                            else
+                                level = level[key]
+                            end
                         end
                     end
-                end
 
-                level
+                    level
+                end
             end 
 
             # Get the last key in this selector
