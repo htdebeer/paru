@@ -58,7 +58,7 @@ module Paru
                     doc = JSON.parse json
                     version, metadata, contents = doc.values_at(VERSION, META, BLOCKS)
                 rescue Exception => e
-                    raise FilterError.new <<~WARNING
+                    raise FilterError.new <<WARNING
 Unable to read document.
 
 Most likely cause: Paru expects a pandoc installation that has been
@@ -72,12 +72,12 @@ WARNING
 
                 if -1 == (version <=> CURRENT_PANDOC_VERSION)
                     if metadata.has_key?('_debug')
-                        warn <<~WARNING
+                        warn <<WARNING
 pandoc-types API version used in document (version = #{version.join('.')}) is
-smaller than the version of pandoc-types used by paru
+lower than the version of pandoc-types used by paru
 (#{CURRENT_PANDOC_VERSION.join('.')}. If you experience unexpected results,
 please try updating pandoc or downgrading paru.
-                        WARNING
+WARNING
                     end
                 end
 

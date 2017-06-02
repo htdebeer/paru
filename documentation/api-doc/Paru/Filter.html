@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../class_list.html"></iframe>
+      <iframe id="nav" src="../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Paru::Filter
   
@@ -112,7 +110,7 @@ The most simple filter you can write in paru is the so-called “identity”:</p
 </span><span class='comment'># Identity filter
 </span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>paru/filter</span><span class='tstring_end'>&quot;</span></span>
 
-<span class='const'>Paru</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span>
+<span class='const'><span class='object_link'><a href="../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="#run-class_method" title="Paru::Filter.run (method)">run</a></span></span> <span class='kw'>do</span>
     <span class='comment'># nothing
 </span><span class='kw'>end</span></pre></p>
 
@@ -132,7 +130,7 @@ and prefix their captions with “Figure”, the following filter would work:</p
 
 <span class='id identifier rubyid_figure_counter'>figure_counter</span> <span class='op'>=</span> <span class='int'>0</span><span class='semicolon'>;</span>
 
-<span class='const'>Paru</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span> 
+<span class='const'><span class='object_link'><a href="../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="#run-class_method" title="Paru::Filter.run (method)">run</a></span></span> <span class='kw'>do</span> 
     <span class='id identifier rubyid_with'>with</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Image</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_image'>image</span><span class='op'>|</span>
         <span class='id identifier rubyid_figure_counter'>figure_counter</span> <span class='op'>+=</span> <span class='int'>1</span>
         <span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_inner_markdown'>inner_markdown</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Figure </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_figure_counter'>figure_counter</span><span class='embexpr_end'>}</span><span class='tstring_content'>. </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_inner_markdown'>inner_markdown</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -176,7 +174,7 @@ counters, one for the figures and one for the chapters:</p>
 <span class='id identifier rubyid_current_chapter'>current_chapter</span> <span class='op'>=</span> <span class='int'>0</span>
 <span class='id identifier rubyid_current_figure'>current_figure</span> <span class='op'>=</span> <span class='int'>0</span><span class='semicolon'>;</span>
 
-<span class='const'>Paru</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span>
+<span class='const'><span class='object_link'><a href="../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="#run-class_method" title="Paru::Filter.run (method)">run</a></span></span> <span class='kw'>do</span>
     <span class='id identifier rubyid_with'>with</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Header</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_header'>header</span><span class='op'>|</span>
         <span class='kw'>if</span> <span class='id identifier rubyid_header'>header</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span> <span class='op'>==</span> <span class='int'>1</span> 
             <span class='id identifier rubyid_current_chapter'>current_chapter</span> <span class='op'>+=</span> <span class='int'>1</span>
@@ -213,7 +211,7 @@ select a child node by using the <tt>&gt;</tt> selector as in the example below:
 
 <span class='id identifier rubyid_example_count'>example_count</span> <span class='op'>=</span> <span class='int'>0</span>
 
-<span class='const'>Paru</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span>
+<span class='const'><span class='object_link'><a href="../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="#run-class_method" title="Paru::Filter.run (method)">run</a></span></span> <span class='kw'>do</span>
     <span class='id identifier rubyid_with'>with</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Div.example &gt; Header</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_header'>header</span><span class='op'>|</span>
         <span class='kw'>if</span> <span class='id identifier rubyid_header'>header</span><span class='period'>.</span><span class='id identifier rubyid_level'>level</span> <span class='op'>==</span> <span class='int'>3</span> 
             <span class='id identifier rubyid_example_count'>example_count</span> <span class='op'>+=</span> <span class='int'>1</span>
@@ -255,7 +253,7 @@ for this example could look like:</p>
 </span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>paru/filter</span><span class='tstring_end'>&quot;</span></span>
 
 <span class='const'>END_CAPITAL</span> <span class='op'>=</span> <span class='int'>10</span>
-<span class='const'>Paru</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span> 
+<span class='const'><span class='object_link'><a href="../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="#run-class_method" title="Paru::Filter.run (method)">run</a></span></span> <span class='kw'>do</span> 
     <span class='id identifier rubyid_with'>with</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Header +1 Para</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_p'>p</span><span class='op'>|</span>
         <span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_inner_markdown'>inner_markdown</span>
         <span class='id identifier rubyid_first_line'>first_line</span> <span class='op'>=</span> <span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_slice'>slice</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='const'>END_CAPITAL</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
@@ -281,7 +279,7 @@ and can be used on any node in your filter. For example, to delete all
 <p><pre class="code ruby"><span class='comment'>#!/usr/bin/env ruby
 </span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>paru/filter</span><span class='tstring_end'>&quot;</span></span>
 
-<span class='const'>Paru</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span> 
+<span class='const'><span class='object_link'><a href="../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="#run-class_method" title="Paru::Filter.run (method)">run</a></span></span> <span class='kw'>do</span> 
     <span class='id identifier rubyid_with'>with</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HorizontalRule</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_rule'>rule</span><span class='op'>|</span>
 
         <span class='kw'>if</span> <span class='id identifier rubyid_rule'>rule</span><span class='period'>.</span><span class='id identifier rubyid_has_parent?'>has_parent?</span> <span class='kw'>then</span>
@@ -309,7 +307,7 @@ with a filter like:</p>
 </span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>paru/filter</span><span class='tstring_end'>&quot;</span></span>
 <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>date</span><span class='tstring_end'>&quot;</span></span>
 
-<span class='const'>Paru</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span> 
+<span class='const'><span class='object_link'><a href="../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="#run-class_method" title="Paru::Filter.run (method)">run</a></span></span> <span class='kw'>do</span> 
     <span class='id identifier rubyid_metadata'>metadata</span><span class='period'>.</span><span class='id identifier rubyid_yaml'>yaml</span> <span class='heredoc_beg'>&lt;&lt;~YAML</span>
 <span class='tstring_content'>        ---
 </span><span class='tstring_content'>        date: </span><span class='embexpr_beg'>#{</span><span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_today'>today</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_content'>
@@ -647,7 +645,7 @@ and immediately runs <span class='object_link'><a href="#filter-instance_method"
 <p>Add &#39;Figure&#39; to each image&#39;s caption</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Paru</span><span class='op'>::</span><span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Paru.html" title="Paru (module)">Paru</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Paru::Filter (class)">Filter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_with'>with</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Image</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_image'>image</span><span class='op'>|</span>
         <span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_inner_markdown'>inner_markdown</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Figure. </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_image'>image</span><span class='period'>.</span><span class='id identifier rubyid_inner_markdown'>inner_markdown</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
@@ -690,7 +688,7 @@ and immediately runs <span class='object_link'><a href="#filter-instance_method"
       <pre class="code"><span class="info file"># File 'lib/paru/filter.rb', line 227</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-    <span class='const'>Filter</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='gvar'>$stdin</span><span class='comma'>,</span> <span class='gvar'>$stdout</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_filter'>filter</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="" title="Paru::Filter (class)">Filter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Paru::Filter#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='gvar'>$stdin</span><span class='comma'>,</span> <span class='gvar'>$stdout</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_filter'><span class='object_link'><a href="#filter-instance_method" title="Paru::Filter#filter (method)">filter</a></span></span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -816,7 +814,7 @@ that is being filtered</p>
       <pre class="code"><span class="info file"># File 'lib/paru/filter.rb', line 236</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_document'>document</span><span class='lparen'>(</span><span class='rparen'>)</span>
-    <span class='const'>PandocFilter</span><span class='op'>::</span><span class='const'>Document</span><span class='period'>.</span><span class='id identifier rubyid_from_JSON'>from_JSON</span> <span class='ivar'>@input</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
+    <span class='const'><span class='object_link'><a href="PandocFilter.html" title="Paru::PandocFilter (module)">PandocFilter</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="PandocFilter/Document.html" title="Paru::PandocFilter::Document (class)">Document</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_JSON'><span class='object_link'><a href="PandocFilter/Document.html#from_JSON-class_method" title="Paru::PandocFilter::Document.from_JSON (method)">from_JSON</a></span></span> <span class='ivar'>@input</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1080,7 +1078,7 @@ to this <code>with</code> method.</p>
       <pre class="code"><span class="info file"># File 'lib/paru/filter.rb', line 287</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='id identifier rubyid_selector'>selector</span><span class='rparen'>)</span>
-    <span class='ivar'>@selectors</span><span class='lbracket'>[</span><span class='id identifier rubyid_selector'>selector</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Selector</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_selector'>selector</span> <span class='kw'>unless</span> <span class='ivar'>@selectors</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_selector'>selector</span>
+    <span class='ivar'>@selectors</span><span class='lbracket'>[</span><span class='id identifier rubyid_selector'>selector</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Selector.html" title="Paru::Selector (class)">Selector</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Selector.html#initialize-instance_method" title="Paru::Selector#initialize (method)">new</a></span></span> <span class='id identifier rubyid_selector'>selector</span> <span class='kw'>unless</span> <span class='ivar'>@selectors</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_selector'>selector</span>
     <span class='kw'>yield</span> <span class='id identifier rubyid_current_node'>current_node</span> <span class='kw'>if</span> <span class='ivar'>@selectors</span><span class='lbracket'>[</span><span class='id identifier rubyid_selector'>selector</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_matches?'>matches?</span> <span class='id identifier rubyid_current_node'>current_node</span><span class='comma'>,</span> <span class='ivar'>@filtered_nodes</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1093,9 +1091,9 @@ to this <code>with</code> method.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed May 31 21:35:58 2017 by
+  Generated on Fri Jun  2 07:28:37 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.3.3).
+  0.9.9 (ruby-2.3.3).
 </div>
 
     </div>

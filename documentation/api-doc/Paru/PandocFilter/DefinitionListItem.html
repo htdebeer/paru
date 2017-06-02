@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Paru::PandocFilter::DefinitionListItem
   
@@ -307,8 +305,8 @@ its definition in a DefinitionList</p>
       <pre class="code"><span class="info file"># File 'lib/paru/filter/definition_list_item.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
-    <span class='ivar'>@term</span> <span class='op'>=</span> <span class='const'>Block</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
-    <span class='ivar'>@definition</span> <span class='op'>=</span> <span class='const'>List</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='ivar'>@term</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Node.html#initialize-instance_method" title="Paru::PandocFilter::Node#initialize (method)">new</a></span></span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='ivar'>@definition</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="List.html" title="Paru::PandocFilter::List (class)">List</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="List.html#initialize-instance_method" title="Paru::PandocFilter::List#initialize (method)">new</a></span></span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -382,15 +380,15 @@ its definition in a DefinitionList</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/paru/filter/definition_list_item.rb', line 33</span>
 
-<span class='kw'>class</span> <span class='const'>DefinitionListItem</span> <span class='op'>&lt;</span> <span class='const'>Block</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::DefinitionListItem (class)">DefinitionListItem</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span>
     <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:term</span><span class='comma'>,</span> <span class='symbol'>:definition</span>
 
     <span class='comment'># Create a new DefinitionListItem 
 </span>    <span class='comment'>#
 </span>    <span class='comment'># @param item [Array] the [term, definition]
 </span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
-        <span class='ivar'>@term</span> <span class='op'>=</span> <span class='const'>Block</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
-        <span class='ivar'>@definition</span> <span class='op'>=</span> <span class='const'>List</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+        <span class='ivar'>@term</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Node.html#initialize-instance_method" title="Paru::PandocFilter::Node#initialize (method)">new</a></span></span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='ivar'>@definition</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="List.html" title="Paru::PandocFilter::List (class)">List</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="List.html#initialize-instance_method" title="Paru::PandocFilter::List#initialize (method)">new</a></span></span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
 
     <span class='comment'># Create an AST representation of this DefinitionListItem
@@ -468,15 +466,15 @@ its definition in a DefinitionList</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/paru/filter/definition_list_item.rb', line 33</span>
 
-<span class='kw'>class</span> <span class='const'>DefinitionListItem</span> <span class='op'>&lt;</span> <span class='const'>Block</span>
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Paru::PandocFilter::DefinitionListItem (class)">DefinitionListItem</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span>
     <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:term</span><span class='comma'>,</span> <span class='symbol'>:definition</span>
 
     <span class='comment'># Create a new DefinitionListItem 
 </span>    <span class='comment'>#
 </span>    <span class='comment'># @param item [Array] the [term, definition]
 </span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
-        <span class='ivar'>@term</span> <span class='op'>=</span> <span class='const'>Block</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
-        <span class='ivar'>@definition</span> <span class='op'>=</span> <span class='const'>List</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+        <span class='ivar'>@term</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Block.html" title="Paru::PandocFilter::Block (class)">Block</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Node.html#initialize-instance_method" title="Paru::PandocFilter::Node#initialize (method)">new</a></span></span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+        <span class='ivar'>@definition</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="List.html" title="Paru::PandocFilter::List (class)">List</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="List.html#initialize-instance_method" title="Paru::PandocFilter::List#initialize (method)">new</a></span></span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
 
     <span class='comment'># Create an AST representation of this DefinitionListItem
@@ -551,9 +549,9 @@ its definition in a DefinitionList</p>
 </div>
 
       <div id="footer">
-  Generated on Wed May 31 21:36:04 2017 by
+  Generated on Fri Jun  2 07:28:40 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.3.3).
+  0.9.9 (ruby-2.3.3).
 </div>
 
     </div>
