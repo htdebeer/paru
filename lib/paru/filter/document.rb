@@ -71,7 +71,7 @@ WARNING
                 end
 
                 if -1 == (version <=> CURRENT_PANDOC_VERSION)
-                    if metadata.has_key?('_debug')
+                    if metadata.has_key?('debug_')
                         warn <<WARNING
 pandoc-types API version used in document (version = #{version.join('.')}) is
 lower than the version of pandoc-types used by paru
