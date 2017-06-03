@@ -12,8 +12,8 @@ lib/paru/filter/emph.rb 3ea9f958c28d421f541216ecdf60ad2a1622c137
 lib/paru/filter/link.rb f7a8b23eac9932baa908e39e5fcef027b1447a0f
 lib/paru/filter/list.rb 4532fc5dad5bcb63f6c2e3d855ef84e3d3500dee
 lib/paru/filter/math.rb f542b96a168785dc25c98cf05ce3213a014aa868
-lib/paru/filter/meta.rb 8f98118c529df2ec4c0db10d1bb8551f21a780ae
-lib/paru/filter/node.rb d1ea1caf69d7eb62a967cd4f4fbc2776619ff996
+lib/paru/filter/meta.rb f12e9c59ee201a5bf9deee2cae56b60d96fae363
+lib/paru/filter/node.rb 5c154d60baeb4e71f52420ce4732bced7dcbf977
 lib/paru/filter/note.rb 11652c0cc240666dd3fbbb36bc6e6b040fe43e46
 lib/paru/filter/null.rb ba8302aeda5bdf48d629392eacae52bc4d4139d7
 lib/paru/filter/para.rb d6d311a2a6554bf27d33ed079208e3793281950f
@@ -32,7 +32,7 @@ lib/paru/filter/strong.rb 8e6e4925557c7a1ccb6659b01972986681593bf5
 lib/paru/filter/target.rb 0446a6fb0992eb57aa36cf9d4d1ffe2a7bde4aec
 lib/paru/filter/version.rb 3e6128ccc5d01510f0099067199087c5defaae3d
 lib/paru/filter/citation.rb 020098571edae5aa6a31b9feca12a5b8c8533c26
-lib/paru/filter/document.rb 509ad47e560dbca687af8a3f74c41269cd4a51bb
+lib/paru/filter/document.rb cd5889054809eecc36a5b35f155345b3dfb4a0d8
 lib/paru/filter/markdown.rb 1afa1fb34050c3dc6c7dc23da17d069ed83fda04
 lib/paru/filter/meta_map.rb 8be2265f765bd8db367af3dd7aba934bbfaa4d90
 lib/paru/filter/meta_bool.rb 329014832608fdb53b5d51e44f165df37552a1fd

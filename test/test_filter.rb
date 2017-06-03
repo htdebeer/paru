@@ -63,7 +63,7 @@ class FilterTest < MiniTest::Test
     # When converting from markdown to markdown, pandoc can outputs something
     # different than the input. So reformat the input to something pandoc
     # outputs first.
-    def reformat input
+    def reformat(input)
         pandoc2pandoc = Paru::Pandoc.new do
             from "markdown"
             to "markdown"
@@ -74,7 +74,7 @@ class FilterTest < MiniTest::Test
         reformatted_input.chop
     end
 
-    def assert_filtered_input_equals_input dir
+    def assert_filtered_input_equals_input(dir)
         Dir.glob("test/pandoc_input/#{dir}/*.md") do |path|
 
             original_input = File.read(path)
@@ -87,19 +87,41 @@ class FilterTest < MiniTest::Test
         end
     end
 
-    def test_inline_elements
+    def test_inline_elements()
         assert_filtered_input_equals_input "inline"
+
+        Paru::PANDOC_INLINE.each do |node_name|
+            filter_file_and_equal_file(
+                "test/pandoc_input/all_node_types_in_pandoc.md",
+                "test/pandoc_output/all_node_types_in_pandoc.md"
+            ) do
+                with "#{node_name}" do |node|
+                    #node.inner_markdown = node.inner_markdown
+                end
+            end
+        end
     end
 
-    def test_block_elements
+    def test_block_elements()
         assert_filtered_input_equals_input "block"
+
+        Paru::PANDOC_BLOCK.select{|n| n != "Plain" and n != "LineBlock" and n != "CodeBlock" and n != "RawBlock" and n != "OrderedList" and n != "BulletList" and n != "DefinitionList" and n != "Table"}.each do |node_name|
+            filter_file_and_equal_file(
+                "test/pandoc_input/all_node_types_in_pandoc.md",
+                "test/pandoc_output/all_node_types_in_pandoc.md"
+            ) do
+                with "#{node_name}" do |node|
+                    node.inner_markdown = node.inner_markdown
+                end
+            end
+        end
     end
 
-    def test_metadata_elements
+    def test_metadata_elements()
         assert_filtered_input_equals_input "metadata"
     end
 
-    def test_capitalize_first_sentence
+    def test_capitalize_first_sentence()
         filter_file_and_equal_file(
             "test/pandoc_input/paragraphs.md",
             "test/pandoc_output/paragraphs.md"
@@ -113,7 +135,7 @@ class FilterTest < MiniTest::Test
         end
     end
 
-    def test_number_figures
+    def test_number_figures()
         figure_counter = 0
 
         filter_file_and_equal_file(
@@ -127,7 +149,7 @@ class FilterTest < MiniTest::Test
         end
     end
 
-    def test_number_figures_per_chapter
+    def test_number_figures_per_chapter()
         current_chapter = 0
         current_figure = 0;
 
@@ -151,7 +173,7 @@ class FilterTest < MiniTest::Test
         end
     end
 
-    def test_example_blocks
+    def test_example_blocks()
         example_count = 0
 
         filter_file_and_equal_file(
@@ -171,7 +193,7 @@ class FilterTest < MiniTest::Test
         end
     end
 
-    def test_insert_code_block
+    def test_insert_code_block()
         filter_file_and_equal_file(
             "test/pandoc_input/insert_code_blocks.md",
             "test/pandoc_output/insert_code_blocks.md"
@@ -186,7 +208,7 @@ class FilterTest < MiniTest::Test
         end
     end
 
-    def test_insert_document
+    def test_insert_document()
         filter_file_and_equal_file(
             "test/pandoc_input/insert_document.md",
             "test/pandoc_output/insert_document.md"
@@ -203,7 +225,7 @@ class FilterTest < MiniTest::Test
         end
     end
 
-    def test_delete_horizontal_rules
+    def test_delete_horizontal_rules()
         filter_file_and_equal_file(
             "test/pandoc_input/delete_horizontal_rules.md",
             "test/pandoc_output/delete_horizontal_rules.md"

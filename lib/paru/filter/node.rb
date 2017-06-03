@@ -82,16 +82,12 @@ module Paru
             require_relative './superscript.rb'
 
             # Metadata level nodes
-            require_relative './meta.rb'
             require_relative './meta_blocks.rb'
             require_relative './meta_bool.rb'
             require_relative './meta_inlines.rb'
             require_relative './meta_list.rb'
             require_relative './meta_map.rb'
             require_relative './meta_string.rb'
-
-            # Version level nodes            
-            require_relative './version.rb'
 
             # Create a new Node with contents. Also indicate if this node has
             # inline children or block children.

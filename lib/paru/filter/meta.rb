@@ -25,7 +25,6 @@ module Paru
         #
         # @see http://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html#t:Meta
         class Meta < MetaMap
-
             # The type of a Meta is "meta"
             # 
             # @return [String] "meta"

@@ -118,6 +118,28 @@ WARNING
                 super contents
             end
 
+            # Get the title of this document if available, nil otherwise
+            #
+            # @return [Inline] the title of this document
+            def title()
+                @meta.get("title")
+            end
+
+            # Get the authors of this document if available, nil otherwise
+            #
+            # @return [Inline[]]
+            def authors()
+                @meta.get("author")
+            end
+            alias author authors
+
+            # Get the date specified in this document if available, nil otherwise
+            #
+            # @return [Inline]
+            def date()
+                @meta.get("date")
+            end
+
             # Create an AST representation of this Document
             def to_ast()
                 {
