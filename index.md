@@ -56,6 +56,11 @@ Paru, obviously, requires pandoc. See
 system and [pandoc's manual](http://pandoc.org/README.html) on how to
 use pandoc.
 
+You can generate the [API documentation for
+paru](https://heerdebeer.org/Software/markdown/paru/) by cloning the
+repository and running `rake yard`. It'll put it in
+`documentation/api-doc`.
+
 1.3 Paru says hello to pandoc
 -----------------------------
 

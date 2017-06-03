@@ -16,3 +16,7 @@ gem install paru-::paru::version.gem
 Paru, obviously, requires pandoc. See <http://pandoc.org/installing.html>
 about how to install pandoc on your system and [pandoc's
 manual](http://pandoc.org/README.html) on how to use pandoc.
+
+You can generate the [API documentation for
+paru](https://heerdebeer.org/Software/markdown/paru/) by cloning the
+repository and running `rake yard`. It'll put it in `documentation/api-doc`.
