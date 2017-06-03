@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./node.rb"
+
 module Paru
     module PandocFilter
-        require_relative "./node"
-
         # An Inline node
         # @see http://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html#t:Inline
         class Inline < Node

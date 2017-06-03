@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./block.rb"
+
 module Paru
     module PandocFilter
-        require_relative "./block"
-
         # A List node is a base node for various List node types
         class List < Block
 

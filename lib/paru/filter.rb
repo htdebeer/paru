@@ -16,11 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./selector.rb"
+require_relative "./filter/document.rb"
+
 module Paru
-
-    require_relative "./selector"
-    require_relative "./filter/document"
-
     # Paru filter is a wrapper around pandoc's JSON api, which is based on
     # {pandoc-types}[https://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html].
     # Pandoc treats block elements and inline elements differently. 

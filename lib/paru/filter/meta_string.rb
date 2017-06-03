@@ -19,7 +19,7 @@
 module Paru
     module PandocFilter
 
-        require_relative "./meta_value"
+        require_relative "./meta_value.rb"
 
         # A MetaString Node represents a String value
         class MetaString < MetaValue

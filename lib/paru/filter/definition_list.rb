@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./block.rb"
+
 module Paru
     module PandocFilter
-        require_relative "./block"
-
         # A DefinitionList is a list of term-definition pairs, respecitively an Inline list and a Block list.
         class DefinitionList < Block
             # Create a new DefinitionList node

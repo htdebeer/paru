@@ -18,7 +18,6 @@
 #++
 module Paru
     module PandocFilter
-    
         # A Target represents the target of a link or image
         #
         # @!attribute url

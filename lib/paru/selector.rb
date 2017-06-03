@@ -16,10 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
-module Paru
-    require_relative './filter'
-    require_relative './error'
+require_relative './error'
 
+module Paru
     # SelectorParseError is thrown when there is an error parsing a selector
     # used in a filter.
     class SelectorParseError < Error

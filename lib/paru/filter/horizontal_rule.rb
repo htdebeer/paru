@@ -16,12 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
-module Paru
-  module PandocFilter
-    require_relative "./empty_block"
+require_relative "./empty_block.rb"
 
-    # HorizontalRule
-    class HorizontalRule < EmptyBlock
+module Paru
+    module PandocFilter
+        # HorizontalRule
+        class HorizontalRule < EmptyBlock
+        end
     end
-  end
 end

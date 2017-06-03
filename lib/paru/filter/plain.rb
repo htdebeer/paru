@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./block.rb"
+
 module Paru
     module PandocFilter
-        require_relative "./block"
-
         # A Plain node is a basic {Block} level node with {Inline} child nodes. Not
         # to be confused with {Para}, which represents a paragraph. A Plain
         # is a more general type of block level node.

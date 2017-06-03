@@ -16,14 +16,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "../pandoc.rb"
+
+require_relative './ast_manipulation.rb'
+require_relative './markdown.rb'
+
 module Paru
     # PandocFilter is a module containig the paru's Filter functionality 
     module PandocFilter
-
-        require_relative "./ast_manipulation"
-        require_relative "./markdown"
-        require_relative "../pandoc"
-        require_relative "./document"
 
         # Every node in a Pandoc AST is mapped to Node. Filters are all about
         # manipulating Nodes.
@@ -37,9 +37,61 @@ module Paru
 
             attr_accessor :parent
 
-            Dir[File.dirname(__FILE__) + '/*.rb'].each do |file|
-                require_relative file
-            end
+            # Block level nodes
+            require_relative './block_quote.rb'
+            require_relative './block.rb'
+            require_relative './bullet_list.rb'
+            require_relative './code_block.rb'
+            require_relative './definition_list_item.rb'
+            require_relative './definition_list.rb'
+            require_relative './div.rb'
+            require_relative './empty_block.rb'
+            require_relative './header.rb'
+            require_relative './horizontal_rule.rb'
+            require_relative './line_block.rb'
+            require_relative './null.rb'
+            require_relative './ordered_list.rb'
+            require_relative './para.rb'
+            require_relative './plain.rb'
+            require_relative './raw_block.rb'
+            require_relative './table.rb'
+            require_relative './table_row.rb'
+
+            # Inline level nodes
+            require_relative './citation.rb'
+            require_relative './cite.rb'
+            require_relative './code.rb'
+            require_relative './emph.rb'
+            require_relative './empty_inline.rb'
+            require_relative './image.rb'
+            require_relative './inline.rb'
+            require_relative './line_break.rb'
+            require_relative './link.rb'
+            require_relative './math.rb'
+            require_relative './note.rb'
+            require_relative './quoted.rb'
+            require_relative './raw_inline.rb'
+            require_relative './small_caps.rb'
+            require_relative './soft_break.rb'
+            require_relative './space.rb'
+            require_relative './span.rb'
+            require_relative './strikeout.rb'
+            require_relative './strong.rb'
+            require_relative './str.rb'
+            require_relative './subscript.rb'
+            require_relative './superscript.rb'
+
+            # Metadata level nodes
+            require_relative './meta.rb'
+            require_relative './meta_blocks.rb'
+            require_relative './meta_bool.rb'
+            require_relative './meta_inlines.rb'
+            require_relative './meta_list.rb'
+            require_relative './meta_map.rb'
+            require_relative './meta_string.rb'
+
+            # Version level nodes            
+            require_relative './version.rb'
 
             # Create a new Node with contents. Also indicate if this node has
             # inline children or block children.

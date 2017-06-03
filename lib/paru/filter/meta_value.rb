@@ -16,11 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./node.rb"
+
 module Paru
     module PandocFilter
-
-        require_relative "./node"
-
         # A MetaValue Node is either a MetaMap, MetaList, MetaBool, MetaString, MetaInlines, or a MetaBlocks.
         #
         # @see http://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html#t:MetaValue

@@ -16,11 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./meta_value.rb"
+
 module Paru
     module PandocFilter
-
-        require_relative "./meta_value"
-
         # A MetaBool Note representa a Boolean value
         class MetaBool < MetaValue
         end

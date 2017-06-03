@@ -17,12 +17,6 @@
 # Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-    require "paru/pandoc"
-    require "paru/filter"
-    require "paru/filter_error"
-    require "paru/error"
-    require "paru/pandoc2yaml"
-
     # Paru's current version
     VERSION = [0, 2, 4, 7]
 end

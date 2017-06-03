@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./block.rb"
+
 module Paru
     module PandocFilter
-        require_relative "./block"
-
         # A TableRow node represents a row in a table's head or body
         class TableRow < Block
             # Create a new TableRow based on the row_data

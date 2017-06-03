@@ -16,12 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./block.rb"
+require_relative "./list.rb"
+require_relative "./inline.rb"
+
 module Paru
     module PandocFilter
-        require_relative "./block"
-        require_relative "./list"
-        require_relative "./inline"
-
         # A DefinitionListItem is a helper node to represent the pair of a term
         # and its definition in a DefinitionList
         #

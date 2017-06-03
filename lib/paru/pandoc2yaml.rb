@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
-module Paru
-    require "json"
-    require_relative "./pandoc.rb"
+require "json"
+require_relative "./pandoc.rb"
 
+module Paru
     # Utility class to extract YAML metadata form a markdown file in pandoc's
     # own markdown format.
     class Pandoc2Yaml

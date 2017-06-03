@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./empty_block.rb"
+
 module Paru
     module PandocFilter
-        require_relative "./empty_block"
-
         # A Null node is an EmptyBlock node
         class Null < EmptyBlock
         end

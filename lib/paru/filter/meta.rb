@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./meta_map.rb"
+  
 module Paru
     module PandocFilter
-        require_relative "./meta_map"
-  
         # A Meta node represents the metadata of a document. It is a MetaMap
         # node.
         #

@@ -16,11 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./list.rb"
+require_relative "./list_attributes.rb"
+
 module Paru
     module PandocFilter
-        require_relative "./list"
-        require_relative "./list_attributes"
-
         # An OrderedList Node 
         # 
         # @example In markdown an ordered list looks like

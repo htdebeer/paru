@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./list.rb"
+
 module Paru
     module PandocFilter
-        require_relative "./list"
-
         # BulletList, contains a list of list of Block nodes.
         class BulletList < List
         end

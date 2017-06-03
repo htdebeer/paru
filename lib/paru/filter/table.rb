@@ -16,11 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./block.rb"
+require_relative "./inline.rb"
+    
 module Paru
     module PandocFilter
-        require_relative "./block"
-        require_relative "./inline"
-    
         # The allignment of a table column
         ALIGNMENTS = ["AlignLeft", "AlignRight", "AlignCenter", "AlignDefault"]
 

@@ -16,12 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./inline.rb"
+require_relative "./block.rb"
+
 module Paru
     module PandocFilter
-
-        require_relative "./inline"
-        require_relative "./block"
-
         # A Note node like a foot note or end note. It is a special node in
         # the sense that itself is an Inline level node, but its contents are
         # Block level.

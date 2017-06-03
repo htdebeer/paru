@@ -16,12 +16,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./document.rb"
+
+require_relative "../pandoc.rb"
+
 module Paru
     module PandocFilter
         # A mixin to add inner_markdown and outer_markdown properties to Nodes
         module Markdown
-            require_relative "../pandoc"
-            require_relative "./document"
 
             # A Paru::Pandoc converter from JSON to markdown
             AST2MARKDOWN = Paru::Pandoc.new do

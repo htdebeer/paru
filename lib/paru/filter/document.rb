@@ -16,16 +16,17 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require "json"
+
+require_relative "./node.rb"
+require_relative "./plain.rb"
+require_relative "./meta.rb"
+require_relative "./version.rb"
+
+require_relative "../filter_error.rb"
+
 module Paru
     module PandocFilter
-
-        require "json"
-        require_relative "./node.rb"
-        require_relative "./plain.rb"
-        require_relative "./meta.rb"
-        require_relative "./version.rb"
-        require_relative "../filter_error.rb"
-
         # Pandoc type version key
         VERSION = "pandoc-api-version"
         # Pandoc type meta key

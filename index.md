@@ -57,8 +57,8 @@ system and [pandoc's manual](http://pandoc.org/README.html) on how to
 use pandoc.
 
 You can generate the [API documentation for
-paru](https://heerdebeer.org/Software/markdown/paru/) by cloning the
-repository and running `rake yard`. It'll put it in
+paru](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/)
+by cloning the repository and running `rake yard`. It'll put it in
 `documentation/api-doc`.
 
 1.3 Paru says hello to pandoc
@@ -206,7 +206,7 @@ parser.parse! ARGV
 
 input_document = ARGV.pop
 
-if ARGV.size != 0 then
+if ARGV.size != 0 or input_document.nil? or input_document.empty? then
     warn "Expecting exactly one argument: the pandoc file to strip for metadata"
     puts ""
     puts parser
@@ -261,10 +261,10 @@ takes one argument, the path to a pandoc markdown file.
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
-module Paru
-    require "json"
-    require_relative "./pandoc.rb"
+require "json"
+require_relative "./pandoc.rb"
 
+module Paru
     # Utility class to extract YAML metadata form a markdown file in pandoc's
     # own markdown format.
     class Pandoc2Yaml

@@ -17,6 +17,7 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./error.rb"
+
 module Paru
     # A FilterError raised when there is an error while running a filter.
     class FilterError < Error

@@ -16,13 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./inline.rb"
+require_relative "./attr.rb"
+require_relative "./target.rb"
+
 module Paru
     module PandocFilter
-
-        require_relative "./inline"
-        require_relative "./attr"
-        require_relative "./target"
-
         # A Link node has an attribute object, an Inline description and a
         # target
         #

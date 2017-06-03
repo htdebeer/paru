@@ -16,12 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./inline.rb"
+require_relative "./attr.rb"
+
 module Paru
     module PandocFilter
-
-        require_relative "./inline"
-        require_relative "./attr"
-
         # A Span node is a general Inline level node with attributes and
         # contens
         #

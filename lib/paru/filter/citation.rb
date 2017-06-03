@@ -16,10 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #--
+require_relative "./inline.rb"
+    
 module Paru
     module PandocFilter
-        require_relative "./inline"
-    
         # A Citation consists of an id, a prefix, a suffix, a mode, a note
         # number, and integer hash. All of which are optional.
         #

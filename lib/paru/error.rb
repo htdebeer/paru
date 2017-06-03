@@ -16,9 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
-
 module Paru
-
     # An error class to use as a basis for paru specific errors.
     class Error < RuntimeError
     end

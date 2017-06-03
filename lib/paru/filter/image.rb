@@ -16,11 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./link.rb"
+
 module Paru
     module PandocFilter
-
-        require_relative "./link"
-
         # An Image has an attribute object, a caption, and a target
         class Image < Link
 

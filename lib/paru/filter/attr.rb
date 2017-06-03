@@ -18,7 +18,6 @@
 #++
 module Paru
     module PandocFilter
-
         # Attr represents an attribute object for a node. It contains of an id, a
         # list of class names and a list of key-value pairs. 
         #

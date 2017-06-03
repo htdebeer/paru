@@ -18,7 +18,6 @@
 #++
 module Paru
     module PandocFilter
-
         # ASTManipulation is a mixin for Node with some standard tree
         # manipulation methods such as inserting or removing nodes, replacing
         # nodes, and so on.

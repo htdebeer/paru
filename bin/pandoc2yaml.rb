@@ -34,7 +34,7 @@ parser.parse! ARGV
 
 input_document = ARGV.pop
 
-if ARGV.size != 0 then
+if ARGV.size != 0 or input_document.nil? or input_document.empty? then
     warn "Expecting exactly one argument: the pandoc file to strip for metadata"
     puts ""
     puts parser

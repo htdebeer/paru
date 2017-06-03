@@ -16,11 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require "shellwords"
+require "yaml"
+
 module Paru
-
-    require "shellwords"
-    require "yaml"
-
     # Pandoc is a wrapper around the pandoc document converter. See
     # <http://pandoc.org/README.html> for details about pandoc.  The Pandoc
     # class is basically a straightforward translation from the pandoc command
