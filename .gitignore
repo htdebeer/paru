@@ -4,3 +4,4 @@
 *.bak
 
 documentation/api-doc
+.yardoc
