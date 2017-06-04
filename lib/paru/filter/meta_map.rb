@@ -19,6 +19,7 @@
 require_relative "./node.rb"
 
 require_relative "../pandoc.rb"
+require_relative "../metadata.rb"
 
 module Paru
     module PandocFilter
@@ -208,13 +209,7 @@ module Paru
 
             # Convert a yaml string to a MetaMap
             def meta_from_yaml(yaml_string)
-                json_string = Pandoc.new do
-                    from "markdown"
-                    to "json"
-                end << yaml_string
-
-                meta_doc = PandocFilter::Document.from_JSON json_string
-                meta_doc.meta.to_meta_map
+                Paru::Metadata.from_yaml yaml_string
             end
         end
     end

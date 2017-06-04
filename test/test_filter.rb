@@ -257,6 +257,11 @@ class FilterTest < MiniTest::Test
                 date: #{Date.today.to_s}
                 ...
             YAML
+            metadata.yaml <<~YAML
+                ---
+                date: #{Date.today.to_s}
+                ...
+            YAML
         end
         assert_match(/#{Date.today.to_s}/, output)
     end
