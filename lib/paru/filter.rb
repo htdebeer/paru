@@ -104,8 +104,8 @@ module Paru
     #
     #     ![Figure 2. My second image](img/rabbit.jpeg)
     #
-    # The method {PandocFilter::Node#inner_markdown} and its counterpart
-    # {PandocFilter::Node#outer_markdown} are a great way to manipulate the
+    # The method {PandocFilter::InnerMarkdown#inner_markdown} and its counterpart
+    # {PandocFilter::Node#markdown} are a great way to manipulate the
     # contents of a selected {PandocFilter::Node}. No messing about creating
     # and filling {PandocFilter::Node}s, you can just use pandoc's own
     # markdown format!
@@ -169,8 +169,8 @@ module Paru
     #
     # == Manipulating nodes: Removing horizontal lines
     #
-    # Although the {PandocFilter::Node#inner_markdown} and
-    # {PandocFilter::Node#outer_markdown} work in most situations, sometimes
+    # Although the {PandocFilter::InnerMarkdown#inner_markdown} and
+    # {PandocFilter::Node#markdown} work in most situations, sometimes
     # direct manipulation of the pandoc document AST is useful. These
     # {PandocFilter::ASTManipulation} methods are mixed in
     # {PandocFilter::Node} and can be used on any node in your filter. For

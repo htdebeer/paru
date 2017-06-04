@@ -7,7 +7,7 @@ Paru::Filter.run do
       command, path = paragraph.inner_markdown.strip.split " "
       if command == "::paru::insert"
         markdown = File.read path.gsub(/\\_/, "_")
-        paragraph.outer_markdown = markdown
+        paragraph.markdown = markdown
       end
     end
   end

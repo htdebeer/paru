@@ -27,7 +27,7 @@ module Paru
             # Create a new List node based on contents
             #
             # @param contents [Array] the contents of the list
-            # @param inline [node_class = Block] the contents are {Inline} nodes
+            # @param node_class [Node = PandocFilter::Block] the contents are {Inline} nodes
             def initialize(contents, node_class = Block)
                 super []
                 contents.each do |item|
