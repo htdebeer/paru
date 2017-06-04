@@ -3,26 +3,39 @@
 ## Contents
 
 -   [Introduction](#introduction)
--   [Licence](#licence)
--   [Installation](#installation)
+    -   [Licence](#licence)
+    -   [Acknowledgements](#acknowledgements)
+    -   [Installation](#installation)
 -   [Paru says hello to pandoc](#paru-says-hello-to-pandoc)
 -   [Writing and using pandoc filters with paru](#writing-and-using-pandoc-filters-with-paru)
 -   [Documentation](#documentation)
+    -   [Manual](#manual)
+    -   [API documentation](#api-documentation)
+    -   [Frequently asked questions](#frequently-asked-questions)
 
 Introduction
 ------------
 
-Paru is a simple Ruby wrapper around [pandoc](http://www.pandoc.org), the great multi-format document converter. Paru supports automating pandoc by writing Ruby programs and using pandoc in your Ruby programs (see [Chapter 2](#automating-the-use-of-pandoc-with-paru)). Paru also supports writing pandoc filters in Ruby (see [Chapter 3](#writing-and-using-pandoc-filters-with-paru)). In this manual the use of paru is explained in detail, from explaining how to install and use paru, creating and using filters, to putting it all together in a real-world use case: generating this manual!
+Paru is a simple Ruby wrapper around [pandoc](http://www.pandoc.org), the great multi-format document converter. Paru supports automating pandoc by writing Ruby programs and using pandoc in your Ruby programs (see [Chapter 2 in the manual](https://heerdebeer.org/Software/markdown/paru/#automating-the-use-of-pandoc-with-paru)). Paru also supports writing pandoc filters in Ruby (see [Chapter 3 in the manual](https://heerdebeer.org/Software/markdown/paru/#writing-and-using-pandoc-filters-with-paru)). In [paru's manual](https://heerdebeer.org/Software/markdown/paru/) the use of paru is explained in detail, from explaining how to install and use paru, creating and using filters, to putting it all together in a real-world use case: generating the manual!
 
 See also the [paru API documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
 
-Licence
--------
+This README is a brief overview of paru's features and usages.
+
+### Licence
 
 Paru is [free sofware](https://www.gnu.org/philosophy/free-sw.en.html); paru is released under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html). You find paru's source code on [github](https://github.com/htdebeer/paru).
 
-Installation
-------------
+### Acknowledgements
+
+I would like to thank the following users for their contributions of patches, bug reports, fixes, and suggestions. With your help paru is growing beyond a simple tool for personal use into a useful addition to the pandoc ecosystem.
+
+-   [Ian](https://github.com/iandol)
+-   [Michael Kussmaul](https://github.com/kusmi)
+-   [Xavier Belanche Alonso](https://github.com/xbelanch)
+-   [Robert Riemann](https://github.com/rriemann)
+
+### Installation
 
 Paru is installed through rubygems as follows:
 
@@ -137,25 +150,18 @@ For more information about writing filters, please see [paru's manual](https://h
 Documentation
 -------------
 
-For more information on automatic the use of pandoc with paru or writing pandoc filters in ruby, please see paru's [manual](https://heerdebeer.org/Software/markdown/paru/). The [API documentation can be found there as well](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
+### Manual
 
-One of the examples described in the manual is the development of `do-pandoc.rb`, a program that converts an input file given the pandoc configuration embedded in the YAML metadata in that input file. This script `do-pandoc.rb` is installed as a binary when you install paru so you can use it whenever you want.
+For more information on automatic the use of pandoc with paru or writing pandoc filters in ruby, please see paru's [manual](https://heerdebeer.org/Software/markdown/paru/).
 
-For example, the following markdown file (`hello.md`),
+### API documentation
 
-    ---
-    title: Hello!
-    author: Huub de Beer
-    pandoc:
-      from: 'markdown'
-      to: 'html5'
-    ...
+The [API documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/) covers the whole of paru. Where the manual just describes a couple of scenarios, the API documentation shows all available functionality. It also give more examples of using paru and writing filters.
 
-    # Hello from Pandoc
+### Frequently asked questions
 
-    Hi, this is converted to pandoc by running this file through
-    `do-pandoc.rb`!
+There are no frequently asked questions at the moment. Feel free to ask me a question: [send me an email](mailto:Huub@heerdebeer.org)!
 
-can be converted by pandoc to HTML by running the following command:
+-   *I get an error like "'values\_at': no implicit conversion of String into Integer (TypeError) from lib/paru/filter/document.rb:54:in 'from\_JSON'"*
 
-    do-pandoc.rb hello.md
+    The most likely cause is that you're using an old version of Pandoc. Paru version 0.2.x only supports pandoc version 1.18 and up. In pandoc version 1.18 there was a breaking API change in the way filters worked. Please upgrade your pandoc installation.

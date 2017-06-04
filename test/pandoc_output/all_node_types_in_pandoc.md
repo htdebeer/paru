@@ -46,7 +46,7 @@ headers]{#headers} for more information. You can link
 [without](#metadata) or [with]{#metadata} a specific reference.
 References are always lower case, and words separated by `-`.
 
-To quate the manual:
+To quote the manual:
 
 > Markdown uses email conventions for quoting blocks of text.
 > [@pandocmanual]
@@ -110,7 +110,7 @@ Lists
 
 -   We have already
 -   seen lists without
--   ordening
+-   ordering
 -   These can have
 -   sub
     -   lists
@@ -220,12 +220,12 @@ Inline level things
 -   -   or \* not
 
 -   ~~strikeout~~
--   10\^4
+-   10^4^
 -   H~2~O
 -   `code`
 -   <span style="font-variant:small-caps;">Small caps</span>; <span
     style="font-variant:small-caps;">Small caps</span>
--   $\fraq{3}{5}$
+-   $\frac{3}{5}$
 
 Raw HTML or LaTeX
 =================
@@ -239,10 +239,10 @@ Raw HTML or LaTeX
 
 </div>
 
-\begin{enumeration}
+\begin{enumerate}
     \item And raw \LaTeX
     \item whoho!
-\end{enumeration}
+\end{enumerate}
 Various links
 =============
 

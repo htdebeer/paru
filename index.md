@@ -15,12 +15,14 @@ Chapter 1. Introduction {#introduction}
 Paru is a simple Ruby wrapper around [pandoc](http://www.pandoc.org),
 the great multi-format document converter. Paru supports automating
 pandoc by writing Ruby programs and using pandoc in your Ruby programs
-(see [Chapter 2](#automating-the-use-of-pandoc-with-paru)). Paru also
-supports writing pandoc filters in Ruby (see [Chapter
-3](#writing-and-using-pandoc-filters-with-paru)). In this manual the use
-of paru is explained in detail, from explaining how to install and use
-paru, creating and using filters, to putting it all together in a
-real-world use case: generating this manual!
+(see [Chapter 2 in the
+manual](https://heerdebeer.org/Software/markdown/paru/#automating-the-use-of-pandoc-with-paru)).
+Paru also supports writing pandoc filters in Ruby (see [Chapter 3 in the
+manual](https://heerdebeer.org/Software/markdown/paru/#writing-and-using-pandoc-filters-with-paru)).
+In [paru's manual](https://heerdebeer.org/Software/markdown/paru/) the
+use of paru is explained in detail, from explaining how to install and
+use paru, creating and using filters, to putting it all together in a
+real-world use case: generating the manual!
 
 See also the [paru API
 documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
@@ -61,7 +63,20 @@ paru](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/)
 by cloning the repository and running `rake yard`. It'll put it in
 `documentation/api-doc`.
 
-1.3 Paru says hello to pandoc
+1.3 Acknowledgements
+--------------------
+
+I would like to thank the following users for their contributions of
+patches, bug reports, fixes, and suggestions. With your help paru is
+growing beyond a simple tool for personal use into a useful addition to
+the pandoc ecosystem.
+
+-   [Ian](https://github.com/iandol)
+-   [Michael Kussmaul](https://github.com/kusmi)
+-   [Xavier Belanche Alonso](https://github.com/xbelanch)
+-   [Robert Riemann](https://github.com/rriemann)
+
+1.4 Paru says hello to pandoc
 -----------------------------
 
 Using paru is straightforward. It is a thin "rubyesque" layer around the
@@ -859,6 +874,10 @@ pandoc:
 ## Installation
 
 ::paru::insert install.md
+
+## Acknowledgements
+
+::paru::insert acknowledgements.md
 
 ## Paru says hello to pandoc
 

@@ -25,11 +25,17 @@ pandoc:
 
 ::paru::insert introduction.md
 
-## Licence
+This README is a brief overview of paru's features and usages.
+
+### Licence
 
 ::paru::insert license.md
 
-## Installation
+### Acknowledgements
+
+::paru::insert acknowledgements.md
+
+### Installation
 
 ::paru::insert install.md
 
@@ -43,34 +49,21 @@ pandoc:
 
 ## Documentation
 
+### Manual 
+
 For more information on automatic the use of pandoc with paru or writing
 pandoc filters in ruby, please see paru's
-[manual](https://heerdebeer.org/Software/markdown/paru/). The [API
-documentation can be found there as
-well](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
+[manual](https://heerdebeer.org/Software/markdown/paru/). 
 
-One of the examples described in the manual is the development of
-`do-pandoc.rb`, a program that converts an input file given the pandoc
-configuration embedded in the YAML metadata in that input file. This script
-`do-pandoc.rb` is installed as a binary when you install paru so you can use
-it whenever you want. 
+### API documentation
 
-For example, the following markdown file (`hello.md`),
+The [API
+documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/)
+covers the whole of paru. Where the manual just describes a couple of
+scenarios, the API documentation shows all available functionality. It also
+give more examples of using paru and writing filters.
 
-    ---
-    title: Hello!
-    author: Huub de Beer
-    pandoc:
-      from: 'markdown'
-      to: 'html5'
-    ...
+### Frequently asked questions
 
-    # Hello from Pandoc
-
-    Hi, this is converted to pandoc by running this file through
-    `do-pandoc.rb`!
-
-can be converted by pandoc to HTML by running the following command:
-
-    do-pandoc.rb hello.md
+::paru::insert faq.md
 

@@ -32,6 +32,10 @@ pandoc:
 
 ::paru::insert install.md
 
+## Acknowledgements
+
+::paru::insert acknowledgements.md
+
 ## Paru says hello to pandoc
 
 ::paru::insert usage.md
