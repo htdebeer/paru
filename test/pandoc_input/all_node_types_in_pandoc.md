@@ -50,7 +50,7 @@ supplied references. See [the section about headers]{#headers} for more
 information. You can link [without][metadata] or [with]{#metadata} a specific
 reference. References are always lower case, and words separated by `-`.
 
-To quate the manual:
+To quote the manual:
 
 > Markdown uses email conventions for quoting blocks of text. [@pandocmanual]
 
@@ -110,7 +110,7 @@ The example with attributes given in the manual is:
 
 - We have already
 - seen lists without 
-- ordening
+- ordering
   - These can have 
   - sub
     - lists
@@ -218,11 +218,11 @@ multiple lines.
 - **strong**
 - * or * not
 - ~~strikeout~~
-- 10^4
+- 10^4^
 - H~2~O
 - `code`
 - [Small caps]{style="font-variant: small-caps;"}; <span style="font-variant: small-caps;">Small caps</span>
-- $\fraq{3}{5}$
+- $\frac{3}{5}$
 
 # Raw HTML or LaTeX
 
@@ -233,10 +233,10 @@ multiple lines.
     </p>
 </div>
 
-\begin{enumeration}
+\begin{enumerate}
     \item And raw \LaTeX
     \item whoho!
-\end{enumeration}
+\end{enumerate}
 
 
 # Various links
@@ -256,18 +256,17 @@ multiple lines.
 
     with more than one paragraph
 
-
 Images are also kind of links
 
 ![Figure X. See this image](/path/to/img.png)
 
 # Span and Div
 
-
 <span class="important">Spans</span> and divs van be created as general inline
 or block level elements, respectively. Spans [can also]{.important} created
-like a link: just skip the URL.
+like a link: just skip the URL.  
 
 <div class="example">
 This is an example **block**. Markdown inside works.
-</div>
+</div>  
+
