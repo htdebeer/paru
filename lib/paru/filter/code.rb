@@ -61,6 +61,14 @@ module Paru
             def has_inline?()
                 false
             end
+            
+            # Get the markdown representation of this Node, including the Node
+            # itself.
+            #
+            # @return [String] the outer markdown representation of this Node
+            def markdown()
+                super.strip
+            end
         end
     end
 end

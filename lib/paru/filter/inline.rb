@@ -17,12 +17,14 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./node.rb"
+require_relative "./inner_markdown.rb"
 
 module Paru
     module PandocFilter
         # An Inline node
         # @see http://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html#t:Inline
         class Inline < Node
+            include InnerMarkdown
 
             # Create a new Inline node with contents
             # @param contents [Array] the contents of this inline node
@@ -43,6 +45,7 @@ module Paru
             def has_inline?()
                 true
             end
+
         end
     end
 end

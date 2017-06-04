@@ -87,14 +87,14 @@ WARNING
 
             # Create a new Document fragment from a list of Node elements
             #
-            # @param node_list [Array<Node>] a list of nodes to create a Document
+            # @param node_list [Node[]] a list of nodes to create a Document
             #   fragment from
             #
             # @return [Document] the document containing nodes in node_list
             def self.fragment(node_list)
                 meta = Hash.new
 
-                if node_list.any? {|n| n.is_block?}
+                if node_list.nil? or node_list.any? {|n| n.is_block?}
                     new_doc = Document.new CURRENT_PANDOC_VERSION, meta, []
                     new_doc.children = node_list
                 else

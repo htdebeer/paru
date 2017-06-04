@@ -32,7 +32,15 @@ There are three ways of getting metadata in a document:
     describing the *title*, *author*, and *date*.
 2.  using a YAML metadata block, like so:
 
-    `{.yaml}    ---     keywords:    - pandoc    - paru    subtitle: Or reading pandoc's manual    ...`
+    ``` {.yaml}
+       --- 
+       keywords:
+       - pandoc
+       - paru
+       subtitle: Or reading pandoc's manual
+       ...
+    ```
+
 3.  using metadata arguments when invoking pandoc on the command line.
 
 Headers
@@ -111,9 +119,9 @@ Lists
 -   We have already
 -   seen lists without
 -   ordering
--   These can have
--   sub
-    -   lists
+    -   These can have
+    -   sub
+        -   lists
 -   Just like that.
 
 ### Ordered lists
@@ -122,13 +130,11 @@ Lists
 2.  work the same, but with
 3.  numbers in front.
 4.  Ain't much to it:
-
--   as with mixing lists
-    1.  like
-    2.  so
-
-1.  Heck, you can even use plain `#` characters
-2.  to number a list
+    -   as with mixing lists
+        1.  like
+        2.  so
+5.  Heck, you can even use plain `#` characters
+6.  to number a list
 
 <!-- -->
 
@@ -162,7 +168,7 @@ As you can see in example (3), you can write filters in Ruby
 Tables
 ------
 
-Below follow the tables from the pandoc manual:
+Below follow the tables from the pandoc manual.
 
     Right Left    Center  Default
   ------- ------ -------- ---------
@@ -171,6 +177,8 @@ Below follow the tables from the pandoc manual:
         1 1         1     1
 
   : Demonstration of simple table syntax.
+
+Another table from the manual, now without a caption.
 
   ----- ----- ----- -----
      12 12     12    12
@@ -191,6 +199,8 @@ Below follow the tables from the pandoc manual:
 
   : Here's the caption. It, too, may span multiple lines.
 
+And so on, and so on.
+
 +---------------+---------------+--------------------+
 | Fruit         | Price         | Advantages         |
 +===============+===============+====================+
@@ -203,6 +213,10 @@ Below follow the tables from the pandoc manual:
 +---------------+---------------+--------------------+
 
 : Sample grid table.
+
+There are a lot of different kind of tables in pandoc. For example, the
+following table and the previous ones. Paru has some trouble recognizing
+a paragraph at this place.
 
     Right Left   Default    Center
   ------- ------ --------- --------
@@ -230,15 +244,11 @@ Inline level things
 Raw HTML or LaTeX
 =================
 
-<div>
-
-    <p>
-        <em>This is raw html</em>
-
-    </p>
-
-</div>
-
+<section>
+<p>
+<strong class="important">This is raw html</strong>
+</p>
+</section>
 \begin{enumerate}
     \item And raw \LaTeX
     \item whoho!
@@ -251,8 +261,8 @@ Various links
 -   reference link: [a label](https://pandoc.org "And a title")
 -   link with attributes: [attributes](https://pandoc.org){.external
     target="_blank"}
--   footnotes^\[LIke\ this\ one\]^\[or this one\]
--   You can also create them like [^1] and [^2] and define the contents
+-   footnotes[^1], and[^2].
+-   You can also create them like [^3] and [^4] and define the contents
     elsewhere
 
 Images are also kind of links
@@ -272,8 +282,12 @@ This is an example **block**. Markdown inside works.
 
 </div>
 
-[^1]: The first note
+[^1]: Like this one
 
-[^2]: another one
+[^2]: or this one
+
+[^3]: The first note
+
+[^4]: another one
 
     with more than one paragraph

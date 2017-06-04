@@ -74,51 +74,57 @@ class FilterTest < MiniTest::Test
         reformatted_input.chop
     end
 
-    def assert_filtered_input_equals_input(dir)
-        Dir.glob("test/pandoc_input/#{dir}/*.md") do |path|
-
+    def test_inline_elements()
+        Dir.glob("test/pandoc_input/inline/*.md") do |path|
+            node_name = File.basename path, ".md"
             original_input = File.read(path)
             input = reformat original_input
             output = filter_string(input) do
-                # nothing
+                with "#{node_name}" do |node|
+                    contents = node.markdown
+                    node.markdown = contents
+                    if node_name != "Cite"
+                        in_contents = node.inner_markdown
+                        node.inner_markdown = in_contents
+                    end
+                end
+            end.chop
+            
+            assert_equal input, output, "Failure filtering #{path}" 
+        end
+
+    end
+
+    def test_block_elements()
+        Dir.glob("test/pandoc_input/block/*.md") do |path|
+            node_name = File.basename path, ".md"
+            original_input = File.read(path)
+            input = reformat original_input
+            output = filter_string(input) do
+                with "#{node_name}" do |node|
+                    contents = node.markdown
+                    node.markdown = contents
+
+                    if [
+                            "Header", 
+                            "Para", 
+                            "Plain", 
+                            "Div", 
+                            "CodeBlock", 
+                            "RawBlock"
+                    ].include? node_name
+                        in_contents = node.inner_markdown
+                        node.inner_markdown = in_contents
+                    end
+                end
             end.chop
             
             assert_equal input, output, "Failure filtering #{path}" 
         end
     end
 
-    def test_inline_elements()
-        assert_filtered_input_equals_input "inline"
-
-        Paru::PANDOC_INLINE.each do |node_name|
-            filter_file_and_equal_file(
-                "test/pandoc_input/all_node_types_in_pandoc.md",
-                "test/pandoc_output/all_node_types_in_pandoc.md"
-            ) do
-                with "#{node_name}" do |node|
-                    #node.inner_markdown = node.inner_markdown
-                end
-            end
-        end
-    end
-
-    def test_block_elements()
-        assert_filtered_input_equals_input "block"
-
-        Paru::PANDOC_BLOCK.select{|n| n != "Plain" and n != "LineBlock" and n != "CodeBlock" and n != "RawBlock" and n != "OrderedList" and n != "BulletList" and n != "DefinitionList" and n != "Table"}.each do |node_name|
-            filter_file_and_equal_file(
-                "test/pandoc_input/all_node_types_in_pandoc.md",
-                "test/pandoc_output/all_node_types_in_pandoc.md"
-            ) do
-                with "#{node_name}" do |node|
-                    node.inner_markdown = node.inner_markdown
-                end
-            end
-        end
-    end
-
     def test_metadata_elements()
-        assert_filtered_input_equals_input "metadata"
+        #assert_filtered_input_equals_input "metadata"
     end
 
     def test_capitalize_first_sentence()
@@ -127,10 +133,10 @@ class FilterTest < MiniTest::Test
             "test/pandoc_output/paragraphs.md"
         ) do
             with "Header +1 Para" do |p|
-                text = p.inner_markdown
+                text = p.markdown
                 first_line = text.slice(0, 10).upcase
                 rest = text.slice(10, text.size)
-                p.inner_markdown = first_line + rest
+                p.markdown = first_line + rest
             end
         end
     end
@@ -218,7 +224,7 @@ class FilterTest < MiniTest::Test
                     command, path = paragraph.inner_markdown.strip.split " "
                     if command == "::paru::insert"
                         markdown = File.read path.gsub(/\\_/, "_")
-                        paragraph.outer_markdown = markdown
+                        paragraph.markdown = markdown
                     end
                 end
             end
@@ -329,6 +335,17 @@ class FilterTest < MiniTest::Test
         end
 
         assert_match(/#{api_version}/, err)
+    end
+
+    def test_code_inline()
+        filter_file_and_equal_file(
+            "test/pandoc_input/bold_code.md",
+            "test/pandoc_output/bold_code.md"
+        ) do
+            with "Code" do |code|
+                code.markdown = "**#{code.markdown}**"
+            end
+        end
     end
 
 end

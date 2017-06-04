@@ -22,6 +22,12 @@ module Paru
     module PandocFilter
         # A LineBlock is a List of Lists of Inline nodes
         class LineBlock < List
+            # Create a new LineBlock node based on contents
+            #
+            # @param contents [Array] the contents of the LineBlock
+            def initialize(contents)
+                super(contents, Para)
+            end
         end
     end
 end

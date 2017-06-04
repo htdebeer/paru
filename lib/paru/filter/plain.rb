@@ -17,6 +17,7 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./block.rb"
+require_relative "./inner_markdown.rb"
 
 module Paru
     module PandocFilter
@@ -24,6 +25,7 @@ module Paru
         # to be confused with {Para}, which represents a paragraph. A Plain
         # is a more general type of block level node.
         class Plain < Block
+            include InnerMarkdown
 
             # Create a new Plain node based on contents
             #

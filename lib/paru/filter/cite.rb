@@ -17,6 +17,7 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./inline.rb"
+require_relative "./citation.rb"
 
 module Paru
     module PandocFilter
@@ -32,12 +33,12 @@ module Paru
             #
             # @param contents [Array] an array containing a list of citations
             #   and a list of inline nodes
-            def initialize contents
+            def initialize(contents)
+                super contents[1]
                 @citations = []
                 contents[0].each do |citation|
                     @citations.push Citation.new(citation)
                 end
-                super contents[1]
             end
 
             # Create an AST representation of this Cite node.
@@ -47,6 +48,9 @@ module Paru
                     super
                 ]
             end
+
+            undef_method :inner_markdown
+            undef_method :inner_markdown=
         end
     end
 end

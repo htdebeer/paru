@@ -17,6 +17,7 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./block.rb"
+require_relative "./inline.rb"
 
 module Paru
     module PandocFilter
@@ -26,22 +27,23 @@ module Paru
             # Create a new List node based on contents
             #
             # @param contents [Array] the contents of the list
-            def initialize contents
+            # @param inline [node_class = Block] the contents are {Inline} nodes
+            def initialize(contents, node_class = Block)
                 super []
                 contents.each do |item|
-                    @children.push Block.new item
+                    @children.push node_class.new item
                 end
             end
 
             # Create an AST representation of this List node
-            def ast_contents
+            def ast_contents()
                 @children.map {|child| child.ast_contents}
             end
 
             # Has this List node block contents?
             #
             # @return [Boolean] true
-            def has_block?
+            def has_block?()
                 true
             end
         end

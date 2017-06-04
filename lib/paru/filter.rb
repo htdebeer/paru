@@ -53,6 +53,7 @@ module Paru
         "SmallCaps",
         "Quoted",
         "Cite",
+        "Code",
         "Space",
         "SoftBreak",
         "LineBreak",

@@ -18,6 +18,7 @@
 #++
 require_relative "./block.rb"
 require_relative "./attr.rb"
+require_relative "./inner_markdown.rb"
 
 module Paru
     module PandocFilter
@@ -30,6 +31,7 @@ module Paru
         # @!attribute string
         #   @return [String]
         class CodeBlock < Block
+            include InnerMarkdown
             attr_accessor :attr, :string
 
             # Create a new CodeBlock based on the contents

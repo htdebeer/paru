@@ -26,19 +26,19 @@ keywords:
 subtitle: Or reading pandoc's manual
 ...
 
-1. using the three `%`-prefixed lines at the start of the document describing
-   the *title*, *author*, and *date*.
-2. using a YAML metadata block, like so:
+1.  using the three `%`-prefixed lines at the start of the document describing
+    the *title*, *author*, and *date*.
+2.  using a YAML metadata block, like so:
 
-       ```{.yaml}
+    ``` {.yaml}
        --- 
        keywords:
        - pandoc
        - paru
        subtitle: Or reading pandoc's manual
        ...
-       ```
-3. using metadata arguments when invoking pandoc on the command line.
+    ```
+3.  using metadata arguments when invoking pandoc on the command line.
 
 Headers {#headers}
 -------
@@ -108,26 +108,26 @@ The example with attributes given in the manual is:
 
 ### Unordered
 
-- We have already
-- seen lists without 
-- ordering
-  - These can have 
-  - sub
-    - lists
-- Just like that.
+-   We have already
+-   seen lists without 
+-   ordering
+    -   These can have 
+    -   sub
+        -   lists
+-   Just like that.
 
 ### Ordered lists
 
-1. Ordered lists
-2. work the same, but with
-8. numbers in front.
-9. Ain't much to it:
-   - as with mixing lists
-     1. like
-     2. so
+1.  Ordered lists
+2.  work the same, but with
+8.  numbers in front.
+9.  Ain't much to it:
+    -   as with mixing lists
+        1.  like
+        2.  so
 
-#. Heck, you can even use plain `#` characters
-#. to number a list
+#.  Heck, you can even use plain `#` characters
+#.  to number a list
 
 (2) Or start at number 2
      i. use latin numbers
@@ -159,7 +159,8 @@ As you can see in example (@filter), you can write filters in Ruby
 
 ## Tables
 
-Below follow the tables from the pandoc manual:
+Below follow the tables from the pandoc manual.
+
 
   Right     Left     Center     Default
 -------     ------ ----------   -------
@@ -168,6 +169,8 @@ Below follow the tables from the pandoc manual:
       1     1          1             1
 
 Table:  Demonstration of simple table syntax.
+
+Another table from the manual, now without a caption.
 
 -------     ------ ----------   -------
      12     12        12            12
@@ -192,6 +195,8 @@ Table: Here's the caption. It, too, may span
 multiple lines.
 
 
+And so on, and so on.
+
 : Sample grid table.
 
 +---------------+---------------+--------------------+
@@ -203,6 +208,11 @@ multiple lines.
 | Oranges       | $2.10         | - cures scurvy     |
 |               |               | - tasty            |
 +---------------+---------------+--------------------+
+
+
+There are a lot of different kind of tables in pandoc. For example, the
+following table and the previous ones. Paru has some trouble recognizing a
+paragraph at this place.
 
 | Right | Left | Default | Center |
 |------:|:-----|---------|:------:|
@@ -226,12 +236,9 @@ multiple lines.
 
 # Raw HTML or LaTeX
 
-<div>
-    <p>
-        <em>This is raw html</em>
-
-    </p>
-</div>
+<section>
+  <p><strong class="important">This is raw html</strong></p>
+</section>
 
 \begin{enumerate}
     \item And raw \LaTeX
@@ -245,7 +252,7 @@ multiple lines.
 - inline link: [like so](https://pandoc.org)
 - reference link: [a label]
 - link with attributes: [attributes](https://pandoc.org){.external target="_blank"}
-- footnotes^[LIke this one]^[or this one]
+- footnotes^[Like this one], and^[or this one].
 - You can also create them like [^1] and [^2] and define the contents
   elsewhere
 

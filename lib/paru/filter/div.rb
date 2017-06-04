@@ -18,11 +18,13 @@
 #++
 require_relative "./block.rb"
 require_relative "./attr.rb"
+require_relative "./inner_markdown.rb"
 
 module Paru
     module PandocFilter
         # A Div node consisting of an attribute object and a list of Block nodes.
         class Div < Block
+            include InnerMarkdown
 
             # Create a new Div node based on the contents
             #

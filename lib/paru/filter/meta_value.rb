@@ -17,6 +17,7 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./node.rb"
+require_relative "./inner_markdown.rb"
 
 module Paru
     module PandocFilter
@@ -27,6 +28,7 @@ module Paru
         # @!attribute value
         #   @return [String|Boolean]
         class MetaValue < Node
+            include InnerMarkdown
 
             attr_accessor :value
 

@@ -19,11 +19,21 @@
 require_relative "../pandoc.rb"
 
 require_relative './ast_manipulation.rb'
-require_relative './markdown.rb'
 
 module Paru
     # PandocFilter is a module containig the paru's Filter functionality 
     module PandocFilter
+        # A Paru::Pandoc converter from JSON to markdown
+        AST2MARKDOWN = Paru::Pandoc.new do
+            from "json"
+            to "markdown"
+        end
+
+        # A Paru::Pandoc converter from markdown to JSON
+        MARKDOWN2JSON = Paru::Pandoc.new do
+            from "markdown"
+            to "json"
+        end
 
         # Every node in a Pandoc AST is mapped to Node. Filters are all about
         # manipulating Nodes.
@@ -33,7 +43,6 @@ module Paru
         class Node
             include Enumerable
             include ASTManipulation
-            include Markdown
 
             attr_accessor :parent
 
@@ -58,7 +67,6 @@ module Paru
             require_relative './table_row.rb'
 
             # Inline level nodes
-            require_relative './citation.rb'
             require_relative './cite.rb'
             require_relative './code.rb'
             require_relative './emph.rb'
@@ -158,7 +166,7 @@ module Paru
             # @return [Boolean] True if this node has any children, false
             #   otherwise.
             def has_children?()
-                defined? @children and @children.size > 0
+                defined? @children and not @children.nil? and @children.size > 0
             end
 
             # Get this node's children,
@@ -329,6 +337,69 @@ module Paru
                 }
             end
 
+            # Get the markdown representation of this Node, including the Node
+            # itself.
+            #
+            # @return [String] the outer markdown representation of this Node
+            def markdown()
+                temp_doc = PandocFilter::Document.fragment [self]
+                markdown = AST2MARKDOWN << temp_doc.to_JSON
+                markdown
+            end
+
+            alias outer_markdown markdown
+            
+            # Set the markdown representation of this Node: replace this Node
+            # by the Node represented by the markdown string. If an inline
+            # node is being replaced and the replacement has more than one
+            # paragraph, only the contents of the first paragraph is used
+            #
+            # @param markdown [String] the markdown string to replace this
+            #   Node
+            #
+            # @example Replacing all horizontal lines by a Plain node saying "hi"
+            #   Paru::Filter.run do
+            #       with "HorizontalLine" do |line|
+            #           line.markdown = "hi"
+            #       end
+            #   end
+            #       
+            def markdown=(markdown)
+                json = MARKDOWN2JSON << markdown
+                temp_doc = PandocFilter::Document.from_JSON json
+
+                if not has_parent? or is_root?
+                    @children = temp_doc.children
+                else
+                    # replace current node by new nodes
+                    # There is a difference between inline and block nodes
+                    current_index = parent.find_index self
+
+                    # By default, pandoc creates a Block level node when
+                    # converting a string. However, if the original is a
+                    # inline level node, so should its replacement node(s) be.
+                    # Only using first block node (paragraph?)
+                    if is_inline?
+                        temp_doc = temp_doc.children.first
+                        
+                        if not temp_doc.children.all? {|node| node.is_inline?}
+                            raise Error.new "Cannot replace the inline level node represented by '#{outer_markdown}' with markdown that converts to block level nodes: '#{markdown}'."
+                        end
+                        
+                    end
+                        
+                    index = current_index
+                    temp_doc.each do |child|
+                        index += 1
+                        parent.insert index, child
+                    end
+                    # Remove the original node
+                    parent.remove_at current_index
+                end
+
+            end
+
+            alias outer_markdown= markdown=
         end
     end
 end

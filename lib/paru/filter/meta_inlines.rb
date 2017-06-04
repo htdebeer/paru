@@ -17,11 +17,13 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./node.rb"
+require_relative "./inner_markdown.rb"
 
 module Paru
     module PandocFilter
         # A MetaInlines node contains a list of {Inline} nodes
         class MetaInlines < Node
+            include InnerMarkdown
         end
     end
 end

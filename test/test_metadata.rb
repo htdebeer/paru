@@ -51,4 +51,16 @@ class MetadataTest < MiniTest::Test
         assert_equal("html", metadata.get("pandocomatic.pandoc.to").inner_markdown.strip)
     end
 
+    def test_clearing_cache()
+        Paru::Metadata.from_yaml SIMPLE_YAML
+        assert(Paru::Metadata.cache.has_key? SIMPLE_YAML)
+        Paru::Metadata.clear(SIMPLE_YAML)
+        assert(not(Paru::Metadata.cache.has_key?(SIMPLE_YAML)))
+
+        Paru::Metadata.from_yaml COMPLEX_YAML
+        assert(Paru::Metadata.cache.has_key? COMPLEX_YAML)
+        Paru::Metadata.clear()
+        assert(not(Paru::Metadata.cache.has_key?(COMPLEX_YAML)))
+    end
+
 end

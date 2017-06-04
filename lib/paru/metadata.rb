@@ -53,9 +53,17 @@ module Paru
             cache
         end
 
-        # Clear the cache with converted YAML strings
-        def self.clear()
-            @@converted_strings = {}
+        # Clear the cache with converted YAML strings or remove one
+        # yaml_string from the cache
+        #
+        # @param yaml_string [String = nil] delete this yaml_string from the
+        #   cache. If yaml_string = nil, clear the whole cache.
+        def self.clear(yaml_string = nil)
+            if yaml_string.nil?
+                @@converted_strings = {}
+            else
+                @@converted_strings.delete yaml_string
+            end
         end
 
     end

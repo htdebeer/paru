@@ -39,14 +39,14 @@ module Paru
             #
             # @param contents [Array]
             def initialize(contents)
-                @list_attributes = ListAttributes.new contents[0]
                 super contents[1]
+                @list_attributes = ListAttributes.new contents[0]
             end
 
             # The AST contents
             #
             # @return [Array]
-            def ast_contents
+            def ast_contents()
                 [
                     @list_attributes.to_ast,
                     super

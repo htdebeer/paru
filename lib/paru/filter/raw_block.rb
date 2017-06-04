@@ -17,6 +17,7 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./block.rb"
+require_relative "./inner_markdown.rb"
 
 module Paru
     module PandocFilter
@@ -28,6 +29,7 @@ module Paru
         # @!attribute string
         #   @return [String]
         class RawBlock < Block
+            include InnerMarkdown
             attr_accessor :format, :string
 
             # Create a new RawBlock node based on the contents

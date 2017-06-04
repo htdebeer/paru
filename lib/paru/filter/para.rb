@@ -17,11 +17,13 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./block.rb"
+require_relative "./inner_markdown.rb"
 
 module Paru
     module PandocFilter
         # A Para is a paragraph: a list of Inline nodes
         class Para < Block
+            include InnerMarkdown
 
             # Create a new Para node based on the contents
             #

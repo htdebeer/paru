@@ -18,6 +18,7 @@
 #++
 require_relative "./block.rb"
 require_relative "./attr.rb"
+require_relative "./inner_markdown.rb"
 
 module Paru
     module PandocFilter
@@ -30,6 +31,8 @@ module Paru
         # @!attribute attr
         #   @return [Attr]
         class Header < Block
+            include InnerMarkdown
+
             attr_accessor :level, :attr
 
             # Create a new Header node
