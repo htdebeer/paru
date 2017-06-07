@@ -20,10 +20,13 @@ module Paru
     module PandocFilter
 
         # A mixin to add inner_markdown properties to Nodes for which it makes
-        # sense to have an inner_markdown.
+        # sense to have an inner_markdown. Only those nodes that have a clear
+        # identifiable Inline level content, have the {#inner_markdown}
+        # method. This are almost all Inline nodes (except Cite) and Block
+        # level nodes with Inline contents like {Para} or {Header}.
         module InnerMarkdown
 
-            # Get the markdown representation of this Node's children
+            # Get the markdown representation of this Node's children. 
             #
             # @return [String] the inner markdown representation of this Node
             #

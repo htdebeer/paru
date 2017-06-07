@@ -116,7 +116,41 @@ module Paru
                 if value.is_a? String
                     value = meta_from_yaml(value)
                 end
-                parent.children[last_key(selector)] = value
+
+                if selector.empty?
+                    @children = value.children
+                else
+                    parent.children[last_key(selector)] = value
+                end
+            end
+
+            # Set the property in this MetaMap matching the selector with
+            # metadata specified by second parameter. If that parameter is a
+            # String, it is treated as a YAML string. If the selected property
+            # and the new value are both {MetaMap} nodes, merge the two nodes.
+            #
+            # @param selector [String] a dot-separated sequence of property
+            # names denoting a sequence of descendants.
+            #
+            # @param value [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue|String]
+            #   if value is a String, it is treated as a yaml string
+            def set(selector, value)
+                parent = select(selector, true)
+                if value.is_a? String
+                    value = meta_from_yaml(value)
+                end
+
+                if selector.empty?
+                    @children = value.children
+                else
+                    original_value = parent.children[last_key(selector)]
+                    if original_value.is_a? MetaMap and value.is_a? MetaMap
+                        # mixin the new value with the old
+                        parent.children[last_key(selector)].children.merge! value.children
+                    else
+                        parent.children[last_key(selector)] = value
+                    end
+                end
             end
 
             # Get the property in this MetaMap matching the selector
@@ -178,11 +212,17 @@ module Paru
             # 
             # @return [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue] the value of the deleted property, nil if it cannot be found
             def select(selector, get_parent = false)
-                if @children.empty? 
+                if selector.empty?
+                    # If no selector is given, select this MetaMap node.
+                    return self
+                elsif @children.empty? 
+                    # If there is a selector, but this MetaMap has no
+                    # children, there cannot be a match.
                     return nil
                 else
-                    keys = selector.split(".")
                     level = self
+
+                    keys = selector.split(".")
 
                     while not keys.empty?
                         key = keys.shift

@@ -4,6 +4,6 @@ require "paru/filter"
 
 Paru::Filter.run do 
     with "Code" do |c|
-        c.outer_markdown = "**#{c.outer_markdown}**"
+        c.markdown = "**#{c.markdown}**"
     end
 end

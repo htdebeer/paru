@@ -255,34 +255,6 @@ class FilterTest < MiniTest::Test
         end
     end
 
-
-    def test_add_today()
-        output = filter_file("test/pandoc_input/add_today.md") do
-            metadata.yaml <<~YAML
-                ---
-                date: #{Date.today.to_s}
-                ...
-            YAML
-            metadata.yaml <<~YAML
-                ---
-                date: #{Date.today.to_s}
-                ...
-            YAML
-        end
-        assert_match(/#{Date.today.to_s}/, output)
-    end
-
-    def test_removing_all_keys_from_metadata()
-        filter_file_and_equal_file(
-            "test/pandoc_input/procent_based_metadata.md",
-            "test/pandoc_output/procent_based_metadata_cleared.md"
-        ) do
-            metadata.delete("date")
-            metadata.delete("author")
-            metadata.delete("title")
-        end
-    end
-
     def test_insert_paru_version_filter()
         version = lambda do |str|
             str.gsub "::paru::version", Paru::VERSION.join(".")

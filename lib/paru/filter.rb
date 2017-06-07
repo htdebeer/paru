@@ -181,9 +181,7 @@ module Paru
     #
     # Note that you could have arrived at the same effect by using:
     #
-    #     rule.outer_markdown = ""
-    #
-    # 
+    #     rule.markdown = ""
     #
     # == Manipulating metadata: 
     #
@@ -196,6 +194,8 @@ module Paru
     #
     # {include:file:examples/filters/add_today.rb}
     #
+    # See {PandocFilter::MetaMap} for more information about inspecting and manipulating a
+    # document's metadata. 
     class Filter
 
         # Create a new Filter instance. For convenience, {run} creates a new
@@ -257,7 +257,6 @@ module Paru
         #       end
         #   end
         #
-        #   # do something with output.string
         def filter(&block)
             @selectors = Hash.new
             @filtered_nodes = []
@@ -290,7 +289,8 @@ module Paru
         end
 
         # While running a filter you can access the document's metadata through
-        # the +metadata+ method.
+        # the +metadata+ method. See {PandocFilter::MetaMap} for more information on
+        # inspecting and editing metadata.
         #
         # @return [Meta] the filtered document's metadata
         def metadata()
@@ -299,7 +299,7 @@ module Paru
 
     end
     
-    # FilterError is thrown when there is an error during fitlering
+    # FilterError is thrown when there is an error during filtering
     class FilterError < Error
     end
 end
