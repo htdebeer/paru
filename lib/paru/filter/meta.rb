@@ -53,8 +53,8 @@ module Paru
             #
             # @return [Meta]
             def self.from_meta_map(meta_map)
-                meta = Meta.new
-                meta.children = meta_map.children
+                meta = Meta.new {}
+                meta.children = meta_map.children unless meta_map.children.nil? or meta_map.children.empty?
                 meta
             end
 

@@ -206,22 +206,6 @@ module Paru
                 ast
             end
 
-            # Convert this {MetaMap} node to YAML. Note. this involves running
-            # pandoc, so this might be an expensive operation.
-            #
-            # @return [String] the YAML representation of this MetaMap node
-            def to_yaml()
-                Paru::Metadata.to_yaml self
-            end
-
-            # Convert this {MetaMap} node to a Ruby Hash. Note. this involves
-            # running pandoc, so this might be an expensive operation.
-            #
-            # @return [Hash] the Hash representation of this MetaMap node
-            def to_hash()
-                Paru::Metadata.to_hash self
-            end
-            
             private
 
             # Select a node given a selector as a dot separated sequence of

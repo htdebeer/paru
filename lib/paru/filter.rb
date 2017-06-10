@@ -196,7 +196,10 @@ module Paru
     #
     # See {PandocFilter::MetaMap} for more information about inspecting and manipulating a
     # document's metadata. 
+    #
     class Filter
+
+        attr_reader :metadata
 
         # Create a new Filter instance. For convenience, {run} creates a new
         # {Filter} and runs it immediately. Use this constructor if you want
@@ -262,11 +265,14 @@ module Paru
             @filtered_nodes = []
             @doc = document
 
+            @metadata = Paru::Metadata.to_hash @doc.meta
+
             @doc.each_depth_first do |node|
                 @filtered_nodes.push node
                 instance_eval(&block)
             end
 
+            @doc.meta = Paru::Metadata.from_hash @metadata
             @output.write @doc.to_JSON
         end
 
@@ -288,13 +294,27 @@ module Paru
             yield current_node if @selectors[selector].matches? current_node, @filtered_nodes
         end
 
-        # While running a filter you can access the document's metadata through
-        # the +metadata+ method. See {PandocFilter::MetaMap} for more information on
-        # inspecting and editing metadata.
+
+        # Get the title of this document if available, nil otherwise
         #
-        # @return [Meta] the filtered document's metadata
-        def metadata()
-            @doc.meta
+        # @return [String] the title of this document
+        def title()
+            @metadata["title"]
+        end
+
+        # Get the authors of this document if available, nil otherwise
+        #
+        # @return [String|String[]]
+        def authors()
+            @metadata["author"]
+        end
+        alias author authors
+
+        # Get the date specified in this document if available, nil otherwise
+        #
+        # @return [String]
+        def date()
+            @metadata["date"]
         end
 
     end

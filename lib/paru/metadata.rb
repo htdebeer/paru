@@ -38,7 +38,7 @@ module Paru
                 yaml2json = Paru::Pandoc.new {from "markdown"; to "json"} 
                 json_string = yaml2json << yaml_string
                 meta_doc = PandocFilter::Document.from_JSON json_string
-                metadata = meta_doc.meta.to_meta_map
+                metadata = meta_doc.meta
                 @@cache[yaml_string] = metadata
             end
             @@cache[yaml_string]
@@ -55,8 +55,8 @@ module Paru
             yaml_string = @@cache[metadata]
             if yaml_string.nil? or yaml_string.empty?
                 json2yaml = Paru::Pandoc.new {from "json"; to "markdown"; standalone}
-                meta = PandocFilter::Meta.from_meta_map(metadata) unless metadata.is_a? PandocFilter::Meta
-                meta_doc = PandocFilter::Document.new(PandocFilter::CURRENT_PANDOC_VERSION, meta.to_ast, [])
+                metadata = PandocFilter::Meta.from_meta_map(metadata) unless metadata.is_a? PandocFilter::Meta
+                meta_doc = PandocFilter::Document.new(PandocFilter::CURRENT_PANDOC_VERSION, metadata.to_ast, [])
                 yaml_string = json2yaml << meta_doc.to_JSON
                 @@cache[metadata] = yaml_string.strip
             end
@@ -72,8 +72,12 @@ module Paru
         #
         # @return [MetaMap] the MetaMap node generated from hash
         def self.from_hash(hash) 
-            yaml_string = YAML.dump hash
-            Metadata.from_yaml "#{yaml_string}..."
+            if hash.empty?
+                PandocFilter::Meta.new {}
+            else
+                yaml_string = YAML.dump hash
+                Metadata.from_yaml "#{yaml_string}..."
+            end
         end
 
         # Convert a {PandocFilter::MetaMap} node to Hash.
@@ -84,8 +88,11 @@ module Paru
         # @return [Hash] a Ruby Hash representation of metadata.
         def self.to_hash(metadata)
             yaml_string = Metadata.to_yaml metadata
-            hash = YAML.load yaml_string
-            hash
+            if yaml_string.empty?
+                {}
+            else
+                YAML.load yaml_string
+            end
         end
 
         # Inspect the cache with converted values
