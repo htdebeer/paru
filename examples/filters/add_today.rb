@@ -4,7 +4,7 @@ require "paru/filter"
 require "date"
 
 Paru::Filter.run do 
-    metadata.yaml <<~YAML
+    metadata.set "", <<~YAML
         ---
         date: #{Date.today.to_s}
         ...

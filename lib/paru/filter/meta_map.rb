@@ -29,8 +29,9 @@ module Paru
 
             # Create a new MetaMap based on the contents
             #
-            # @param contents [Array] a list of key-value pairs
-            def initialize(contents)
+            # @param contents [Hash = {}] a list of key-value pairs, defaults
+            #   to an empty hash
+            def initialize(contents = {})
                 @children = Hash.new
 
                 if contents.is_a? Hash
@@ -43,7 +44,9 @@ module Paru
             end
 
             # Get the value belonging to key. Prefer to use the {has?}, {get},
-            # {replace} and {delete} methods to manipulate metadata.
+            # {replace}, {set}, and {delete} methods to manipulate metadata.
+            # The {get} method is the preferred method to get a value from the
+            # metadata.
             #
             # @param key [String] the key
             #
@@ -52,8 +55,9 @@ module Paru
                 @children[key]
             end
 
-            # Set a value with a key. It is easier to use the {yaml} method to set
-            # metadata properties; the {yaml} method is the preferred method
+            # Set a value with a key. Prefer to use the {has?}, {get},
+            # {replace}, {set}, and {delete} methods to manipulate metadata.
+            # The {set} method is the preferred method
             # to set the metadata.
             #
             # @param key [String] the key to set
@@ -68,19 +72,48 @@ module Paru
                     yield(key, value)
                 end
             end
-            
-            # Mixin the YAML code into this metadata object
+
+            # Replace the property in this MetaMap matching the selector with
+            # metadata specified by second parameter, which can be a Ruby
+            # Hash, a YAML string, or any pandoc metadata node.
             #
-            # @param yaml_string [YAML] A string with YAML data
-            # @return [MetaMap] this MetaMap object
+            # @param selector [String] a dot-separated sequence of property
+            # names denoting a sequence of descendants.
             #
-            # @example Set some properties in the metadata
+            # @param value [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue|String|Hash]
+            #   if value is a String, it is treated as a yaml string
+            def replace(selector, value)
+                parent = select(selector, true)
+                value = meta_from_value value
+
+                if selector.empty?
+                    @children = value.children
+                else
+                    parent.children[last_key(selector)] = value
+                end
+            end
+
+            # Set the property in this MetaMap matching the selector with
+            # metadata specified by the second parameter, which can be a Ruby
+            # Hash, a YAML string, or any pandoc metadata node.
+            #
+            # If the selected property
+            # and the converted value are both {MetaMap} nodes, two nodes are
+            # merged.
+            #
+            # @param selector [String] a dot-separated sequence of property
+            # names denoting a sequence of descendants.
+            #
+            # @param value [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue|String|Hash]
+            #   if value is a String, it is treated as a yaml string
+            #
+            # @example Set some properties in the metadata specified in YAML
             #   #!/usr/bin/env ruby
             #   require "paru/filter"
             #   require "date"
             #
             #   Paru::Filter.run do
-            #     metadata.yaml <<~YAML
+            #     metadata.set "", <<~YAML
             #       ---
             #       date: #{Date.today.to_s}
             #       title: This **is** the title
@@ -95,50 +128,21 @@ module Paru
             #     YAML
             #   end
             #
-            def yaml(yaml_string)
-                meta_from_yaml(yaml_string).each do |key, value|
-                    self[key] = value
-                end
-                self
-            end
-
-            # Replace the property in this MetaMap matching the selector with
-            # metadata specified by second parameter. If that parameter is a
-            # String, it is treated as a YAML string.
+            # @example Mixin extra pandoc_options specified as a Ruby Hash
+            #   #!/usr/bin/env ruby
+            #   require "paru/filter"
+            #   require "date"
             #
-            # @param selector [String] a dot-separated sequence of property
-            # names denoting a sequence of descendants.
+            #   Paru::Filter.run do
+            #     metadata.set "pandoc_options", {
+            #       :from => "html"
+            #       :to => "markdown"
+            #     }
+            #   end
             #
-            # @param value [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue|String]
-            #   if value is a String, it is treated as a yaml string
-            def replace(selector, value)
-                parent = select(selector, true)
-                if value.is_a? String
-                    value = meta_from_yaml(value)
-                end
-
-                if selector.empty?
-                    @children = value.children
-                else
-                    parent.children[last_key(selector)] = value
-                end
-            end
-
-            # Set the property in this MetaMap matching the selector with
-            # metadata specified by second parameter. If that parameter is a
-            # String, it is treated as a YAML string. If the selected property
-            # and the new value are both {MetaMap} nodes, merge the two nodes.
-            #
-            # @param selector [String] a dot-separated sequence of property
-            # names denoting a sequence of descendants.
-            #
-            # @param value [MetaBlocks|MetaBool|MetaInlines|MetaList|MetaMap|MetaString|MetaValue|String]
-            #   if value is a String, it is treated as a yaml string
             def set(selector, value)
                 parent = select(selector, true)
-                if value.is_a? String
-                    value = meta_from_yaml(value)
-                end
+                value = meta_from_value value
 
                 if selector.empty?
                     @children = value.children
@@ -153,7 +157,10 @@ module Paru
                 end
             end
 
-            # Get the property in this MetaMap matching the selector
+            # Get the property in this MetaMap matching the selector. If the
+            # returned property is a {MetaMap}, you can convert it to YAML or
+            # a Ruby Hash using the methods {to_yaml} and {to_hash}
+            # respectively. It is easier to work with metadata as a YAML string or a plain Ruby Hash object.
             #
             # @param selector [String] a dot-separated sequence of property
             #   names denoting a sequence of descendants.
@@ -195,8 +202,24 @@ module Paru
                 ast = Hash.new
                 @children.each_pair do |key, value|
                     ast[key] = value.to_ast
-                end
+                end if @children.is_a? Hash
                 ast
+            end
+
+            # Convert this {MetaMap} node to YAML. Note. this involves running
+            # pandoc, so this might be an expensive operation.
+            #
+            # @return [String] the YAML representation of this MetaMap node
+            def to_yaml()
+                Paru::Metadata.to_yaml self
+            end
+
+            # Convert this {MetaMap} node to a Ruby Hash. Note. this involves
+            # running pandoc, so this might be an expensive operation.
+            #
+            # @return [Hash] the Hash representation of this MetaMap node
+            def to_hash()
+                Paru::Metadata.to_hash self
             end
             
             private
@@ -247,9 +270,15 @@ module Paru
                 selector.split(".").last
             end
 
-            # Convert a yaml string to a MetaMap
-            def meta_from_yaml(yaml_string)
-                Paru::Metadata.from_yaml yaml_string
+            # Convert a value to a MetaMap
+            def meta_from_value(value)
+                meta = value
+                if value.is_a? String
+                    meta = Paru::Metadata.from_yaml value
+                elsif value.is_a? Hash
+                    meta = Paru::Metadata.from_hash value
+                end
+                meta
             end
         end
     end

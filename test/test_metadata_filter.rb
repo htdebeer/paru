@@ -5,21 +5,17 @@ require_relative "../lib/paru/filter_error.rb"
 require_relative "../lib/paru/filter/document.rb"
 
 class MetadataFilterTest < FilterTest
-
-
     
     def test_add_today()
         output = filter_file("test/pandoc_input/add_today.md") do
-            metadata.yaml <<~YAML
+            metadata.set "", <<~YAML
                 ---
                 date: #{Date.today.to_s}
                 ...
             YAML
-            metadata.yaml <<~YAML
-                ---
-                date: #{Date.today.to_s}
-                ...
-            YAML
+            metadata.set "", {
+                "date" => "#{Date.today.to_s}"
+            }
         end
         assert_match(/#{Date.today.to_s}/, output)
     end
@@ -39,13 +35,14 @@ class MetadataFilterTest < FilterTest
     end
 
     def test_add_subtitle()
-        subtitle = "---\nsubtitle: About bold code!\n---"
+        subtitle = "About bold code!"
+        subtitle_yaml = "---\nsubtitle: #{subtitle}\n---"
         has_subtitle = false
         filter_file_and_equal_file(
             "test/pandoc_input/bold_code.md",
             "test/pandoc_output/bold_code_with_subtitle.md"
         ) do
-            metadata.yaml(subtitle)
+            metadata.set("", subtitle_yaml)
             has_subtitle = metadata.has? "subtitle"
         end
         assert(has_subtitle)
@@ -55,7 +52,7 @@ class MetadataFilterTest < FilterTest
             "test/pandoc_input/bold_code.md",
             "test/pandoc_output/bold_code_with_subtitle.md"
         ) do
-            metadata.set("", subtitle)
+            metadata.set("", {'subtitle' => subtitle})
             has_subtitle = metadata.has? "subtitle"
         end
         assert(has_subtitle)
@@ -66,7 +63,7 @@ class MetadataFilterTest < FilterTest
             "test/pandoc_input/bold_code.md",
             "test/pandoc_output/bold_code_sub_property.md"
         ) do
-            metadata.yaml <<~YAML
+            metadata.set "", <<~YAML
                 ---
                 property:
                     sub: value
@@ -89,11 +86,9 @@ class MetadataFilterTest < FilterTest
             "test/pandoc_output/bold_code_sub_property.md",
             "test/pandoc_output/bold_code_sub_property3.md"
         ) do
-            metadata.replace "property", <<~YAML
-                ---
-                sub2: value
-                ---
-            YAML
+            metadata.replace "property", {
+                "sub2" => "value"
+            }
         end
     end
 

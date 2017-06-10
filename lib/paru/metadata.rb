@@ -17,52 +17,96 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require "json"
+require "yaml"
 require_relative "./pandoc.rb"
 
 module Paru
-    # Singleton utility module to convert a YAML document string to a pandoc AST
-    # metadata {PandocFilter::MetaMap} node.
+    # Singleton utility module to convert or create a pandoc AST metadata
+    # {PandocFilter::MetaMap} node from a YAML string or Ruby Hash.  Converted
+    # values are cached as to not convert any value twice because conversion
+    # is quite expensive as it involves running pandoc.
     module Metadata
 
         # Create a {PandocFilter::MetaMap} node from a YAML string. 
         #
-        # Converted strings are cached as to not convert any string twice.
-        # Conversion from YAML to pandoc is quite expensive as it involves
-        # running pandoc.
-        #
         # @param yaml_string [String] the YAML string to convert
         # @return [MetaMap] the MetaMap node generated from yaml_string
         def self.from_yaml(yaml_string)
-            @@converted_strings ||= {}
-            metadata = @@converted_strings[yaml_string]
+            @@cache ||= {}
+            metadata = @@cache[yaml_string]
             if metadata.nil?
                 yaml2json = Paru::Pandoc.new {from "markdown"; to "json"} 
                 json_string = yaml2json << yaml_string
                 meta_doc = PandocFilter::Document.from_JSON json_string
                 metadata = meta_doc.meta.to_meta_map
-                @@converted_strings[yaml_string] = metadata
+                @@cache[yaml_string] = metadata
             end
-            metadata
+            @@cache[yaml_string]
+        end
+       
+        # Convert a {PandocFilter::MetaMap} node to a YAML string.
+        #
+        # @param metadata [Meta|MetaMap] the {PandocFilter::MetaMap} node to
+        #   convert to YAML.
+        #
+        # @return [String] the YAML representation of metadata.
+        def self.to_yaml(metadata)
+            @@cache ||= {}
+            yaml_string = @@cache[metadata]
+            if yaml_string.nil? or yaml_string.empty?
+                json2yaml = Paru::Pandoc.new {from "json"; to "markdown"; standalone}
+                meta = PandocFilter::Meta.from_meta_map(metadata) unless metadata.is_a? PandocFilter::Meta
+                meta_doc = PandocFilter::Document.new(PandocFilter::CURRENT_PANDOC_VERSION, meta.to_ast, [])
+                yaml_string = json2yaml << meta_doc.to_JSON
+                @@cache[metadata] = yaml_string.strip
+            end
+            @@cache[metadata]
+
         end
 
-        # Inspect the cache with converted YAML strings
+        # Create a {PandocFilter::Meta} node from a Hash with String, Number,
+        # Boolean, Array, or Hash values.
+        #
+        # @param hash [Hash] the hash to convert to a {PandocFilter::Meta}
+        # node
+        #
+        # @return [MetaMap] the MetaMap node generated from hash
+        def self.from_hash(hash) 
+            yaml_string = YAML.dump hash
+            Metadata.from_yaml "#{yaml_string}..."
+        end
+
+        # Convert a {PandocFilter::MetaMap} node to Hash.
+        #
+        # @param metadata [Meta|MetaMap] the {PandocFilter::MetaMap} node to
+        #   convert to a hash.
+        #
+        # @return [Hash] a Ruby Hash representation of metadata.
+        def self.to_hash(metadata)
+            yaml_string = Metadata.to_yaml metadata
+            hash = YAML.load yaml_string
+            hash
+        end
+
+        # Inspect the cache with converted values
         #
         # @return [Hash]
         def self.cache()
-            cache = @@converted_strings ||= {}
+            cache = @@cache ||= {}
             cache
         end
 
-        # Clear the cache with converted YAML strings or remove one
-        # yaml_string from the cache
+        # Clear the cache with converted values or remove one
+        # value, converted value pair from the cache
         #
-        # @param yaml_string [String = nil] delete this yaml_string from the
-        #   cache. If yaml_string = nil, clear the whole cache.
-        def self.clear(yaml_string = nil)
-            if yaml_string.nil?
-                @@converted_strings = {}
+        # @param value [String|MetaMap = nil] delete this value from the
+        #   cache. If value = nil, clear the whole cache; this is the default
+        #   behavior of this clear function.
+        def self.clear(value = nil)
+            if value.nil?
+                @@cache = {}
             else
-                @@converted_strings.delete yaml_string
+                @@cache.delete value
             end
         end
 

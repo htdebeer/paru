@@ -41,9 +41,21 @@ module Paru
             #
             # @return [MetaMap] a MetaMap representation of this metadata
             def to_meta_map()
-                map = MetaMap.new []
+                map = MetaMap.new
                 map.children = @children
                 map
+            end
+
+            # Convert a {MetaMap} node to a {Meta} node
+            #
+            # @param meta_map [MetaMap] the {MetaMap} node to convert to a
+            #   {Meta} node.
+            #
+            # @return [Meta]
+            def self.from_meta_map(meta_map)
+                meta = Meta.new
+                meta.children = meta_map.children
+                meta
             end
 
         end

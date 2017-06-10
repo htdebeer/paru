@@ -2,5 +2,5 @@
 require "paru/filter"
 
 Paru::Filter.run do 
-    metadata.delete "pandoc" if metadata.has? "pandoc"
+    metadata.delete "pandoc"
 end

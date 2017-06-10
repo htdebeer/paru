@@ -100,11 +100,11 @@ module Paru
             # Create a new Node with contents. Also indicate if this node has
             # inline children or block children.
             #
-            # @param contents [Array<pandoc node in JSON>] the contents of
+            # @param contents [Array<pandoc node in JSON> = []] the contents of
             #   this node
             # @param inline_children [Boolean] does this node have
             #   inline children (true) or block children (false).
-            def initialize(contents, inline_children = false)
+            def initialize(contents = [], inline_children = false)
                 @children = []
                 @parent = nil
 

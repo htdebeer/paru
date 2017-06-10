@@ -816,7 +816,7 @@ configuration from the metadata if there is such a property:
 require "paru/filter"
 
 Paru::Filter.run do 
-    metadata.delete "pandoc" if metadata.has? "pandoc"
+    metadata.delete "pandoc"
 end
 ```
 
@@ -824,8 +824,9 @@ Instead of removing the pandoc property all together, I could also have
 updated it to have a markdown file be converted differently the second
 time it is run by `do-pandoc.rb`.
 
-For more information, see the [paru filter API
-documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
+For more information about manipulating metadata, see [the API
+documentation of the
+MetaMap](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/Paru/PandocFilter/MetaMap.html).
 
 Chapter 4. Putting it all together {#putting-it-all-together}
 ==================================
