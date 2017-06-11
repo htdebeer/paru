@@ -18,6 +18,7 @@
 #++
 require_relative "./selector.rb"
 require_relative "./filter/document.rb"
+require_relative "./filter/metadata.rb"
 
 module Paru
     # Paru filter is a wrapper around pandoc's JSON api, which is based on
@@ -265,7 +266,7 @@ module Paru
             @filtered_nodes = []
             @doc = document
 
-            @metadata = Paru::Metadata.new @doc.meta
+            @metadata = PandocFilter::Metadata.new @doc.meta
 
             @doc.each_depth_first do |node|
                 @filtered_nodes.push node
@@ -293,30 +294,6 @@ module Paru
             @selectors[selector] = Selector.new selector unless @selectors.has_key? selector
             yield current_node if @selectors[selector].matches? current_node, @filtered_nodes
         end
-
-
-        # Get the title of this document if available, nil otherwise
-        #
-        # @return [String] the title of this document
-        def title()
-            @metadata["title"]
-        end
-
-        # Get the authors of this document if available, nil otherwise
-        #
-        # @return [String|String[]]
-        def authors()
-            @metadata["author"]
-        end
-        alias author authors
-
-        # Get the date specified in this document if available, nil otherwise
-        #
-        # @return [String]
-        def date()
-            @metadata["date"]
-        end
-
     end
     
     # FilterError is thrown when there is an error during filtering

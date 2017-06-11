@@ -13,6 +13,17 @@ class MetadataFilterTest < FilterTest
         assert_match(/#{Date.today.to_s}/, output)
     end
 
+    def test_simple_metadata()
+        filter_file_and_equal_file(
+            "test/pandoc_input/hello.md",
+            "test/pandoc_output/hello.md"
+        ) do
+            metadata['title'] = "Say hello to the world"
+            metadata['date'] = "12-12-1812"
+            metadata['author'] = "Huub de Beer"
+        end
+    end
+
     def test_removing_all_keys()
         has_title = true
         filter_file_and_equal_file(

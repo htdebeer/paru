@@ -19,7 +19,6 @@
 require_relative "./node.rb"
 
 require_relative "../pandoc.rb"
-require_relative "../metadata.rb"
 
 module Paru
     module PandocFilter
