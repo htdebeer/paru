@@ -195,8 +195,9 @@ module Paru
     #
     # {include:file:examples/filters/add_today.rb}
     #
-    # See {PandocFilter::MetaMap} for more information about inspecting and manipulating a
-    # document's metadata. 
+    # In a filter, the +metadata+ property is a Ruby Hash of Strings, Numbers,
+    # Booleans, Arrays, and Hashes. You can manipulate it like any other Ruby
+    # Hash.
     #
     class Filter
 
