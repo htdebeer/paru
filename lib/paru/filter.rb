@@ -265,14 +265,14 @@ module Paru
             @filtered_nodes = []
             @doc = document
 
-            @metadata = Paru::Metadata.to_hash @doc.meta
+            @metadata = Paru::Metadata.new @doc.meta
 
             @doc.each_depth_first do |node|
                 @filtered_nodes.push node
                 instance_eval(&block)
             end
 
-            @doc.meta = Paru::Metadata.from_hash @metadata
+            @doc.meta = @metadata.to_meta
             @output.write @doc.to_JSON
         end
 
