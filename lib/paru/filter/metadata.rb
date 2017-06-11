@@ -42,7 +42,7 @@ module Paru
                     elsif contents.is_a? String
                         yaml_string = contents
                     else
-                        raise FilterError.new("Expected a Hash, MetaMap, or String")
+                        raise FilterError.new("Expected a Hash, MetaMap, or String, got '#{contents}' instead.")
                     end
 
                     # Try to convert the YAML string to a Hash
@@ -83,6 +83,66 @@ module Paru
                 end
             end
 
+            # Set the property in this Metadata matched by using the selector with
+            # the new value specified by the second parameter. If the selected property
+            # and the new value are both Hashes, merge the two hashes.
+            #
+            # @param selector [String] a dot-separated sequence of property
+            # names denoting a sequence of descendants.
+            #
+            # @param new_value [Object]
+            def set_by(selector, new_value)
+                parent = select_by(selector, true)
+                if not parent.nil?
+                    key = last_key(selector)
+                    original_value = parent[key]
+
+                    if original_value.is_a? Hash and new_value.is_a? Hash
+                        # mixin the new value with the old
+                        parent[key].merge! new_value
+                    else
+                        parent[key] = new_value
+                    end
+                end
+            end
+
+            # Get the property in this Metadata matched by the selector
+            #
+            # @param selector [String] a dot-separated sequence of property
+            #   names denoting a sequence of descendants.
+            #
+            # @return [Object] the value matching the selected property, nil if it cannot be found
+            def get_by(selector)
+                select_by(selector)
+            end 
+
+            # Has this Metadata a property matched by this selector?
+            #
+            # @param selector [String] a dot-separated sequence of property
+            #   names denoting a sequence of descendants
+            #
+            # @return [Boolean] True if this Metadata has a property matched
+            #   by the selector, false otherwise
+            def has_by?(selector)
+                not select_by(selector).nil?
+            end
+
+            # Delete the property in this Metadata that matches by the selector
+            #
+            # @param selector [String] a dot-separated sequence of property
+            #   names denoting a sequence of descendants
+            #
+            # @return [Object] the value of the deleted property, nil if it cannot be found
+            #
+            def delete_by(selector)
+                if has_by?(selector)
+                    parent = select_by(selector, true)
+                    parent.delete(last_key(selector))
+                else
+                    nil
+                end
+            end
+
             private 
 
             # Convert a {PandocFilter::Meta} node to a Metadata
@@ -109,6 +169,52 @@ module Paru
                 end
                 hash
             end
+
+            # Select a node by a selector as a dot separated sequence of
+            # descendant names.
+            #
+            # @param selector [String] Dot separated sequence of property
+            #   names
+            #
+            # @param get_parent [Boolean = false] Get the parent Hash
+            #   of the selected property instead of its value
+            # 
+            # @return [Object] the value of the deleted property, nil if it cannot be found
+            def select_by(selector, get_parent = false)
+                if selector.empty?
+                    # If no selector is given, select this Metadata node
+                    return self
+                elsif empty? and selector.include? "."
+                    # If there is a selector with nesting, but this Metadata has no
+                    # values, there cannot be a match.
+                    return nil
+                else
+                    level = self
+                    keys = selector.split(".")
+
+                    while not keys.empty?
+                        key = keys.shift
+
+                        if get_parent and keys.empty?
+                            return level
+                        end
+
+                        if not level.has_key? key
+                            return nil
+                        else
+                            level = level[key]
+                        end
+                    end
+
+                    level
+                end
+            end 
+
+            # Get the last key in this selector
+            def last_key(selector)
+                selector.split(".").last
+            end
+
         end
     end
 end
