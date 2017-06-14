@@ -215,6 +215,7 @@ module Paru
         def initialize(input = $stdin, output = $stdout)
             @input = input
             @output = output
+            @running = false
         end
 
         # Run the filter specified by block. This is a convenience method that
@@ -269,10 +270,13 @@ module Paru
 
             @metadata = PandocFilter::Metadata.new @doc.meta
 
+            @running = true
             @doc.each_depth_first do |node|
                 @filtered_nodes.push node
                 instance_eval(&block)
+                break unless @running
             end
+            @running = false
 
             @doc.meta = @metadata.to_meta
             @output.write @doc.to_JSON
@@ -294,6 +298,14 @@ module Paru
         def with(selector)
             @selectors[selector] = Selector.new selector unless @selectors.has_key? selector
             yield current_node if @selectors[selector].matches? current_node, @filtered_nodes
+        end
+
+        # Stop processing the document any further and output it as it is now.
+        # This is a great timesaver for filters that only act on a small
+        # number of nodes in a large document, or when you only want to set
+        # the metadata.
+        def stop!()
+           @running = false 
         end
     end
     

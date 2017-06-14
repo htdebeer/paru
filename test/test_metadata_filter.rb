@@ -23,6 +23,35 @@ class MetadataFilterTest < FilterTest
             metadata['author'] = "Huub de Beer"
         end
     end
+    
+    def test_simple_metadatai_with_stop()
+        number_of_times_run = 0
+        filter_file_and_equal_file(
+            "test/pandoc_input/hello.md",
+            "test/pandoc_output/hello.md"
+        ) do
+            number_of_times_run += 1
+            metadata['title'] = "Say hello to the world"
+            metadata['date'] = "12-12-1812"
+            metadata['author'] = "Huub de Beer"
+            stop!
+        end
+
+        assert_equal(number_of_times_run, 1)
+        
+        number_of_times_run = 0
+        filter_file_and_equal_file(
+            "test/pandoc_input/hello.md",
+            "test/pandoc_output/hello.md"
+        ) do
+            number_of_times_run += 1
+            metadata['title'] = "Say hello to the world"
+            metadata['date'] = "12-12-1812"
+            metadata['author'] = "Huub de Beer"
+        end
+        
+        assert_equal(number_of_times_run, 11)
+    end
 
     def test_removing_all_keys()
         has_title = true
