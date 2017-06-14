@@ -109,10 +109,10 @@ WARNING
             # Create a new Document node based on the pandoc type version,
             # metadata, and the contents of the document
             #
-            # @param version [Array<Integer>] the version of pandoc types
-            # @param meta [Array] metadata
-            # @param contents [Array] contents
-            def initialize(version, meta, contents)
+            # @param version [Integer = CURRENT_PANDOC_VERSION] the version of pandoc types
+            # @param meta [Array = []] metadata
+            # @param contents [Array = []] contents
+            def initialize(version = CURRENT_PANDOC_VERSION, meta = [], contents = [])
                 @version = Version.new version
                 @meta = Meta.new meta
                 super contents
