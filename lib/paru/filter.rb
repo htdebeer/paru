@@ -201,7 +201,7 @@ module Paru
     #
     class Filter
 
-        attr_reader :metadata
+        attr_reader :metadata, :document
 
         # Create a new Filter instance. For convenience, {run} creates a new
         # {Filter} and runs it immediately. Use this constructor if you want
@@ -234,15 +234,6 @@ module Paru
             Filter.new($stdin, $stdout).filter(&block)
         end
 
-        # The Document node from JSON formatted pandoc document structure
-        # on STDIN that is being filtered
-        #
-        # @return [Document] create a new Document node from a pandoc AST from
-        #   JSON from STDIN
-        def document()
-            PandocFilter::Document.from_JSON @input.read
-        end
-
         # Create a filter using +block+. In the block you specify
         # selectors and actions to be performed on selected nodes. In the
         # example below, the selector is "Image", which selects all image
@@ -266,20 +257,20 @@ module Paru
         def filter(&block)
             @selectors = Hash.new
             @filtered_nodes = []
-            @doc = document
+            @document = read_document
 
-            @metadata = PandocFilter::Metadata.new @doc.meta
+            @metadata = PandocFilter::Metadata.new @document.meta
 
             @running = true
-            @doc.each_depth_first do |node|
+            @document.each_depth_first do |node|
                 @filtered_nodes.push node
                 instance_eval(&block)
                 break unless @running
             end
             @running = false
 
-            @doc.meta = @metadata.to_meta
-            @output.write @doc.to_JSON
+            @document.meta = @metadata.to_meta
+            @output.write @document.to_JSON
         end
 
         # +current_node+ points to the node that is *now* being processed while
@@ -306,6 +297,17 @@ module Paru
         # the metadata.
         def stop!()
            @running = false 
+        end
+
+        private
+
+        # The Document node from JSON formatted pandoc document structure
+        # on STDIN that is being filtered
+        #
+        # @return [Document] create a new Document node from a pandoc AST from
+        #   JSON from STDIN
+        def read_document()
+            PandocFilter::Document.from_JSON @input.read
         end
     end
     

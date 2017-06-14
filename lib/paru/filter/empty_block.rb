@@ -24,7 +24,7 @@ module Paru
         class EmptyBlock < Block
 
             # Create an empty block
-            def initialize _
+            def initialize(contents = [])
                 super []
             end
 
