@@ -199,17 +199,6 @@ module Paru
     # Booleans, Arrays, and Hashes. You can manipulate it like any other Ruby
     # Hash.
     #
-    # @!attribute metadata
-    #   @return [Hash] The metadata of the document being filtered as a Ruby
-    #     Hash
-    #
-    # @!attribute document
-    #   @return [Document] The document being filtered
-    #
-    # @!attribute current_node
-    #   @return [Node] The node in the AST of the document being filtered that 
-    #      is currently being inspected by the filter.
-    #
     class Filter
 
         attr_reader :metadata, :document, :current_node
@@ -284,13 +273,20 @@ module Paru
             while @running do
                 begin
                     if @current_node.has_been_replaced?
-                        @current_node = @current_node.get_replacement
-                        @filtered_nodes.pop
+                        @current_node = @current_node.parent.get @current_index
+                    warn "Replacement = NIL: #{@current_node}" if @current_node.nil?
                     else
                         @current_node = nodes_to_filter.next
+                        @filtered_nodes.push @current_node
+
+                        if @current_node.has_parent?
+                            @current_index = @current_node.parent.find_index @current_node
+                    warn "Child = NIL" if @current_node.nil?
+                        else
+                            @current_index = @document.find_index @current_node
+                    warn "Document = NIL" if @current_node.nil?
+                        end
                     end
-                        
-                    @filtered_nodes.push @current_node
 
                     instance_eval(&block) # run the actual filter code
                 rescue StopIteration
@@ -302,6 +298,14 @@ module Paru
 
             @document.meta = @metadata.to_meta
             @output.write @document.to_JSON
+        end
+
+        # +current_node+ points to the node that is *now* being processed while
+        # running this filter.
+        #
+        # @return [Node] the node that is currently being processed
+        def current_node2()
+            @filtered_nodes.last
         end
 
         # Specify what nodes to filter with a +selector+. If the +current_node+

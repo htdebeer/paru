@@ -383,23 +383,43 @@ module Paru
                         temp_doc = temp_doc.children.first
                         
                         if not temp_doc.children.all? {|node| node.is_inline?}
-                            raise Error.new "Cannot replace the inline level node represented by '#{outer_markdown}' with markdown that converts to block level nodes: '#{markdown}'."
+                            raise Error.new "Cannot replace the inline level node represented by '#{self.markdown}' with markdown that converts to block level nodes: '#{markdown}'."
                         end
-                        
+                    else
+                        replacement = temp_doc.children.first
+                        @replacement = replacement unless replacement.nil? or to_ast == replacement.to_ast
                     end
-                        
+
                     index = current_index
                     temp_doc.each do |child|
                         index += 1
                         parent.insert index, child
                     end
+                        
+
                     # Remove the original node
                     parent.remove_at current_index
                 end
-
             end
 
             alias outer_markdown= markdown=
+
+            # Has this node been replaced by using the {markdown} method? If
+            # so, return true.
+            # 
+            # @return [Boolean]
+            def has_been_replaced?
+                not @replacement.nil?
+            end
+
+            # Get this node's replacemnt. Nil if it has not been replaced by
+            # the {markdown} method
+            #
+            # @return [Node] This node's replacement or nil if there is none.
+            def get_replacement
+                @replacement
+            end
+
         end
     end
 end

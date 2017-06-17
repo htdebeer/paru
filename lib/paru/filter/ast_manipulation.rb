@@ -32,6 +32,16 @@ module Paru
                 @children.find_index child
             end
 
+
+            # Get the child node at index
+            #
+            # @param index [Number] the index of the child to get
+            #
+            # @return [Node] the child at index
+            def get(index)
+                @children[index]
+            end
+
             # Insert child node among this node's children at position index.
             #
             # @param index [Integer] the position to insert the child
@@ -95,10 +105,17 @@ module Paru
             # @param block [Proc] the block to apply to each node in this node
             #   tree
             #
-            # @yield node
-            def each_depth_first(&block)
+            # @yield [Node]
+            def each_depth_first(&block)    
                 yield self
-                each {|child| child.each_depth_first(&block)} if has_children?
+
+                if has_been_replaced?
+                    node = get_replacement
+                else
+                    node = self
+                end
+
+                node.each {|child| child.each_depth_first(&block)} if node.has_children?
             end
 
         end
