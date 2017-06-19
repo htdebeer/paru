@@ -173,6 +173,14 @@ module Paru
         end
 
         private
+
+        def escape(value) 
+            if Gem.win_platform?
+                value.to_s
+            else
+                value.to_s.shellescape
+            end
+        end
         
         def to_option_string(option_sep)
             options_arr = []
@@ -189,11 +197,11 @@ module Paru
                 when Array then
                     # This option can occur multiple times: list each with its value.
                     # For example: --css=main.css --css=print.css
-                    options_arr.push value.map {|val| "#{option_string}=#{val.to_s.shellescape}"}.join(option_sep)
+                    options_arr.push value.map {|val| "#{option_string}=#{escape(val)}"}.join(option_sep)
                 else
                     # All options that aren't flags and can occur only once have the
                     # same pattern: --option=value
-                    options_arr.push "#{option_string}=#{value.to_s.shellescape}"
+                    options_arr.push "#{option_string}=#{escape(value)}"
                 end
             end
             options_arr.join(option_sep)
