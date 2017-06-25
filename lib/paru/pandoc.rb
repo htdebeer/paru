@@ -76,6 +76,9 @@ module Paru
     #
     #
     class Pandoc
+        
+        # Path to the pandoc executatble to use by paru.
+        PARU_PANDOC_PATH = "PARU_PANDOC_PATH"
 
         # Gather information about the pandoc installation. It runs +pandoc
         # --version+ and extracts pandoc's version number and default data
@@ -85,18 +88,7 @@ module Paru
         # @return [Hash{:version => String, :data_dir => String}] Pandoc's
         #   version, such as "1.17.0.4" and the data directory, such as "/home/huub/.pandoc".
         def self.info()
-            output = ''
-            IO.popen('pandoc --version', 'r+') do |p|
-                p.close_write
-                output << p.read
-            end
-            version = output.match(/pandoc (\d+\.\d+.*)$/)[1]
-            data_dir = output.match(/Default user data directory: (.+)$/)[1]
-
-            {
-                :version => version,
-                :data_dir => data_dir
-            }
+            @@info
         end
 
         # Create a new Pandoc converter, optionally configured by a block with
@@ -169,7 +161,7 @@ module Paru
         # @param option_sep [String] the string to separate options with
         # @return [String] This converter's command line invocation string.
         def to_command(option_sep = " \\\n\t")
-            "pandoc\t#{to_option_string option_sep}"
+            "#{@@pandoc_exec.shellescape}\t#{to_option_string option_sep}"
         end
 
         private
@@ -199,42 +191,68 @@ module Paru
             options_arr.join(option_sep)
         end
 
-        # For each pandoc command line option a method is defined as follows:
-        OPTIONS = YAML.load_file File.join(__dir__, 'pandoc_options.yaml')
+        begin
+            # determine pandoc_executable to use in paru
+            @@pandoc_exec = if ENV.has_key? PARU_PANDOC_PATH
+                                ENV[PARU_PANDOC_PATH]
+                            else
+                                "pandoc"
+                            end
 
-        OPTIONS.keys.each do |option|
-            if OPTIONS[option].is_a? Array then
-
-                # option can be set multiple times, for example adding multiple css
-                # files
-
-                default = OPTIONS[option][0]
-
-                define_method(option) do |value = default|
-                    if @options[option].nil? then
-                        @options[option] = []
-                    end
-
-                    if value.is_a? Array then
-                        @options[option] += value
-                    else
-                        @options[option].push value
-                    end
-
-                    self
-                end
-
-            else
-                # option can be set only once, for example a flag or a template
-
-                default = OPTIONS[option]
-                define_method(option) do |value = default|
-                    @options[option] = value
-                    self
-                end
-
+            version_string = ''
+            
+            IO.popen("#{@@pandoc_exec} --version", 'r+') do |p|
+                p.close_write
+                version_string << p.read
             end
+
+            version = version_string.match(/pandoc (\d+\.\d+.*)$/)[1]
+            data_dir = version_string.match(/Default user data directory: (.+)$/)[1]
+
+            @@info = {
+                :version => version,
+                :data_dir => data_dir
+            }
+            
+            # For each pandoc command line option a method is defined as follows:
+            OPTIONS = YAML.load_file File.join(__dir__, 'pandoc_options.yaml')
+
+            OPTIONS.keys.each do |option|
+                if OPTIONS[option].is_a? Array then
+
+                    # option can be set multiple times, for example adding multiple css
+                    # files
+
+                    default = OPTIONS[option][0]
+
+                    define_method(option) do |value = default|
+                        if @options[option].nil? then
+                            @options[option] = []
+                        end
+
+                        if value.is_a? Array then
+                            @options[option] += value
+                        else
+                            @options[option].push value
+                        end
+
+                        self
+                    end
+
+                else
+                    # option can be set only once, for example a flag or a template
+
+                    default = OPTIONS[option]
+                    define_method(option) do |value = default|
+                        @options[option] = value
+                        self
+                    end
+
+                end
+            end
+        rescue
         end
+
 
     end
 
