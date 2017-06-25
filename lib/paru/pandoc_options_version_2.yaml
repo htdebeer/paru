@@ -1,0 +1,111 @@
+#--
+# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
+#
+# This file is part of Paru
+#
+# Paru is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Paru is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Paru.  If not, see <http://www.gnu.org/licenses/>.
+# See http://pandoc.org/README.html for an overview of all options
+#++
+# In order as listed in the output of `pandoc- h` for pandoc version 2.x
+from:                       ""
+read:                       ""
+to:                         ""
+write:                      ""
+output:                     ""
+data_dir:                   ""
+base_header_level:          1
+indented-code-classes:      ""
+filter:                     [""]
+lua-filter:                 [""]
+preserver-tabs:             true
+tab-stop:                   4
+track-changes:              "accept"
+file-scope:                 ""
+extract-media:              ""
+standalone:                 true
+template:                   ""
+metadata:                   [""]
+variable:                   [""]
+print-default-template:     ""
+print-default-data-file:    ""
+dpi:                        96
+eol:                        "native"
+wrap:                       "auto"
+columns:                    78
+toc:                        true
+table-of-contents:          true
+no-highlight:               true
+highlight-style:            ""
+syntax-definition:          ""
+include-in-header:          [""]
+include-before-body:        [""]
+include-after-body:         [""]
+resource-path:              ""
+self-contained:             true
+html-q-tags:                true
+ascii:                      true
+reference-links:            true
+reference-location:         "block"
+atx-headers:                ""
+top-level-division:         "section"
+number-sections:            true
+number-offset:              2
+listings:                   true
+incremental:                true
+slide-level:                1
+section-divs:               true
+default-image-extension:    "png"
+email-obfuscation:          "none"
+id-prefix:                  ""
+title-prefix:               ""
+css:                        [""]
+reference-doc:              ""
+epub-subdirectory:          ""
+epub-cover-image:           ""
+epub-metadata:              ""
+epub-embed-font:            ""
+epub-chapter-level:         1
+latex-engine:               ""
+latex-engine-opt:           ""
+bibliography:               ""
+csl:                        ""
+citation-abbreviation:      ""
+natbib:                     true
+biblatex:                   true
+latexmathml:                ""
+asciimathml:                ""
+mathml:                     true
+mimetex:                    ""
+webtex:                     ""
+jsmath:                     ""
+mathjax:                    ""
+katex:                      ""
+katex-stylesheet:           ""
+gladtex:                    true
+abbreviations:              ""
+trace:                      true
+dump-args:                  true
+ignore-args:                true
+verbose:                    true
+quiet:                      true
+fail-if-warnings:           true
+log:                        ""
+bash-completion:            true
+list_input_formats:         true
+list_output_formats:        true
+list_extensions:            true
+list_highlight_languages:   true
+list_highlight_styles:      true
+version:                    true
+help:                       true

@@ -71,4 +71,5 @@ class ParuTest < MiniTest::Test
         result = Paru::Pandoc2Yaml.extract_metadata input
         assert_equal output, result
     end
+
 end

@@ -17,6 +17,7 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 # See http://pandoc.org/README.html for an overview of all options
 #++
+# Options for pandoc version 1.x, in order of occurrence in the pandoc manual.
 # General options
 from:                     ""
 read:                     ""

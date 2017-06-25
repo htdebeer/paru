@@ -19,6 +19,8 @@
 require "shellwords"
 require "yaml"
 
+require_relative "error.rb"
+
 module Paru
     # Pandoc is a wrapper around the pandoc document converter. See
     # <http://pandoc.org/README.html> for details about pandoc.  The Pandoc
@@ -145,6 +147,7 @@ module Paru
         # @example Using <<
         #   output = converter << 'this is a *strong* word'
         def convert(input)
+            begin
             output = ''
             IO.popen(to_command, 'r+') do |p|
                 p << input
@@ -152,6 +155,9 @@ module Paru
                 output << p.read
             end
             output
+            rescue StandardError => err
+                throw Error.new "Error while running '#{to_command}' on input:\n\n#{input}\n\nPandoc responds: '#{err.message}'"
+            end
         end
         alias << convert
 
@@ -191,68 +197,76 @@ module Paru
             options_arr.join(option_sep)
         end
 
-        begin
-            # determine pandoc_executable to use in paru
-            @@pandoc_exec = if ENV.has_key? PARU_PANDOC_PATH
-                                ENV[PARU_PANDOC_PATH]
-                            else
-                                "pandoc"
-                            end
+        # determine pandoc_executable to use in paru
+        @@pandoc_exec = if ENV.has_key? PARU_PANDOC_PATH
+                            ENV[PARU_PANDOC_PATH]
+                        else
+                            "pandoc"
+                        end
 
+        begin
             version_string = ''
-            
             IO.popen("#{@@pandoc_exec} --version", 'r+') do |p|
                 p.close_write
                 version_string << p.read
             end
-
-            version = version_string.match(/pandoc (\d+\.\d+.*)$/)[1]
-            data_dir = version_string.match(/Default user data directory: (.+)$/)[1]
-
-            @@info = {
-                :version => version,
-                :data_dir => data_dir
-            }
-            
-            # For each pandoc command line option a method is defined as follows:
-            OPTIONS = YAML.load_file File.join(__dir__, 'pandoc_options.yaml')
-
-            OPTIONS.keys.each do |option|
-                if OPTIONS[option].is_a? Array then
-
-                    # option can be set multiple times, for example adding multiple css
-                    # files
-
-                    default = OPTIONS[option][0]
-
-                    define_method(option) do |value = default|
-                        if @options[option].nil? then
-                            @options[option] = []
-                        end
-
-                        if value.is_a? Array then
-                            @options[option] += value
-                        else
-                            @options[option].push value
-                        end
-
-                        self
-                    end
-
-                else
-                    # option can be set only once, for example a flag or a template
-
-                    default = OPTIONS[option]
-                    define_method(option) do |value = default|
-                        @options[option] = value
-                        self
-                    end
-
-                end
-            end
-        rescue
+        rescue StandardError => err
+            throw Error.new "Unable to run pandoc via command '#{@@pandoc_exec} --version': #{err.message}"
         end
 
+        version = version_string.match(/pandoc (\d+\.\d+.*)$/)[1]
+        data_dir = version_string.match(/Default user data directory: (.+)$/)[1]
+
+        @@info = {
+            :version => version,
+            :data_dir => data_dir
+        }
+
+        # Load the options for the appropriate major version of pandoc
+        major_version = @@info[:version].split(".").first.to_i
+
+        if not [1, 2].include? major_version 
+            throw Error.new "Unknown major pandoc version: '#{major_version}'. Expected the major version to be '1' or '2'. Please check the pandoc path: '#{@@pandoc_exec}'."
+            # defaults to version 1
+            major_version = 1
+        end
+
+        # For each pandoc command line option a method is defined as follows:
+        OPTIONS = YAML.load_file File.join(__dir__, "pandoc_options_version_#{major_version}.yaml")
+
+        OPTIONS.keys.each do |option|
+            if OPTIONS[option].is_a? Array then
+
+                # option can be set multiple times, for example adding multiple css
+                # files
+
+                default = OPTIONS[option][0]
+
+                define_method(option) do |value = default|
+                    if @options[option].nil? then
+                        @options[option] = []
+                    end
+
+                    if value.is_a? Array then
+                        @options[option] += value
+                    else
+                        @options[option].push value
+                    end
+
+                    self
+                end
+
+            else
+                # option can be set only once, for example a flag or a template
+
+                default = OPTIONS[option]
+                define_method(option) do |value = default|
+                    @options[option] = value
+                    self
+                end
+
+            end
+        end
 
     end
 
