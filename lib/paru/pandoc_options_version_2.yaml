@@ -23,8 +23,8 @@ read:                       ""
 to:                         ""
 write:                      ""
 output:                     ""
-data-dir:                   ""
-base-header-level:          1
+data_dir:                   ""
+base_header_level:          1
 indented-code-classes:      ""
 filter:                     [""]
 lua-filter:                 [""]
@@ -102,10 +102,10 @@ quiet:                      true
 fail-if-warnings:           true
 log:                        ""
 bash-completion:            true
-list-input-formats:         true
-list-output-formats:        true
-list-extensions:            true
-list-highlight-languages:   true
-list-highlight-styles:      true
+list_input_formats:         true
+list_output_formats:        true
+list_extensions:            true
+list_highlight_languages:   true
+list_highlight_styles:      true
 version:                    true
 help:                       true
