@@ -32,6 +32,17 @@ class ParuTest < MiniTest::Test
         run_converter converter, "test/pandoc_input/strong_hi.md", "test/pandoc_output/strong_hi.html"
     end
 
+    def test_underscored()
+        # Options with underscores following Ruby naming conventions
+        converter = Paru::Pandoc.new do
+            from "markdown"
+            to "html"
+            self_contained
+        end
+
+        run_converter converter, "test/pandoc_input/hello.md", "test/pandoc_output/self_contained_hello.html"
+    end
+
     def test_simple_conversion_with_spaces()
         converter = Paru::Pandoc.new do
             from "markdown"
