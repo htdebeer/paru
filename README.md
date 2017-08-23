@@ -160,7 +160,7 @@ The [API documentation](https://heerdebeer.org/Software/markdown/paru/documentat
 
 ### Frequently asked questions
 
-There are no frequently asked questions at the moment. Feel free to ask me a question: [send me an email](mailto:Huub@heerdebeer.org)!
+Feel free to ask me a question: [send me an email](mailto:Huub@heerdebeer.org) or submit a new [issue](https://github.com/htdebeer/paru/issues) if you've found a bug!
 
 -   *I get an error like "'values\_at': no implicit conversion of String into Integer (TypeError) from lib/paru/filter/document.rb:54:in 'from\_JSON'"*
 
