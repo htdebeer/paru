@@ -137,7 +137,9 @@ module Paru
         # configured in this Pandoc instance.
         #
         # @param input [String] the input string to convert
-        # @return [String] the converted output string
+        # @return [String] the converted output as a string. Note. For some
+        # formats, output to STDOUT is not supported (see pandoc's manual) and
+        # the result string will be empty.
         #
         # The following two examples are the same:
         #
@@ -160,6 +162,31 @@ module Paru
             end
         end
         alias << convert
+
+        # Converts an input file to output string using the pandoc invocation
+        # configured in this Pandoc instance. The path to the input file is
+        # appended to that invocation.
+        #
+        # @param input_file [String] the path to the input file to convert
+        # @return [String] the converted output as a string. Note. For some
+        # formats, output to STDOUT is not supported (see pandoc's manual) and
+        # the result string will be empty.
+        #
+        # @example Using convert_file
+        #   output = converter.convert_file 'files/document.md'
+        def convert_file(input_file)
+            command = "#{to_command} #{input_file}"
+            begin
+                output = ''
+                IO.popen(command, 'r+') do |p|
+                    p.close_write
+                    output << p.read
+                end
+                output
+            rescue StandardError => err
+                throw Error.new "Error while running '#{command}' on input:\n\n#{input}\n\nPandoc responds: '#{err.message}'"
+            end
+        end
 
         # Create a string representation of this converter's pandoc command
         # line invocation. This is useful for debugging purposes.

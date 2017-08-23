@@ -83,4 +83,15 @@ class ParuTest < MiniTest::Test
         assert_equal output, result
     end
 
+    def test_convert_file()
+        converter = Paru::Pandoc.new do
+            from "markdown"
+            to "html"
+            bibliography "test/pandoc_input/my bibliography.bib"
+        end
+
+        output = converter.convert_file "test/pandoc_input/simple_cite.md"
+        assert_equal output, File.read("test/pandoc_output/simple_cite.html") 
+    end
+
 end
