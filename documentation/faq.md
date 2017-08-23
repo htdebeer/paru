@@ -1,6 +1,6 @@
-There are no frequently asked questions at the moment. Feel free to ask me a
-question: [send me an email](mailto:Huub@heerdebeer.org)!
-
+Feel free to ask me a question: [send me an email](mailto:Huub@heerdebeer.org)
+or submit a new [issue](https://github.com/htdebeer/paru/issues) if you've
+found a bug! 
 
 -   *I get an error like "'values_at': no implicit conversion of String into
     Integer (TypeError) from lib/paru/filter/document.rb:54:in 'from_JSON'"*
