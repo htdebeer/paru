@@ -39,7 +39,7 @@ module Paru
 
             # Create an AST representation of this Version
             def to_ast()
-                [@api, @major, @minor, @revision]
+                [@api, @major, @minor, @revision].select {|v| !v.nil?}
             end
         end
     end

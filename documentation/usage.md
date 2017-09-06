@@ -48,5 +48,10 @@ Running the above program results in the following output:
 <p>Hello world, from <strong>pandoc</strong></p>
 ~~~
 
+To support converting files that cannot easily be represented by a single
+string, such as EPUB or docx, paru also has the `convert_file` method. It
+takes a path as argument, and when executed, it tells pandoc to convert that
+path using the current configured pandoc configuration. 
+
 In the next chapter, the development of *do-pandoc.rb* is presented as an
 example of real-world usage of paru.
