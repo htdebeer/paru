@@ -38,6 +38,7 @@ class ParuTest < MiniTest::Test
             from "markdown"
             to "html"
             self_contained
+            metadata "lang='en'"
         end
 
         run_converter converter, "test/pandoc_input/hello.md", "test/pandoc_output/self_contained_hello.html"

@@ -1,6 +1,6 @@
 This is a test file for the filter `number_figures.rb`. That filter
 numbers all figures in a file consecutively. Thus, the following four
-figures are numbered 1—4:
+figures are numbered 1---4:
 
 ![Figure 1. This is the first](image.png)
 
