@@ -29,7 +29,9 @@ module Paru
             # @param contents [Array<Integer>] a list with api, major, minor,
             # revision number
             def initialize(contents)
-                @api, @major, @minor, @revision = contents
+                @revision = 0
+                @api, @major, @minor = contents if content.length == 3
+                @api, @major, @minor, @revision = contents if content.length == 4
             end
 
             # The AST type is "pandoc-api-version"
