@@ -1,6 +1,7 @@
 require "minitest/autorun"
 
 require_relative "../lib/paru/pandoc.rb"
+require_relative "../lib/paru/error.rb"
 
 class ParuTest < MiniTest::Test
 
@@ -92,6 +93,30 @@ class ParuTest < MiniTest::Test
 
         output = converter.convert_file "test/pandoc_input/simple_cite.md"
         assert_equal output, File.read("test/pandoc_output/simple_cite.html") 
+    end
+
+    def test_throw_error_when_filter_crashes()
+        converter = Paru::Pandoc.new do
+            from "markdown"
+            to "markdown"
+            filter "./test/filters/crashing_filter.rb"
+        end
+
+        assert_raises Paru::Error do
+            converter << "This is *a* string"
+        end
+    end
+
+    def test_throw_error_when_bibliography_is_missing()
+        converter = Paru::Pandoc.new do
+            from "markdown"
+            to "markdown"
+            bibliography "some_non_existing_file.bib"
+        end
+
+        assert_raises Paru::Error do
+            converter << "This is *a* string"
+        end
     end
 
 end

@@ -49,8 +49,8 @@ module Paru
                 ]
             end
 
-            undef_method :inner_markdown
-            undef_method :inner_markdown=
+            #undef_method :inner_markdown
+            #undef_method :inner_markdown=
         end
     end
 end
