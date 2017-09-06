@@ -45,6 +45,7 @@ wrap:                       "auto"
 columns:                    78
 toc:                        true
 table_of_contents:          true
+toc_depth:                  3
 no_highlight:               true
 highlight_style:            ""
 syntax_definition:          ""
