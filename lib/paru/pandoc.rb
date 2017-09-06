@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require "open3"
 require "shellwords"
 require "yaml"
 
@@ -149,17 +150,7 @@ module Paru
         # @example Using <<
         #   output = converter << 'this is a *strong* word'
         def convert(input)
-            begin
-            output = ''
-            IO.popen(to_command, 'r+') do |p|
-                p << input
-                p.close_write
-                output << p.read
-            end
-            output
-            rescue StandardError => err
-                throw Error.new "Error while running '#{to_command}' on input:\n\n#{input}\n\nPandoc responds: '#{err.message}'"
-            end
+            run_converter to_command, input
         end
         alias << convert
 
@@ -175,17 +166,7 @@ module Paru
         # @example Using convert_file
         #   output = converter.convert_file 'files/document.md'
         def convert_file(input_file)
-            command = "#{to_command} #{input_file}"
-            begin
-                output = ''
-                IO.popen(command, 'r+') do |p|
-                    p.close_write
-                    output << p.read
-                end
-                output
-            rescue StandardError => err
-                throw Error.new "Error while running '#{command}' on input:\n\n#{input}\n\nPandoc responds: '#{err.message}'"
-            end
+            run_converter "#{to_command} #{input_file}"
         end
 
         # Create a string representation of this converter's pandoc command
@@ -295,6 +276,34 @@ module Paru
             end
         end
 
+        private 
+
+        def run_converter(command, input = nil)
+            begin
+                output = ''
+                error = ''
+                status = 0
+
+                Open3.popen3(command) do |stdin, stdout, stderr, thread|
+                    stdin << input unless input.nil?
+                    stdin.close
+                    output << stdout.read
+                    error << stderr.read
+                    status = thread.value.exitstatus
+                end
+
+                if 0 < status
+                    # pandoc exited with an error
+                    raise Paru::Error.new "error while running:\n\n#{command}\n\nPandoc responded with:\n\n#{error}\n"
+                end
+
+                output
+            rescue Paru::Error => err
+                raise err
+            rescue StandardError => err
+                throw Error.new "Unable to run pandoc via command '#{command}': #{err.message}"
+            end
+        end
     end
 
 end
