@@ -9,7 +9,7 @@ keywords:
 - pandoc filter
 pandoc:
   from: markdown
-  to: markdown_github
+  to: gfm
   output: ../README.md
   standalone: true
   template: ./github_template.md

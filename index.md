@@ -6,7 +6,7 @@ keywords:
 - paru
 - filter
 - pandoc filter
-title: 'Paru—Pandoc wrapped around in Ruby'
+title: 'Paru---Pandoc wrapped around in Ruby'
 ---
 
 Chapter 1. Introduction {#introduction}
@@ -545,7 +545,7 @@ end
 The filter `number_figures.rb` keeps track of the last figure's sequence
 number in `counter`. Each time an *Image* is encountered while
 processing the input file, that counter is incremented and the image's
-caption is prefixed with "Figure \#{counter}. " by overwriting the
+caption is prefixed with "Figure \#{counter}." by overwriting the
 image's node's inner markdown.
 
 A filter consists of a number of selectors. You specify a selector
@@ -630,10 +630,10 @@ In the filter `number_chapters_and_sections_and_figures.rb`, three
 counters have to be used. One to keep track of the current chapter, one
 to keep track of the current section in that chapter, and one to keep
 track of the current figure in that chapter. Each time a new chapter is
-started—thus each time a *Header* of level one is encountered—the
+started---thus each time a *Header* of level one is encountered---the
 current chapter counter is incremented whereas the current section and
-current figure counters are reset to zero. When a section—rather a
-*Header* of level 2—and an *Image* are encountered, their respective
+current figure counters are reset to zero. When a section---rather a
+*Header* of level 2---and an *Image* are encountered, their respective
 counters are incremented as well.
 
 Note how easy it is to change the content of a node by using the
@@ -642,8 +642,8 @@ selector.
 
 In the second selector the `+` or "follows" operator is used. Operators
 in selectors denote a relationship between the current node that is
-being processed—the right hand side type—and nodes that came before. In
-this case, the selector denotes each *Image* that follows a *Header*.
+being processed---the right hand side type---and nodes that came before.
+In this case, the selector denotes each *Image* that follows a *Header*.
 
 You can use three different selection operators in paru:
 
@@ -761,7 +761,7 @@ end
 ```
 
 The filter `insert_document.rb` inspects each *Para*graph. If it is
-exactly one line long, that line is split on a space (" "). If the
+exactly one line long, that line is split on a space (\" "). If the
 left-most split off is equal to `::paru::insert`, the one-line paragraph
 is interpreted as an insert command with one parameter: the path to the
 file to insert. This one-line paragraph's contents are *replaced* by the
