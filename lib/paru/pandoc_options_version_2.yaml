@@ -43,6 +43,7 @@ dpi:                        96
 eol:                        "native"
 wrap:                       "auto"
 columns:                    78
+strip-comments              true
 toc:                        true
 table_of_contents:          true
 toc_depth:                  3
