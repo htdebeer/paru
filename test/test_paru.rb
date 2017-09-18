@@ -12,10 +12,11 @@ class ParuTest < MiniTest::Test
         input = File.read(input_file)
         converted_input = converter << input
         output = File.read(output_file)
+        
         if use_output_option
             converted_input = output
         end
-        assert_equal output, converted_input
+        assert_equal output.strip, converted_input.strip
     end
 
     def test_info()
@@ -39,6 +40,7 @@ class ParuTest < MiniTest::Test
             from "markdown"
             to "html"
             self_contained
+            metadata "lang='en'"
         end
 
         run_converter converter, "test/pandoc_input/hello.md", "test/pandoc_output/self_contained_hello.html"
