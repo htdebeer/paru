@@ -43,11 +43,11 @@ Paru is installed through rubygems as follows:
 gem install paru
 ```
 
-You can also download the latest gem [paru-0.2.5.7.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.5.7.gem) and install it by:
+You can also download the latest gem [paru-0.2.5.8.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.2.5.8.gem) and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.2.5.7.gem
+gem install paru-0.2.5.8.gem
 ```
 
 Paru, obviously, requires pandoc. See <http://pandoc.org/installing.html> about how to install pandoc on your system and [pandoc's manual](http://pandoc.org/README.html) on how to use pandoc.
