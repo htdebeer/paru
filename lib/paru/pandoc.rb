@@ -79,6 +79,10 @@ module Paru
     #
     #
     class Pandoc
+
+        # Use a readable option separator on Unix-like systems, but fall back
+        # to a space on Windows.
+        DEFAULT_OPTION_SEP = if Gem.win_platform? then " " else " \\\n\t" end
         
         # Path to the pandoc executatble to use by paru.
         PARU_PANDOC_PATH = "PARU_PANDOC_PATH"
@@ -174,7 +178,7 @@ module Paru
         #
         # @param option_sep [String] the string to separate options with
         # @return [String] This converter's command line invocation string.
-        def to_command(option_sep = " \\\n\t")
+        def to_command(option_sep = DEFAULT_OPTION_SEP)
             "#{@@pandoc_exec.shellescape}\t#{to_option_string option_sep}"
         end
 
