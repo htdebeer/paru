@@ -292,6 +292,8 @@ module Paru
                     status = thread.value.exitstatus
                 end
 
+                warn error unless error.empty?
+
                 if 0 < status
                     # pandoc exited with an error
                     raise Paru::Error.new "error while running:\n\n#{command}\n\nPandoc responded with:\n\n#{error}\n"
