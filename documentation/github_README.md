@@ -21,6 +21,8 @@ pandoc:
   - ../examples/filters/insert_paru_version.rb
 ...
 
+[![Gem Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
+
 ## Introduction
 
 ::paru::insert introduction.md

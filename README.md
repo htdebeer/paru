@@ -13,6 +13,8 @@
     -   [API documentation](#api-documentation)
     -   [Frequently asked questions](#frequently-asked-questions)
 
+[![Gem Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
+
 Introduction
 ------------
 
