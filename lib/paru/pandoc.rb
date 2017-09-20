@@ -179,7 +179,7 @@ module Paru
         # @param option_sep [String] the string to separate options with
         # @return [String] This converter's command line invocation string.
         def to_command(option_sep = DEFAULT_OPTION_SEP)
-            "#{@@pandoc_exec.shellescape}\t#{to_option_string option_sep}"
+            "#{escape(@@pandoc_exec)}\t#{to_option_string option_sep}"
         end
 
         private
@@ -199,11 +199,11 @@ module Paru
                 when Array then
                     # This option can occur multiple times: list each with its value.
                     # For example: --css=main.css --css=print.css
-                    options_arr.push value.map {|val| "#{option_string}=#{val.to_s.shellescape}"}.join(option_sep)
+                    options_arr.push value.map {|val| "#{option_string}=#{escape(val.to_s)}"}.join(option_sep)
                 else
                     # All options that aren't flags and can occur only once have the
                     # same pattern: --option=value
-                    options_arr.push "#{option_string}=#{value.to_s.shellescape}"
+                    options_arr.push "#{option_string}=#{escape(value.to_s)}"
                 end
             end
             options_arr.join(option_sep)
@@ -281,6 +281,15 @@ module Paru
         end
 
         private 
+
+        def escape(str)
+            if Gem.win_platform?
+                escaped = str.gsub("\\", "\\\\")
+                "\"#{escaped}\""
+            else
+                str.shellescape
+            end
+        end
 
         def run_converter(command, input = nil)
             begin
