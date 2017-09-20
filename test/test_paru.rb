@@ -22,7 +22,11 @@ class ParuTest < MiniTest::Test
     def test_info()
       info = Paru::Pandoc.info
       assert_match(/\d+\.\d+/, info[:version])
-      assert_match(/\.pandoc$/, info[:data_dir])
+      if Gem.win_platform?
+        assert_match(/\\pandoc$/, info[:data_dir])
+      else
+        assert_match(/\.pandoc$/, info[:data_dir])
+      end
     end
 
     def test_simple_conversion()
