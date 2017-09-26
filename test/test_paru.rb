@@ -125,4 +125,19 @@ class ParuTest < MiniTest::Test
         end
     end
 
+    # Running this test breaks `rake test`: run it manually
+    def do_not_test_no_warning_after_stop()
+        converter = Paru::Pandoc.new do
+            from "markdown"
+            to "markdown"
+            filter "./test/filters/stop_warning.rb"
+        end
+
+        _, err = capture_io do
+            converter << "Hello world"
+        end
+
+        assert_empty err
+    end
+
 end

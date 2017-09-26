@@ -226,7 +226,6 @@ module Paru
         def initialize(input = $stdin, output = $stdout)
             @input = input
             @output = output
-            @running = false
         end
 
         # Run the filter specified by block. This is a convenience method that
@@ -278,30 +277,22 @@ module Paru
                 end
             end
 
-            @running = true # used to be able to stop filtering immediately
             @current_node = @document
 
-            while @running do
-                begin
-                    if @current_node.has_been_replaced?
-                        @current_node = @current_node.get_replacement
-                        @filtered_nodes.pop
-                    else
-                        @current_node = nodes_to_filter.next
-                    end
-                        
-                    @filtered_nodes.push @current_node
-
-                    instance_eval(&block) # run the actual filter code
-                rescue StopIteration
-                    @running = false
+            nodes_to_filter.each do |node|
+                if @current_node.has_been_replaced?
+                    @current_node = @current_node.get_replacement
+                    @filtered_nodes.pop
+                else
+                    @current_node = node
                 end
-            end
-            
-            @running = false
 
-            @document.meta = @metadata.to_meta
-            @output.write @document.to_JSON
+                @filtered_nodes.push @current_node
+
+                instance_eval(&block) # run the actual filter code
+            end
+
+            write_document
         end
 
         # Specify what nodes to filter with a +selector+. If the +current_node+
@@ -318,9 +309,14 @@ module Paru
         # This is a great timesaver for filters that only act on a small
         # number of nodes in a large document, or when you only want to set
         # the metadata.
+        #
+        # Note, stop will break off the filter immediately after outputting
+        # the document in its current state.
         def stop!()
-           @running = false 
+            write_document
+            exit true
         end
+
 
         private
 
@@ -331,6 +327,12 @@ module Paru
         #   JSON from STDIN
         def read_document()
             PandocFilter::Document.from_JSON @input.read
+        end
+
+        # Write the document being filtered to STDOUT
+        def write_document()
+            @document.meta = @metadata.to_meta
+            @output.write @document.to_JSON
         end
     end
     
