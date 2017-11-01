@@ -11,6 +11,9 @@ Note. As pandoc2 seems to be incompatible with pandoc1, so will paru for
 these versions. The difference seems mostly related to generated output
 and some filtering.
 
+[![Gem
+Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
+
 ## Introduction
 
 Paru is a simple Ruby wrapper around [pandoc](http://www.pandoc.org),

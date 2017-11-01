@@ -17,36 +17,60 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 # See http://pandoc.org/README.html for an overview of all options
 #++
-# In order as listed in the output of `pandoc- h` for pandoc version 2.x
+# In order as listed on http://pandoc.org/MANUAL.html (version 2)
+#####
+# General options:
+##### 
 from:                       ""
 read:                       ""
 to:                         ""
 write:                      ""
 output:                     ""
 data_dir:                   ""
+verbose:                    true
+quiet:                      true
+fail_if_warnings:           true
+log:                        ""
+bash_completion:            true
+list_input_formats:         true
+list_output_formats:        true
+list_extensions:            true
+list_highlight_languages:   true
+list_highlight_styles:      true
+version:                    true
+help:                       true
+#####
+# General reader options:
+#####
 base_header_level:          1
 indented_code_classes:      ""
+default_image_extension:    ""
+file_scope:                 true
 filter:                     [""]
 lua_filter:                 [""]
-preserver_tabs:             true
+metadata:                   [""]
+preserve_tabs:              true
 tab_stop:                   4
 track_changes:              "accept"
-file_scope:                 ""
 extract_media:              ""
+abbreviations:              ""
+#####
+# General writing options:
+#####
 standalone:                 true
 template:                   ""
-metadata:                   [""]
 variable:                   [""]
 print_default_template:     ""
 print_default_data_file:    ""
-dpi:                        96
 eol:                        "native"
+dpi:                        96
 wrap:                       "auto"
 columns:                    78
 strip-comments:             true
 toc:                        true
 table_of_contents:          true
 toc_depth:                  3
+strip_comments:             true
 no_highlight:               true
 highlight_style:            ""
 syntax_definition:          ""
@@ -54,6 +78,10 @@ include_in_header:          [""]
 include_before_body:        [""]
 include_after_body:         [""]
 resource_path:              ""
+request_header:             ""
+#####
+# Options affecting specific writers
+#####
 self_contained:             true
 html_q_tags:                true
 ascii:                      true
@@ -73,41 +101,37 @@ id_prefix:                  ""
 title_prefix:               ""
 css:                        [""]
 reference_doc:              ""
-epub_subdirectory:          ""
 epub_cover_image:           ""
 epub_metadata:              ""
 epub_embed_font:            ""
 epub_chapter_level:         1
-pdf_engine:                 ""
+epub_subdirectory:          ""
+pdf_engine:                 "pdflatex"
 pdf_engine_opt:             ""
+#####
+# Citation rendering
+#####
 bibliography:               ""
 csl:                        ""
 citation_abbreviation:      ""
 natbib:                     true
 biblatex:                   true
-latexmathml:                ""
+#####
+# Math rendering in HTML
+#####
 asciimathml:                ""
+latexmathml:                ""
 mathml:                     true
-mimetex:                    ""
-webtex:                     ""
 jsmath:                     ""
 mathjax:                    ""
+gladtex:                    true
+mimetex:                    ""
+webtex:                     ""
 katex:                      ""
 katex_stylesheet:           ""
-gladtex:                    true
-abbreviations:              ""
-trace:                      true
+#####
+# Options for wrapper scripts
+#####
 dump_args:                  true
 ignore_args:                true
-verbose:                    true
-quiet:                      true
-fail_if_warnings:           true
-log:                        ""
-bash_completion:            true
-list_input_formats:         true
-list_output_formats:        true
-list_extensions:            true
-list_highlight_languages:   true
-list_highlight_styles:      true
-version:                    true
-help:                       true
+trace:                      true
