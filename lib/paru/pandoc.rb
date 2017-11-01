@@ -240,7 +240,7 @@ module Paru
         if not [1, 2].include? major_version 
             throw Error.new "Unknown major pandoc version: '#{major_version}'. Expected the major version to be '1' or '2'. Please check the pandoc path: '#{@@pandoc_exec}'."
             # defaults to version 1
-            major_version = 1
+            major_version = 2
         end
 
         # For each pandoc command line option a method is defined as follows:
