@@ -1,4 +1,3 @@
-
 # Introduction
 
 Paru is a simple Ruby wrapper around {pandoc}[http://www.pandoc.org], the

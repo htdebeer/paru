@@ -12,7 +12,8 @@ Using the example block
 
 ### Example 1: Adding your first example {#adding-your-first-example}
 
-Create an example block as follows: ~\~~{.markdown}
+Create an example block as follows: \~\~\~{.markdown}
+
 <div class="example">
 
 ### Example 2: My first example!! {#my-first-example}
@@ -21,7 +22,7 @@ My first example is about creating my first example
 
 </div>
 
-~\~~
+\~\~\~
 
 </div>
 

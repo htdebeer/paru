@@ -12,6 +12,6 @@ previous paragraph should be capitalized, whereas this one should not.
 Conclusion
 ==========
 
-IN CONCLUSion—note that this is again a first paragraph of a section and
-will be capitalized—, a simple filter can be used to manipulate a
+IN CONCLUSion---note that this is again a first paragraph of a section
+and will be capitalized---, a simple filter can be used to manipulate a
 markdown text.
