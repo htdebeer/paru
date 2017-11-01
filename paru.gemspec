@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.executables = ['pandoc2yaml.rb', 'do-pandoc.rb']
   s.files = [
       'lib/paru.rb',
+      'lib/paru/pandoc_options_version_1.yaml',
       'lib/paru/pandoc_options_version_2.yaml'
   ]
   s.files += Dir['lib/paru/*.rb']
