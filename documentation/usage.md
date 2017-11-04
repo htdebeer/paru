@@ -13,9 +13,9 @@ pandoc](http://pandoc.org/README.html#options) map to methods on this newly
 created instance. When you want to use a pandoc command-line option that
 contains dashes, replace all dashes with an underscore to get the
 corresponding paru method. For example, the pandoc command-line option
-`--latex-engine` becomes the paru method `latex_engine`.  Knowing this
+`--pdf-engine` becomes the paru method `pdf_engine`.  Knowing this
 convention, you can convert from markdown to pdf using the lualatex engine
-by calling the `from`, `to`, and `latex_engine` methods to configure the
+by calling the `from`, `to`, and `pdf_engine` methods to configure the
 converter. There is a convenience `configure` method that takes a block to
 configure multiple options at once:
 
@@ -26,7 +26,7 @@ converter = Paru::Pandoc.new
 converter.configure do
     from "markdown"
     to "latex"
-    latex_engine "lualatex"
+    pdf_engine "lualatex"
     output "my_first_pdf_file.pdf"
 end
 ~~~
