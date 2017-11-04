@@ -27,6 +27,8 @@ real-world use case: generating the manual!
 See also the [paru API
 documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
 
+Note. Paru is compatible with both pandoc1 and pandoc2!
+
 1.1 Licence
 -----------
 

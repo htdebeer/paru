@@ -1,16 +1,6 @@
 # Paru—Pandoc wrapped around in Ruby
 
 
-This is a development branch of paru to build a pandoc2 compatible
-version of paru. You can install a pre-release of pandoc2 via
-<https://github.com/pandoc-extras/pandoc-nightly/releases>. To run
-pandoc with the newly downloaded pandoc2, set the environment variable
-PARU\_PANDOC\_PATH to point to that newly downloaded pandoc2 executable.
-
-Note. As pandoc2 seems to be incompatible with pandoc1, so will paru for
-these versions. The difference seems mostly related to generated output
-and some filtering.
-
 [![Gem
 Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
 
@@ -30,6 +20,8 @@ real-world use case: generating the manual\!
 
 See also the [paru API
 documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
+
+Note. Paru is compatible with both pandoc1 and pandoc2\!
 
 This README is a brief overview of paru’s features and usages.
 

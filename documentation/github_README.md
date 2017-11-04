@@ -21,17 +21,6 @@ pandoc:
   - ../examples/filters/insert_paru_version.rb
 ...
 
-This is a development branch of paru to build a pandoc2 compatible version of
-paru. You can install a pre-release of pandoc2 via
-<https://github.com/pandoc-extras/pandoc-nightly/releases>. To run pandoc with
-the newly downloaded pandoc2, set the environment variable PARU_PANDOC_PATH to
-point to that newly downloaded pandoc2 executable.
-
-Note. As pandoc2 seems to be incompatible with pandoc1, so will paru for these
-versions. The difference seems mostly related to generated output and some
-filtering.
-
-
 [![Gem Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
 
 ## Introduction
