@@ -466,7 +466,7 @@ do-pandoc.rb my-file.md
 ```
 
 In [Chapter 4](#putting-it-all-together) this script `do-pandoc.rb` is
-used on [paru's documentation file](documentation/documentation.md) to
+used on paru's documentation file (`documentation/documentation.md`) to
 generate a new pandoc markdown file, `index.md`, that is converted to
 HTML into **the manual you are reading now!**
 
