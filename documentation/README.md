@@ -41,8 +41,7 @@ Paru is installed via Rubygems:
 
     gem install paru
 
-You can also download the paru gem through its {github
-repository}[delete_horizontal_rules].
+You can also download the paru gem through its {github repository}[https://github.com/htdebeer/paru].
 
 # License
 
