@@ -186,11 +186,10 @@ occurrences of "\\\_" by "\_" to get Ruby to find and read the file correctly.
 ### Inserting code files
 
 Similarly, when writing a programming tutorial or manual (like this manual;
-have a look at
-[documentation/using_filters.md](documentation/using_filters.md) for example),
-it would be great if you can point pandoc to a file containing some
-programming code and have that code included automatically. This is even more
-simple that inserting markdown files!:
+have a look at `documentation/using_filters.md` for example), it would be
+great if you can point pandoc to a file containing some programming code and
+have that code included automatically. This is even more simple that inserting
+markdown files!:
 
     ::paru::insert ../examples/filters/insert_code_block.rb ruby
 

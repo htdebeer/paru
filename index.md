@@ -466,7 +466,7 @@ do-pandoc.rb my-file.md
 ```
 
 In [Chapter 4](#putting-it-all-together) this script `do-pandoc.rb` is
-used on [paru's documentation file](documentation/documentation.md) to
+used on paru's documentation file, `documentation/documentation.md` to
 generate a new pandoc markdown file, `index.md`, that is converted to
 HTML into **the manual you are reading now!**
 
@@ -777,11 +777,10 @@ correctly.
 ### Inserting code files
 
 Similarly, when writing a programming tutorial or manual (like this
-manual; have a look at
-[documentation/using\_filters.md](documentation/using_filters.md) for
-example), it would be great if you can point pandoc to a file containing
-some programming code and have that code included automatically. This is
-even more simple that inserting markdown files!:
+manual; have a look at `documentation/using_filters.md` for example), it
+would be great if you can point pandoc to a file containing some
+programming code and have that code included automatically. This is even
+more simple that inserting markdown files!:
 
 ``` {.ruby}
 #!/usr/bin/env ruby
@@ -843,10 +842,9 @@ previous two chapters, it is now time to put it all together and into
 practice. As an example, the generation of this manual is used. In the
 directory [documentation](documentation/) you find a number of files
 that comprise this manual. The root file is
-[documentation.md](documentation/documentation.md), which contains some
-metadata, the outline of the manual, and a number of `::paru::insert`
-commands to include the other markdown files from the documentation
-directory:
+`documentation/documentation.md`, which contains some metadata, the
+outline of the manual, and a number of `::paru::insert` commands to
+include the other markdown files from the documentation directory:
 
 ``` {.markdown}
 ---
@@ -909,8 +907,8 @@ pandoc:
 
 ```
 
-To generate the manual markdown file [index.md](index.md), run the
-`do-pandoc.rb` script on `document.md`:
+To generate the manual markdown file `index.md`, run the `do-pandoc.rb`
+script on `document.md`:
 
 ``` {.bash}
 do-pandoc.rb documentation.md
