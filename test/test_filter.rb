@@ -320,4 +320,17 @@ class FilterTest < MiniTest::Test
         end
     end
 
+    def test_replace_math_in_table()
+        filter_file_and_equal_file(
+            "test/pandoc_input/replace_math.md",
+            "test/pandoc_output/replaced_math.md"
+        ) do
+            with "Math" do |m|
+                key, value = m.string.split(".")
+                values = value.split("_")
+                m.markdown = "**#{key}**: *#{values.join(" ")}*"
+            end
+        end
+    end
+
 end

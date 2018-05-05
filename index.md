@@ -47,12 +47,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.3.0.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.3.0.0.gem)
+[paru-0.3.0.1.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.3.0.1.gem)
 and install it by:
 
 ``` {.bash}
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.3.0.0.gem
+gem install paru-0.3.0.1.gem
 ```
 
 Paru, obviously, requires pandoc. See
@@ -763,7 +763,7 @@ end
 ```
 
 The filter `insert_document.rb` inspects each *Para*graph. If it is
-exactly one line long, that line is split on a space (\" "). If the
+exactly one line long, that line is split on a space (\" \"). If the
 left-most split off is equal to `::paru::insert`, the one-line paragraph
 is interpreted as an insert command with one parameter: the path to the
 file to insert. This one-line paragraph's contents are *replaced* by the
@@ -791,6 +791,7 @@ Paru::Filter.run do
     command, path, *classes = code_block.string.strip.split " "
     if command == "::paru::insert"
       code_block.string = File.read path.gsub(/\\_/, "_")
+      code_block.string.force_encoding('UTF-8')
       classes.each {|c| code_block.attr.classes.push c}
     end
   end
@@ -847,7 +848,7 @@ outline of the manual, and a number of `::paru::insert` commands to
 include the other markdown files from the documentation directory:
 
 ``` {.markdown}
----
+﻿---
 title: Paru—Pandoc wrapped around in Ruby
 author: Huub de Beer
 keywords:

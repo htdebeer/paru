@@ -52,9 +52,9 @@ module Paru
                 @alignment = contents[1]
                 @column_widths = contents[2]
                 @headers = TableRow.new contents[3]
-                @rows = []
+                @children = []
                 contents[4].each do |row_data|
-                    @rows.push TableRow.new row_data
+                    @children.push TableRow.new row_data
                 end
             end
 
@@ -67,7 +67,7 @@ module Paru
                     @alignment,
                     @column_widths,
                     @headers.ast_contents,
-                    @rows.map {|row| row.ast_contents}
+                    @children.map {|row| row.ast_contents}
                 ]
             end
         end

@@ -1,4 +1,4 @@
----
+﻿---
 title: Paru—Pandoc wrapped around in Ruby
 author: Huub de Beer
 keywords:

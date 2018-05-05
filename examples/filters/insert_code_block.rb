@@ -6,6 +6,7 @@ Paru::Filter.run do
     command, path, *classes = code_block.string.strip.split " "
     if command == "::paru::insert"
       code_block.string = File.read path.gsub(/\\_/, "_")
+      code_block.string.force_encoding('UTF-8')
       classes.each {|c| code_block.attr.classes.push c}
     end
   end
