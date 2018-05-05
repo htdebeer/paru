@@ -1,3 +1,4 @@
+require "date"
 require_relative "./test_filter.rb"
 require_relative "../lib/paru"
 require_relative "../lib/paru/filter.rb"
