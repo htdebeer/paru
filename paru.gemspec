@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.description = 'Use Pandoc (http://www.pandoc.org) with ruby'
   s.authors = ['Huub de Beer']
   s.email = 'Huub@heerdebeer.org'
+  s.required_ruby_version = ">= 2.4.4"
   s.bindir = 'bin'
   s.executables = ['pandoc2yaml.rb', 'do-pandoc.rb']
   s.files = [
