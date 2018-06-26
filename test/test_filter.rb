@@ -1,9 +1,11 @@
 require "minitest/autorun"
+require "tempfile"
 
 require_relative "../lib/paru"
 require_relative "../lib/paru/filter.rb"
 require_relative "../lib/paru/filter_error.rb"
 require_relative "../lib/paru/filter/document.rb"
+require_relative "../lib/paru/filter/code_block.rb"
 
 class FilterTest < MiniTest::Test
 
@@ -331,6 +333,57 @@ class FilterTest < MiniTest::Test
                 m.markdown = "**#{key}**: *#{values.join(" ")}*"
             end
         end
+    end
+
+    def test_code_block_convenience()
+        code = File.read("test/pandoc_input/some_js_code.js");
+
+        # To code string
+        code_string = "";
+        filter_file("test/pandoc_input/from_code.md") do
+            with "CodeBlock" do |c|
+                code_string = c.to_code_string()
+            end
+        end
+
+        assert_match(code_string, code);
+
+        # From code string
+        input = "replace this"
+        output = filter_string(input) do
+            with "Para" do |p|
+                code_block = Paru::PandocFilter::CodeBlock.from_code_string code, "JavaScript"
+                p.parent.replace(p, code_block)
+            end
+        end
+
+        assert_match(output, File.read("test/pandoc_input/from_code.md"))
+
+        # To file
+        out_file = Tempfile.new("output_file.js")
+        begin
+            filter_file("test/pandoc_input/from_code.md") do
+                with "CodeBlock" do |c|
+                    c.to_file(out_file.path)
+                end
+            end
+            out_contents = out_file.read
+            assert_match(code, out_contents)
+        ensure
+            out_file.close
+            out_file.unlink
+        end
+        
+        # From file
+        input = "replace this"
+        output = filter_string(input) do
+            with "Para" do |p|
+                code_block = Paru::PandocFilter::CodeBlock.from_file "test/pandoc_input/some_js_code.js", "JavaScript"
+                p.parent.replace(p, code_block)
+            end
+        end
+
+        assert_match(output, File.read("test/pandoc_input/from_code.md"))
     end
 
 end

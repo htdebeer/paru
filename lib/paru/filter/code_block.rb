@@ -57,6 +57,48 @@ module Paru
             def has_string?()
                 true
             end
+
+            # Write this CodeBlock's contents to file
+            #
+            # @param filename {String} the path to the file to write
+            def to_file(filename)
+                File.open(filename, "w") do |file|
+                    file.write "#{@string}\n"
+                end
+            end
+
+            # Create a new CodeBlock based on the contents of a file, and,
+            # optionally, a language
+            #
+            # @param filename {String} the path to the file to read the
+            #   contents from
+            # @param language {String} the language of the contents
+            #
+            # @return [CodeBlock]
+            def self.from_file(filename, language = "")
+                return self.from_code_string(File.read(filename), language) 
+            end
+
+            # Get this CodeBlock's contents as a string
+            #
+            # @return [String]
+            def to_code_string()
+                return @string
+            end
+
+            # Create a new CodeBlock based on a string and, optionally, a
+            # language
+            # 
+            #
+            # @param code_string [String] the string with code to use as the
+            #   contents of the CodeBlock
+            # @param language [String] the optional language class
+            # @return [CodeBlock]
+            def self.from_code_string(code_string, language = "")
+                attributes = ["", [language], []]
+                code_block = CodeBlock.new [attributes, code_string]
+                return code_block
+            end
         end
     end
 end
