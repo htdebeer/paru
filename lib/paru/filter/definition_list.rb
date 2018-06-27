@@ -17,6 +17,7 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./block.rb"
+require_relative "./list.rb"
 
 module Paru
     module PandocFilter
@@ -35,6 +36,30 @@ module Paru
             # Create an AST representation of this DefinitionList node
             def ast_contents
                 @children.map {|child| child.to_ast}
+            end
+
+            # Convert this DefinitionList to a hash of term => definitions
+            #
+            # @return [Array]
+            def to_array()
+                @children.map do |def_item|
+                    def_item.to_array 
+                end
+            end
+
+            # Create a new DefinitionList based on a hash of term =>
+            # definitions
+            #
+            # @param definitions [Array] Array of arrays with terms and their definitions
+            # @return [DefinitionList] 
+            def self.from_array(definitions)
+                ast_items = definitions.map do |definition| 
+                    term = Block.from_markdown(definition[0]).ast_contents
+                    defin = List.from_markdown(definition[1]).children.map{|c| c.to_ast}
+                    warn defin
+                    [term, defin]
+                end
+                DefinitionList.new ast_items
             end
 
         end

@@ -440,6 +440,34 @@ class FilterTest < MiniTest::Test
     end
 
     def test_definition_list_convenience()
+        list = []
+        filter_file("test/pandoc_input/definition_list.md") do
+            with "DefinitionList" do |d|
+                list = d.to_array
+            end
+        end
+
+        assert_includes list[0], "Term 1"
+        assert_includes list[0], "Definition 1"
+        assert_includes list[1], "Term 2 with *inline markup*"
+        assert_includes list[1], "Definition 2\n\n    {some code, part of def 2}\n\nAnother paragraph"
+       
+        input_array = [
+            ["Term 1", "Definition 1"],
+            ["Term 2 with *inline markup*", "Definition 2\n\n    {some code, part of def 2}\n\nAnother paragraph"]
+        ]
+
+        input = "replace this"
+        output = filter_string(input) do
+            with "Para" do |p|
+                list = Paru::PandocFilter::DefinitionList.from_array input_array
+                p.parent.replace(p, list)
+            end
+        end
+
+        warn output
+
+        assert_match(output, File.read("test/pandoc_input/definition_list.md"))
     end
 
 end

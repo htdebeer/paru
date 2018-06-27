@@ -48,6 +48,15 @@ module Paru
                     @definition.ast_contents
                 ]
             end
+
+            # Convert this DefinitionListItem to a pair of term and definition
+            #
+            # @return [Array]
+            def to_array
+                term = @term.children.map{|c| c.markdown.strip}.select{|c| !c.empty?}.join(" ").strip
+                definition = @definition.children.map{|c| c.children.map{|d| d.markdown}}.join("\n").strip
+                [term, definition]
+            end
         end
     end
 end

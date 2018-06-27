@@ -56,17 +56,17 @@ module Paru
 
             # Create a new OrderedList from an array of markdown strings
             #
-            # @param array [String[]] an array of markdown strings
+            # @param items [String[]] an array of markdown strings
             # @param config [Hash] configuration of the list. Can have
             # properties :start (Int), :style (String), and :delim (String)
             #
             # @return [OrderedList]
-            def self.from_array(array, **config )
+            def self.from_array(items, **config )
                 start = if config.has_key? :start then config[:start] else 1 end
                 style = if config.has_key? :style then config[:style] else "Decimal" end
                 delim = if config.has_key? :delim then config[:delim] else "Period" end
-                ast_array = array.map {|item| [Block.from_markdown(item).to_ast]}
-                OrderedList.new [[start, {"t" => style}, {"t" => delim}], ast_array]
+                ast_items = items.map {|item| [Block.from_markdown(item).to_ast]}
+                OrderedList.new [[start, {"t" => style}, {"t" => delim}], ast_items]
             end
 
         end
