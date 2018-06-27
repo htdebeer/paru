@@ -6,6 +6,9 @@ require_relative "../lib/paru/filter.rb"
 require_relative "../lib/paru/filter_error.rb"
 require_relative "../lib/paru/filter/document.rb"
 require_relative "../lib/paru/filter/code_block.rb"
+require_relative "../lib/paru/filter/ordered_list.rb"
+require_relative "../lib/paru/filter/bullet_list.rb"
+require_relative "../lib/paru/filter/definition_list.rb"
 
 class FilterTest < MiniTest::Test
 
@@ -384,6 +387,59 @@ class FilterTest < MiniTest::Test
         end
 
         assert_match(output, File.read("test/pandoc_input/from_code.md"))
+    end
+    
+    def test_ordered_list_convenience()
+        list = []
+        filter_file("test/pandoc_input/ordered_list.md") do
+            with "OrderedList" do |o|
+                list = o.to_array
+            end
+        end
+
+        assert_includes list, "First item"
+        assert_includes list, "Second *important* item"
+        assert_includes list, "Third item"
+
+        input_array = ["First item", "Second *important* item", "Third item"]
+
+        input = "replace this"
+        output = filter_string(input) do
+            with "Para" do |p|
+                list = Paru::PandocFilter::OrderedList.from_array input_array
+                p.parent.replace(p, list)
+            end
+        end
+
+        assert_match(output, File.read("test/pandoc_input/ordered_list.md"))
+    end
+    
+    def test_bullet_list_convenience()
+        list = []
+        filter_file("test/pandoc_input/bullet_list.md") do
+            with "BulletList" do |b|
+                list = b.to_array
+            end
+        end
+
+        assert_includes list, "First item"
+        assert_includes list, "Second *important* item"
+        assert_includes list, "Third item"
+
+        input_array = ["First item", "Second *important* item", "Third item"]
+
+        input = "replace this"
+        output = filter_string(input) do
+            with "Para" do |p|
+                list = Paru::PandocFilter::BulletList.from_array input_array
+                p.parent.replace(p, list)
+            end
+        end
+
+        assert_match(output, File.read("test/pandoc_input/bullet_list.md"))
+    end
+
+    def test_definition_list_convenience()
     end
 
 end

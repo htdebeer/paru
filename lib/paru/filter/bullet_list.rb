@@ -22,6 +22,16 @@ module Paru
     module PandocFilter
         # BulletList, contains a list of list of Block nodes.
         class BulletList < List
+
+            # Create a new BulletList from an array of markdown strings
+            #
+            # @param array [String[]] arrau of markdown strings as items of
+            #   the new BulletList
+            # @return [BulletList]
+            def self.from_array(array)
+                ast_array = array.map {|item| [Block.from_markdown(item).to_ast]}
+                BulletList.new ast_array
+            end
         end
     end
 end

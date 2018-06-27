@@ -46,6 +46,16 @@ module Paru
             def has_block?()
                 true
             end
+
+            # Convert this List to an array of markdown strings
+            #
+            # @return [String[]]
+            def to_array()
+                @children.map do |block|
+                    block.children.map{|c| c.markdown.strip}.join("\n")
+                end
+            end
+
         end
     end
 end
