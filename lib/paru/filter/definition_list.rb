@@ -18,6 +18,7 @@
 #++
 require_relative "./block.rb"
 require_relative "./list.rb"
+require_relative "./para.rb"
 
 module Paru
     module PandocFilter
@@ -55,10 +56,19 @@ module Paru
             def self.from_array(definitions)
                 ast_items = definitions.map do |definition| 
                     term = Block.from_markdown(definition[0]).ast_contents
-                    defin = List.from_markdown(definition[1]).children.map{|c| c.to_ast}
-                    warn defin
-                    [term, defin]
+                    defin = List.from_markdown(definition[1])
+
+                    if not defin.has_block?
+                        para = Para.new []
+                        para.inner_markdown = definition[1]
+                        defin = [para.to_ast]
+                    else
+                        defin = defin.children.map{|c| c.to_ast}
+                    end
+
+                    [term, [defin]]
                 end
+
                 DefinitionList.new ast_items
             end
 

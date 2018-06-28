@@ -465,8 +465,6 @@ class FilterTest < MiniTest::Test
             end
         end
 
-        warn output
-
         assert_match(output, File.read("test/pandoc_input/definition_list.md"))
     end
 
