@@ -38,6 +38,16 @@ module Paru
             def ast_contents
                 @children.map {|child| child.ast_contents}
             end
+
+            # Convert this TableRow to an array of markdown strings, one for
+            # each cell
+            #
+            # @return [String[]] An Array representation of this TableRow.
+            def to_array()
+                @children.map do |cell|
+                    cell.children.map{|c| c.markdown.strip}.join("\n")
+                end
+            end
         end
     end
 end

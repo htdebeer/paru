@@ -9,6 +9,7 @@ require_relative "../lib/paru/filter/code_block.rb"
 require_relative "../lib/paru/filter/ordered_list.rb"
 require_relative "../lib/paru/filter/bullet_list.rb"
 require_relative "../lib/paru/filter/definition_list.rb"
+require_relative "../lib/paru/filter/table.rb"
 
 class FilterTest < MiniTest::Test
 
@@ -466,6 +467,66 @@ class FilterTest < MiniTest::Test
         end
 
         assert_match(output, File.read("test/pandoc_input/definition_list.md"))
+    end
+
+    def test_table_convenience()
+        data = []
+        filter_file("test/pandoc_input/table.md") do
+            with "Table" do |t|
+                data = t.to_array
+            end
+        end
+
+        assert_equal data.length, 3
+        assert_equal data[2].length, 2
+
+        filter_file("test/pandoc_input/table.md") do
+            with "Table" do |t|
+                data = t.to_array(headers: true)
+            end
+        end
+
+        assert_equal data.length, 4
+        assert_equal data[1].length, 2
+
+        input_data = [["No", "String"], ["1", "Hello"], ["2", "Hi"], ["3", "Goodbye"]]
+        input = "replace this"
+        output = filter_string(input) do
+            with "Para" do |p|
+                table = Paru::PandocFilter::Table.from_array input_data, headers: true, caption: "A list of greetings."
+                p.parent.replace(p, table)
+            end
+        end
+
+        assert_match(output, File.read("test/pandoc_input/table.md"))
+        
+
+        # To file
+        csv = File.read("test/pandoc_output/table.csv")
+        out_file = Tempfile.new("output_file.csv")
+        begin
+            filter_file("test/pandoc_input/table.md") do
+                with "Table" do |t|
+                    t.to_file(out_file.path, headers: true)
+                end
+            end
+            out_contents = out_file.read
+            assert_match(csv, out_contents)
+        ensure
+            out_file.close
+            out_file.unlink
+        end
+
+        # From file
+        input = "replace this"
+        output = filter_string(input) do
+            with "Para" do |p|
+                table = Paru::PandocFilter::Table.from_file "test/pandoc_output/table.csv", headers: true, caption: "A list of greetings."
+                p.parent.replace(p, table)
+            end
+        end
+
+        assert_match(output, File.read("test/pandoc_input/table.md"))
     end
 
 end
