@@ -325,6 +325,24 @@ class FilterTest < MiniTest::Test
             end
         end
     end
+    
+    def test_image_with_attributes()
+        filter_file_and_equal_file(
+            "test/pandoc_input/image_with_attributes.md",
+            "test/pandoc_output/image_with_attributes.md"
+        ) do
+            with "Image" do |image|
+	      caption = image.inner_markdown
+	      if image.attr.has_key? "width"
+	        caption += " (width=#{image.attr["width"]})"
+              end
+              if image.attr.has_key? "height"
+                caption += " (height=#{image.attr["height"]})"
+              end
+              image.inner_markdown = caption
+            end
+        end
+    end
 
     def test_replace_math_in_table()
         filter_file_and_equal_file(

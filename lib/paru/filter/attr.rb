@@ -45,7 +45,7 @@ module Paru
                 @classes = classes || []
                 @classes = [@classes] unless @classes.is_a? Array
 
-                @data = data || {}
+                @data = Hash[data] || {}
             end
 
             # For each key-value pair of this attributes object
@@ -58,7 +58,7 @@ module Paru
             # @param key [String] the key to get the value for. Nil if it does
             # not exists
             def [](key) 
-                if @data.key_exists? key
+                if @data.key? key
                     @data[key]
                 end 
             end
@@ -69,7 +69,7 @@ module Paru
             #
             # @return [Boolean] true if this key exist, false otherwise
             def has_key?(name)
-                @data.key_exists? name
+                @data.key? name
             end
 
             # Does this attributes object have a class?
@@ -90,7 +90,7 @@ module Paru
                 [
                     @id,
                     @classes,
-                    @data
+                    @data.to_a
                 ]
             end
         end
