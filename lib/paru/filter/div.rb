@@ -26,6 +26,10 @@ module Paru
         class Div < Block
             include InnerMarkdown
 
+            # A Div node has an attribute object
+            #
+            # @!attribute attr
+            #   @return [Attr]
             attr_accessor :attr
 
             # Create a new Div node based on the contents
