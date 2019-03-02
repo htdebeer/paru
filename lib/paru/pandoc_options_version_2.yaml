@@ -113,7 +113,7 @@ pdf_engine_opt:             ""
 #####
 bibliography:               ""
 csl:                        ""
-citation_abbreviation:      ""
+citation_abbreviations:      ""
 natbib:                     true
 biblatex:                   true
 #####
