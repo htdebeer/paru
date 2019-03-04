@@ -18,5 +18,5 @@
 #++
 module Paru
     # Paru's current version
-    VERSION = [0, 3, 1, 2]
+    VERSION = [0, 3, 2, 0]
 end

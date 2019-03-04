@@ -7,4 +7,5 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 \centering
 \includegraphics[width=0.25\textwidth]{Cover Page.pdf}
 \end{wrapfigure}
+
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
