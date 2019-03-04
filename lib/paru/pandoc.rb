@@ -227,7 +227,26 @@ module Paru
         end
 
         version = version_string.match(/pandoc (\d+\.\d+.*)$/)[1]
-        data_dir = version_string.match(/Default user data directory: (.+)$/)[1]
+
+        if "2.7" <= version then
+            # Pandoc version 2.7 introduced a new default data dir to comply
+            # with XDG Base Directory Specification
+            xdg_data_dir, old_data_dir = version_string.match(/Default user data directory: (.+)$/)[1].split(" or ")
+
+            if File.directory? xdg_data_dir then
+                data_dir = xdg_data_dir
+            elsif File.directory? old_data_dir then
+                # The new-style data directory does not exist, but the
+                # old-style does, so use the old-style data directory for
+                # backwards compatibility
+                data_dir = old_data_dir
+            else
+                # Neither data directory exists, default to the new default
+                data_dir = xdg_data_dir
+            end
+        else
+            data_dir = version_string.match(/Default user data directory: (.+)$/)[1]
+        end
 
         @@info = {
             :version => version,

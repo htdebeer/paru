@@ -1,5 +1,18 @@
 # Paru—Pandoc wrapped around in Ruby
 
+## Contents
+
+  - [Introduction](#introduction)
+      - [Licence](#licence)
+      - [Acknowledgements](#acknowledgements)
+      - [Installation](#installation)
+  - [Paru says hello to pandoc](#paru-says-hello-to-pandoc)
+  - [Writing and using pandoc filters with
+    paru](#writing-and-using-pandoc-filters-with-paru)
+  - [Documentation](#documentation)
+      - [Manual](#manual)
+      - [API documentation](#api-documentation)
+      - [Frequently asked questions](#frequently-asked-questions)
 
 [![Gem
 Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
@@ -53,12 +66,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.3.1.2.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.3.1.2.gem)
+[paru-0.3.2.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.3.2.0.gem)
 and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.3.1.2.gem
+gem install paru-0.3.2.0.gem
 ```
 
 Paru, obviously, requires pandoc. See

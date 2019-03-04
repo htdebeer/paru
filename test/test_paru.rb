@@ -25,7 +25,11 @@ class ParuTest < MiniTest::Test
       if Gem.win_platform?
         assert_match(/\\pandoc$/, info[:data_dir])
       else
-        assert_match(/\.pandoc$/, info[:data_dir])
+          if "2.7" <= info[:version] then
+            assert_match(/\.local\/share\/pandoc$/, info[:data_dir])
+          else
+            assert_match(/\.pandoc$/, info[:data_dir])
+          end
       end
     end
 
