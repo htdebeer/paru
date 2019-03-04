@@ -27,11 +27,11 @@ to:                         ""
 write:                      ""
 output:                     ""
 data_dir:                   ""
+bash_completion:            true
 verbose:                    true
 quiet:                      true
 fail_if_warnings:           true
 log:                        ""
-bash_completion:            true
 list_input_formats:         true
 list_output_formats:        true
 list_extensions:            true
@@ -49,6 +49,7 @@ file_scope:                 true
 filter:                     [""]
 lua_filter:                 [""]
 metadata:                   [""]
+metadata-file:              ""
 preserve_tabs:              true
 tab_stop:                   4
 track_changes:              "accept"
@@ -73,6 +74,7 @@ toc_depth:                  3
 strip_comments:             true
 no_highlight:               true
 highlight_style:            ""
+print-highlight-style:      ""
 syntax_definition:          ""
 include_in_header:          [""]
 include_before_body:        [""]
@@ -106,6 +108,7 @@ epub_metadata:              ""
 epub_embed_font:            ""
 epub_chapter_level:         1
 epub_subdirectory:          ""
+ipynb-output:               "best"
 pdf_engine:                 "pdflatex"
 pdf_engine_opt:             ""
 #####
