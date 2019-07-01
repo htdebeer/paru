@@ -110,7 +110,7 @@ epub_chapter_level:         1
 epub_subdirectory:          ""
 ipynb-output:               "best"
 pdf_engine:                 "pdflatex"
-pdf_engine_opt:             ""
+pdf_engine_opt:             [""]
 #####
 # Citation rendering
 #####
