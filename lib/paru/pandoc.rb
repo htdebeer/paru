@@ -226,7 +226,7 @@ module Paru
             throw Error.new "Unable to run pandoc via command '#{@@pandoc_exec} --version': #{err.message}"
         end
 
-        version = version_string.match(/pandoc (\d+\.\d+.*)$/)[1]
+        version = version_string.match(/pandoc.* (\d+\.\d+.*)$/)[1]
 
         if "2.7" <= version then
             # Pandoc version 2.7 introduced a new default data dir to comply
@@ -235,7 +235,7 @@ module Paru
 
             if File.directory? xdg_data_dir then
                 data_dir = xdg_data_dir
-            elsif File.directory? old_data_dir then
+            elsif not old_data_dir.nil? and File.directory? old_data_dir then
                 # The new-style data directory does not exist, but the
                 # old-style does, so use the old-style data directory for
                 # backwards compatibility
