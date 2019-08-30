@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017, 2018, 2019 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -18,5 +18,5 @@
 #++
 module Paru
     # Paru's current version
-    VERSION = [0, 3, 2, 2]
+    VERSION = [0, 3, 2, 3]
 end
