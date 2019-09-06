@@ -59,9 +59,10 @@ module Paru
         private 
 
         S = /\s*/
-        TYPE = /(?<type>(?<name>[A-Z][a-zA-Z]*)(?<classes>(\.[a-zA-Z-]+)*))/
         # Improved CSS class selector taken from https://stackoverflow.com/questions/448981/which-characters-are-valid-in-css-class-names-selectors/449000#449000
-        OTHER_TYPE = /(?<other_type>(?<other_name>[A-Z][a-zA-Z]*)(?<other_classes>(\.-?[_a-zA-Z]+[_a-zA-Z0-9-]*)*))/
+        CLASS = /(\.-?[_a-zA-Z]+[_a-zA-Z0-9-]*)/
+        TYPE = /(?<type>(?<name>[A-Z][a-zA-Z]*)(?<classes>#{CLASS}*))/
+        OTHER_TYPE = /(?<other_type>(?<other_name>[A-Z][a-zA-Z]*)(?<other_classes>#{CLASS}*))/
         OPERATOR = /(?<operator>\+|-|>)/
         DISTANCE = /(?<distance>[1-9][0-9]*)/
         RELATION = /(?<relation>#{S}#{OTHER_TYPE}#{S}#{OPERATOR}#{S}#{DISTANCE}?#{S})/

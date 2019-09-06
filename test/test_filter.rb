@@ -260,6 +260,17 @@ class FilterTest < MiniTest::Test
             end
         end
     end
+    
+    def test_classes()
+        filter_file_and_equal_file(
+            "test/pandoc_input/classes.md",
+            "test/pandoc_output/classes.md"
+        ) do
+            with "Header.section" do |title|
+              title.inner_markdown = "Section: #{title.inner_markdown}"
+            end
+        end
+    end
 
     def test_insert_paru_version_filter()
         version = lambda do |str|
