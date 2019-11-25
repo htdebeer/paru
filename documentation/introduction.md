@@ -14,4 +14,4 @@ See also the [paru API
 documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
 
 
-Note. Paru is compatible with both pandoc1 and pandoc2!
+Note. Pandoc 2.8 is supported since paru version 0.4.

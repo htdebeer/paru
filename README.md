@@ -1,8 +1,5 @@
 # Paru—Pandoc wrapped around in Ruby
 
-Note. Paru 0.3.x is incompatible with Pandoc >= 2.8.0. I am working on a new
-version of paru that is compatible with the latest release of Pandoc.
-
 ## Contents
 
   - [Introduction](#introduction)
@@ -37,7 +34,7 @@ real-world use case: generating the manual\!
 See also the [paru API
 documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
 
-Note. Paru is compatible with both pandoc1 and pandoc2\!
+Note. Pandoc 2.8 is supported since paru version 0.4.
 
 This README is a brief overview of paru’s features and usages.
 
@@ -69,12 +66,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.3.2.4.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.3.2.4.gem)
+[paru-0.4.0.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.0.0.gem)
 and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.3.2.4.gem
+gem install paru-0.4.0.0.gem
 ```
 
 Paru, obviously, requires pandoc. See
