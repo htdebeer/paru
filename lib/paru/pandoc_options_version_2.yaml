@@ -27,6 +27,7 @@ to:                         ""
 write:                      ""
 output:                     ""
 data_dir:                   ""
+defaults:                   ""
 bash_completion:            true
 verbose:                    true
 quiet:                      true
@@ -34,7 +35,7 @@ fail_if_warnings:           true
 log:                        ""
 list_input_formats:         true
 list_output_formats:        true
-list_extensions:            true
+list_extensions:            ""
 list_highlight_languages:   true
 list_highlight_styles:      true
 version:                    true
@@ -42,14 +43,14 @@ help:                       true
 #####
 # General reader options:
 #####
-base_header_level:          1
+shift_heading_level_by:     1
 indented_code_classes:      ""
 default_image_extension:    ""
 file_scope:                 true
 filter:                     [""]
 lua_filter:                 [""]
 metadata:                   [""]
-metadata-file:              ""
+metadata-file:              [""]
 preserve_tabs:              true
 tab_stop:                   4
 track_changes:              "accept"
@@ -122,16 +123,11 @@ biblatex:                   true
 #####
 # Math rendering in HTML
 #####
-asciimathml:                ""
-latexmathml:                ""
-mathml:                     true
-jsmath:                     ""
 mathjax:                    ""
-gladtex:                    true
-mimetex:                    ""
+mathml:                     true
 webtex:                     ""
 katex:                      ""
-katex_stylesheet:           ""
+gladtex:                    true
 #####
 # Options for wrapper scripts
 #####
