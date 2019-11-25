@@ -27,10 +27,12 @@ class FilterTest < MiniTest::Test
             to "markdown"
             standalone
         end
-
-        input = StringIO.new(pandoc2json << string)
-        output = StringIO.new
         
+        json = pandoc2json << string
+
+        input = StringIO.new(json)
+        output = StringIO.new
+
         Paru::Filter.new(input, output).filter(&filter_specification)
         
         result = json2pandoc << output.string
