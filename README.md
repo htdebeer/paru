@@ -1,5 +1,8 @@
 # Paru—Pandoc wrapped around in Ruby
 
+Note. Paru 0.3.x is incompatible with Pandoc >= 2.8.0. I am working on a new
+version of paru that is compatible with the latest release of Pandoc.
+
 ## Contents
 
   - [Introduction](#introduction)
