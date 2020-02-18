@@ -50,7 +50,7 @@ file_scope:                 true
 filter:                     [""]
 lua_filter:                 [""]
 metadata:                   [""]
-metadata-file:              [""]
+metadata_file:              [""]
 preserve_tabs:              true
 tab_stop:                   4
 track_changes:              "accept"
@@ -68,14 +68,14 @@ eol:                        "native"
 dpi:                        96
 wrap:                       "auto"
 columns:                    78
-strip-comments:             true
+strip_comments:             true
 toc:                        true
 table_of_contents:          true
 toc_depth:                  3
 strip_comments:             true
 no_highlight:               true
 highlight_style:            ""
-print-highlight-style:      ""
+print_highlight_style:      ""
 syntax_definition:          ""
 include_in_header:          [""]
 include_before_body:        [""]
@@ -109,7 +109,7 @@ epub_metadata:              ""
 epub_embed_font:            ""
 epub_chapter_level:         1
 epub_subdirectory:          ""
-ipynb-output:               "best"
+ipynb_output:               "best"
 pdf_engine:                 "pdflatex"
 pdf_engine_opt:             [""]
 #####
