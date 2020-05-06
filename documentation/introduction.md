@@ -12,6 +12,3 @@ case: generating the manual!
 
 See also the [paru API
 documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
-
-
-Note. Pandoc 2.8 is supported since paru version 0.4.
