@@ -45,12 +45,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.4.0.1.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.0.1.gem)
+[paru-0.4.0.2.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.0.2.gem)
 and install it by:
 
 ``` {.bash}
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.4.0.1.gem
+gem install paru-0.4.0.2.gem
 ```
 
 Paru, obviously, requires pandoc. See
@@ -379,7 +379,7 @@ parser = OptionParser.new do |opts|
   end
 
   opts.on("-v", "--version", "Show version") do 
-    puts "do-pandoc.rb is part of paru version 0.2.3"
+      puts "do-pandoc.rb is part of paru version 0.4.0.1"
     exit
   end
 end

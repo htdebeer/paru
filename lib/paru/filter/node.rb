@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017, 2020 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -26,12 +26,12 @@ module Paru
         # A Paru::Pandoc converter from JSON to markdown
         AST2MARKDOWN = Paru::Pandoc.new do
             from "json"
-            to "markdown"
+            to "markdown-smart"
         end
 
         # A Paru::Pandoc converter from markdown to JSON
         MARKDOWN2JSON = Paru::Pandoc.new do
-            from "markdown"
+            from "markdown+smart"
             to "json"
         end
 
