@@ -17,31 +17,42 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./block.rb"
-require_relative "./cell.rb"
+require_relative "./row.rb"
 
 module Paru
     module PandocFilter
-        # A TableRow node represents a row in a table's head or body
-        class TableRow < Block
-            attr_accessor :attr
+        # A TableBody node represents a row in a table's head or body
+        class TableBody < Block
+            attr_accessor :attr, :rowheadcolumnspec, :rowheadercolumns
 
             # Create a new TableRow based on the row_data
             #  
             # @!attribute attr
             # @return Attr
             #
-            # @!attribute cells
-            # @return [Block]
+            # @!attribute rowheadcolumns
+            # @return Integer
+            #
+            # @!attribute rowheadercolums
+            # @return [Row]
+            #
+            # @!attribute rows
+            # @return [Row]
             #
             # @param contents [Array]
             def initialize(contents)
                 @attr = Attr.new contents[0]
+                @rowheadcolumns = contents[1]["c"]
+                @rowheadercolumns = contents[2].map {|r| TableRow.new r}
 
-                super(contents[1])
+                super []
+                contents[3].each do |row|
+                    @children.push Row.new row["c"]
+                end
             end
 
-            def cells()
-              @children
+            def rows()
+                @children
             end
 
             # The AST contents of this TableRow
@@ -49,7 +60,9 @@ module Paru
             # @return [Array]
             def ast_contents
                 [
-                  @attr.ast_contents,
+                  @attr.to_ast,
+                  {"t": "RowHeadColumns", "c": @rowheadcolumns},
+                  @rowheadercolumns.map {|r| r.ast_contents},
                   @children.map {|child| child.ast_contents}
                 ]
             end

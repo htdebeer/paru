@@ -64,7 +64,11 @@ module Paru
             require_relative './plain.rb'
             require_relative './raw_block.rb'
             require_relative './table.rb'
+            require_relative './caption.rb'
             require_relative './table_row.rb'
+            require_relative './table_head.rb'
+            require_relative './table_foot.rb'
+            require_relative './cell.rb'
 
             # Inline level nodes
             require_relative './cite.rb'
@@ -88,6 +92,7 @@ module Paru
             require_relative './str.rb'
             require_relative './subscript.rb'
             require_relative './superscript.rb'
+            require_relative './short_caption.rb'
 
             # Metadata level nodes
             require_relative './meta_blocks.rb'

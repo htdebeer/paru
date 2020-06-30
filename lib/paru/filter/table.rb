@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017, 2020 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -19,44 +19,46 @@
 require "csv"
 require_relative "./block.rb"
 require_relative "./inline.rb"
+require_relative "./caption.rb"
+require_relative "./col_spec.rb"
+require_relative "./row.rb"
+require_relative "./table_head.rb"
+require_relative "./table_foot.rb"
+require_relative "./table_body.rb"
     
 module Paru
     module PandocFilter
-        # The allignment of a table column
-        ALIGNMENTS = ["AlignLeft", "AlignRight", "AlignCenter", "AlignDefault"]
 
         # A Table node represents a table with an inline caption, column
         # definition, widths, headers, and rows.
         #
         # @!attribute caption
-        #   @return [Inline]
+        #   @return Caption
+        #  
+        # @!attribute attr
+        #   @return Attr
         #
-        # @!attribute alignment
-        #   @return [ALIGNMENTS]
+        # @!attribute colspec
+        #   @return [ColSpec]
         #
-        # @!attribute column_widths
-        #   @return [Float]
-        #
-        # @!attribute headers
+        # @!attribute head
         #   @return [TableRow]
-        #
-        # @!attribute rows
-        #   @return [Array<TableRow>]
+        #   
+        # @!attribute foot
+        #   @return [TableRow]
         class Table < Block
-            attr_accessor :caption, :alignment, :column_widths, :headers, :rows
+            attr_accessor :caption, :attr, :colspec, :head, :foot
 
             # Create a new Table based on the contents
             #
             # @param contents [Array]
             def initialize(contents)
-                @caption = Inline.new contents[0]
-                @alignment = contents[1]
-                @column_widths = contents[2]
-                @headers = TableRow.new contents[3]
-                @children = []
-                contents[4].each do |row_data|
-                    @children.push TableRow.new row_data
-                end
+                @attr = Attr.new contents[0]
+                @caption = Caption.new contents[1]
+                @colspec = contents[2].map {|p| ColSpec.new p}
+                @head = TableHead.new contents[3]["c"]
+                super contents[4]
+                @foot = TableFoot.new contents[5]["c"]
             end
 
             # The AST contents of this Table node
@@ -64,11 +66,12 @@ module Paru
             # @return [Array]
             def ast_contents()
                 [
+                    @attr.to_ast,
                     @caption.ast_contents,
-                    @alignment,
-                    @column_widths,
-                    @headers.ast_contents,
-                    @children.map {|row| row.ast_contents}
+                    @colspec.map {|c| c.to_ast},
+                    @head.ast_contents,
+                    @children.map {|c| c.ast_contents},
+                    @foot.ast_contents,
                 ]
             end
 

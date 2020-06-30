@@ -21,11 +21,11 @@ require_relative "./cell.rb"
 
 module Paru
     module PandocFilter
-        # A TableRow node represents a row in a table's head or body
-        class TableRow < Block
+        # A Row node represents a row in a table's head or body
+        class Row < Block
             attr_accessor :attr
 
-            # Create a new TableRow based on the row_data
+            # Create a new Row based on the row_data
             #  
             # @!attribute attr
             # @return Attr
@@ -36,28 +36,30 @@ module Paru
             # @param contents [Array]
             def initialize(contents)
                 @attr = Attr.new contents[0]
-
-                super(contents[1])
+                super []
+                contents[1].each do |cell|
+                    @children.push Cell.new cell["c"]
+                end
             end
 
             def cells()
               @children
             end
 
-            # The AST contents of this TableRow
+            # The AST contents of this Row
             #
             # @return [Array]
             def ast_contents
                 [
-                  @attr.ast_contents,
+                  @attr.to_ast,
                   @children.map {|child| child.ast_contents}
                 ]
             end
 
-            # Convert this TableRow to an array of markdown strings, one for
+            # Convert this Row to an array of markdown strings, one for
             # each cell
             #
-            # @return [String[]] An Array representation of this TableRow.
+            # @return [String[]] An Array representation of this Row.
             def to_array()
                 @children.map do |cell|
                     cell.children.map{|c| c.markdown.strip}.join("\n")

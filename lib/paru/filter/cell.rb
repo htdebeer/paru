@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017, 2020 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2020 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -22,26 +22,31 @@ require_relative "./cell.rb"
 module Paru
     module PandocFilter
         # A TableRow node represents a row in a table's head or body
-        class TableRow < Block
-            attr_accessor :attr
+        class Cell < Block
+            attr_accessor :attr, :alignment, :rowspan, :colspan
 
             # Create a new TableRow based on the row_data
             #  
             # @!attribute attr
             # @return Attr
             #
-            # @!attribute cells
-            # @return [Block]
+            # @!attribute alignment
+            # @return String
+            #
+            # @!attribute rowspan
+            # @return Integer
+            #
+            # @!attribute colspan
+            # @return Integer
             #
             # @param contents [Array]
             def initialize(contents)
                 @attr = Attr.new contents[0]
+                @alignment = contents[1]["t"]
+                @rowspan = contents[2]["c"]
+                @colspan = contents[3]["c"]
 
-                super(contents[1])
-            end
-
-            def cells()
-              @children
+                super(contents[4])
             end
 
             # The AST contents of this TableRow
@@ -49,19 +54,12 @@ module Paru
             # @return [Array]
             def ast_contents
                 [
-                  @attr.ast_contents,
+                  @attr.to_ast,
+                  {"t": @alignment},
+                  {"t": "RowSpan", "c": @rowspan},
+                  {"t": "ColSpan", "c": @colspan},
                   @children.map {|child| child.ast_contents}
                 ]
-            end
-
-            # Convert this TableRow to an array of markdown strings, one for
-            # each cell
-            #
-            # @return [String[]] An Array representation of this TableRow.
-            def to_array()
-                @children.map do |cell|
-                    cell.children.map{|c| c.markdown.strip}.join("\n")
-                end
             end
         end
     end

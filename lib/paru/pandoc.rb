@@ -316,6 +316,8 @@ module Paru
                 error = ''
                 status = 0
 
+                warn "input=>>>#{input}<<<"
+
                 Open3.popen3(command) do |stdin, stdout, stderr, thread|
                     stdin << input unless input.nil?
                     stdin.close
