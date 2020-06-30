@@ -47,6 +47,7 @@ module Paru
     PANDOC_INLINE = [
         "Str",
         "Emph",
+        "Underline",
         "Strong",
         "Strikeout",
         "Superscript",
