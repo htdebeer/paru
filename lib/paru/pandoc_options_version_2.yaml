@@ -82,6 +82,7 @@ include_before_body:        [""]
 include_after_body:         [""]
 resource_path:              ""
 request_header:             ""
+no_check_certificate:       false
 #####
 # Options affecting specific writers
 #####

@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'paru'
-  s.version = '0.4.0.2'
-  s.date = '2020-06-20'
+  s.version = '0.4.1'
+  s.date = '2020-06-30'
   s.summary = 'Paru is a ruby wrapper around pandoc'
   s.description = 'Control pandoc with Ruby and write pandoc filters in Ruby'
   s.authors = ['Huub de Beer']
