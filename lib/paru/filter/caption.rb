@@ -40,7 +40,7 @@ module Paru
             # Does this Caption have a short caption?
             #
             # @return [Boolean]
-            def hasShort?()
+            def has_short?()
                 not @short.nil?
             end
 
@@ -56,8 +56,8 @@ module Paru
             # @return [Array]
             def ast_contents()
                 [
-                  if hasShort? then @short.ast_contents else nil end,
-                  @children.map {|row| row.ast_contents}
+                  if has_short? then @short.to_ast else nil end,
+                  @children.map {|row| row.to_ast}
                 ]
             end
         end

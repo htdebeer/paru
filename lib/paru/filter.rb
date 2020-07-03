@@ -39,6 +39,12 @@ module Paru
         "Header",
         "HorizontalRule",
         "Table",
+        "TableHead",
+        "TableFoot",
+        "TableBody",
+        "Row",
+        "Cell",
+        "Caption",
         "Div",
         "Null"
     ]

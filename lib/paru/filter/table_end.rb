@@ -18,7 +18,6 @@
 #++
 require "csv"
 require_relative "./block.rb"
-require_relative "./row.rb"
     
 module Paru
     module PandocFilter
@@ -30,19 +29,16 @@ module Paru
         #   @return Attr
         #
         # @!attribute rows
-        #   @return [TableRow]
+        #   @return [Row]
         class TableEnd < Block
-            attr_accessor :attr, :rows
+            attr_accessor :attr
 
             # Create a new TableEnd based on the contents
             #
             # @param contents [Array]
             def initialize(contents)
                 @attr = Attr.new contents[0]
-                super []
-                contents[1].each do |row|
-                    @children.push Row.new row["c"]
-                end
+                super contents[1]
             end
 
             def rows()
@@ -55,8 +51,19 @@ module Paru
             def ast_contents()
                 [
                     @attr.to_ast,
-                    @children.map {|row| row.ast_contents},
+                    @children.map {|row| row.to_ast},
                 ]
+            end
+            
+            # Convert this table end to a 2D table of markdown strings for each
+            # cell
+            #
+            # @return [String[][]] This Table as a 2D array of cells
+            # represented by their markdown strings.
+            def to_array()
+                @children.map do |row|
+                    row.to_array
+                end
             end
 
         end

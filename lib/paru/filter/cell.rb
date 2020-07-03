@@ -18,6 +18,7 @@
 #++
 require_relative "./block.rb"
 require_relative "./cell.rb"
+require_relative "./value.rb"
 
 module Paru
     module PandocFilter
@@ -31,22 +32,22 @@ module Paru
             # @return Attr
             #
             # @!attribute alignment
-            # @return String
+            # @return Value<String>
             #
             # @!attribute rowspan
-            # @return Integer
+            # @return Value<Integer>
             #
             # @!attribute colspan
-            # @return Integer
+            # @return Value[Integer]
             #
             # @param contents [Array]
             def initialize(contents)
                 @attr = Attr.new contents[0]
-                @alignment = contents[1]["t"]
-                @rowspan = contents[2]["c"]
-                @colspan = contents[3]["c"]
+                @alignment = Value.new contents[1]
+                @rowspan = Value.new contents[2]
+                @colspan = Value.new contents[3]
 
-                super(contents[4])
+                super contents[4]
             end
 
             # The AST contents of this TableRow
@@ -55,10 +56,10 @@ module Paru
             def ast_contents
                 [
                   @attr.to_ast,
-                  {"t": @alignment},
-                  {"t": "RowSpan", "c": @rowspan},
-                  {"t": "ColSpan", "c": @colspan},
-                  @children.map {|child| child.ast_contents}
+                  @alignment.to_ast,
+                  @rowspan.to_ast,
+                  @colspan.to_ast,
+                  @children.map {|child| child.to_ast}
                 ]
             end
         end

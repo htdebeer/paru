@@ -36,10 +36,7 @@ module Paru
             # @param contents [Array]
             def initialize(contents)
                 @attr = Attr.new contents[0]
-                super []
-                contents[1].each do |cell|
-                    @children.push Cell.new cell["c"]
-                end
+                super contents[1]
             end
 
             def cells()
@@ -52,7 +49,7 @@ module Paru
             def ast_contents
                 [
                   @attr.to_ast,
-                  @children.map {|child| child.ast_contents}
+                  @children.map {|child| child.to_ast}
                 ]
             end
 

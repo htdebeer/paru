@@ -18,6 +18,7 @@
 #++
 require_relative "./block.rb"
 require_relative "./row.rb"
+require_relative "./value.rb"
 
 module Paru
     module PandocFilter
@@ -31,7 +32,7 @@ module Paru
             # @return Attr
             #
             # @!attribute rowheadcolumns
-            # @return Integer
+            # @return Value<Integer>
             #
             # @!attribute rowheadercolums
             # @return [Row]
@@ -42,7 +43,7 @@ module Paru
             # @param contents [Array]
             def initialize(contents)
                 @attr = Attr.new contents[0]
-                @rowheadcolumns = contents[1]["c"]
+                @rowheadcolumns = Value.new contents[1]
                 @rowheadercolumns = contents[2].map {|r| TableRow.new r}
 
                 super []
@@ -61,19 +62,20 @@ module Paru
             def ast_contents
                 [
                   @attr.to_ast,
-                  {"t": "RowHeadColumns", "c": @rowheadcolumns},
-                  @rowheadercolumns.map {|r| r.ast_contents},
-                  @children.map {|child| child.ast_contents}
+                  @rowheadcolumns.to_ast,
+                  @rowheadercolumns.map {|r| r.to_ast},
+                  @children.map {|child| child.to_ast}
                 ]
             end
-
-            # Convert this TableRow to an array of markdown strings, one for
-            # each cell
+            
+            # Convert this table end to a 2D table of markdown strings for each
+            # cell
             #
-            # @return [String[]] An Array representation of this TableRow.
+            # @return [String[][]] This Table as a 2D array of cells
+            # represented by their markdown strings.
             def to_array()
-                @children.map do |cell|
-                    cell.children.map{|c| c.markdown.strip}.join("\n")
+                @children.map do |row|
+                    row.to_array
                 end
             end
         end

@@ -54,7 +54,7 @@ module Paru
             # @param contents [Array]
             def initialize(contents)
                 @attr = Attr.new contents[0]
-                @caption = Caption.new contents[1]
+                @caption = Caption.new contents[1]["c"]
                 @colspec = contents[2].map {|p| ColSpec.new p}
                 @head = TableHead.new contents[3]["c"]
                 super contents[4]
@@ -67,11 +67,11 @@ module Paru
             def ast_contents()
                 [
                     @attr.to_ast,
-                    @caption.ast_contents,
+                    @caption.to_ast,
                     @colspec.map {|c| c.to_ast},
-                    @head.ast_contents,
-                    @children.map {|c| c.ast_contents},
-                    @foot.ast_contents,
+                    @head.to_ast,
+                    @children.map {|c| c.to_ast},
+                    @foot.to_ast,
                 ]
             end
 
@@ -85,14 +85,19 @@ module Paru
             # represented by their markdown strings.
             def to_array(**config)
                 headers = if config.has_key? :headers then config[:headers] else false end
+                footers = if config.has_key? :footers then config[:footers] else false end
 
                 data = []
                 if headers then
-                    data.push @headers.to_array
+                    data.concat @head.to_array
                 end
 
                 @children.each do |row|
-                    data.push row.to_array
+                    data.concat row.to_array
+                end
+                
+                if footers then
+                    data.concat @foot.to_array
                 end
 
                 data

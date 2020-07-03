@@ -17,7 +17,6 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "../pandoc.rb"
-
 require_relative './ast_manipulation.rb'
 
 module Paru
@@ -65,9 +64,9 @@ module Paru
             require_relative './raw_block.rb'
             require_relative './table.rb'
             require_relative './caption.rb'
-            require_relative './table_row.rb'
             require_relative './table_head.rb'
             require_relative './table_foot.rb'
+            require_relative './row.rb'
             require_relative './cell.rb'
 
             # Inline level nodes
