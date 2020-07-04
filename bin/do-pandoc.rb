@@ -16,7 +16,7 @@ parser = OptionParser.new do |opts|
   end
 
   opts.on("-v", "--version", "Show version") do 
-      puts "do-pandoc.rb is part of paru version 0.4.0.1"
+      puts "do-pandoc.rb is part of paru version 0.4.1"
     exit
   end
 end

@@ -23,28 +23,29 @@ require_relative "./value.rb"
 module Paru
     module PandocFilter
         # A TableBody node represents a row in a table's head or body
+        #  
+        # @!attribute attr
+        #   @return Attr
+        #
+        # @!attribute rowheadcolumns
+        #   @return Value containing an Integer indicating the number of head
+        #   columns.
+        #
+        # @!attribute rowheadercolums
+        #   @return [Row]
+        #
+        # @!attribute rows
+        #   @return [Row]
         class TableBody < Block
             attr_accessor :attr, :rowheadcolumnspec, :rowheadercolumns
 
-            # Create a new TableRow based on the row_data
-            #  
-            # @!attribute attr
-            # @return Attr
+            # Create a new TableBody
             #
-            # @!attribute rowheadcolumns
-            # @return Value<Integer>
-            #
-            # @!attribute rowheadercolums
-            # @return [Row]
-            #
-            # @!attribute rows
-            # @return [Row]
-            #
-            # @param contents [Array]
+            # @param contents [Array] The contents of this TableBody
             def initialize(contents)
                 @attr = Attr.new contents[0]
                 @rowheadcolumns = Value.new contents[1]
-                @rowheadercolumns = contents[2].map {|r| TableRow.new r}
+                @rowheadercolumns = contents[2].map {|r| Row.new r}
 
                 super []
                 contents[3].each do |row|
@@ -52,11 +53,14 @@ module Paru
                 end
             end
 
+            # The rows in this TableBody
+            #
+            # @return [Array<Row>]
             def rows()
                 @children
             end
 
-            # The AST contents of this TableRow
+            # The AST contents of this TableBody
             #
             # @return [Array]
             def ast_contents

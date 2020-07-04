@@ -21,24 +21,29 @@ require_relative "./cell.rb"
 
 module Paru
     module PandocFilter
+
         # A Row node represents a row in a table's head or body
+        #  
+        # @!attribute attr
+        #   @return Attr
+        #
+        # @!attribute cells
+        #   @return [Block]
         class Row < Block
             attr_accessor :attr
 
             # Create a new Row based on the row_data
-            #  
-            # @!attribute attr
-            # @return Attr
             #
-            # @!attribute cells
-            # @return [Block]
-            #
-            # @param contents [Array]
-            def initialize(contents)
+            # @param contents [Array = []] the contents of
+            #   this Row node
+            def initialize(contents = [])
                 @attr = Attr.new contents[0]
                 super contents[1]
             end
 
+            # The cells of this row
+            #
+            # @return [Array<Cell>]
             def cells()
               @children
             end

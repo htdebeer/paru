@@ -42,10 +42,10 @@ module Paru
         #   @return [ColSpec]
         #
         # @!attribute head
-        #   @return [TableRow]
+        #   @return [TableHead]
         #   
         # @!attribute foot
-        #   @return [TableRow]
+        #   @return [TableHead]
         class Table < Block
             attr_accessor :caption, :attr, :colspec, :head, :foot
 
@@ -121,53 +121,53 @@ module Paru
             # @param config [Hash] configuration of the list.
             #   properties:
             #     :headers [Boolean] True if data includes headers on first
-            #     row
+            #     row. Defailts to false.
             #     :caption [String] The table's caption
-            #     :alignment [String[]] An array with alignments for each
-            #     column. Should have an alignment for all columns. Defaults
-            #     to "AlignLeft"
-            #     :widhts [Number[]] An array with column widths. Should have
-            #     a width for all columns. Use 0 for no set width. Defaults to
-            #     0
+            #     :footers [Boolean] True if data includes footers on last row,
+            #     default to false.
             #
             # @return [Table]
             def self.from_array(data, **config)
-                return Table.new [[],[],[],[],[]] if data.empty? 
+                # With the updated Table definition, it has become complicated
+                # to construct a table manually. It has gotten easier to just
+                # construct a string containing a table in Pandoc's markdown and
+                # load that. I did remove setting alignments and column widths,
+                # though, because that is a bit of a hassle to get right.
 
-                headers = if config.has_key? :headers then 
-                              config[:headers] 
-                          else 
-                              false 
-                          end
-                caption = if config.has_key? :caption then 
-                              Block.from_markdown(config[:caption]).ast_contents 
-                          else 
-                              [] 
-                          end
+                markdown_table = ""
+                header = ""
+                footer = ""
 
-                alignment = if config.has_key? :alignment then 
-                                config[:alignment].map {|a| {"t" => "#{a}"}} 
-                            else
-                                data.first.map {|_| {"t"=>"AlignLeft"}}
-                            end
-
-                widths = if config.has_key? :widths then
-                            config[:widths] 
-                         else
-                             data.first.map {|_| 0}
-                         end
-
-                header = []
-                rows = data
-                if headers then
-                    header = data.first
-                    header = header.map {|cell| [Block.from_markdown(cell).to_ast]}
-                    rows = data.slice(1..-1)
+                if config.has_key? :headers and config[:headers] then
+                    head_row = data.first
+                    header += head_row.join(" \t") + "\n"
+                    header += head_row.map {|s| s.gsub(/./, "-") + "-"}.join("\t") + "\n"
+                    data = data.slice(1..-1)
                 end
-                
-                rows = rows.map {|row| row.map {|cell| [Block.from_markdown(cell).to_ast]}}
 
-                Table.new [caption, alignment, widths, header, rows]
+                if config.has_key? :footers and config[:footers] then
+                    foot_row = data.first
+                    footer += foot_row.join(" \t") + "\n"
+                    footer += foot_row.map {|s| s.gsub(/./, "-") + "-"}.join("\t") + "\n"
+                    data = data.slice(0, -2)
+                end
+
+                data.each do |row|
+                  markdown_table += row.join(" \t") + "\n"
+                end
+
+                markdown_table = header + markdown_table + footer
+
+                if config.has_key? :caption then
+                  markdown_table += "\n"
+                  markdown_table += ": #{config[:caption]}\n"
+                end
+
+                table = Block.new []
+                table.markdown = markdown_table
+                table = table.children.first
+
+                table              
             end
 
 

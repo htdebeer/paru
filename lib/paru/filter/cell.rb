@@ -17,28 +17,28 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./block.rb"
-require_relative "./cell.rb"
 require_relative "./value.rb"
 
 module Paru
     module PandocFilter
-        # A TableRow node represents a row in a table's head or body
+        # A Cell node represents a cell  in a table's head, body, or foot
+        #  
+        # @!attribute attr
+        #   @return Attr
+        #
+        # @!attribute alignment
+        #   @return Value containing a String, one of AlignRight, AlignLeft,
+        #   AlignCenter, or AlignDefault.
+        #
+        # @!attribute rowspan
+        #   @return Value containing an Integer
+        #
+        # @!attribute colspan
+        #   @return Value containing an Integer
         class Cell < Block
             attr_accessor :attr, :alignment, :rowspan, :colspan
 
-            # Create a new TableRow based on the row_data
-            #  
-            # @!attribute attr
-            # @return Attr
-            #
-            # @!attribute alignment
-            # @return Value<String>
-            #
-            # @!attribute rowspan
-            # @return Value<Integer>
-            #
-            # @!attribute colspan
-            # @return Value[Integer]
+            # Create a new Cell based on the row_data
             #
             # @param contents [Array]
             def initialize(contents)
@@ -50,7 +50,7 @@ module Paru
                 super contents[4]
             end
 
-            # The AST contents of this TableRow
+            # The AST contents of this Cell
             #
             # @return [Array]
             def ast_contents

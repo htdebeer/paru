@@ -16,12 +16,18 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+require_relative "./value.rb"
+
 module Paru
     module PandocFilter
         # The allignment of a table column
         ALIGNMENTS = ["AlignLeft", "AlignRight", "AlignCenter", "AlignDefault"]
+
+        # The default width of a column
         COL_WIDTH_DEFAULT = "ColWidthDefault"
 
+        # Default value for a column specification: left aligned with default
+        # width
         DEFAULT_COLSPEC = [{"t": "AlignLeft"}, {"t": COL_WIDTH_DEFAULT}]
 
         # ColSpec represents a colspec definition for a table column. It contains an alignment and the column's width.
@@ -38,18 +44,29 @@ module Paru
 
             # Create a new ColSpec object
             #
-            # @param attributes [Array = DEFAULT_COLSPEC] the attributes as [alignment, width]
-            def initialize(pair = DEFAULT_COLSPEC)
-                @alignment = pair[0]["t"]
-                @width = if pair[1]["t"] == COL_WIDTH_DEFAULT then
-                            COL_WIDTH_DEFAULT
-                         else
-                            pair[1]["c"]
-                         end
+            # @param contents [Array = DEFAULT_COLSPEC] the attributes as a pair of [alignment, width]
+            def initialize(contents = DEFAULT_COLSPEC)
+                @alignment = Value.new contents[0]
+                @width = Value.new contents[1]
             end
 
-            def default_width?()
-                return @width == COL_WIDTH_DEFAULT
+            # Set the width
+            #
+            # @param [String|Integer|Float] new_width the new width. If it is
+            # "ColWidthDefault", it uses the default value.
+            def width=(new_width)
+                if new_width == "ColWidthDefault" then
+                    @width = Value.new({"t": new_width})
+                else
+                    @width = Value.new({"t": "ColWidth", "c": new_width})
+                end
+            end
+
+            # Set the alignment
+            #
+            # @param [String] new_alignment the new alignment.
+            def alignment=(new_alignment)
+                @alignment.value = new_alignment
             end
 
             # Convert this attributes object to an AST representation
@@ -58,8 +75,8 @@ module Paru
             #   key-value pair list
             def to_ast
                 [
-                  {"t": @alignment},
-                  if default_width? then {"t": "ColWidthDefault"} else {"t":"ColWidth", "c": @width} end
+                  @alignment.to_ast,
+                  @width.to_ast
                 ]
             end
         end

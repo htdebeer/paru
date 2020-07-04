@@ -22,6 +22,7 @@ require_relative "../filter_error.rb"
 module Paru
     module PandocFilter
 
+        # Values without value are encoded in their type name.
         VALUE_ENCODED_IN_TYPE_NAME = :value_encoded_in_type_name
 
         # A Value node that represents some sort of metadata about block or

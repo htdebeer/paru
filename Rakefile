@@ -10,6 +10,7 @@ task :default => :test
 
 YARD::Rake::YardocTask.new do |t|
     t.files = ['lib/paru.rb', 'lib/**/*.rb']
+    t.options = ["list-undoc"]
 end
 
 task :generate_doc do

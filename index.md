@@ -45,12 +45,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.4.0.2.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.0.2.gem)
+[paru-0.4.1.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.1.gem)
 and install it by:
 
 ``` {.bash}
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.4.0.2.gem
+gem install paru-0.4.1.gem
 ```
 
 Paru, obviously, requires pandoc. See
@@ -379,7 +379,7 @@ parser = OptionParser.new do |opts|
   end
 
   opts.on("-v", "--version", "Show version") do 
-      puts "do-pandoc.rb is part of paru version 0.4.0.1"
+      puts "do-pandoc.rb is part of paru version 0.4.1"
     exit
   end
 end
@@ -924,9 +924,9 @@ Feel free to ask me a question: [send me an
 email](mailto:Huub@heerdebeer.org) or submit a new
 [issue](https://github.com/htdebeer/paru/issues) if you've found a bug!
 
--   *I get an error like "'values\_at': no implicit conversion of String
+-   *I get an error like "'values_at': no implicit conversion of String
     into Integer (TypeError) from lib/paru/filter/document.rb:54:in
-    'from\_JSON'"*
+    'from_JSON'"*
 
     The most likely cause is that you're using an old version of Pandoc.
     Paru version 0.2.x only supports pandoc version 1.18 and up. In

@@ -23,7 +23,7 @@ module Paru
     module PandocFilter
 
         # A TableEnd node is the base class for the TableHead and TableFoot
-        # nodes. It has attributes and one or more TableRows.
+        # nodes. It has attributes and one or more rows.
         #  
         # @!attribute attr
         #   @return Attr
