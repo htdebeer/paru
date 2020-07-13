@@ -163,6 +163,17 @@ class FilterTest < MiniTest::Test
         end
     end
 
+    def test_underline()
+      filter_file_and_equal_file(
+        "test/pandoc_input/underlined.md",
+        "test/pandoc_output/underlined.md"
+      ) do
+        with "Underline" do |u|
+          u.inner_markdown = "underlined"
+        end
+      end
+    end
+
     def test_number_figures_per_chapter()
         current_chapter = 0
         current_figure = 0;

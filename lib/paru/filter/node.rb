@@ -92,6 +92,7 @@ module Paru
             require_relative './subscript.rb'
             require_relative './superscript.rb'
             require_relative './short_caption.rb'
+            require_relative './underline.rb'
 
             # Metadata level nodes
             require_relative './meta_blocks.rb'
