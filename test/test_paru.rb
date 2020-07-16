@@ -21,11 +21,12 @@ class ParuTest < MiniTest::Test
 
     def test_info()
       info = Paru::Pandoc.info
-      assert_match(/\d+\.\d+/, info[:version])
+      assert_match(/\d+\.\d+/, info[:version].join("."))
       if Gem.win_platform?
         assert_match(/\\pandoc$/, info[:data_dir])
       else
-          if "2.7" <= info[:version] then
+          major, minor = info[:version]
+          if 2 <= major and 7 <= minor then
             assert_match(/\.local\/share\/pandoc$/, info[:data_dir])
           else
             assert_match(/\.pandoc$/, info[:data_dir])

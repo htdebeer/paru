@@ -17,7 +17,7 @@
 [![Gem
 Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
 
-**Note.** For pandoc versions ≥ 2.10 use paru version ≥ 0.4.1.1;
+**Note.** For pandoc versions ≥ 2.10 use paru version ≥ 0.4.1.2;
 otherwise use paru version 0.4.0.1.
 
 ## Introduction
@@ -67,12 +67,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.4.1.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.1.0.gem)
+[paru-0.4.1.2.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.1.2.gem)
 and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.4.1.0.gem
+gem install paru-0.4.1.2.gem
 ```
 
 Paru, obviously, requires pandoc. See

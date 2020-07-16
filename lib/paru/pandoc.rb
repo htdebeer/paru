@@ -92,8 +92,8 @@ module Paru
         # directory. This method is typically used in scripts that use Paru to
         # automate the use of pandoc.
         #
-        # @return [Hash{:version => String, :data_dir => String}] Pandoc's
-        #   version, such as "1.17.0.4" and the data directory, such as "/home/huub/.pandoc".
+        # @return [Hash{:version => Array<Integer>, :data_dir => String}] Pandoc's
+        #   version, such as "[2.10.1]" and the data directory, such as "/home/huub/.pandoc".
         def self.info()
             @@info
         end
@@ -226,9 +226,13 @@ module Paru
             throw Error.new "Unable to run pandoc via command '#{@@pandoc_exec} --version': #{err.message}"
         end
 
-        version = version_string.match(/pandoc.* (\d+\.\d+.*)$/)[1]
+        version = version_string
+                    .match(/pandoc.* (\d+\.\d+.*)$/)[1]
+                    .split(".")
+                    .map {|s| s.to_i}
+        major_version, minor_version = version
 
-        if "2.7" <= version then
+        if major_version >= 2 and minor_version >= 7 then
             # Pandoc version 2.7 introduced a new default data dir to comply
             # with XDG Base Directory Specification
             xdg_data_dir, old_data_dir = version_string.match(/Default user data directory: (.+)$/)[1].split(" or ")
@@ -254,8 +258,6 @@ module Paru
         }
 
         # Load the options for the appropriate major version of pandoc
-        major_version = @@info[:version].split(".").first.to_i
-
         if not [1, 2].include? major_version 
             throw Error.new "Unknown major pandoc version: '#{major_version}'. Expected the major version to be '1' or '2'. Please check the pandoc path: '#{@@pandoc_exec}'."
             # defaults to version 1
