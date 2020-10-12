@@ -116,6 +116,7 @@ pdf_engine_opt:             [""]
 #####
 # Citation rendering
 #####
+citeproc:                   true
 bibliography:               ""
 csl:                        ""
 citation_abbreviations:      ""

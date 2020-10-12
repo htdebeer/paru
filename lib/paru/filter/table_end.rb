@@ -38,7 +38,10 @@ module Paru
             # @param contents [Array]
             def initialize(contents)
                 @attr = Attr.new contents[0]
-                super contents[1]
+                super []
+                contents[1].each do |row|
+                    @children.push Row.new row
+                end
             end
 
             def rows()
@@ -53,6 +56,10 @@ module Paru
                     @attr.to_ast,
                     @children.map {|row| row.to_ast},
                 ]
+            end
+
+            def to_ast()
+              ast_contents()
             end
             
             # Convert this table end to a 2D table of markdown strings for each

@@ -122,6 +122,7 @@ class ParuTest < MiniTest::Test
         converter = Paru::Pandoc.new do
             from "markdown"
             to "markdown"
+            citeproc
             bibliography "some_non_existing_file.bib"
         end
 

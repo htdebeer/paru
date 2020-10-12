@@ -36,7 +36,7 @@ module Paru
 
         # The current pandoc type version
         # @see https://hackage.haskell.org/package/pandoc-types
-        CURRENT_PANDOC_VERSION = [1, 21]
+        CURRENT_PANDOC_VERSION = [1, 22]
 
         # Each file that is being filtered by pandoc is represented by a root
         # Document. It is the root node of the AST of the document in the file.

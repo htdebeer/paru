@@ -44,12 +44,12 @@ module Paru
             # @param contents [Array] The contents of this TableBody
             def initialize(contents)
                 @attr = Attr.new contents[0]
-                @rowheadcolumns = Value.new contents[1]
+                @rowheadcolumns = IntValue.new contents[1]
                 @rowheadercolumns = contents[2].map {|r| Row.new r}
 
                 super []
                 contents[3].each do |row|
-                    @children.push Row.new row["c"]
+                    @children.push Row.new row
                 end
             end
 
@@ -70,6 +70,10 @@ module Paru
                   @rowheadercolumns.map {|r| r.to_ast},
                   @children.map {|child| child.to_ast}
                 ]
+            end
+
+            def to_ast()
+              ast_contents()
             end
             
             # Convert this table end to a 2D table of markdown strings for each

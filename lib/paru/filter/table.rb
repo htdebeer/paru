@@ -54,11 +54,14 @@ module Paru
             # @param contents [Array]
             def initialize(contents)
                 @attr = Attr.new contents[0]
-                @caption = Caption.new contents[1]["c"]
+                @caption = Caption.new contents[1]
                 @colspec = contents[2].map {|p| ColSpec.new p}
-                @head = TableHead.new contents[3]["c"]
-                super contents[4]
-                @foot = TableFoot.new contents[5]["c"]
+                @head = TableHead.new contents[3]
+                super []
+                contents[4].each do |table_body|
+                    @children.push TableBody.new table_body
+                end
+                @foot = TableFoot.new contents[5]
             end
 
             # The AST contents of this Table node

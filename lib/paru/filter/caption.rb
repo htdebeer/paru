@@ -60,6 +60,10 @@ module Paru
                   @children.map {|row| row.to_ast}
                 ]
             end
+
+            def to_ast()
+              ast_contents()
+            end
         end
     end
 end

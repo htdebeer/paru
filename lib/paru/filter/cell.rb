@@ -18,6 +18,7 @@
 #++
 require_relative "./block.rb"
 require_relative "./value.rb"
+require_relative "./int_value.rb"
 
 module Paru
     module PandocFilter
@@ -44,8 +45,8 @@ module Paru
             def initialize(contents)
                 @attr = Attr.new contents[0]
                 @alignment = Value.new contents[1]
-                @rowspan = Value.new contents[2]
-                @colspan = Value.new contents[3]
+                @rowspan = IntValue.new contents[2]
+                @colspan = IntValue.new contents[3]
 
                 super contents[4]
             end
@@ -61,6 +62,10 @@ module Paru
                   @colspan.to_ast,
                   @children.map {|child| child.to_ast}
                 ]
+            end
+
+            def to_ast()
+              ast_contents()
             end
         end
     end

@@ -2,25 +2,26 @@
 
 ## Contents
 
-  - [Introduction](#introduction)
-      - [Licence](#licence)
-      - [Acknowledgements](#acknowledgements)
-      - [Installation](#installation)
-  - [Paru says hello to pandoc](#paru-says-hello-to-pandoc)
-  - [Writing and using pandoc filters with
+-   [Introduction](#introduction)
+    -   [Licence](#licence)
+    -   [Acknowledgements](#acknowledgements)
+    -   [Installation](#installation)
+-   [Paru says hello to pandoc](#paru-says-hello-to-pandoc)
+-   [Writing and using pandoc filters with
     paru](#writing-and-using-pandoc-filters-with-paru)
-  - [Documentation](#documentation)
-      - [Manual](#manual)
-      - [API documentation](#api-documentation)
-      - [Frequently asked questions](#frequently-asked-questions)
+-   [Documentation](#documentation)
+    -   [Manual](#manual)
+    -   [API documentation](#api-documentation)
+    -   [Frequently asked questions](#frequently-asked-questions)
 
 [![Gem
 Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
 
-**Note.** For pandoc versions ≥ 2.10 use paru version ≥ 0.4.1.2;
-otherwise use paru version 0.4.0.1.
+**Note.** For pandoc versions ≥ 2.11 use paru version ≥ 0.4.2; otherwise
+use paru version 0.4.1.2.
 
-## Introduction
+Introduction
+------------
 
 Paru is a simple Ruby wrapper around [pandoc](http://www.pandoc.org),
 the great multi-format document converter. Paru supports automating
@@ -32,7 +33,7 @@ manual](https://heerdebeer.org/Software/markdown/paru/#writing-and-using-pandoc-
 In [paru’s manual](https://heerdebeer.org/Software/markdown/paru/) the
 use of paru is explained in detail, from explaining how to install and
 use paru, creating and using filters, to putting it all together in a
-real-world use case: generating the manual\!
+real-world use case: generating the manual!
 
 See also the [paru API
 documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
@@ -53,10 +54,10 @@ patches, bug reports, fixes, and suggestions. With your help paru is
 growing beyond a simple tool for personal use into a useful addition to
 the pandoc ecosystem.
 
-  - [Ian](https://github.com/iandol)
-  - [Michael Kussmaul](https://github.com/kusmi)
-  - [Xavier Belanche Alonso](https://github.com/xbelanch)
-  - [Robert Riemann](https://github.com/rriemann)
+-   [Ian](https://github.com/iandol)
+-   [Michael Kussmaul](https://github.com/kusmi)
+-   [Xavier Belanche Alonso](https://github.com/xbelanch)
+-   [Robert Riemann](https://github.com/rriemann)
 
 ### Installation
 
@@ -67,25 +68,26 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.4.1.2.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.1.2.gem)
+[paru-0.4.2.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.2.0.gem)
 and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.4.1.2.gem
+gem install paru-0.4.2.0.gem
 ```
 
 Paru, obviously, requires pandoc. See
-<http://pandoc.org/installing.html> about how to install pandoc on your
-system and [pandoc’s manual](http://pandoc.org/README.html) on how to
-use pandoc.
+<a href="http://pandoc.org/installing.html" class="uri">http://pandoc.org/installing.html</a>
+about how to install pandoc on your system and [pandoc’s
+manual](http://pandoc.org/README.html) on how to use pandoc.
 
 You can generate the [API documentation for
 paru](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/)
 by cloning the repository and running `rake yard`. It’ll put it in
 `documentation/api-doc`.
 
-## Paru says hello to pandoc
+Paru says hello to pandoc
+-------------------------
 
 Using paru is straightforward. It is a thin “rubyesque” layer around the
 pandoc executable. After requiring paru in your ruby program, you create
@@ -157,7 +159,8 @@ to convert that path using the current configured pandoc configuration.
 In the next chapter, the development of *do-pandoc.rb* is presented as
 an example of real-world usage of paru.
 
-## Writing and using pandoc filters with paru
+Writing and using pandoc filters with paru
+------------------------------------------
 
 One of pandoc’s interesting capabilities are [custom
 filters](http://pandoc.org/scripting.html). This is an extremely
@@ -226,7 +229,8 @@ class. Furthermore, example filters can also be found in the [filters
 sub directory](examples/filters) of paru’s [examples](examples/). Feel
 free to copy and adapt them to your needs.
 
-## Documentation
+Documentation
+-------------
 
 ### Manual
 
@@ -246,15 +250,15 @@ also give more examples of using paru and writing filters.
 
 Feel free to ask me a question: [send me an
 email](mailto:Huub@heerdebeer.org) or submit a new
-[issue](https://github.com/htdebeer/paru/issues) if you’ve found a bug\!
+[issue](https://github.com/htdebeer/paru/issues) if you’ve found a bug!
 
-  - *I get an error like “Erro: JSON parse error: Error in $:
+-   *I get an error like “Erro: JSON parse error: Error in $:
     Incompatible API versions: encoded with \[1,20\] but attempted to
     decode with \[1,21\].”*
-    
+
     The versions of pandoc and paru you are using are incompatible.
     Please install the latest versions of pandoc and paru.
-    
+
     Why does this happen? Internally pandoc uses
     [pandoc-types](https://hackage.haskell.org/package/pandoc-types) to
     represent documents its converts and filters. Documents represented
@@ -264,13 +268,13 @@ email](mailto:Huub@heerdebeer.org) or submit a new
     are not guaranteed to work on documents represented by another
     version of pandoc-types. As a result, not all paru versions work
     together with all pandoc versions.
-    
+
     As a general rule: Use the latest versions of pandoc and paru.
 
-  - *I get an error like “‘values\_at’: no implicit conversion of String
+-   *I get an error like “‘values\_at’: no implicit conversion of String
     into Integer (TypeError) from lib/paru/filter/document.rb:54:in
     ‘from\_JSON’”*
-    
+
     The most likely cause is that you’re using an old version of Pandoc.
     Paru version 0.2.x only supports pandoc version 1.18 and up. In
     pandoc version 1.18 there was a breaking API change in the way

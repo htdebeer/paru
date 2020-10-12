@@ -38,7 +38,10 @@ module Paru
             #   this Row node
             def initialize(contents = [])
                 @attr = Attr.new contents[0]
-                super contents[1]
+                super []
+                contents[1].each do |cell|
+                    @children.push Cell.new cell
+                end
             end
 
             # The cells of this row
@@ -56,6 +59,10 @@ module Paru
                   @attr.to_ast,
                   @children.map {|child| child.to_ast}
                 ]
+            end
+
+            def to_ast()
+              ast_contents()
             end
 
             # Convert this Row to an array of markdown strings, one for
