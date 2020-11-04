@@ -230,26 +230,23 @@ module Paru
                     .match(/pandoc.* (\d+\.\d+.*)$/)[1]
                     .split(".")
                     .map {|s| s.to_i}
-        major_version, minor_version = version
+        major_version = version[0]
 
-        if major_version >= 2 and minor_version >= 7 then
-            # Pandoc version 2.7 introduced a new default data dir to comply
-            # with XDG Base Directory Specification
-            xdg_data_dir, old_data_dir = version_string.match(/Default user data directory: (.+)$/)[1].split(" or ")
+        # Pandoc version 2.7 introduced a new default data dir to comply
+        # with XDG Base Directory Specification
 
-            if File.directory? xdg_data_dir then
-                data_dir = xdg_data_dir
-            elsif not old_data_dir.nil? and File.directory? old_data_dir then
-                # The new-style data directory does not exist, but the
-                # old-style does, so use the old-style data directory for
-                # backwards compatibility
-                data_dir = old_data_dir
-            else
-                # Neither data directory exists, default to the new default
-                data_dir = xdg_data_dir
-            end
+        xdg_data_dir, old_data_dir = version_string.match(/User data directory: (.+)$/)[1].split(" or ")
+
+        if File.directory? xdg_data_dir then
+            data_dir = xdg_data_dir
+        elsif not old_data_dir.nil? and File.directory? old_data_dir then
+            # The new-style data directory does not exist, but the
+            # old-style does, so use the old-style data directory for
+            # backwards compatibility
+            data_dir = old_data_dir
         else
-            data_dir = version_string.match(/Default user data directory: (.+)$/)[1]
+            # Neither data directory exists, default to the new default
+            data_dir = xdg_data_dir
         end
 
         @@info = {
