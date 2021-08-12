@@ -1,4 +1,4 @@
-Paru is a simple Ruby wrapper around [pandoc](http://www.pandoc.org), the
+Paru is a simple Ruby wrapper around [pandoc](https://www.pandoc.org), the
 great multi-format document converter. Paru supports automating pandoc by
 writing Ruby programs and using pandoc in your Ruby programs (see [Chapter 2
 in the

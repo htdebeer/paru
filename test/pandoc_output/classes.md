@@ -1,13 +1,10 @@
-Overall title {.-some-class}
-============================
+# Overall title {.-some-class}
 
-Section: First section {#first-section .section}
-----------------------
+## Section: First section {#first-section .section}
 
 Some content
 
-Section: Second section {#second-section .section}
------------------------
+## Section: Second section {#second-section .section}
 
 More content
 

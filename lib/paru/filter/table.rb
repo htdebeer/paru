@@ -86,7 +86,7 @@ module Paru
             #
             # @return [String[][]] This Table as a 2D array of cells
             # represented by their markdown strings.
-            def to_array(**config)
+            def to_array(config = {})
                 headers = if config.has_key? :headers then config[:headers] else false end
                 footers = if config.has_key? :footers then config[:footers] else false end
 
@@ -111,9 +111,9 @@ module Paru
             #
             # @param filename [String] filename to write to
             # @param config [Hash] See #to_array for config options
-            def to_file(filename, **config)
+            def to_file(filename, config = {})
                 CSV.open(filename, "wb") do |csv|
-                    to_array(config).each {|row| csv << row}
+                    to_array(**config).each {|row| csv << row}
                 end
             end
 
@@ -130,7 +130,7 @@ module Paru
             #     default to false.
             #
             # @return [Table]
-            def self.from_array(data, **config)
+            def self.from_array(data, config = {})
                 # With the updated Table definition, it has become complicated
                 # to construct a table manually. It has gotten easier to just
                 # construct a string containing a table in Pandoc's markdown and
@@ -180,7 +180,7 @@ module Paru
             # @param config [Hash] See #from_file for details
             #
             # @return [Table]
-            def self.from_file(filename, **config) 
+            def self.from_file(filename, config = {}) 
                 data = []
                 CSV.foreach(filename) do |row|
                     data << row

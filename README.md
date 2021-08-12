@@ -20,10 +20,9 @@ Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
 **Note.** For pandoc versions ≥ 2.11 use paru version ≥ 0.4.2; otherwise
 use paru version 0.4.1.2.
 
-Introduction
-------------
+## Introduction
 
-Paru is a simple Ruby wrapper around [pandoc](http://www.pandoc.org),
+Paru is a simple Ruby wrapper around [pandoc](https://www.pandoc.org),
 the great multi-format document converter. Paru supports automating
 pandoc by writing Ruby programs and using pandoc in your Ruby programs
 (see [Chapter 2 in the
@@ -68,12 +67,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.4.2.1.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.2.1.gem)
+[paru-0.4.2.2.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.2.2.gem)
 and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.4.2.1.gem
+gem install paru-0.4.2.2.gem
 ```
 
 Paru, obviously, requires pandoc. See
@@ -86,8 +85,7 @@ paru](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/)
 by cloning the repository and running `rake yard`. It’ll put it in
 `documentation/api-doc`.
 
-Paru says hello to pandoc
--------------------------
+## Paru says hello to pandoc
 
 Using paru is straightforward. It is a thin “rubyesque” layer around the
 pandoc executable. After requiring paru in your ruby program, you create
@@ -159,8 +157,7 @@ to convert that path using the current configured pandoc configuration.
 In the next chapter, the development of *do-pandoc.rb* is presented as
 an example of real-world usage of paru.
 
-Writing and using pandoc filters with paru
-------------------------------------------
+## Writing and using pandoc filters with paru
 
 One of pandoc’s interesting capabilities are [custom
 filters](http://pandoc.org/scripting.html). This is an extremely
@@ -219,7 +216,7 @@ number in `counter`. Each time an
 [Image](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/Paru/PandocFilter/Image.html)
 is encountered while processing the input file, that counter is
 incremented and the image’s caption is prefixed with “Figure
-\#{counter}.” by overwriting the image’s node’s inner markdown.
+#{counter}.” by overwriting the image’s node’s inner markdown.
 
 For more information about writing filters, please see [paru’s
 manual](https://heerdebeer.org/Software/markdown/paru/) or the API
@@ -229,8 +226,7 @@ class. Furthermore, example filters can also be found in the [filters
 sub directory](examples/filters) of paru’s [examples](examples/). Feel
 free to copy and adapt them to your needs.
 
-Documentation
--------------
+## Documentation
 
 ### Manual
 
@@ -271,9 +267,9 @@ email](mailto:Huub@heerdebeer.org) or submit a new
 
     As a general rule: Use the latest versions of pandoc and paru.
 
--   *I get an error like “‘values\_at’: no implicit conversion of String
+-   *I get an error like “‘values_at’: no implicit conversion of String
     into Integer (TypeError) from lib/paru/filter/document.rb:54:in
-    ‘from\_JSON’”*
+    ‘from_JSON’”*
 
     The most likely cause is that you’re using an old version of Pandoc.
     Paru version 0.2.x only supports pandoc version 1.18 and up. In

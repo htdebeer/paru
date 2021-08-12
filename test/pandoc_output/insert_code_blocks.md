@@ -3,7 +3,7 @@ a hassle. It would be great if you could insert a code block by pointing
 pandoc to a path. With `insert_code_block.rb` you can do so. For
 example, you insert the code of that filter here as follows:
 
-``` {..ruby}
+``` .ruby
 #!/usr/bin/env ruby
 require "paru/filter"
 

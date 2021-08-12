@@ -44,8 +44,10 @@ help:                       true
 # General reader options:
 #####
 shift_heading_level_by:     1
+base_header_level:          1
+strip_empty_paragraphs:     true
 indented_code_classes:      ""
-default_image_extension:    ""
+default_image_extension:    "png"
 file_scope:                 true
 filter:                     [""]
 lua_filter:                 [""]
@@ -68,7 +70,6 @@ eol:                        "native"
 dpi:                        96
 wrap:                       "auto"
 columns:                    78
-strip_comments:             true
 toc:                        true
 table_of_contents:          true
 toc_depth:                  3
@@ -91,7 +92,8 @@ html_q_tags:                true
 ascii:                      true
 reference_links:            true
 reference_location:         "block"
-atx_headers:                ""
+markdown_headings:          "atx"
+atx_headers:                false
 top_level_division:         "section"
 number_sections:            true
 number_offset:              2
@@ -99,7 +101,6 @@ listings:                   true
 incremental:                true
 slide_level:                1
 section_divs:               true
-default_image_extension:    "png"
 email_obfuscation:          "none"
 id_prefix:                  ""
 title_prefix:               ""
@@ -119,7 +120,7 @@ pdf_engine_opt:             [""]
 citeproc:                   true
 bibliography:               ""
 csl:                        ""
-citation_abbreviations:      ""
+citation_abbreviations:     ""
 natbib:                     true
 biblatex:                   true
 #####

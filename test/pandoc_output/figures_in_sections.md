@@ -1,5 +1,4 @@
-Chapter 1. Introduction {#introduction}
-=======================
+# Chapter 1. Introduction {#introduction}
 
 This is a test file for the filter `number_figures_per_chapter.rb`. See
 Figure 1.1 for an overview:
@@ -9,30 +8,25 @@ Figure 1.1 for an overview:
 This filter numbers both chapter headings as well as the figures per
 chapter.
 
-Chapter 2. Second chapter {#second-chapter}
-=========================
+# Chapter 2. Second chapter {#second-chapter}
 
 In the second chapter, there are two figures spread over two sub
 sections!
 
-A sub section
--------------
+## A sub section
 
 ![Figure 2.1. This is the second](image.png)
 
-Another sub section
--------------------
+## Another sub section
 
 ![Figure 2.2. This is the third](image.png)
 
-Chapter 3. Third chapter {#third-chapter}
-========================
+# Chapter 3. Third chapter {#third-chapter}
 
 The third chapter does not have any figures, but the next one has two
 again!
 
-Chapter 4. Conclusion {#conclusion}
-=====================
+# Chapter 4. Conclusion {#conclusion}
 
 ![Figure 4.1. This is the fourth](image.png)
 
