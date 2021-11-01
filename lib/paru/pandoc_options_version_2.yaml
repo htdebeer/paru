@@ -61,6 +61,7 @@ abbreviations:              ""
 #####
 # General writing options:
 #####
+sandbox:                    false
 standalone:                 true
 template:                   ""
 variable:                   [""]

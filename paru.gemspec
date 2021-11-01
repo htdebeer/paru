@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name = 'paru'
-  s.version = '0.4.2.2'
-  s.date = '2021-08-12'
+  s.version = '0.4.2.3'
+  s.date = '2021-11-01'
   s.summary = 'Paru is a ruby wrapper around pandoc'
   s.description = 'Control pandoc with Ruby and write pandoc filters in Ruby'
   s.authors = ['Huub de Beer']
   s.email = 'Huub@heerdebeer.org'
-  s.required_ruby_version = ">= 2.5"
+  s.required_ruby_version = ">= 2.6.8"
   s.bindir = 'bin'
   s.executables = ['pandoc2yaml.rb', 'do-pandoc.rb']
   s.files = [

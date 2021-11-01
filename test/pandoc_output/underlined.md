@@ -1,1 +1,1 @@
-This word is [underlined]{.ul}.
+This word is [underlined]{.underline}.
