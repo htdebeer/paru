@@ -49,7 +49,7 @@ module Paru
                     if yaml_string.empty?
                         contents = {}
                     else
-                        contents = YAML.load yaml_string, permitted_classes: [Date]
+                        contents = YAML.safe_load yaml_string, permitted_classes: [Date]
                     end
 
                     if not contents
