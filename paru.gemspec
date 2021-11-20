@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = 'paru'
-  s.version = '0.4.2.5'
-  s.date = '2021-11-11'
+  s.version = '0.4.3'
+  s.date = '2021-11-20'
   s.summary = 'Paru is a ruby wrapper around pandoc'
   s.description = 'Control pandoc with Ruby and write pandoc filters in Ruby'
   s.authors = ['Huub de Beer']
@@ -11,8 +11,7 @@ Gem::Specification.new do |s|
   s.executables = ['pandoc2yaml.rb', 'do-pandoc.rb']
   s.files = [
       'lib/paru.rb',
-      'lib/paru/pandoc_options_version_1.yaml',
-      'lib/paru/pandoc_options_version_2.yaml'
+      'lib/paru/pandoc_options.yaml'
   ]
   s.files += Dir['lib/paru/*.rb']
   s.files += Dir['lib/paru/filter/*.rb']

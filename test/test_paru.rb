@@ -146,4 +146,17 @@ class ParuTest < MiniTest::Test
         assert_empty err
     end
 
+
+    def test_nil_options()
+      converter = Paru::Pandoc.new do
+        from "markdown"
+        to "html"
+        filter nil
+      end
+
+      output = converter << "Hello *world*"
+
+      assert_equal output, "<p>Hello <em>world</em></p>\n"
+    end
+
 end

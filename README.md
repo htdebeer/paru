@@ -17,9 +17,6 @@
 [![Gem
 Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
 
-**Note.** For pandoc versions ≥ 2.11 use paru version ≥ 0.4.2; otherwise
-use paru version 0.4.1.2.
-
 ## Introduction
 
 Paru is a simple Ruby wrapper around [pandoc](https://www.pandoc.org),
@@ -67,12 +64,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.4.2.5.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.2.5.gem)
+[paru-0.4.3.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.3.gem)
 and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.4.2.5.gem
+gem install paru-0.4.3.gem
 ```
 
 Paru, obviously, requires pandoc. See

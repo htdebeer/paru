@@ -254,25 +254,18 @@ module Paru
             :data_dir => data_dir
         }
 
-        # Load the options for the appropriate major version of pandoc
-        if not [1, 2].include? major_version 
-            throw Error.new "Unknown major pandoc version: '#{major_version}'. Expected the major version to be '1' or '2'. Please check the pandoc path: '#{@@pandoc_exec}'."
-            # defaults to version 1
-            major_version = 2
-        end
-
         # For each pandoc command line option a method is defined as follows:
-        OPTIONS = YAML.load_file File.join(__dir__, "pandoc_options_version_#{major_version}.yaml")
+        OPTIONS = YAML.load_file File.join(__dir__, "pandoc_options.yaml")
 
-        OPTIONS.keys.each do |option|
+        OPTIONS.each_pair do |option, default|
             if OPTIONS[option].is_a? Array then
 
                 # option can be set multiple times, for example adding multiple css
                 # files
 
-                default = OPTIONS[option][0]
-
                 define_method(option) do |value = default|
+                    value = [] if value.nil?
+
                     if @options[option].nil? then
                         @options[option] = []
                     end
@@ -291,6 +284,8 @@ module Paru
 
                 default = OPTIONS[option]
                 define_method(option) do |value = default|
+                    value = default if value.nil?
+
                     @options[option] = value
                     self
                 end

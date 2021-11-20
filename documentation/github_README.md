@@ -23,9 +23,6 @@ pandoc:
 
 [![Gem Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
 
-**Note.** For pandoc versions ≥ 2.11 use paru version ≥ 0.4.2; otherwise use
-paru version 0.4.1.2.
-
 ## Introduction
 
 ::paru::insert introduction.md
