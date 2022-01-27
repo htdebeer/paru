@@ -159,4 +159,33 @@ class ParuTest < MiniTest::Test
       assert_equal output, "<p>Hello <em>world</em></p>\n"
     end
 
+    OPTION_PATTERN = /--[a-zA-Z-]+/m
+
+    def test_paru_supports_all_options()
+      # Collect pandoc's options via its "help" option
+      converter = Paru::Pandoc.new do
+        help
+      end
+
+      help_msg = converter << ""
+
+      options = help_msg.scan OPTION_PATTERN
+
+      # Each option should be an method on the converter. If not, fail this
+      # test
+      unsupported_options = []
+      converter = Paru::Pandoc.new do |c|
+        options.each do |option|
+          method_name = option.delete_prefix("--").gsub("-", "_")
+          begin
+            c.send(method_name)
+          rescue NameError => e
+            unsupported_options << option
+          end
+        end 
+      end
+
+      assert_empty unsupported_options, "Paru does not support options: `#{unsupported_options.join(", ")}`"
+    end
+
 end
