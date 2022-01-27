@@ -17,6 +17,6 @@
 # Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 module Paru
-    # Paru's current version
-    VERSION = [0, 4, 3]
+  # Paru's current version
+  VERSION = [0, 4, 3].freeze
 end

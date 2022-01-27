@@ -3,5 +3,18 @@
 *.swp
 *.bak
 
+# Docker remnants
+.local
+.bash_history
+
 documentation/api-doc
 .yardoc
+
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
