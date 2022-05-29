@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017, 2022 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -32,6 +32,12 @@ module Paru
     # that selector expression or not.
     class Selector
 
+        # Pseudo selector to select any inline and block node
+        ANY_SELECTOR = "*"
+
+        # All pseudo selectors
+        PSEUDO_SELECTORS = [ANY_SELECTOR]
+
         # Create a new Selector based on the selector string
         #
         # @param selector [String] the selector string
@@ -51,9 +57,14 @@ module Paru
         # @return [Boolean] True if the node in the context of the
         #   filtered_nodes is selected by this Selector
         def matches? node, filtered_nodes
-            node.type == @type and 
-                @classes.all? {|c| node.has_class? c } and    
-                @relations.all? {|r| r.matches? node, filtered_nodes}
+            case @type 
+            when ANY_SELECTOR
+              Paru::PANDOC_TYPES.include? node.type
+            else
+              node.type == @type and 
+                  @classes.all? {|c| node.has_class? c } and    
+                  @relations.all? {|r| r.matches? node, filtered_nodes}
+            end
         end
 
         private 
@@ -61,7 +72,7 @@ module Paru
         S = /\s*/
         # Improved CSS class selector taken from https://stackoverflow.com/questions/448981/which-characters-are-valid-in-css-class-names-selectors/449000#449000
         CLASS = /(\.-?[_a-zA-Z]+[_a-zA-Z0-9-]*)/
-        TYPE = /(?<type>(?<name>[A-Z][a-zA-Z]*)(?<classes>#{CLASS}*))/
+        TYPE = /(?<type>(?<name>[A-Z][a-zA-Z]*|\*)(?<classes>#{CLASS}*))/
         OTHER_TYPE = /(?<other_type>(?<other_name>[A-Z][a-zA-Z]*)(?<other_classes>#{CLASS}*))/
         OPERATOR = /(?<operator>\+|-|>)/
         DISTANCE = /(?<distance>[1-9][0-9]*)/
@@ -87,7 +98,7 @@ module Paru
 
         # Is type actually a Pandoc AST node type?
         def is_pandoc_type(type)
-            Paru::PANDOC_TYPES.include? type
+          Paru::PANDOC_TYPES.concat(PSEUDO_SELECTORS).include? type
         end
 
         def expect(parts, part)

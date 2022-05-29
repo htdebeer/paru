@@ -2,5 +2,7 @@
 require "paru/filter"
 
 Paru::Filter.run do 
+  before do
     metadata.delete "pandoc"
+  end
 end

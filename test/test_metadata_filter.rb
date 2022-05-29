@@ -9,7 +9,9 @@ class MetadataFilterTest < FilterTest
     
     def test_add_today()
         output = filter_file("test/pandoc_input/add_today.md") do
+          before do
             metadata["date"] = "#{Date.today.to_s}"
+          end
         end
         assert_match(/#{Date.today.to_s}/, output)
     end
@@ -19,14 +21,16 @@ class MetadataFilterTest < FilterTest
             "test/pandoc_input/hello.md",
             "test/pandoc_output/hello.md"
         ) do
-            metadata['title'] = "Say hello to the world"
-            metadata['date'] = "12-12-1812"
-            metadata['author'] = "Huub de Beer"
+            before do
+              metadata['title'] = "Say hello to the world"
+              metadata['date'] = "12-12-1812"
+              metadata['author'] = "Huub de Beer"
+            end
         end
     end
    
     # Running this test breaks with rake; run it manually 
-    def do_not_test_simple_metadatai_with_stop()
+    def do_not_test_simple_metadata_with_stop()
         number_of_times_run = 0
         filter_file_and_equal_file(
             "test/pandoc_input/hello.md",
@@ -61,10 +65,12 @@ class MetadataFilterTest < FilterTest
             "test/pandoc_input/procent_based_metadata.md",
             "test/pandoc_output/procent_based_metadata_cleared.md"
         ) do
-            metadata.delete("date")
-            metadata.delete("author")
-            metadata.delete("title")
-            has_title = metadata.has_key? "title"
+            after do
+              metadata.delete("date")
+              metadata.delete("author")
+              metadata.delete("title")
+              has_title = metadata.has_key? "title"
+            end
         end
         assert(has_title == false)
     end

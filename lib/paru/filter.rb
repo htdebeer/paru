@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017, 2022 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -284,6 +284,11 @@ module Paru
                 end
             end
 
+            @ran_before = false
+            @ran_after = false
+            instance_eval(&block) # run filter with before block
+            @ran_before = true
+
             @current_node = @document
 
             nodes_to_filter.each do |node|
@@ -299,6 +304,9 @@ module Paru
                 instance_eval(&block) # run the actual filter code
             end
 
+            @ran_after = true
+            instance_eval(&block) # run filter with after block
+
             write_document
         end
 
@@ -308,8 +316,26 @@ module Paru
         # @param selector [String] a selector string 
         # @yield [Node] the current node if it matches the selector
         def with(selector)
-            @selectors[selector] = Selector.new selector unless @selectors.has_key? selector
-            yield @current_node if @selectors[selector].matches? @current_node, @filtered_nodes
+            if @ran_before and !@ran_after
+              @selectors[selector] = Selector.new selector unless @selectors.has_key? selector
+              yield @current_node if @selectors[selector].matches? @current_node, @filtered_nodes
+            end
+        end
+
+        # Before running the filter on all nodes, the +document+ is passed to
+        # the block to this +before+ method. This method is run exactly once.
+        #
+        # @yield [Document] the document
+        def before()
+          yield @document unless @ran_before
+        end
+
+        # After running the filter on all nodes, the +document+ is passed to
+        # the block to this +after+ method. This method is run exactly once.
+        #
+        # @yield [Document] the document
+        def after()
+          yield @document if @ran_after
         end
 
         # Stop processing the document any further and output it as it is now.
@@ -323,7 +349,6 @@ module Paru
             write_document
             exit true
         end
-
 
         private
 

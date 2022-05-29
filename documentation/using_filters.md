@@ -78,6 +78,10 @@ Table: Pandoc internal type you can use in a selector in a filter
 Usually, however, you want to number figures relative to the chapter they are
 in. How to do that is shown next.
 
+Paru also has one special pseudo selector to select any node: `*`. Use this
+selector if you want to run a piece of code for each and every node in the
+document. For example, to count the number of nodes.
+
 ### Numbering figures and chapters
 
 One of the problems with using flat text input formats such as markdown,
@@ -198,6 +202,23 @@ replaced. As with the previous filter to include other markdown files, if the
 *CodeBlock* contains the "command" ``::paru::insert`` followed by a path and
 optionally more parameters, the code block is treated as an insert command.
 The file is read and its contents are used in stead of the command.
+
+## Running code before and after
+
+Sometimes you want to setup a document before filtering, or to cleanup after
+you finished filtering. For these purposes, use the `before` or `after`
+methods. Both methods are run exactly once. Use these methods to change
+metadata (See next section), to create and cleanup temporary files during the
+filtering, or do some other form of administrative work before or after the
+filter is run on each and every node in your document.
+
+As an example of the structure of a filter with `before` and `after` parts,
+see:
+
+    ::paru::insert ../examples/filters/before_during_after.rb ruby
+
+If you run this filter, you will see the string "before" first, followed by a
+lot of "during" strings, and end with the string "after".
 
 ## Manipulating pandoc's metadata
 

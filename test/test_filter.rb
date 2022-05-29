@@ -571,4 +571,52 @@ class FilterTest < MiniTest::Test
         assert_match(output, File.read("test/pandoc_input/table.md"))
     end
 
+    def test_any_selector()
+        filter_file_and_equal_file(
+            "test/pandoc_input/simple_sentence.md",
+            "test/pandoc_output/tagged_sentence.md"
+        ) do
+            with "*" do |node|
+              if node.is_inline? then
+                node.inner_markdown = "TAG:(#{node.inner_markdown})"
+              end
+            end
+        end
+    end
+
+    def test_before_after() 
+      _, err = capture_io do
+        filter_file("test/pandoc_input/simple_sentence.md") do
+          before do 
+            warn "before"  
+          end
+
+          with "*" do
+            warn "during"
+          end
+
+          after do
+            warn "after"
+          end
+        end
+      end
+      
+      expected = <<END
+before
+during
+during
+during
+during
+during
+during
+during
+during
+during
+during
+during
+after
+END
+
+      assert_equal expected, err
+    end
 end
