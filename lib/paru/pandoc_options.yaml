@@ -58,13 +58,14 @@ tab_stop:                   4
 track_changes:              "accept"
 extract_media:              ""
 abbreviations:              ""
+trace:                      true
 #####
 # General writing options:
 #####
-sandbox:                    false
 standalone:                 true
 template:                   ""
 variable:                   [""]
+sandbox:                    true
 print_default_template:     ""
 print_default_data_file:    ""
 eol:                        "native"
@@ -84,7 +85,7 @@ include_before_body:        [""]
 include_after_body:         [""]
 resource_path:              ""
 request_header:             ""
-no_check_certificate:       false
+no_check_certificate:       true
 #####
 # Options affecting specific writers
 #####
@@ -94,7 +95,7 @@ ascii:                      true
 reference_links:            true
 reference_location:         "block"
 markdown_headings:          "atx"
-atx_headers:                false
+atx_headers:                true
 top_level_division:         "section"
 number_sections:            true
 number_offset:              2
@@ -137,4 +138,3 @@ gladtex:                    true
 #####
 dump_args:                  true
 ignore_args:                true
-trace:                      true
