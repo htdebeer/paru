@@ -2,17 +2,22 @@
 
 ## Contents
 
--   [Introduction](#introduction)
-    -   [Licence](#licence)
-    -   [Acknowledgements](#acknowledgements)
-    -   [Installation](#installation)
--   [Paru says hello to pandoc](#paru-says-hello-to-pandoc)
--   [Writing and using pandoc filters with
-    paru](#writing-and-using-pandoc-filters-with-paru)
--   [Documentation](#documentation)
-    -   [Manual](#manual)
-    -   [API documentation](#api-documentation)
-    -   [Frequently asked questions](#frequently-asked-questions)
+-   <a href="#introduction" id="toc-introduction">Introduction</a>
+    -   <a href="#licence" id="toc-licence">Licence</a>
+    -   <a href="#acknowledgements"
+        id="toc-acknowledgements">Acknowledgements</a>
+    -   <a href="#installation" id="toc-installation">Installation</a>
+-   <a href="#paru-says-hello-to-pandoc"
+    id="toc-paru-says-hello-to-pandoc">Paru says hello to pandoc</a>
+-   <a href="#writing-and-using-pandoc-filters-with-paru"
+    id="toc-writing-and-using-pandoc-filters-with-paru">Writing and using
+    pandoc filters with paru</a>
+-   <a href="#documentation" id="toc-documentation">Documentation</a>
+    -   <a href="#manual" id="toc-manual">Manual</a>
+    -   <a href="#api-documentation" id="toc-api-documentation">API
+        documentation</a>
+    -   <a href="#frequently-asked-questions"
+        id="toc-frequently-asked-questions">Frequently asked questions</a>
 
 [![Gem
 Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
@@ -64,12 +69,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.4.3.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.3.gem)
+[paru-1.0.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-1.0.0.gem)
 and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.4.3.gem
+gem install paru-1.0.0.gem
 ```
 
 Paru, obviously, requires pandoc. See
@@ -213,7 +218,7 @@ number in `counter`. Each time an
 [Image](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/Paru/PandocFilter/Image.html)
 is encountered while processing the input file, that counter is
 incremented and the image’s caption is prefixed with “Figure
-#{counter}.” by overwriting the image’s node’s inner markdown.
+\#{counter}.” by overwriting the image’s node’s inner markdown.
 
 For more information about writing filters, please see [paru’s
 manual](https://heerdebeer.org/Software/markdown/paru/) or the API

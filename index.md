@@ -42,12 +42,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-0.4.3.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-0.4.3.gem)
+[paru-1.0.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-1.0.0.gem)
 and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-0.4.3.gem
+gem install paru-1.0.0.gem
 ```
 
 Paru, obviously, requires pandoc. See
@@ -570,6 +570,10 @@ as a selector (see the table below).
 Usually, however, you want to number figures relative to the chapter
 they are in. How to do that is shown next.
 
+Paru also has one special pseudo selector to select any node: `*`. Use
+this selector if you want to run a piece of code for each and every node
+in the document. For example, to count the number of nodes.
+
 ### Numbering figures and chapters
 
 One of the problems with using flat text input formats such as markdown,
@@ -791,7 +795,44 @@ path and optionally more parameters, the code block is treated as an
 insert command. The file is read and its contents are used in stead of
 the command.
 
-## 3.4 Manipulating pandoc's metadata
+## 3.4 Running code before and after
+
+Sometimes you want to setup a document before filtering, or to cleanup
+after you finished filtering. For these purposes, use the `before` or
+`after` methods. Both methods are run exactly once. Use these methods to
+change metadata (See next section), to create and cleanup temporary
+files during the filtering, or do some other form of administrative work
+before or after the filter is run on each and every node in your
+document.
+
+As an example of the structure of a filter with `before` and `after`
+parts, see:
+
+``` ruby
+#!/usr/bin/env ruby
+# Simple filter to show of the before, after and any selector. It should first
+# print "before", then "during" for each node, and finish with "after".
+require "paru/filter"
+
+Paru::Filter.run do
+    before do 
+      warn "before"  
+    end
+
+    with "*" do
+      warn "during"
+    end
+
+    after do
+      warn "after"
+    end
+end
+```
+
+If you run this filter, you will see the string "before" first, followed
+by a lot of "during" strings, and end with the string "after".
+
+## 3.5 Manipulating pandoc's metadata
 
 Finally, you can access metadata in an input file through the `metadata`
 method available in a selector. This gives you the ability to create
@@ -808,7 +849,9 @@ configuration from the metadata if there is such a property:
 require "paru/filter"
 
 Paru::Filter.run do 
+  before do
     metadata.delete "pandoc"
+  end
 end
 ```
 
