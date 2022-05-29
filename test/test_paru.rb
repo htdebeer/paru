@@ -19,6 +19,25 @@ class ParuTest < MiniTest::Test
         assert_equal output.strip, converted_input.strip
     end
 
+    def test_custom_reader()
+      converter = Paru::Pandoc.new do
+        from "test/readers_writers/plain_reader.lua"
+        to "markdown"
+      end
+
+      run_converter converter, "test/pandoc_input/simple_sentence.md", "test/pandoc_output/plain_sentence.md"
+    end
+
+    def test_custom_writer()
+      converter = Paru::Pandoc.new do
+        to "test/readers_writers/sample_html_writer.lua"
+        from "markdown"
+      end
+
+      run_converter converter, "test/pandoc_input/simple_sentence.md", "test/pandoc_output/simple_sentence.html"
+    end
+
+
     def test_info()
       info = Paru::Pandoc.info
       assert_match(/\d+\.\d+/, info[:version].join("."))
