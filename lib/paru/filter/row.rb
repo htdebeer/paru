@@ -61,6 +61,9 @@ module Paru
                 ]
             end
 
+            # Create an AST representation of this Node
+            #
+            # @return [Hash]
             def to_ast()
               ast_contents()
             end

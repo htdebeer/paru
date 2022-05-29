@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017, 2022 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -21,6 +21,7 @@ require "shellwords"
 require "yaml"
 
 require_relative "error.rb"
+require_relative "info.rb"
 
 module Paru
     # Pandoc is a wrapper around the pandoc document converter. See
@@ -92,8 +93,7 @@ module Paru
         # directory. This method is typically used in scripts that use Paru to
         # automate the use of pandoc.
         #
-        # @return [Hash{:version => Array<Integer>, :data_dir => String}] Pandoc's
-        #   version, such as "[2.10.1]" and the data directory, such as "/home/huub/.pandoc".
+        # @return [Info] Pandoc's version, such as "[2.10.1]" and the data directory, such as "/home/huub/.pandoc".
         def self.info()
             @@info
         end
@@ -216,43 +216,7 @@ module Paru
                             "pandoc"
                         end
 
-        begin
-            version_string = ''
-            IO.popen("#{@@pandoc_exec} --version", 'r+') do |p|
-                p.close_write
-                version_string << p.read
-            end
-        rescue StandardError => err
-            throw Error.new "Unable to run pandoc via command '#{@@pandoc_exec} --version': #{err.message}"
-        end
-
-        version = version_string
-                    .match(/pandoc.* (\d+\.\d+.*)$/)[1]
-                    .split(".")
-                    .map {|s| s.to_i}
-        major_version = version[0]
-
-        # Pandoc version 2.7 introduced a new default data dir to comply
-        # with XDG Base Directory Specification
-
-        xdg_data_dir, old_data_dir = version_string.match(/User data directory: (.+)$/)[1].split(" or ")
-
-        if File.directory? xdg_data_dir then
-            data_dir = xdg_data_dir
-        elsif not old_data_dir.nil? and File.directory? old_data_dir then
-            # The new-style data directory does not exist, but the
-            # old-style does, so use the old-style data directory for
-            # backwards compatibility
-            data_dir = old_data_dir
-        else
-            # Neither data directory exists, default to the new default
-            data_dir = xdg_data_dir
-        end
-
-        @@info = {
-            :version => version,
-            :data_dir => data_dir
-        }
+        @@info = Info.new(@@pandoc_exec)
 
         # For each pandoc command line option a method is defined as follows:
         OPTIONS = YAML.load_file File.join(__dir__, "pandoc_options.yaml")
