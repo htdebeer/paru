@@ -218,6 +218,17 @@ class FilterTest < MiniTest::Test
         end
     end
 
+    def test_deep_descendent()
+        filter_file_and_equal_file(
+            "test/pandoc_input/deep_descendent.md",
+            "test/pandoc_output/deep_descendent.md"
+        ) do
+            with "BulletList > OrderedList > Plain" do |item|
+                item.inner_markdown = item.inner_markdown.upcase
+            end
+        end
+    end
+
     def test_insert_code_block()
         filter_file_and_equal_file(
             "test/pandoc_input/insert_code_blocks.md",
