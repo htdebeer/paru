@@ -31,7 +31,10 @@ module Paru
             def initialize(contents, node_class = Block)
                 super []
                 contents.each do |item|
-                    @children.push node_class.new item
+                    child = node_class.new(item)
+                    child.parent = self
+
+                    @children.push child
                 end
             end
 
