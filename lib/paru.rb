@@ -18,5 +18,5 @@
 #++
 module Paru
   # Paru's current version
-  VERSION = [1, 0, 0].freeze
+  VERSION = [1, 0, 1].freeze
 end
