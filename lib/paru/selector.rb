@@ -187,8 +187,10 @@ module Paru
 
         def is_descendant?(node)
             distance = 0
+            parent = nil
             begin
                 distance += 1 if @distance > 0
+                node = parent unless parent.nil?
                 parent = node.parent
                 ancestry = parent.type == @type and @classes.all? {|c| parent.has_class? c}
             end while not ancestry and not parent.is_root? and distance <= @distance

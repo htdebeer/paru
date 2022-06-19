@@ -149,6 +149,17 @@ class FilterTest < MiniTest::Test
         end
     end
 
+    def test_capitalize_list_elements()
+        filter_file_and_equal_file(
+            "test/pandoc_input/bullet_list_with_followers.md",
+            "test/pandoc_output/bullet_list_with_followers.md"
+        ) do
+            with "BulletList > Str" do |str|
+                str.string = str.string.upcase
+            end
+        end
+    end
+
     def test_number_figures()
         figure_counter = 0
 
@@ -214,6 +225,17 @@ class FilterTest < MiniTest::Test
 
             with "Div.important" do |d|
                 d.inner_markdown = d.inner_markdown + "\n\n*(important)*"
+            end
+        end
+    end
+
+    def test_deep_descendent()
+        filter_file_and_equal_file(
+            "test/pandoc_input/deep_descendent.md",
+            "test/pandoc_output/deep_descendent.md"
+        ) do
+            with "BulletList > OrderedList > Plain" do |item|
+                item.inner_markdown = item.inner_markdown.upcase
             end
         end
     end
