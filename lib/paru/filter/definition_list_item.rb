@@ -37,8 +37,15 @@ module Paru
             #
             # @param item [Array] the [term, definition]
             def initialize(item)
+                super []
+
                 @term = Block.new item[0]
+                @term.parent = self
+                @children << @term
+
                 @definition = List.new item[1]
+                @definition.parent = self
+                @children << @definition
             end
 
             # Create an AST representation of this DefinitionListItem

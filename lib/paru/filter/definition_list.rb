@@ -30,7 +30,10 @@ module Paru
             def initialize(contents)
                 super []
                 contents.each do |item|
-                    @children.push DefinitionListItem.new item
+                    child = DefinitionListItem.new item
+                    child.parent = self
+
+                    @children.push child
                 end
             end
 
