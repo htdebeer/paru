@@ -504,6 +504,30 @@ class FilterTest < MiniTest::Test
         assert_match(output, File.read("test/pandoc_input/bullet_list.md"))
     end
 
+    def test_definition_list_item_children()
+        paras = []
+        filter_file("test/pandoc_input/definition_list_paras.md") do
+            with "Para" do |p|
+                paras << p
+            end
+        end
+
+        # two outside and three inside the list
+        assert_equal(5, paras.length)
+    end
+
+    def test_definition_list_item_descendent_selector()
+        paras = []
+        filter_file("test/pandoc_input/definition_list_paras.md") do
+            with "DefinitionList > Para" do |p|
+                paras << p
+            end
+        end
+
+        # only the three inside the list
+        assert_equal(3, paras.length)
+    end
+
     def test_definition_list_convenience()
         list = []
         filter_file("test/pandoc_input/definition_list.md") do
