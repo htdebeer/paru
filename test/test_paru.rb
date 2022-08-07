@@ -64,10 +64,23 @@ class ParuTest < MiniTest::Test
 
     def test_underscored()
         # Options with underscores following Ruby naming conventions
+        # option --self-contained deprecated since pandoc 2.19, but should
+        # still work
         converter = Paru::Pandoc.new do
             from "markdown"
             to "html"
             self_contained
+            metadata "lang=en"
+        end
+
+        run_converter converter, "test/pandoc_input/hello.md", "test/pandoc_output/self_contained_hello.html"
+
+        # instead, use option --embed-resources and --standalone
+        converter = Paru::Pandoc.new do
+            from "markdown"
+            to "html"
+            embed_resources
+            standalone
             metadata "lang=en"
         end
 
