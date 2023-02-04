@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name = 'paru'
   s.license = 'GPL-3.0'
   s.version = Paru::VERSION.join "."
-  s.date = '2022-08-07'
+  s.date = '2023-02-04'
   s.authors = ['Huub de Beer']
   s.email = 'Huub@heerdebeer.org'
 
