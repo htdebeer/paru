@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017, 2022 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017, 2022, 2023 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -22,7 +22,7 @@ require_relative "./filter/metadata.rb"
 
 module Paru
     # Paru filter is a wrapper around pandoc's JSON api, which is based on
-    # {pandoc-types}[https://hackage.haskell.org/package/pandoc-types-1.17.0.4/docs/Text-Pandoc-Definition.html].
+    # {pandoc-types}[https://hackage.haskell.org/package/pandoc-types-1.23/docs/Text-Pandoc-Definition.html].
     # Pandoc treats block elements and inline elements differently. 
     #
     # Pandoc's block elements are:
@@ -44,6 +44,7 @@ module Paru
         "TableBody",
         "Row",
         "Cell",
+        "Figure",
         "Caption",
         "Div",
         "Null"

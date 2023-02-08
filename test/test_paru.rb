@@ -30,11 +30,11 @@ class ParuTest < MiniTest::Test
 
     def test_custom_writer()
       converter = Paru::Pandoc.new do
-        to "test/readers_writers/sample_html_writer.lua"
+        to "test/readers_writers/sample_markdown_writer.lua"
         from "markdown"
       end
 
-      run_converter converter, "test/pandoc_input/simple_sentence.md", "test/pandoc_output/simple_sentence.html"
+      run_converter converter, "test/pandoc_input/simple_sentence.md", "test/pandoc_output/simple_sentence.md"
     end
 
 
@@ -45,7 +45,7 @@ class ParuTest < MiniTest::Test
         assert_match(/\\pandoc$/, info[:data_dir])
       else
           major, minor = info[:version]
-          if 2 <= major and 7 <= minor then
+          if (2 <= major and 7 <= minor) or (3 <= major) then
             assert_match(/\.local\/share\/pandoc$/, info[:data_dir])
           else
             assert_match(/\.pandoc$/, info[:data_dir])

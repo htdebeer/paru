@@ -1,5 +1,5 @@
 #--
-# Copyright 2020 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2020, 2023 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,12 +17,15 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
 require_relative "./block.rb"
+require_relative "./inner_markdown.rb"
 require_relative "./short_caption.rb"
 
 module Paru
     module PandocFilter
-        # A table's caption, can contain an optional short caption
+        # A table or figure's caption, can contain an optional short caption
         class Caption < Block
+            include InnerMarkdown
+
             attr_accessor :short  
 
             # Create a new Caption based on the contents

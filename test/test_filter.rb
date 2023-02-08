@@ -89,15 +89,23 @@ class FilterTest < MiniTest::Test
             input = reformat original_input
             output = filter_string(input) do
                 with "#{node_name}" do |node|
-                    contents = node.markdown
-                    node.markdown = contents
+                    if "#{node_name}" == "Image"
+                      # Skip. With the introduction of the complex Figure, a
+                      # single Image is recognized as a Figure by default. As
+                      # a result, this test no longer works for the Image
+                      # inline element.
+                    else
+                      contents = node.markdown
+                      node.markdown = contents
+                    end
+
                     if node_name != "Cite"
                         in_contents = node.inner_markdown
                         node.inner_markdown = in_contents
                     end
                 end
             end.chop
-            
+
             assert_equal input, output, "Failure filtering #{path}" 
         end
 

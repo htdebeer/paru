@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017, 2022 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017, 2022, 2023 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -17,7 +17,7 @@
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 # See http://pandoc.org/README.html for an overview of all options
 #++
-# In order as listed on http://pandoc.org/MANUAL.html (version 2)
+# In order as listed on http://pandoc.org/MANUAL.html (version 3)
 #####
 # General options:
 ##### 
@@ -96,6 +96,7 @@ ascii:                      true
 reference_links:            true
 reference_location:         "block"
 markdown_headings:          "atx"
+list_tables:                true
 atx_headers:                true
 top_level_division:         "section"
 number_sections:            true
@@ -109,7 +110,10 @@ id_prefix:                  ""
 title_prefix:               ""
 css:                        [""]
 reference_doc:              ""
+split_level:                1
+chunk_template:             ""
 epub_cover_image:           ""
+epub_title_page:            true
 epub_metadata:              ""
 epub_embed_font:            ""
 epub_chapter_level:         1

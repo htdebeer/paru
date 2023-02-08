@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017, 2020 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017, 2020, 2023 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -36,7 +36,7 @@ module Paru
 
         # The current pandoc type version
         # @see https://hackage.haskell.org/package/pandoc-types
-        CURRENT_PANDOC_VERSION = [1, 22]
+        CURRENT_PANDOC_VERSION = [1, 23]
 
         # Each file that is being filtered by pandoc is represented by a root
         # Document. It is the root node of the AST of the document in the file.

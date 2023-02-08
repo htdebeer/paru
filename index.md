@@ -26,6 +26,10 @@ real-world use case: generating the manual!
 See also the [paru API
 documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
 
+**Note** If you're using pandoc 3, use paru version 1.1.x or higher;
+paru 1.0.x doesn't work with pandoc 3. If you're still using pandoc
+version 2, use paru version 1.0.x instead.
+
 ## 1.1 Licence
 
 Paru is [free sofware](https://www.gnu.org/philosophy/free-sw.en.html);
@@ -42,12 +46,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-1.0.3.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-1.0.3.gem)
+[paru-1.1.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-1.1.0.gem)
 and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-1.0.3.gem
+gem install paru-1.1.0.gem
 ```
 
 Paru, obviously, requires pandoc. See

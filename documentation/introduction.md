@@ -12,3 +12,7 @@ case: generating the manual!
 
 See also the [paru API
 documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
+
+**Note** If you're using pandoc 3, use paru version 1.1.x or higher; paru
+1.0.x doesn't work with pandoc 3. If you're still using pandoc version 2, use
+paru version 1.0.x instead. 

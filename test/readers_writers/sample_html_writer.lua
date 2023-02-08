@@ -352,6 +352,13 @@ function Div(s, attr)
   return '<div' .. attributes(attr) .. '>\n' .. s .. '</div>'
 end
 
+function Writer (doc, opts)
+  PANDOC_DOCUMENT = doc
+  PANDOC_WRITER_OPTIONS = opts
+  loadfile(PANDOC_SCRIPT_FILE)()
+  return pandoc.write_classic(doc, opts)
+end
+
 -- The following code will produce runtime warnings when you haven't defined
 -- all of the functions you need for the custom writer, so it's useful
 -- to include when you're working on a writer.

@@ -68,6 +68,7 @@ module Paru
             require_relative './table_foot.rb'
             require_relative './row.rb'
             require_relative './cell.rb'
+            require_relative './figure.rb'
 
             # Inline level nodes
             require_relative './cite.rb'
@@ -386,7 +387,7 @@ module Paru
                     # Only using first block node (paragraph?)
                     if is_inline?
                         temp_doc = temp_doc.children.first
-                        
+
                         if not temp_doc.children.all? {|node| node.is_inline?}
                             raise Error.new "Cannot replace the inline level node represented by '#{self.markdown}' with markdown that converts to block level nodes: '#{markdown}'."
                         end

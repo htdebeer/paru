@@ -1,3 +1,1 @@
-See, a drawing:
-
-![My nice drawing.](path/to/img.png)
+Image ![My nice drawing.](path/to/img.png) inline

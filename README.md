@@ -2,22 +2,17 @@
 
 ## Contents
 
--   <a href="#introduction" id="toc-introduction">Introduction</a>
-    -   <a href="#licence" id="toc-licence">Licence</a>
-    -   <a href="#acknowledgements"
-        id="toc-acknowledgements">Acknowledgements</a>
-    -   <a href="#installation" id="toc-installation">Installation</a>
--   <a href="#paru-says-hello-to-pandoc"
-    id="toc-paru-says-hello-to-pandoc">Paru says hello to pandoc</a>
--   <a href="#writing-and-using-pandoc-filters-with-paru"
-    id="toc-writing-and-using-pandoc-filters-with-paru">Writing and using
-    pandoc filters with paru</a>
--   <a href="#documentation" id="toc-documentation">Documentation</a>
-    -   <a href="#manual" id="toc-manual">Manual</a>
-    -   <a href="#api-documentation" id="toc-api-documentation">API
-        documentation</a>
-    -   <a href="#frequently-asked-questions"
-        id="toc-frequently-asked-questions">Frequently asked questions</a>
+- [Introduction](#introduction)
+  - [Licence](#licence)
+  - [Acknowledgements](#acknowledgements)
+  - [Installation](#installation)
+- [Paru says hello to pandoc](#paru-says-hello-to-pandoc)
+- [Writing and using pandoc filters with
+  paru](#writing-and-using-pandoc-filters-with-paru)
+- [Documentation](#documentation)
+  - [Manual](#manual)
+  - [API documentation](#api-documentation)
+  - [Frequently asked questions](#frequently-asked-questions)
 
 [![Gem
 Version](https://badge.fury.io/rb/paru.svg)](https://badge.fury.io/rb/paru)
@@ -39,6 +34,10 @@ real-world use case: generating the manual!
 See also the [paru API
 documentation](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/).
 
+**Note** If you’re using pandoc 3, use paru version 1.1.x or higher;
+paru 1.0.x doesn’t work with pandoc 3. If you’re still using pandoc
+version 2, use paru version 1.0.x instead.
+
 This README is a brief overview of paru’s features and usages.
 
 ### Licence
@@ -55,11 +54,11 @@ patches, bug reports, fixes, and suggestions. With your help paru is
 growing beyond a simple tool for personal use into a useful addition to
 the pandoc ecosystem.
 
--   [Ian](https://github.com/iandol)
--   [Jonathan Raphaelson](https://github.com/lygaret)
--   [Michael Kussmaul](https://github.com/kusmi)
--   [Xavier Belanche Alonso](https://github.com/xbelanch)
--   [Robert Riemann](https://github.com/rriemann)
+- [Ian](https://github.com/iandol)
+- [Jonathan Raphaelson](https://github.com/lygaret)
+- [Michael Kussmaul](https://github.com/kusmi)
+- [Xavier Belanche Alonso](https://github.com/xbelanch)
+- [Robert Riemann](https://github.com/rriemann)
 
 ### Installation
 
@@ -70,12 +69,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-1.0.3.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-1.0.3.gem)
+[paru-1.1.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-1.1.0.gem)
 and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-1.0.3.gem
+gem install paru-1.1.0.gem
 ```
 
 Paru, obviously, requires pandoc. See
@@ -251,30 +250,30 @@ Feel free to ask me a question: [send me an
 email](mailto:Huub@heerdebeer.org) or submit a new
 [issue](https://github.com/htdebeer/paru/issues) if you’ve found a bug!
 
--   *I get an error like “Erro: JSON parse error: Error in $:
-    Incompatible API versions: encoded with \[1,20\] but attempted to
-    decode with \[1,21\].”*
+- *I get an error like “Erro: JSON parse error: Error in \$:
+  Incompatible API versions: encoded with \[1,20\] but attempted to
+  decode with \[1,21\].”*
 
-    The versions of pandoc and paru you are using are incompatible.
-    Please install the latest versions of pandoc and paru.
+  The versions of pandoc and paru you are using are incompatible. Please
+  install the latest versions of pandoc and paru.
 
-    Why does this happen? Internally pandoc uses
-    [pandoc-types](https://hackage.haskell.org/package/pandoc-types) to
-    represent documents its converts and filters. Documents represented
-    by one version of pandoc-types are slightly incompatible with
-    documents represented by another version of pandoc-types. This also
-    means that filters written in paru for one version of pandoc-types
-    are not guaranteed to work on documents represented by another
-    version of pandoc-types. As a result, not all paru versions work
-    together with all pandoc versions.
+  Why does this happen? Internally pandoc uses
+  [pandoc-types](https://hackage.haskell.org/package/pandoc-types) to
+  represent documents its converts and filters. Documents represented by
+  one version of pandoc-types are slightly incompatible with documents
+  represented by another version of pandoc-types. This also means that
+  filters written in paru for one version of pandoc-types are not
+  guaranteed to work on documents represented by another version of
+  pandoc-types. As a result, not all paru versions work together with
+  all pandoc versions.
 
-    As a general rule: Use the latest versions of pandoc and paru.
+  As a general rule: Use the latest versions of pandoc and paru.
 
--   *I get an error like “‘values_at’: no implicit conversion of String
-    into Integer (TypeError) from lib/paru/filter/document.rb:54:in
-    ‘from_JSON’”*
+- *I get an error like “‘values_at’: no implicit conversion of String
+  into Integer (TypeError) from lib/paru/filter/document.rb:54:in
+  ‘from_JSON’”*
 
-    The most likely cause is that you’re using an old version of Pandoc.
-    Paru version 0.2.x only supports pandoc version 1.18 and up. In
-    pandoc version 1.18 there was a breaking API change in the way
-    filters worked. Please upgrade your pandoc installation.
+  The most likely cause is that you’re using an old version of Pandoc.
+  Paru version 0.2.x only supports pandoc version 1.18 and up. In pandoc
+  version 1.18 there was a breaking API change in the way filters
+  worked. Please upgrade your pandoc installation.
