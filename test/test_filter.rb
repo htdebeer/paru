@@ -673,4 +673,13 @@ END
 
       assert_equal expected, err
     end
+
+    def test_first_current_node_exists()
+        blocks = 0
+        filter_file("test/pandoc_input/hello.md") do
+          blocks += 1 if current_node.is_block?
+        end
+
+        assert_equal(1, blocks)
+    end
 end

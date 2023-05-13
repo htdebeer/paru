@@ -285,12 +285,12 @@ module Paru
                 end
             end
 
+            @current_node = @document
+
             @ran_before = false
             @ran_after = false
             instance_eval(&block) # run filter with before block
             @ran_before = true
-
-            @current_node = @document
 
             nodes_to_filter.each do |node|
                 if @current_node.has_been_replaced?
