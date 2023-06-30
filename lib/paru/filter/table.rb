@@ -39,13 +39,13 @@ module Paru
         #   @return Attr
         #
         # @!attribute colspec
-        #   @return [ColSpec]
+        #   @return ColSpec[]
         #
         # @!attribute head
-        #   @return [TableHead]
+        #   @return TableHead[]
         #   
         # @!attribute foot
-        #   @return [TableHead]
+        #   @return TableHead[]
         class Table < Block
             attr_accessor :caption, :attr, :colspec, :head, :foot
 

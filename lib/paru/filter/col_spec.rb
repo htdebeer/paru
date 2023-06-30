@@ -1,5 +1,5 @@
 #--
-# Copyright 2020 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2020, 2032 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -28,7 +28,7 @@ module Paru
 
         # Default value for a column specification: left aligned with default
         # width
-        DEFAULT_COLSPEC = [{"t": "AlignLeft"}, {"t": COL_WIDTH_DEFAULT}]
+        DEFAULT_COLSPEC = [{"t" => "AlignLeft"}, {"t" => COL_WIDTH_DEFAULT}]
 
         # ColSpec represents a colspec definition for a table column. It contains an alignment and the column's width.
         #
@@ -40,7 +40,7 @@ module Paru
         # @!attribute width
         #   @return [Double|COL_WIDTH_DEFAULT]
         class ColSpec
-            attr_accessor :alignment, :width
+            attr_reader :alignment, :width
 
             # Create a new ColSpec object
             #
@@ -56,9 +56,9 @@ module Paru
             # "ColWidthDefault", it uses the default value.
             def width=(new_width)
                 if new_width == "ColWidthDefault" then
-                    @width = Value.new({"t": new_width})
+                    @width = Value.new({"t" => new_width})
                 else
-                    @width = Value.new({"t": "ColWidth", "c": new_width})
+                    @width = Value.new({"t" => "ColWidth", "c" => new_width})
                 end
             end
 

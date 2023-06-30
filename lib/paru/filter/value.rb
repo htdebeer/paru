@@ -35,10 +35,10 @@ module Paru
             # @param contents [Array<pandoc node in JSON> = []] the contents of
             #   this node
             def initialize(contents)
-                @type = contents["t"]
+                @type = contents['t']
 
-                if contents.has_key? "c" then
-                  @value = contents["c"]
+                if contents.has_key? 'c' then
+                  @value = contents['c']
                 else
                   @value = VALUE_ENCODED_IN_TYPE_NAME
                 end

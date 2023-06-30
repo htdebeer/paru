@@ -69,12 +69,12 @@ gem install paru
 ```
 
 You can also download the latest gem
-[paru-1.1.1.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-1.1.1.gem)
+[paru-1.1.2.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-1.1.2.gem)
 and install it by:
 
 ``` bash
 cd /directory/you/downloaded/the/gem/to
-gem install paru-1.1.1.gem
+gem install paru-1.1.2.gem
 ```
 
 Paru, obviously, requires pandoc. See
