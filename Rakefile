@@ -1,6 +1,5 @@
 require "bundler/gem_tasks"
 require "rake/testtask"
-require 'rubocop/rake_task'
 require "yard"
 
 Rake::TestTask.new do |t|
@@ -23,7 +22,6 @@ task :generate_doc do
 end
 
 task :build do
-    Rake::Task[:rubocop].execute
     Rake::Task["test"].execute
     Rake::Task["yard"].execute
     sh "gem build paru.gemspec; mv *.*.*.gem releases"
