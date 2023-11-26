@@ -9,6 +9,7 @@
 
 documentation/api-doc
 .yardoc
+.cache
 
 /.bundle/
 /.yardoc

@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017, 2020 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017, 2020, 2023 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -26,12 +26,14 @@ module Paru
         AST2MARKDOWN = Paru::Pandoc.new do
             from "json"
             to "markdown-smart"
+            preserve_tabs true
         end
 
         # A Paru::Pandoc converter from markdown to JSON
         MARKDOWN2JSON = Paru::Pandoc.new do
             from "markdown+smart"
             to "json"
+            preserve_tabs true
         end
 
         # Every node in a Pandoc AST is mapped to Node. Filters are all about

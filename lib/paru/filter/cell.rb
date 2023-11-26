@@ -1,5 +1,5 @@
 #--
-# Copyright 2020 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2020, 2023 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -22,7 +22,7 @@ require_relative "./int_value.rb"
 
 module Paru
     module PandocFilter
-        # A Cell node represents a cell  in a table's head, body, or foot
+        # A Cell node represents a cell in a table's head, body, or foot.
         #  
         # @!attribute attr
         #   @return Attr

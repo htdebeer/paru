@@ -11,7 +11,7 @@ require_relative "../lib/paru/filter/bullet_list.rb"
 require_relative "../lib/paru/filter/definition_list.rb"
 require_relative "../lib/paru/filter/table.rb"
 
-class FilterTest < MiniTest::Test
+class FilterTest < Minitest::Test
 
     def setup
     end
@@ -27,14 +27,14 @@ class FilterTest < MiniTest::Test
             to "markdown"
             standalone
         end
-        
+
         json = pandoc2json << string
 
         input = StringIO.new(json)
         output = StringIO.new
 
         Paru::Filter.new(input, output).filter(&filter_specification)
-        
+
         result = json2pandoc << output.string
         return result
     end
@@ -587,6 +587,7 @@ class FilterTest < MiniTest::Test
 
         input_data = [["No", "String"], ["1", "Hello"], ["2", "Hi"], ["3", "Goodbye"]]
         input = "replace this"
+
         output = filter_string(input) do
             with "Para" do |p|
                 table = Paru::PandocFilter::Table.from_array input_data, headers: true, caption: "A list of greetings."
@@ -595,7 +596,6 @@ class FilterTest < MiniTest::Test
         end
 
         assert_match(output, File.read("test/pandoc_input/table.md"))
-        
 
         # To file
         csv = File.read("test/pandoc_output/table.csv")

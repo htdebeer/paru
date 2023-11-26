@@ -87,8 +87,6 @@ module Paru
                 @type
             end
 
-            
-
             # Create an AST representation of this Node
             #
             # @return [Hash]

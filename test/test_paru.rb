@@ -3,7 +3,7 @@ require "minitest/autorun"
 require_relative "../lib/paru/pandoc.rb"
 require_relative "../lib/paru/error.rb"
 
-class ParuTest < MiniTest::Test
+class ParuTest < Minitest::Test
 
     def setup
     end

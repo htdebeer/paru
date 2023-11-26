@@ -1,5 +1,5 @@
 #--
-# Copyright 2015, 2016, 2017, 2020 Huub de Beer <Huub@heerdebeer.org>
+# Copyright 2015, 2016, 2017, 2020, 2023 Huub de Beer <Huub@heerdebeer.org>
 #
 # This file is part of Paru
 #
@@ -131,46 +131,39 @@ module Paru
             #
             # @return [Table]
             def self.from_array(data, config = {})
-                # With the updated Table definition, it has become complicated
-                # to construct a table manually. It has gotten easier to just
-                # construct a string containing a table in Pandoc's markdown and
-                # load that. I did remove setting alignments and column widths,
-                # though, because that is a bit of a hassle to get right.
+                table_attribute = create_attr
 
-                markdown_table = ""
-                header = ""
-                footer = ""
-
-                if config.has_key? :headers and config[:headers] then
-                    head_row = data.first
-                    header += head_row.join(" \t") + "\n"
-                    header += head_row.map {|s| s.gsub(/./, "-") + "-"}.join("\t") + "\n"
-                    data = data.slice(1..-1)
+                caption = []
+                if config.has_key? :caption
+                  caption = create_caption config[:caption]
                 end
 
-                if config.has_key? :footers and config[:footers] then
-                    foot_row = data.first
-                    footer += foot_row.join(" \t") + "\n"
-                    footer += foot_row.map {|s| s.gsub(/./, "-") + "-"}.join("\t") + "\n"
-                    data = data.slice(0, -2)
+                col_spec = data[0].map {|c| ColSpec.new.to_ast }
+
+                head = create_endrow []
+                if config.has_key? :headers and config[:headers]
+                  head = create_endrow data.first
+                  data = data[1..-1]
                 end
 
-                data.each do |row|
-                  markdown_table += row.join(" \t") + "\n"
+                foot = create_endrow []
+                if config.has_key? :footers and config[:footers]
+                  foot = create_endrow data.last
+                  data = data[0...-1]
                 end
 
-                markdown_table = header + markdown_table + footer
+                body = create_body data
+                
+                table = [
+                  table_attribute, 
+                  caption, 
+                  col_spec, 
+                  head, 
+                  body, 
+                  foot
+                ]
 
-                if config.has_key? :caption then
-                  markdown_table += "\n"
-                  markdown_table += ": #{config[:caption]}\n"
-                end
-
-                table = Block.new []
-                table.markdown = markdown_table
-                table = table.children.first
-
-                table              
+                Table.new table
             end
 
 
@@ -188,6 +181,53 @@ module Paru
 
                 return self.from_array(data, config) 
             end
+
+            private
+
+            def self.create_caption(contents)
+              [
+                nil,
+                [Node.from_markdown(contents).to_ast]
+              ]
+            end
+
+            def self.create_body(data) 
+              [[
+                create_attr,
+                0,
+                [],
+                data.map {|r| create_row(r)}
+              ]]
+            end
+            
+            def self.create_endrow(data)
+              [
+                create_attr,
+                if data.empty? then [] else [create_row(data)] end
+              ]
+            end
+
+            def self.create_row(data)
+              [
+                  create_attr, 
+                  data.map {|c| create_cell(c)}
+              ]
+            end
+
+            def self.create_cell(contents)
+              [
+                create_attr,
+                {"t" => "AlignDefault", "c" => nil},
+                1,
+                1,
+                [Node.from_markdown(contents).to_ast]
+              ]
+            end
+
+            def self.create_attr()
+              ["", [], []]
+            end
+
         end
     end
 end
