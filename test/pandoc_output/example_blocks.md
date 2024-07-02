@@ -7,7 +7,7 @@ filter.
 
 # Using the example block
 
-::: example
+:::: example
 ### Example 1: Adding your first example {#adding-your-first-example}
 
 Create an example block as follows: \~\~\~{.markdown}
@@ -19,7 +19,7 @@ My first example is about creating my first example
 :::
 
 \~\~\~
-:::
+::::
 
 ::: important
 Throughout the text, you can add example blocks like this. Furhtermore,
