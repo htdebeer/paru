@@ -44,7 +44,7 @@ module Paru
             # @return [Boolean] true if math type is "InlineMath", false
             #   otherwise
             def inline?()
-                "InlineMath" == @math_type[t]
+                "InlineMath" == @math_type["t"]
             end
 
             # Convert this Math node's content to Inline
@@ -58,7 +58,7 @@ module Paru
             #
             # @return [Boolean] true if type is "DisplayMath"
             def display?()
-                "DisplayMath" == @math_type[t]
+                "DisplayMath" == @math_type["t"]
             end
 
             # Make this Math node's content display as a block
