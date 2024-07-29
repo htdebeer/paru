@@ -91,6 +91,7 @@ no_check_certificate:       true
 #####
 self_contained:             true
 embed_resources:            true
+link_images:                true
 html_q_tags:                true
 ascii:                      true
 reference_links:            true
