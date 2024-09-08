@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with Paru.  If not, see <http://www.gnu.org/licenses/>.
 #++
+
+# frozen_string_literal: false
 require "open3"
 require "shellwords"
 require "yaml"
