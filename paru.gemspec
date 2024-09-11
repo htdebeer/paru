@@ -21,4 +21,13 @@ Gem::Specification.new do |s|
   ]
   s.files += Dir['lib/paru/*.rb']
   s.files += Dir['lib/paru/filter/*.rb']
+
+  s.add_runtime_dependency 'csv'
+
+  s.add_development_dependency 'rake', '~> 13'
+  s.add_development_dependency 'yard', '~> 0.9'
+  s.add_development_dependency 'minitest', '~> 5.0'
+  s.add_development_dependency 'minitest-reporters', '~> 1.4'
+  s.add_development_dependency 'rubocop', '~> 1.56.4'
+
 end
