@@ -2,7 +2,7 @@ require_relative "lib/paru.rb"
 
 Gem::Specification.new do |s|
   s.name = 'paru'
-  s.license = 'GPL-3.0'
+  s.license = 'GPL-3.0-or-later'
   s.version = Paru::VERSION.join "."
   s.date = '2024-07-29'
   s.authors = ['Huub de Beer']
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.files += Dir['lib/paru/*.rb']
   s.files += Dir['lib/paru/filter/*.rb']
 
-  s.add_runtime_dependency 'csv'
+  s.add_runtime_dependency 'csv', '~> 3.3'
 
   s.add_development_dependency 'rake', '~> 13'
   s.add_development_dependency 'yard', '~> 0.9'

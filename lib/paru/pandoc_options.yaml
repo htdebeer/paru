@@ -96,6 +96,8 @@ html_q_tags:                true
 ascii:                      true
 reference_links:            true
 reference_location:         "block"
+figure_caption_position:    "below"
+table_caption_position:     "above"
 markdown_headings:          "atx"
 list_tables:                true
 atx_headers:                true
