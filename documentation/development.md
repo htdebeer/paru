@@ -19,7 +19,7 @@ can use Docker for paru development.
 
 - Run a command interactively (CLI options `-i`, `-t`) in the Docker container, and remove the container afterwards
   (CLI option `--rm`). Also attach paru's cloned repository to the container
-  (CLI option `--volume $(pwd):/home/paru-use`):
+  (CLI option `--volume $(pwd):/home/paru-user`):
 
   ```{.bash}
   docker container run --rm -it --volume $(pwd):/home/paru-user paru:dev bash

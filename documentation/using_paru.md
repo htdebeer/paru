@@ -10,7 +10,7 @@ I developed *do-pandoc.rb*.
 I developed *do-pandoc.rb* in two steps: 
 
 1. first I wrote a ruby module to mine the pandoc markdown files for its
-   [YAML](http://yaml.org/) metadata.
+   [YAML](https://yaml.org/) metadata.
 2. using that module, I wrote another script that would use the former to get
    the pandoc command-line options to use from an input file, fed these
    options into a dynamically generated pandoc converter, and then use this
@@ -19,9 +19,9 @@ I developed *do-pandoc.rb* in two steps:
 ## Mining a pandoc markdown file for its YAML metadata
 
 One of the interesting aspects of pandoc's markdown format is its allowance
-for metadata in so-called [YAML](http://yaml.org/) blocks. Using paru and Ruby
+for metadata in so-called [YAML](https://yaml.org/) blocks. Using paru and Ruby
   it is easy to strip a pandoc file for its metadata through pandoc's
-  [JSON](http://json.org/) output/input format: the script/module
+  [JSON](https://json.org/) output/input format: the script/module
   *[pandoc2yaml.rb* (which you will also find in the [examples](examples/) sub
   directory). Furthermore, it is also installed as an executable when you
   install paru, so you can run it from the command line like:
@@ -52,7 +52,7 @@ document. Since pandoc version 1.18, this JSON representation consists of
 three elements:
 
 1.  the version of the [pandoc-types
-    API](http://hackage.haskell.org/package/pandoc-types-1.17.0.4) used
+    API](https://hackage.haskell.org/package/pandoc-types-1.17.0.4) used
     (`"pandoc-api-version"`),
 2.  the metadata in the document (`"meta"`),
 3.  and the contents of the document (`"blocks"`).
@@ -66,7 +66,7 @@ pandoc does not convert the metadata back to its own markdown format.
 
 Using the library module `Pandoc2Yaml` discussed in the previous section, it
 is easy to write a script that runs pandoc on a markdown file using the pandoc
-options specified in that same file in a [YAML](http://yaml.org) metadata
+options specified in that same file in a [YAML](https://yaml.org) metadata
 block:
 
     ::paru::insert ../bin/do-pandoc.rb ruby

@@ -9,7 +9,7 @@ converter = Paru::Pandoc.new
 ~~~
 
 The various [command-line options of
-pandoc](http://pandoc.org/README.html#options) map to methods on this newly
+pandoc](https://pandoc.org/README.html#options) map to methods on this newly
 created instance. When you want to use a pandoc command-line option that
 contains dashes, replace all dashes with an underscore to get the
 corresponding paru method. For example, the pandoc command-line option

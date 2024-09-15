@@ -24,6 +24,5 @@ end
 task :build do
     Rake::Task["test"].execute
     Rake::Task["yard"].execute
-    sh "gem build paru.gemspec; mv *.*.*.gem releases"
     Rake::Task["generate_doc"].execute
 end

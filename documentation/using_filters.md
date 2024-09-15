@@ -1,7 +1,7 @@
 ## Introduction
 
 One of pandoc's interesting capabilities are [custom
-filters](http://pandoc.org/scripting.html). This is an extremely powerful
+filters](https://pandoc.org/scripting.html). This is an extremely powerful
 feature that allows you to automate certain tasks, such as numbering figures,
 using other command-line programs to pre or post process parts of the input,
 or change the structure of the input document before having pandoc writing it

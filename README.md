@@ -68,18 +68,19 @@ Paru is installed through rubygems as follows:
 gem install paru
 ```
 
-You can also download the latest gem
-[paru-1.4.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-1.4.0.gem)
-and install it by:
+You can also build and install the latest version gem yourself by
+running the following commands:
 
 ``` bash
-cd /directory/you/downloaded/the/gem/to
-gem install paru-1.4.0.gem
+cd /path/to/paru/repository
+bundle install
+rake build
+gem install pkg/paru-1.4.0.gem
 ```
 
 Paru, obviously, requires pandoc. See
-<http://pandoc.org/installing.html> about how to install pandoc on your
-system and [pandoc’s manual](http://pandoc.org/README.html) on how to
+<https://pandoc.org/installing.html> about how to install pandoc on your
+system and [pandoc’s manual](https://pandoc.org/README.html) on how to
 use pandoc.
 
 You can generate the [API documentation for
@@ -100,7 +101,7 @@ converter = Paru::Pandoc.new
 ```
 
 The various [command-line options of
-pandoc](http://pandoc.org/README.html#options) map to methods on this
+pandoc](https://pandoc.org/README.html#options) map to methods on this
 newly created instance. When you want to use a pandoc command-line
 option that contains dashes, replace all dashes with an underscore to
 get the corresponding paru method. For example, the pandoc command-line
@@ -162,7 +163,7 @@ an example of real-world usage of paru.
 ## Writing and using pandoc filters with paru
 
 One of pandoc’s interesting capabilities are [custom
-filters](http://pandoc.org/scripting.html). This is an extremely
+filters](https://pandoc.org/scripting.html). This is an extremely
 powerful feature that allows you to automate certain tasks, such as
 numbering figures, using other command-line programs to pre or post
 process parts of the input, or change the structure of the input

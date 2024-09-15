@@ -45,18 +45,19 @@ Paru is installed through rubygems as follows:
 gem install paru
 ```
 
-You can also download the latest gem
-[paru-1.4.0.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-1.4.0.gem)
-and install it by:
+You can also build and install the latest version gem yourself by
+running the following commands:
 
 ``` bash
-cd /directory/you/downloaded/the/gem/to
-gem install paru-1.4.0.gem
+cd /path/to/paru/repository
+bundle install
+rake build
+gem install pkg/paru-1.4.0.gem
 ```
 
 Paru, obviously, requires pandoc. See
-<http://pandoc.org/installing.html> about how to install pandoc on your
-system and [pandoc's manual](http://pandoc.org/README.html) on how to
+<https://pandoc.org/installing.html> about how to install pandoc on your
+system and [pandoc's manual](https://pandoc.org/README.html) on how to
 use pandoc.
 
 You can generate the [API documentation for
@@ -90,7 +91,7 @@ converter = Paru::Pandoc.new
 ```
 
 The various [command-line options of
-pandoc](http://pandoc.org/README.html#options) map to methods on this
+pandoc](https://pandoc.org/README.html#options) map to methods on this
 newly created instance. When you want to use a pandoc command-line
 option that contains dashes, replace all dashes with an underscore to
 get the corresponding paru method. For example, the pandoc command-line
@@ -163,7 +164,7 @@ To that end, I developed *do-pandoc.rb*.
 I developed *do-pandoc.rb* in two steps:
 
 1.  first I wrote a ruby module to mine the pandoc markdown files for
-    its [YAML](http://yaml.org/) metadata.
+    its [YAML](https://yaml.org/) metadata.
 2.  using that module, I wrote another script that would use the former
     to get the pandoc command-line options to use from an input file,
     fed these options into a dynamically generated pandoc converter, and
@@ -173,9 +174,9 @@ I developed *do-pandoc.rb* in two steps:
 ## 2.1 Mining a pandoc markdown file for its YAML metadata
 
 One of the interesting aspects of pandoc's markdown format is its
-allowance for metadata in so-called [YAML](http://yaml.org/) blocks.
+allowance for metadata in so-called [YAML](https://yaml.org/) blocks.
 Using paru and Ruby it is easy to strip a pandoc file for its metadata
-through pandoc's [JSON](http://json.org/) output/input format: the
+through pandoc's [JSON](https://json.org/) output/input format: the
 script/module *\[pandoc2yaml.rb* (which you will also find in the
 [examples](examples/) sub directory). Furthermore, it is also installed
 as an executable when you install paru, so you can run it from the
@@ -339,7 +340,7 @@ of the document. Since pandoc version 1.18, this JSON representation
 consists of three elements:
 
 1.  the version of the [pandoc-types
-    API](http://hackage.haskell.org/package/pandoc-types-1.17.0.4) used
+    API](https://hackage.haskell.org/package/pandoc-types-1.17.0.4) used
     (`"pandoc-api-version"`),
 2.  the metadata in the document (`"meta"`),
 3.  and the contents of the document (`"blocks"`).
@@ -355,7 +356,7 @@ markdown format.
 Using the library module `Pandoc2Yaml` discussed in the previous
 section, it is easy to write a script that runs pandoc on a markdown
 file using the pandoc options specified in that same file in a
-[YAML](http://yaml.org) metadata block:
+[YAML](https://yaml.org) metadata block:
 
 ``` ruby
 #!/usr/bin/env ruby
@@ -474,7 +475,7 @@ the *pandoc* property in the metadata.
 ## 3.1 Introduction
 
 One of pandoc's interesting capabilities are [custom
-filters](http://pandoc.org/scripting.html). This is an extremely
+filters](https://pandoc.org/scripting.html). This is an extremely
 powerful feature that allows you to automate certain tasks, such as
 numbering figures, using other command-line programs to pre or post
 process parts of the input, or change the structure of the input

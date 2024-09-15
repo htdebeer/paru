@@ -4,18 +4,19 @@ Paru is installed through rubygems as follows:
 gem install paru
 ~~~
 
-You can also download the latest gem
-[paru-::paru::version.gem](https://github.com/htdebeer/paru/blob/master/releases/paru-::paru::version.gem)
-and install it by:
+You can also build and install the latest version gem yourself by running the
+following commands:
 
-~~~ {.bash}
-cd /directory/you/downloaded/the/gem/to
-gem install paru-::paru::version.gem
+~~~bash
+cd /path/to/paru/repository
+bundle install
+rake build
+gem install pkg/paru-::paru::version.gem
 ~~~
 
-Paru, obviously, requires pandoc. See <http://pandoc.org/installing.html>
+Paru, obviously, requires pandoc. See <https://pandoc.org/installing.html>
 about how to install pandoc on your system and [pandoc's
-manual](http://pandoc.org/README.html) on how to use pandoc.
+manual](https://pandoc.org/README.html) on how to use pandoc.
 
 You can generate the [API documentation for
 paru](https://heerdebeer.org/Software/markdown/paru/documentation/api-doc/) by cloning the

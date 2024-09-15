@@ -11,6 +11,8 @@ documentation/api-doc
 .yardoc
 .cache
 
+releases
+
 /.bundle/
 /.yardoc
 /_yardoc/
