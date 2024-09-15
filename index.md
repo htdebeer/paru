@@ -77,6 +77,7 @@ the pandoc ecosystem.
 -   [Michael Kussmaul](https://github.com/kusmi)
 -   [Xavier Belanche Alonso](https://github.com/xbelanch)
 -   [Robert Riemann](https://github.com/rriemann)
+-   [Ulysses Zhan](https://github.com/UlyssesZh)
 
 ## 1.4 Paru says hello to pandoc
 
