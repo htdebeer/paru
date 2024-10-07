@@ -75,6 +75,10 @@ columns:                    78
 toc:                        true
 table_of_contents:          true
 toc_depth:                  3
+lof:                        true
+list_of_figures:            true
+lot:                        true
+list_of_tables:             true
 strip_comments:             true
 no_highlight:               true
 highlight_style:            ""
