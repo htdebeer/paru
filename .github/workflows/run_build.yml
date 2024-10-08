@@ -30,5 +30,5 @@ jobs:
       with:
         pandoc-version: ${{ matrix.pandoc }}
 
-    - name: Run tests
-      run: bundle exec rake test
+    - name: Run build
+      run: bundle exec rake build
