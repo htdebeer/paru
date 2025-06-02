@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         ruby: [3.3.5]
-        pandoc: [3.5]
+        pandoc: [3.7]
 
     steps:
     - name: Checkout
