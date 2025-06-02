@@ -52,7 +52,7 @@ running the following commands:
 cd /path/to/paru/repository
 bundle install
 rake build
-gem install pkg/paru-1.4.1.gem
+gem install pkg/paru-1.4.2.gem
 ```
 
 Paru, obviously, requires pandoc. See
@@ -72,12 +72,12 @@ patches, bug reports, fixes, and suggestions. With your help paru is
 growing beyond a simple tool for personal use into a useful addition to
 the pandoc ecosystem.
 
--   [Ian](https://github.com/iandol)
--   [Jonathan Raphaelson](https://github.com/lygaret)
--   [Michael Kussmaul](https://github.com/kusmi)
--   [Xavier Belanche Alonso](https://github.com/xbelanch)
--   [Robert Riemann](https://github.com/rriemann)
--   [Ulysses Zhan](https://github.com/UlyssesZh)
+- [Ian](https://github.com/iandol)
+- [Jonathan Raphaelson](https://github.com/lygaret)
+- [Michael Kussmaul](https://github.com/kusmi)
+- [Xavier Belanche Alonso](https://github.com/xbelanch)
+- [Robert Riemann](https://github.com/rriemann)
+- [Ulysses Zhan](https://github.com/UlyssesZh)
 
 ## 1.4 Paru says hello to pandoc
 
@@ -647,9 +647,9 @@ In this case, the selector denotes each *Image* that follows a *Header*.
 
 You can use three different selection operators in paru:
 
--   `A + B`, B follows A
--   `A - B`, B does not follow A
--   `A > B`, B is a descendant of A
+- `A + B`, B follows A
+- `A - B`, B does not follow A
+- `A > B`, B is a descendant of A
 
 Due to the flat structure of the pandoc format, the last selector is
 used only sporadically.
@@ -959,30 +959,30 @@ Feel free to ask me a question: [send me an
 email](mailto:Huub@heerdebeer.org) or submit a new
 [issue](https://github.com/htdebeer/paru/issues) if you've found a bug!
 
--   *I get an error like "Erro: JSON parse error: Error in \$:
-    Incompatible API versions: encoded with \[1,20\] but attempted to
-    decode with \[1,21\]."*
+- *I get an error like "Erro: JSON parse error: Error in \$:
+  Incompatible API versions: encoded with \[1,20\] but attempted to
+  decode with \[1,21\]."*
 
-    The versions of pandoc and paru you are using are incompatible.
-    Please install the latest versions of pandoc and paru.
+  The versions of pandoc and paru you are using are incompatible. Please
+  install the latest versions of pandoc and paru.
 
-    Why does this happen? Internally pandoc uses
-    [pandoc-types](https://hackage.haskell.org/package/pandoc-types) to
-    represent documents its converts and filters. Documents represented
-    by one version of pandoc-types are slightly incompatible with
-    documents represented by another version of pandoc-types. This also
-    means that filters written in paru for one version of pandoc-types
-    are not guaranteed to work on documents represented by another
-    version of pandoc-types. As a result, not all paru versions work
-    together with all pandoc versions.
+  Why does this happen? Internally pandoc uses
+  [pandoc-types](https://hackage.haskell.org/package/pandoc-types) to
+  represent documents its converts and filters. Documents represented by
+  one version of pandoc-types are slightly incompatible with documents
+  represented by another version of pandoc-types. This also means that
+  filters written in paru for one version of pandoc-types are not
+  guaranteed to work on documents represented by another version of
+  pandoc-types. As a result, not all paru versions work together with
+  all pandoc versions.
 
-    As a general rule: Use the latest versions of pandoc and paru.
+  As a general rule: Use the latest versions of pandoc and paru.
 
--   *I get an error like "'values_at': no implicit conversion of String
-    into Integer (TypeError) from lib/paru/filter/document.rb:54:in
-    'from_JSON'"*
+- *I get an error like "'values_at': no implicit conversion of String
+  into Integer (TypeError) from lib/paru/filter/document.rb:54:in
+  'from_JSON'"*
 
-    The most likely cause is that you're using an old version of Pandoc.
-    Paru version 0.2.x only supports pandoc version 1.18 and up. In
-    pandoc version 1.18 there was a breaking API change in the way
-    filters worked. Please upgrade your pandoc installation.
+  The most likely cause is that you're using an old version of Pandoc.
+  Paru version 0.2.x only supports pandoc version 1.18 and up. In pandoc
+  version 1.18 there was a breaking API change in the way filters
+  worked. Please upgrade your pandoc installation.

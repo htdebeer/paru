@@ -1,5 +1,5 @@
--   First item
+- First item
 
--   Second *important* item
+- Second *important* item
 
--   Third item
+- Third item

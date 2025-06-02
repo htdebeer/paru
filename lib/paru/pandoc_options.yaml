@@ -65,6 +65,7 @@ trace:                      true
 standalone:                 true
 template:                   ""
 variable:                   [""]
+variable_json:              [""]
 sandbox:                    true
 print_default_template:     ""
 print_default_data_file:    ""
